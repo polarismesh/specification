@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/duration.proto";
+
+// Set of all auth rules for the service
+message Auth {
+  // Set of auth rules
+  repeated Rule rules = 1;
+  // The revision information summarized by the auth rules
+  google.protobuf.StringValue revision = 2;
+}
+
+// Auth rule specification
+message Rule {
+  // The unique identifier of the auth rule
+  google.protobuf.StringValue id = 1;
+  // Whether to enable the auth rule, enabled by default
+  google.protobuf.BoolValue enable = 2;
+  // The name of the service to which the auth rule belongs
+  google.protobuf.StringValue service = 3;
+  // The namespace to which the auth rule belongs
+  google.protobuf.StringValue namespace = 4;
+  // The priority of the auth rule, the value of 0 is the highest
+  google.protobuf.UInt32Value priority = 5;
+  // Rule type
+  RuleType rule_type = 6;
+  // The set of request labels, which are matched by key/value, and this rule is used only when all labels are matched.
+  map<string, MatchString> labels = 7;
+  // The action corresponds to the plugin name of the client.
+  // For example, reject the request
+  google.protobuf.StringValue action = 8;
+}
+
+// Auth rule type
+enum RuleType {
+  // Requests that match the criteria are allowed through
+  WHITELIST = 0;
+  // Requests that match the criteria are rejected
+  BLACKLIST = 1;
+}
+
+// Match regular expression
+message MatchString {
+  // Match type
+  enum MatchType {
+    // Exact match
+    EQUAL = 0;
+    NOT_EQUAL = 1;
+    IN = 2;
+    NOT_IN = 3;
+    // Regex math
+    REGEX = 4;
+  }
+
+  enum ValueType {
+    TEXT = 0;
+    PARAMETER = 1;
+    VARIABLE = 2;
+  }
+
+  MatchType type = 1;
+  google.protobuf.StringValue value = 2;
+  ValueType value_type = 3;
+}
