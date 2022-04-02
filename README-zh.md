@@ -1,18 +1,17 @@
-# Specification
+# 服务治理标准
 
-English | [简体中文](./README-zh.md) 
+[English](./README.md) | 简体中文
 
 ---
 
 README：
 
-- [Introduction](#introduction)
-- [Specification](#specification)
+- [介绍](#介绍)
+- [标准化](#标准化)
 
-## Introduction
+## 介绍
 
-
-## Specification
+## 服务治理标准
 
 |                                   |         Latest Release             |  
 | :-------------------------------- | :--------------------------------: |
