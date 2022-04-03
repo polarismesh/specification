@@ -7,7 +7,8 @@
 README：
 
 - [介绍](#介绍)
-- [标准化](#标准化)
+- [服务治理标准](#服务治理标准)
+- [服务治理接口](#服务治理接口)
 
 ## 介绍
 
@@ -29,3 +30,19 @@ README：
 | **Access Control Specification**  |
 | limiter         | [v1alpha1](/specification/v1/access-control-spec/limiter.md) |
 | authentication  | [v1alpha1](/specification/v1/access-control-spec/authentication.md) |
+
+## 服务治理接口
+
+```shell
+cd api/v1
+
+ls
+  service                # service proto
+  traffic-control        # traffic control proto
+  fault-tolerance        # fault tolerance proto
+  access-control         # access control proto
+  out                    # output of build shell, including Java, Go and C++ code
+  build.linux-x86_64.sh  # build shell for Linux
+  build.osx-aarch_64.sh  # build shell for macOS
+```
+
