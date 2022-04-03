@@ -1,6 +1,8 @@
 syntax = "proto3";
 
-package v1;
+package trafficcontrol;
+
+option go_package = "api/v1/trafficcontrol";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/any.proto";
@@ -46,7 +48,7 @@ message MatchString {
 	// include match
 	INCLUDE = 3;
 	// not include match
-	NOT_INCLUDE = 3;
+	NOT_INCLUDE = 4;
   }
 
   enum ValueType {
