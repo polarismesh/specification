@@ -143,14 +143,15 @@ const char descriptor_table_protodef_instance_2eproto[] PROTOBUF_SECTION_VARIABL
   "cation\030\n \001(\0132\021.service.Location\0221\n\010metad"
   "ata\030\013 \003(\0132\037.service.Instance.MetadataEnt"
   "ry\032/\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005valu"
-  "e\030\002 \001(\t:\0028\001B\020Z\016api/v1/serviceb\006proto3"
+  "e\030\002 \001(\t:\0028\001B0\n\036cn.polarismesh.polaris.se"
+  "rviceZ\016api/v1/serviceb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_instance_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fwrappers_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_instance_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_instance_2eproto = {
-    false, false, 797, descriptor_table_protodef_instance_2eproto,
+    false, false, 829, descriptor_table_protodef_instance_2eproto,
     "instance.proto",
     &descriptor_table_instance_2eproto_once, descriptor_table_instance_2eproto_deps, 1, 3,
     schemas, file_default_instances, TableStruct_instance_2eproto::offsets,

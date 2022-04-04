@@ -3,51 +3,74 @@ syntax = "proto3";
 package trafficcontrol;
 
 option go_package = "api/v1/trafficcontrol";
+option java_package = "cn.polarismesh.polaris.trafficcontrol";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/any.proto";
 
 // configuration root for route
-message RouteConfiguration {
-	// routers chain
-	repeated Router routers = 1;
+message Routing {
+    // Rule belongs and namespace
+    google.protobuf.StringValue namespace = 1;
+    google.protobuf.StringValue service = 2;
+
+    // Each service can configure multiple inbound or outbound rules
+    // For each request, you can match from top to bottom, if you are in the
+    // middle, terminate
+	// For compatible only
+    repeated Route inbounds = 3;
+	// For compatible only
+    repeated Route outbounds = 4;
+
+	google.protobuf.StringValue ctime = 5;
+	google.protobuf.StringValue mtime = 6;
+	google.protobuf.StringValue revision = 7;
+
+	google.protobuf.StringValue service_token = 8 [json_name="service_token"];
+
+	google.protobuf.StringValue id = 9;
+
+    // Routers chain
+    repeated Router routers = 10;
+	
+	// Failover config for routers
+    FailoverConfig failover = 11;
 }
 
-enum RouterType {
-	
-	RuleRouter = 0;
-	
-	MetadataRouter = 1;
-	
-	LocalityRouter = 2;
-	
-	CanaryRouter = 3;
-	
-	SetRouter = 4;
+enum RoutingPolicy {
+	// Route by rule rule
+	RulePolicy = 0;
+	// Route by destination metadata
+	MetadataPolicy = 1;
+	// Route by nearby locality
+	LocalityPolicy = 2;
 }
 
 // router configuration
 message Router {
-	// Router type
-	RouterType type = 1;
+    // Enable this router
+    google.protobuf.BoolValue enable = 1;
 	
-	// Router implementation, for any routing
-	google.protobuf.Any routing = 2;
+	// Router type
+	RoutingPolicy routing_policy = 2;
+	
+	// Routing configuration for router
+	google.protobuf.Any routing_config = 3;
 }
 
 // MatchString
 message MatchString {
   enum MatchStringType {
 
-    // equivalent match
+    // Equivalent match
     EXACT = 0;
-    // regular match
+    // Regular match
     REGEX = 1;
-	// not equals match
+	// Not equals match
 	NOT_EQUALS = 2;
-	// include match
+	// Include match
 	INCLUDE = 3;
-	// not include match
+	// Not include match
 	NOT_INCLUDE = 4;
   }
 
@@ -80,7 +103,7 @@ message Locality {
 	MatchString campus = 3;
 }
 
-message DegradeConfig {
+message FailoverConfig {
 	// Enable degrade
 	google.protobuf.BoolValue enable = 1;
 	
@@ -96,19 +119,12 @@ message DegradeConfig {
 
 
 // Routing by rules
-message RuleRouting {
-  // Rule belongs and namespace
-  google.protobuf.StringValue namespace = 1;
-  google.protobuf.StringValue service = 2;
-
+message RuleRoutingConfig {
   // Each service can configure multiple inbound or outbound rules
   // For each request, you can match from top to bottom, if you are in the
   // middle, terminate
-  repeated Route inbounds = 3;
-  repeated Route outbounds = 4;
-  
-  // Degrade config for destination
-  DegradeConfig degrade = 5;
+  repeated Route inbounds = 1;
+  repeated Route outbounds = 2;
 }
 
 
@@ -165,7 +181,7 @@ message Destination {
   Locality locality = 8;
 }
 
-message LocalityRouting {
+message LocalityRoutingConfig {
 	
 	enum LocalityLevel {
 		CAMPUS = 0;
@@ -174,43 +190,21 @@ message LocalityRouting {
 		ALL = 3;
 	}
 	
-	// starting locality level
-	LocalityLevel startingLevel = 1;
+	// Starting locality level
+	LocalityLevel locality_level = 1;
 	
-	// when fail, the router will degrade to match higher level, here define the max degrade level
-	LocalityLevel maxDegradeLevel = 2;
-	
-   // Degrade config
-   DegradeConfig degrade = 3;
+	// When failover, the router will down to match higher level, here define the max failover level
+	LocalityLevel max_locality_level = 2;
 }
 
-message MetadataRouting {
+message MetadataRoutingConfig {
 	
-	enum DegradeLevel {
+	enum FailoverRange {
 	   ALL = 0;
 	   OTHERS = 1;
+	   OTHER_KEYS = 2;
 	}
 	
-	DegradeLevel degrade_level = 1;
-	
-	// Degrade config
-    DegradeConfig degrade = 3;
-}
-
-message CanaryRouting {
-	
-	enum DegradeLevel {
-	   ALL = 0;
-	   OTHERS = 1;
-	   OTHERS_WITHOUT_CANARY = 2;
-	}
-	
-	DegradeLevel degrade_level = 1;
-	
-	// Degrade config
-    DegradeConfig degrade = 3;
-}
-
-message SetRouting {
-
+	// When metadata not found, it will fall back to the 
+	FailoverRange failover_range = 1;
 }

@@ -58,15 +58,16 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_namespace_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\017namespace.proto\022\007service\032\036google/proto"
   "buf/wrappers.proto\"7\n\tNamespace\022*\n\004name\030"
-  "\001 \001(\0132\034.google.protobuf.StringValueB\020Z\016a"
-  "pi/v1/serviceb\006proto3"
+  "\001 \001(\0132\034.google.protobuf.StringValueB0\n\036c"
+  "n.polarismesh.polaris.serviceZ\016api/v1/se"
+  "rviceb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_namespace_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fwrappers_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_namespace_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_namespace_2eproto = {
-    false, false, 141, descriptor_table_protodef_namespace_2eproto,
+    false, false, 173, descriptor_table_protodef_namespace_2eproto,
     "namespace.proto",
     &descriptor_table_namespace_2eproto_once, descriptor_table_namespace_2eproto_deps, 1, 1,
     schemas, file_default_instances, TableStruct_namespace_2eproto::offsets,

@@ -3,6 +3,7 @@ syntax = "proto3";
 package accesscontrol;
 
 option go_package = "api/v1/accesscontrol";
+option java_package = "cn.polarismesh.polaris.accesscontrol";
 
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/duration.proto";
@@ -75,17 +76,20 @@ message MatchString {
     EXACT = 0;
     // Regex math
     REGEX = 1;
+	// Not equals match
+	NOT_EQUALS = 2;
+	// Include match
+	INCLUDE = 3;
+	// Not include match
+	NOT_INCLUDE = 4;
   }
 
   enum ValueType {
     TEXT = 0;
-    PARAMETER = 1;
-    VARIABLE = 2;
   }
 
   MatchStringType type = 1;
   google.protobuf.StringValue value = 2;
-  ValueType value_type = 3;
 }
 
 // Rate limiting resources

@@ -23,7 +23,6 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
-#include <google/protobuf/generated_message_bases.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata_lite.h>
 #include <google/protobuf/generated_message_reflection.h>
@@ -52,45 +51,39 @@ struct TableStruct_router_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_router_2eproto;
 namespace trafficcontrol {
-class CanaryRouting;
-struct CanaryRoutingDefaultTypeInternal;
-extern CanaryRoutingDefaultTypeInternal _CanaryRouting_default_instance_;
-class DegradeConfig;
-struct DegradeConfigDefaultTypeInternal;
-extern DegradeConfigDefaultTypeInternal _DegradeConfig_default_instance_;
 class Destination;
 struct DestinationDefaultTypeInternal;
 extern DestinationDefaultTypeInternal _Destination_default_instance_;
 class Destination_MetadataEntry_DoNotUse;
 struct Destination_MetadataEntry_DoNotUseDefaultTypeInternal;
 extern Destination_MetadataEntry_DoNotUseDefaultTypeInternal _Destination_MetadataEntry_DoNotUse_default_instance_;
+class FailoverConfig;
+struct FailoverConfigDefaultTypeInternal;
+extern FailoverConfigDefaultTypeInternal _FailoverConfig_default_instance_;
 class Locality;
 struct LocalityDefaultTypeInternal;
 extern LocalityDefaultTypeInternal _Locality_default_instance_;
-class LocalityRouting;
-struct LocalityRoutingDefaultTypeInternal;
-extern LocalityRoutingDefaultTypeInternal _LocalityRouting_default_instance_;
+class LocalityRoutingConfig;
+struct LocalityRoutingConfigDefaultTypeInternal;
+extern LocalityRoutingConfigDefaultTypeInternal _LocalityRoutingConfig_default_instance_;
 class MatchString;
 struct MatchStringDefaultTypeInternal;
 extern MatchStringDefaultTypeInternal _MatchString_default_instance_;
-class MetadataRouting;
-struct MetadataRoutingDefaultTypeInternal;
-extern MetadataRoutingDefaultTypeInternal _MetadataRouting_default_instance_;
+class MetadataRoutingConfig;
+struct MetadataRoutingConfigDefaultTypeInternal;
+extern MetadataRoutingConfigDefaultTypeInternal _MetadataRoutingConfig_default_instance_;
 class Route;
 struct RouteDefaultTypeInternal;
 extern RouteDefaultTypeInternal _Route_default_instance_;
-class RouteConfiguration;
-struct RouteConfigurationDefaultTypeInternal;
-extern RouteConfigurationDefaultTypeInternal _RouteConfiguration_default_instance_;
 class Router;
 struct RouterDefaultTypeInternal;
 extern RouterDefaultTypeInternal _Router_default_instance_;
-class RuleRouting;
-struct RuleRoutingDefaultTypeInternal;
-extern RuleRoutingDefaultTypeInternal _RuleRouting_default_instance_;
-class SetRouting;
-struct SetRoutingDefaultTypeInternal;
-extern SetRoutingDefaultTypeInternal _SetRouting_default_instance_;
+class Routing;
+struct RoutingDefaultTypeInternal;
+extern RoutingDefaultTypeInternal _Routing_default_instance_;
+class RuleRoutingConfig;
+struct RuleRoutingConfigDefaultTypeInternal;
+extern RuleRoutingConfigDefaultTypeInternal _RuleRoutingConfig_default_instance_;
 class Source;
 struct SourceDefaultTypeInternal;
 extern SourceDefaultTypeInternal _Source_default_instance_;
@@ -99,19 +92,17 @@ struct Source_MetadataEntry_DoNotUseDefaultTypeInternal;
 extern Source_MetadataEntry_DoNotUseDefaultTypeInternal _Source_MetadataEntry_DoNotUse_default_instance_;
 }  // namespace trafficcontrol
 PROTOBUF_NAMESPACE_OPEN
-template<> ::trafficcontrol::CanaryRouting* Arena::CreateMaybeMessage<::trafficcontrol::CanaryRouting>(Arena*);
-template<> ::trafficcontrol::DegradeConfig* Arena::CreateMaybeMessage<::trafficcontrol::DegradeConfig>(Arena*);
 template<> ::trafficcontrol::Destination* Arena::CreateMaybeMessage<::trafficcontrol::Destination>(Arena*);
 template<> ::trafficcontrol::Destination_MetadataEntry_DoNotUse* Arena::CreateMaybeMessage<::trafficcontrol::Destination_MetadataEntry_DoNotUse>(Arena*);
+template<> ::trafficcontrol::FailoverConfig* Arena::CreateMaybeMessage<::trafficcontrol::FailoverConfig>(Arena*);
 template<> ::trafficcontrol::Locality* Arena::CreateMaybeMessage<::trafficcontrol::Locality>(Arena*);
-template<> ::trafficcontrol::LocalityRouting* Arena::CreateMaybeMessage<::trafficcontrol::LocalityRouting>(Arena*);
+template<> ::trafficcontrol::LocalityRoutingConfig* Arena::CreateMaybeMessage<::trafficcontrol::LocalityRoutingConfig>(Arena*);
 template<> ::trafficcontrol::MatchString* Arena::CreateMaybeMessage<::trafficcontrol::MatchString>(Arena*);
-template<> ::trafficcontrol::MetadataRouting* Arena::CreateMaybeMessage<::trafficcontrol::MetadataRouting>(Arena*);
+template<> ::trafficcontrol::MetadataRoutingConfig* Arena::CreateMaybeMessage<::trafficcontrol::MetadataRoutingConfig>(Arena*);
 template<> ::trafficcontrol::Route* Arena::CreateMaybeMessage<::trafficcontrol::Route>(Arena*);
-template<> ::trafficcontrol::RouteConfiguration* Arena::CreateMaybeMessage<::trafficcontrol::RouteConfiguration>(Arena*);
 template<> ::trafficcontrol::Router* Arena::CreateMaybeMessage<::trafficcontrol::Router>(Arena*);
-template<> ::trafficcontrol::RuleRouting* Arena::CreateMaybeMessage<::trafficcontrol::RuleRouting>(Arena*);
-template<> ::trafficcontrol::SetRouting* Arena::CreateMaybeMessage<::trafficcontrol::SetRouting>(Arena*);
+template<> ::trafficcontrol::Routing* Arena::CreateMaybeMessage<::trafficcontrol::Routing>(Arena*);
+template<> ::trafficcontrol::RuleRoutingConfig* Arena::CreateMaybeMessage<::trafficcontrol::RuleRoutingConfig>(Arena*);
 template<> ::trafficcontrol::Source* Arena::CreateMaybeMessage<::trafficcontrol::Source>(Arena*);
 template<> ::trafficcontrol::Source_MetadataEntry_DoNotUse* Arena::CreateMaybeMessage<::trafficcontrol::Source_MetadataEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -171,132 +162,105 @@ inline bool MatchString_ValueType_Parse(
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MatchString_ValueType>(
     MatchString_ValueType_descriptor(), name, value);
 }
-enum LocalityRouting_LocalityLevel : int {
-  LocalityRouting_LocalityLevel_CAMPUS = 0,
-  LocalityRouting_LocalityLevel_ZONE = 1,
-  LocalityRouting_LocalityLevel_REGION = 2,
-  LocalityRouting_LocalityLevel_ALL = 3,
-  LocalityRouting_LocalityLevel_LocalityRouting_LocalityLevel_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  LocalityRouting_LocalityLevel_LocalityRouting_LocalityLevel_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+enum LocalityRoutingConfig_LocalityLevel : int {
+  LocalityRoutingConfig_LocalityLevel_CAMPUS = 0,
+  LocalityRoutingConfig_LocalityLevel_ZONE = 1,
+  LocalityRoutingConfig_LocalityLevel_REGION = 2,
+  LocalityRoutingConfig_LocalityLevel_ALL = 3,
+  LocalityRoutingConfig_LocalityLevel_LocalityRoutingConfig_LocalityLevel_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  LocalityRoutingConfig_LocalityLevel_LocalityRoutingConfig_LocalityLevel_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool LocalityRouting_LocalityLevel_IsValid(int value);
-constexpr LocalityRouting_LocalityLevel LocalityRouting_LocalityLevel_LocalityLevel_MIN = LocalityRouting_LocalityLevel_CAMPUS;
-constexpr LocalityRouting_LocalityLevel LocalityRouting_LocalityLevel_LocalityLevel_MAX = LocalityRouting_LocalityLevel_ALL;
-constexpr int LocalityRouting_LocalityLevel_LocalityLevel_ARRAYSIZE = LocalityRouting_LocalityLevel_LocalityLevel_MAX + 1;
+bool LocalityRoutingConfig_LocalityLevel_IsValid(int value);
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig_LocalityLevel_LocalityLevel_MIN = LocalityRoutingConfig_LocalityLevel_CAMPUS;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig_LocalityLevel_LocalityLevel_MAX = LocalityRoutingConfig_LocalityLevel_ALL;
+constexpr int LocalityRoutingConfig_LocalityLevel_LocalityLevel_ARRAYSIZE = LocalityRoutingConfig_LocalityLevel_LocalityLevel_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LocalityRouting_LocalityLevel_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LocalityRoutingConfig_LocalityLevel_descriptor();
 template<typename T>
-inline const std::string& LocalityRouting_LocalityLevel_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, LocalityRouting_LocalityLevel>::value ||
+inline const std::string& LocalityRoutingConfig_LocalityLevel_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, LocalityRoutingConfig_LocalityLevel>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function LocalityRouting_LocalityLevel_Name.");
+    "Incorrect type passed to function LocalityRoutingConfig_LocalityLevel_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    LocalityRouting_LocalityLevel_descriptor(), enum_t_value);
+    LocalityRoutingConfig_LocalityLevel_descriptor(), enum_t_value);
 }
-inline bool LocalityRouting_LocalityLevel_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, LocalityRouting_LocalityLevel* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<LocalityRouting_LocalityLevel>(
-    LocalityRouting_LocalityLevel_descriptor(), name, value);
+inline bool LocalityRoutingConfig_LocalityLevel_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, LocalityRoutingConfig_LocalityLevel* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<LocalityRoutingConfig_LocalityLevel>(
+    LocalityRoutingConfig_LocalityLevel_descriptor(), name, value);
 }
-enum MetadataRouting_DegradeLevel : int {
-  MetadataRouting_DegradeLevel_ALL = 0,
-  MetadataRouting_DegradeLevel_OTHERS = 1,
-  MetadataRouting_DegradeLevel_MetadataRouting_DegradeLevel_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  MetadataRouting_DegradeLevel_MetadataRouting_DegradeLevel_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+enum MetadataRoutingConfig_FailoverRange : int {
+  MetadataRoutingConfig_FailoverRange_ALL = 0,
+  MetadataRoutingConfig_FailoverRange_OTHERS = 1,
+  MetadataRoutingConfig_FailoverRange_OTHER_KEYS = 2,
+  MetadataRoutingConfig_FailoverRange_MetadataRoutingConfig_FailoverRange_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MetadataRoutingConfig_FailoverRange_MetadataRoutingConfig_FailoverRange_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool MetadataRouting_DegradeLevel_IsValid(int value);
-constexpr MetadataRouting_DegradeLevel MetadataRouting_DegradeLevel_DegradeLevel_MIN = MetadataRouting_DegradeLevel_ALL;
-constexpr MetadataRouting_DegradeLevel MetadataRouting_DegradeLevel_DegradeLevel_MAX = MetadataRouting_DegradeLevel_OTHERS;
-constexpr int MetadataRouting_DegradeLevel_DegradeLevel_ARRAYSIZE = MetadataRouting_DegradeLevel_DegradeLevel_MAX + 1;
+bool MetadataRoutingConfig_FailoverRange_IsValid(int value);
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig_FailoverRange_FailoverRange_MIN = MetadataRoutingConfig_FailoverRange_ALL;
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig_FailoverRange_FailoverRange_MAX = MetadataRoutingConfig_FailoverRange_OTHER_KEYS;
+constexpr int MetadataRoutingConfig_FailoverRange_FailoverRange_ARRAYSIZE = MetadataRoutingConfig_FailoverRange_FailoverRange_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MetadataRouting_DegradeLevel_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MetadataRoutingConfig_FailoverRange_descriptor();
 template<typename T>
-inline const std::string& MetadataRouting_DegradeLevel_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, MetadataRouting_DegradeLevel>::value ||
+inline const std::string& MetadataRoutingConfig_FailoverRange_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MetadataRoutingConfig_FailoverRange>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function MetadataRouting_DegradeLevel_Name.");
+    "Incorrect type passed to function MetadataRoutingConfig_FailoverRange_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    MetadataRouting_DegradeLevel_descriptor(), enum_t_value);
+    MetadataRoutingConfig_FailoverRange_descriptor(), enum_t_value);
 }
-inline bool MetadataRouting_DegradeLevel_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MetadataRouting_DegradeLevel* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MetadataRouting_DegradeLevel>(
-    MetadataRouting_DegradeLevel_descriptor(), name, value);
+inline bool MetadataRoutingConfig_FailoverRange_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MetadataRoutingConfig_FailoverRange* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MetadataRoutingConfig_FailoverRange>(
+    MetadataRoutingConfig_FailoverRange_descriptor(), name, value);
 }
-enum CanaryRouting_DegradeLevel : int {
-  CanaryRouting_DegradeLevel_ALL = 0,
-  CanaryRouting_DegradeLevel_OTHERS = 1,
-  CanaryRouting_DegradeLevel_OTHERS_WITHOUT_CANARY = 2,
-  CanaryRouting_DegradeLevel_CanaryRouting_DegradeLevel_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  CanaryRouting_DegradeLevel_CanaryRouting_DegradeLevel_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+enum RoutingPolicy : int {
+  RulePolicy = 0,
+  MetadataPolicy = 1,
+  LocalityPolicy = 2,
+  RoutingPolicy_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  RoutingPolicy_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool CanaryRouting_DegradeLevel_IsValid(int value);
-constexpr CanaryRouting_DegradeLevel CanaryRouting_DegradeLevel_DegradeLevel_MIN = CanaryRouting_DegradeLevel_ALL;
-constexpr CanaryRouting_DegradeLevel CanaryRouting_DegradeLevel_DegradeLevel_MAX = CanaryRouting_DegradeLevel_OTHERS_WITHOUT_CANARY;
-constexpr int CanaryRouting_DegradeLevel_DegradeLevel_ARRAYSIZE = CanaryRouting_DegradeLevel_DegradeLevel_MAX + 1;
+bool RoutingPolicy_IsValid(int value);
+constexpr RoutingPolicy RoutingPolicy_MIN = RulePolicy;
+constexpr RoutingPolicy RoutingPolicy_MAX = LocalityPolicy;
+constexpr int RoutingPolicy_ARRAYSIZE = RoutingPolicy_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CanaryRouting_DegradeLevel_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RoutingPolicy_descriptor();
 template<typename T>
-inline const std::string& CanaryRouting_DegradeLevel_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, CanaryRouting_DegradeLevel>::value ||
+inline const std::string& RoutingPolicy_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, RoutingPolicy>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function CanaryRouting_DegradeLevel_Name.");
+    "Incorrect type passed to function RoutingPolicy_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    CanaryRouting_DegradeLevel_descriptor(), enum_t_value);
+    RoutingPolicy_descriptor(), enum_t_value);
 }
-inline bool CanaryRouting_DegradeLevel_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, CanaryRouting_DegradeLevel* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<CanaryRouting_DegradeLevel>(
-    CanaryRouting_DegradeLevel_descriptor(), name, value);
-}
-enum RouterType : int {
-  RuleRouter = 0,
-  MetadataRouter = 1,
-  LocalityRouter = 2,
-  CanaryRouter = 3,
-  SetRouter = 4,
-  RouterType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  RouterType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
-};
-bool RouterType_IsValid(int value);
-constexpr RouterType RouterType_MIN = RuleRouter;
-constexpr RouterType RouterType_MAX = SetRouter;
-constexpr int RouterType_ARRAYSIZE = RouterType_MAX + 1;
-
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RouterType_descriptor();
-template<typename T>
-inline const std::string& RouterType_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, RouterType>::value ||
-    ::std::is_integral<T>::value,
-    "Incorrect type passed to function RouterType_Name.");
-  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    RouterType_descriptor(), enum_t_value);
-}
-inline bool RouterType_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, RouterType* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RouterType>(
-    RouterType_descriptor(), name, value);
+inline bool RoutingPolicy_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, RoutingPolicy* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RoutingPolicy>(
+    RoutingPolicy_descriptor(), name, value);
 }
 // ===================================================================
 
-class RouteConfiguration final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.RouteConfiguration) */ {
+class Routing final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.Routing) */ {
  public:
-  inline RouteConfiguration() : RouteConfiguration(nullptr) {}
-  ~RouteConfiguration() override;
-  explicit PROTOBUF_CONSTEXPR RouteConfiguration(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline Routing() : Routing(nullptr) {}
+  ~Routing() override;
+  explicit PROTOBUF_CONSTEXPR Routing(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  RouteConfiguration(const RouteConfiguration& from);
-  RouteConfiguration(RouteConfiguration&& from) noexcept
-    : RouteConfiguration() {
+  Routing(const Routing& from);
+  Routing(Routing&& from) noexcept
+    : Routing() {
     *this = ::std::move(from);
   }
 
-  inline RouteConfiguration& operator=(const RouteConfiguration& from) {
+  inline Routing& operator=(const Routing& from) {
     CopyFrom(from);
     return *this;
   }
-  inline RouteConfiguration& operator=(RouteConfiguration&& from) noexcept {
+  inline Routing& operator=(Routing&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -319,20 +283,20 @@ class RouteConfiguration final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const RouteConfiguration& default_instance() {
+  static const Routing& default_instance() {
     return *internal_default_instance();
   }
-  static inline const RouteConfiguration* internal_default_instance() {
-    return reinterpret_cast<const RouteConfiguration*>(
-               &_RouteConfiguration_default_instance_);
+  static inline const Routing* internal_default_instance() {
+    return reinterpret_cast<const Routing*>(
+               &_Routing_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(RouteConfiguration& a, RouteConfiguration& b) {
+  friend void swap(Routing& a, Routing& b) {
     a.Swap(&b);
   }
-  inline void Swap(RouteConfiguration* other) {
+  inline void Swap(Routing* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -345,7 +309,7 @@ class RouteConfiguration final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(RouteConfiguration* other) {
+  void UnsafeArenaSwap(Routing* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -353,13 +317,13 @@ class RouteConfiguration final :
 
   // implements Message ----------------------------------------------
 
-  RouteConfiguration* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<RouteConfiguration>(arena);
+  Routing* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Routing>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const RouteConfiguration& from);
+  void CopyFrom(const Routing& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const RouteConfiguration& from);
+  void MergeFrom(const Routing& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -376,15 +340,15 @@ class RouteConfiguration final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(RouteConfiguration* other);
+  void InternalSwap(Routing* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.RouteConfiguration";
+    return "trafficcontrol.Routing";
   }
   protected:
-  explicit RouteConfiguration(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit Routing(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -398,9 +362,55 @@ class RouteConfiguration final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRoutersFieldNumber = 1,
+    kInboundsFieldNumber = 3,
+    kOutboundsFieldNumber = 4,
+    kRoutersFieldNumber = 10,
+    kNamespaceFieldNumber = 1,
+    kServiceFieldNumber = 2,
+    kCtimeFieldNumber = 5,
+    kMtimeFieldNumber = 6,
+    kRevisionFieldNumber = 7,
+    kServiceTokenFieldNumber = 8,
+    kIdFieldNumber = 9,
+    kFailoverFieldNumber = 11,
   };
-  // repeated .trafficcontrol.Router routers = 1;
+  // repeated .trafficcontrol.Route inbounds = 3;
+  int inbounds_size() const;
+  private:
+  int _internal_inbounds_size() const;
+  public:
+  void clear_inbounds();
+  ::trafficcontrol::Route* mutable_inbounds(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >*
+      mutable_inbounds();
+  private:
+  const ::trafficcontrol::Route& _internal_inbounds(int index) const;
+  ::trafficcontrol::Route* _internal_add_inbounds();
+  public:
+  const ::trafficcontrol::Route& inbounds(int index) const;
+  ::trafficcontrol::Route* add_inbounds();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
+      inbounds() const;
+
+  // repeated .trafficcontrol.Route outbounds = 4;
+  int outbounds_size() const;
+  private:
+  int _internal_outbounds_size() const;
+  public:
+  void clear_outbounds();
+  ::trafficcontrol::Route* mutable_outbounds(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >*
+      mutable_outbounds();
+  private:
+  const ::trafficcontrol::Route& _internal_outbounds(int index) const;
+  ::trafficcontrol::Route* _internal_add_outbounds();
+  public:
+  const ::trafficcontrol::Route& outbounds(int index) const;
+  ::trafficcontrol::Route* add_outbounds();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
+      outbounds() const;
+
+  // repeated .trafficcontrol.Router routers = 10;
   int routers_size() const;
   private:
   int _internal_routers_size() const;
@@ -418,14 +428,168 @@ class RouteConfiguration final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Router >&
       routers() const;
 
-  // @@protoc_insertion_point(class_scope:trafficcontrol.RouteConfiguration)
+  // .google.protobuf.StringValue namespace = 1;
+  bool has_namespace_() const;
+  private:
+  bool _internal_has_namespace_() const;
+  public:
+  void clear_namespace_();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_namespace_();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_namespace_();
+  void set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_namespace_() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_namespace_();
+  public:
+  void unsafe_arena_set_allocated_namespace_(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_namespace_();
+
+  // .google.protobuf.StringValue service = 2;
+  bool has_service() const;
+  private:
+  bool _internal_has_service() const;
+  public:
+  void clear_service();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& service() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service();
+  void set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service();
+  public:
+  void unsafe_arena_set_allocated_service(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service();
+
+  // .google.protobuf.StringValue ctime = 5;
+  bool has_ctime() const;
+  private:
+  bool _internal_has_ctime() const;
+  public:
+  void clear_ctime();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& ctime() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_ctime();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_ctime();
+  void set_allocated_ctime(::PROTOBUF_NAMESPACE_ID::StringValue* ctime);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_ctime() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_ctime();
+  public:
+  void unsafe_arena_set_allocated_ctime(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* ctime);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_ctime();
+
+  // .google.protobuf.StringValue mtime = 6;
+  bool has_mtime() const;
+  private:
+  bool _internal_has_mtime() const;
+  public:
+  void clear_mtime();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& mtime() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_mtime();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_mtime();
+  void set_allocated_mtime(::PROTOBUF_NAMESPACE_ID::StringValue* mtime);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_mtime() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_mtime();
+  public:
+  void unsafe_arena_set_allocated_mtime(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* mtime);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_mtime();
+
+  // .google.protobuf.StringValue revision = 7;
+  bool has_revision() const;
+  private:
+  bool _internal_has_revision() const;
+  public:
+  void clear_revision();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& revision() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_revision();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_revision();
+  void set_allocated_revision(::PROTOBUF_NAMESPACE_ID::StringValue* revision);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_revision() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_revision();
+  public:
+  void unsafe_arena_set_allocated_revision(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* revision);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_revision();
+
+  // .google.protobuf.StringValue service_token = 8 [json_name = "service_token"];
+  bool has_service_token() const;
+  private:
+  bool _internal_has_service_token() const;
+  public:
+  void clear_service_token();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& service_token() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service_token();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service_token();
+  void set_allocated_service_token(::PROTOBUF_NAMESPACE_ID::StringValue* service_token);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service_token() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service_token();
+  public:
+  void unsafe_arena_set_allocated_service_token(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* service_token);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service_token();
+
+  // .google.protobuf.StringValue id = 9;
+  bool has_id() const;
+  private:
+  bool _internal_has_id() const;
+  public:
+  void clear_id();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& id() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_id();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_id();
+  void set_allocated_id(::PROTOBUF_NAMESPACE_ID::StringValue* id);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_id() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_id();
+  public:
+  void unsafe_arena_set_allocated_id(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* id);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_id();
+
+  // .trafficcontrol.FailoverConfig failover = 11;
+  bool has_failover() const;
+  private:
+  bool _internal_has_failover() const;
+  public:
+  void clear_failover();
+  const ::trafficcontrol::FailoverConfig& failover() const;
+  PROTOBUF_NODISCARD ::trafficcontrol::FailoverConfig* release_failover();
+  ::trafficcontrol::FailoverConfig* mutable_failover();
+  void set_allocated_failover(::trafficcontrol::FailoverConfig* failover);
+  private:
+  const ::trafficcontrol::FailoverConfig& _internal_failover() const;
+  ::trafficcontrol::FailoverConfig* _internal_mutable_failover();
+  public:
+  void unsafe_arena_set_allocated_failover(
+      ::trafficcontrol::FailoverConfig* failover);
+  ::trafficcontrol::FailoverConfig* unsafe_arena_release_failover();
+
+  // @@protoc_insertion_point(class_scope:trafficcontrol.Routing)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route > inbounds_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route > outbounds_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Router > routers_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* namespace__;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* service_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* ctime_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mtime_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* revision_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* service_token_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* id_;
+  ::trafficcontrol::FailoverConfig* failover_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_router_2eproto;
 };
@@ -550,34 +714,53 @@ class Router final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kRoutingFieldNumber = 2,
-    kTypeFieldNumber = 1,
+    kEnableFieldNumber = 1,
+    kRoutingConfigFieldNumber = 3,
+    kRoutingPolicyFieldNumber = 2,
   };
-  // .google.protobuf.Any routing = 2;
-  bool has_routing() const;
+  // .google.protobuf.BoolValue enable = 1;
+  bool has_enable() const;
   private:
-  bool _internal_has_routing() const;
+  bool _internal_has_enable() const;
   public:
-  void clear_routing();
-  const ::PROTOBUF_NAMESPACE_ID::Any& routing() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Any* release_routing();
-  ::PROTOBUF_NAMESPACE_ID::Any* mutable_routing();
-  void set_allocated_routing(::PROTOBUF_NAMESPACE_ID::Any* routing);
+  void clear_enable();
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::BoolValue* release_enable();
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* mutable_enable();
+  void set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Any& _internal_routing() const;
-  ::PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_routing();
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& _internal_enable() const;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _internal_mutable_enable();
   public:
-  void unsafe_arena_set_allocated_routing(
-      ::PROTOBUF_NAMESPACE_ID::Any* routing);
-  ::PROTOBUF_NAMESPACE_ID::Any* unsafe_arena_release_routing();
+  void unsafe_arena_set_allocated_enable(
+      ::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* unsafe_arena_release_enable();
 
-  // .trafficcontrol.RouterType type = 1;
-  void clear_type();
-  ::trafficcontrol::RouterType type() const;
-  void set_type(::trafficcontrol::RouterType value);
+  // .google.protobuf.Any routing_config = 3;
+  bool has_routing_config() const;
   private:
-  ::trafficcontrol::RouterType _internal_type() const;
-  void _internal_set_type(::trafficcontrol::RouterType value);
+  bool _internal_has_routing_config() const;
+  public:
+  void clear_routing_config();
+  const ::PROTOBUF_NAMESPACE_ID::Any& routing_config() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Any* release_routing_config();
+  ::PROTOBUF_NAMESPACE_ID::Any* mutable_routing_config();
+  void set_allocated_routing_config(::PROTOBUF_NAMESPACE_ID::Any* routing_config);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Any& _internal_routing_config() const;
+  ::PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_routing_config();
+  public:
+  void unsafe_arena_set_allocated_routing_config(
+      ::PROTOBUF_NAMESPACE_ID::Any* routing_config);
+  ::PROTOBUF_NAMESPACE_ID::Any* unsafe_arena_release_routing_config();
+
+  // .trafficcontrol.RoutingPolicy routing_policy = 2;
+  void clear_routing_policy();
+  ::trafficcontrol::RoutingPolicy routing_policy() const;
+  void set_routing_policy(::trafficcontrol::RoutingPolicy value);
+  private:
+  ::trafficcontrol::RoutingPolicy _internal_routing_policy() const;
+  void _internal_set_routing_policy(::trafficcontrol::RoutingPolicy value);
   public:
 
   // @@protoc_insertion_point(class_scope:trafficcontrol.Router)
@@ -587,8 +770,9 @@ class Router final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::Any* routing_;
-  int type_;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* enable_;
+  ::PROTOBUF_NAMESPACE_ID::Any* routing_config_;
+  int routing_policy_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_router_2eproto;
 };
@@ -1028,24 +1212,24 @@ class Locality final :
 };
 // -------------------------------------------------------------------
 
-class DegradeConfig final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.DegradeConfig) */ {
+class FailoverConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.FailoverConfig) */ {
  public:
-  inline DegradeConfig() : DegradeConfig(nullptr) {}
-  ~DegradeConfig() override;
-  explicit PROTOBUF_CONSTEXPR DegradeConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline FailoverConfig() : FailoverConfig(nullptr) {}
+  ~FailoverConfig() override;
+  explicit PROTOBUF_CONSTEXPR FailoverConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  DegradeConfig(const DegradeConfig& from);
-  DegradeConfig(DegradeConfig&& from) noexcept
-    : DegradeConfig() {
+  FailoverConfig(const FailoverConfig& from);
+  FailoverConfig(FailoverConfig&& from) noexcept
+    : FailoverConfig() {
     *this = ::std::move(from);
   }
 
-  inline DegradeConfig& operator=(const DegradeConfig& from) {
+  inline FailoverConfig& operator=(const FailoverConfig& from) {
     CopyFrom(from);
     return *this;
   }
-  inline DegradeConfig& operator=(DegradeConfig&& from) noexcept {
+  inline FailoverConfig& operator=(FailoverConfig&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1068,20 +1252,20 @@ class DegradeConfig final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const DegradeConfig& default_instance() {
+  static const FailoverConfig& default_instance() {
     return *internal_default_instance();
   }
-  static inline const DegradeConfig* internal_default_instance() {
-    return reinterpret_cast<const DegradeConfig*>(
-               &_DegradeConfig_default_instance_);
+  static inline const FailoverConfig* internal_default_instance() {
+    return reinterpret_cast<const FailoverConfig*>(
+               &_FailoverConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     4;
 
-  friend void swap(DegradeConfig& a, DegradeConfig& b) {
+  friend void swap(FailoverConfig& a, FailoverConfig& b) {
     a.Swap(&b);
   }
-  inline void Swap(DegradeConfig* other) {
+  inline void Swap(FailoverConfig* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1094,7 +1278,7 @@ class DegradeConfig final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(DegradeConfig* other) {
+  void UnsafeArenaSwap(FailoverConfig* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1102,13 +1286,13 @@ class DegradeConfig final :
 
   // implements Message ----------------------------------------------
 
-  DegradeConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<DegradeConfig>(arena);
+  FailoverConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FailoverConfig>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const DegradeConfig& from);
+  void CopyFrom(const FailoverConfig& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const DegradeConfig& from);
+  void MergeFrom(const FailoverConfig& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -1125,15 +1309,15 @@ class DegradeConfig final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(DegradeConfig* other);
+  void InternalSwap(FailoverConfig* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.DegradeConfig";
+    return "trafficcontrol.FailoverConfig";
   }
   protected:
-  explicit DegradeConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit FailoverConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1224,7 +1408,7 @@ class DegradeConfig final :
       ::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_percent);
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_healthy_percent();
 
-  // @@protoc_insertion_point(class_scope:trafficcontrol.DegradeConfig)
+  // @@protoc_insertion_point(class_scope:trafficcontrol.FailoverConfig)
  private:
   class _Internal;
 
@@ -1240,24 +1424,24 @@ class DegradeConfig final :
 };
 // -------------------------------------------------------------------
 
-class RuleRouting final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.RuleRouting) */ {
+class RuleRoutingConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.RuleRoutingConfig) */ {
  public:
-  inline RuleRouting() : RuleRouting(nullptr) {}
-  ~RuleRouting() override;
-  explicit PROTOBUF_CONSTEXPR RuleRouting(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline RuleRoutingConfig() : RuleRoutingConfig(nullptr) {}
+  ~RuleRoutingConfig() override;
+  explicit PROTOBUF_CONSTEXPR RuleRoutingConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  RuleRouting(const RuleRouting& from);
-  RuleRouting(RuleRouting&& from) noexcept
-    : RuleRouting() {
+  RuleRoutingConfig(const RuleRoutingConfig& from);
+  RuleRoutingConfig(RuleRoutingConfig&& from) noexcept
+    : RuleRoutingConfig() {
     *this = ::std::move(from);
   }
 
-  inline RuleRouting& operator=(const RuleRouting& from) {
+  inline RuleRoutingConfig& operator=(const RuleRoutingConfig& from) {
     CopyFrom(from);
     return *this;
   }
-  inline RuleRouting& operator=(RuleRouting&& from) noexcept {
+  inline RuleRoutingConfig& operator=(RuleRoutingConfig&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -1280,20 +1464,20 @@ class RuleRouting final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const RuleRouting& default_instance() {
+  static const RuleRoutingConfig& default_instance() {
     return *internal_default_instance();
   }
-  static inline const RuleRouting* internal_default_instance() {
-    return reinterpret_cast<const RuleRouting*>(
-               &_RuleRouting_default_instance_);
+  static inline const RuleRoutingConfig* internal_default_instance() {
+    return reinterpret_cast<const RuleRoutingConfig*>(
+               &_RuleRoutingConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     5;
 
-  friend void swap(RuleRouting& a, RuleRouting& b) {
+  friend void swap(RuleRoutingConfig& a, RuleRoutingConfig& b) {
     a.Swap(&b);
   }
-  inline void Swap(RuleRouting* other) {
+  inline void Swap(RuleRoutingConfig* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -1306,7 +1490,7 @@ class RuleRouting final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(RuleRouting* other) {
+  void UnsafeArenaSwap(RuleRoutingConfig* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -1314,13 +1498,13 @@ class RuleRouting final :
 
   // implements Message ----------------------------------------------
 
-  RuleRouting* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<RuleRouting>(arena);
+  RuleRoutingConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RuleRoutingConfig>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const RuleRouting& from);
+  void CopyFrom(const RuleRoutingConfig& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const RuleRouting& from);
+  void MergeFrom(const RuleRoutingConfig& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -1337,15 +1521,15 @@ class RuleRouting final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(RuleRouting* other);
+  void InternalSwap(RuleRoutingConfig* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.RuleRouting";
+    return "trafficcontrol.RuleRoutingConfig";
   }
   protected:
-  explicit RuleRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit RuleRoutingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -1359,13 +1543,10 @@ class RuleRouting final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kInboundsFieldNumber = 3,
-    kOutboundsFieldNumber = 4,
-    kNamespaceFieldNumber = 1,
-    kServiceFieldNumber = 2,
-    kDegradeFieldNumber = 5,
+    kInboundsFieldNumber = 1,
+    kOutboundsFieldNumber = 2,
   };
-  // repeated .trafficcontrol.Route inbounds = 3;
+  // repeated .trafficcontrol.Route inbounds = 1;
   int inbounds_size() const;
   private:
   int _internal_inbounds_size() const;
@@ -1383,7 +1564,7 @@ class RuleRouting final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
       inbounds() const;
 
-  // repeated .trafficcontrol.Route outbounds = 4;
+  // repeated .trafficcontrol.Route outbounds = 2;
   int outbounds_size() const;
   private:
   int _internal_outbounds_size() const;
@@ -1401,61 +1582,7 @@ class RuleRouting final :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
       outbounds() const;
 
-  // .google.protobuf.StringValue namespace = 1;
-  bool has_namespace_() const;
-  private:
-  bool _internal_has_namespace_() const;
-  public:
-  void clear_namespace_();
-  const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_namespace_();
-  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_namespace_();
-  void set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_namespace_() const;
-  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_namespace_();
-  public:
-  void unsafe_arena_set_allocated_namespace_(
-      ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
-  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_namespace_();
-
-  // .google.protobuf.StringValue service = 2;
-  bool has_service() const;
-  private:
-  bool _internal_has_service() const;
-  public:
-  void clear_service();
-  const ::PROTOBUF_NAMESPACE_ID::StringValue& service() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service();
-  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service();
-  void set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service() const;
-  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service();
-  public:
-  void unsafe_arena_set_allocated_service(
-      ::PROTOBUF_NAMESPACE_ID::StringValue* service);
-  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service();
-
-  // .trafficcontrol.DegradeConfig degrade = 5;
-  bool has_degrade() const;
-  private:
-  bool _internal_has_degrade() const;
-  public:
-  void clear_degrade();
-  const ::trafficcontrol::DegradeConfig& degrade() const;
-  PROTOBUF_NODISCARD ::trafficcontrol::DegradeConfig* release_degrade();
-  ::trafficcontrol::DegradeConfig* mutable_degrade();
-  void set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade);
-  private:
-  const ::trafficcontrol::DegradeConfig& _internal_degrade() const;
-  ::trafficcontrol::DegradeConfig* _internal_mutable_degrade();
-  public:
-  void unsafe_arena_set_allocated_degrade(
-      ::trafficcontrol::DegradeConfig* degrade);
-  ::trafficcontrol::DegradeConfig* unsafe_arena_release_degrade();
-
-  // @@protoc_insertion_point(class_scope:trafficcontrol.RuleRouting)
+  // @@protoc_insertion_point(class_scope:trafficcontrol.RuleRoutingConfig)
  private:
   class _Internal;
 
@@ -1464,9 +1591,6 @@ class RuleRouting final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route > inbounds_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route > outbounds_;
-  ::PROTOBUF_NAMESPACE_ID::StringValue* namespace__;
-  ::PROTOBUF_NAMESPACE_ID::StringValue* service_;
-  ::trafficcontrol::DegradeConfig* degrade_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_router_2eproto;
 };
@@ -2212,24 +2336,24 @@ class Destination final :
 };
 // -------------------------------------------------------------------
 
-class LocalityRouting final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.LocalityRouting) */ {
+class LocalityRoutingConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.LocalityRoutingConfig) */ {
  public:
-  inline LocalityRouting() : LocalityRouting(nullptr) {}
-  ~LocalityRouting() override;
-  explicit PROTOBUF_CONSTEXPR LocalityRouting(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline LocalityRoutingConfig() : LocalityRoutingConfig(nullptr) {}
+  ~LocalityRoutingConfig() override;
+  explicit PROTOBUF_CONSTEXPR LocalityRoutingConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  LocalityRouting(const LocalityRouting& from);
-  LocalityRouting(LocalityRouting&& from) noexcept
-    : LocalityRouting() {
+  LocalityRoutingConfig(const LocalityRoutingConfig& from);
+  LocalityRoutingConfig(LocalityRoutingConfig&& from) noexcept
+    : LocalityRoutingConfig() {
     *this = ::std::move(from);
   }
 
-  inline LocalityRouting& operator=(const LocalityRouting& from) {
+  inline LocalityRoutingConfig& operator=(const LocalityRoutingConfig& from) {
     CopyFrom(from);
     return *this;
   }
-  inline LocalityRouting& operator=(LocalityRouting&& from) noexcept {
+  inline LocalityRoutingConfig& operator=(LocalityRoutingConfig&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -2252,20 +2376,20 @@ class LocalityRouting final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const LocalityRouting& default_instance() {
+  static const LocalityRoutingConfig& default_instance() {
     return *internal_default_instance();
   }
-  static inline const LocalityRouting* internal_default_instance() {
-    return reinterpret_cast<const LocalityRouting*>(
-               &_LocalityRouting_default_instance_);
+  static inline const LocalityRoutingConfig* internal_default_instance() {
+    return reinterpret_cast<const LocalityRoutingConfig*>(
+               &_LocalityRoutingConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     11;
 
-  friend void swap(LocalityRouting& a, LocalityRouting& b) {
+  friend void swap(LocalityRoutingConfig& a, LocalityRoutingConfig& b) {
     a.Swap(&b);
   }
-  inline void Swap(LocalityRouting* other) {
+  inline void Swap(LocalityRoutingConfig* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -2278,7 +2402,7 @@ class LocalityRouting final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(LocalityRouting* other) {
+  void UnsafeArenaSwap(LocalityRoutingConfig* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -2286,13 +2410,13 @@ class LocalityRouting final :
 
   // implements Message ----------------------------------------------
 
-  LocalityRouting* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<LocalityRouting>(arena);
+  LocalityRoutingConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LocalityRoutingConfig>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const LocalityRouting& from);
+  void CopyFrom(const LocalityRoutingConfig& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const LocalityRouting& from);
+  void MergeFrom(const LocalityRoutingConfig& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -2309,15 +2433,15 @@ class LocalityRouting final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(LocalityRouting* other);
+  void InternalSwap(LocalityRoutingConfig* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.LocalityRouting";
+    return "trafficcontrol.LocalityRoutingConfig";
   }
   protected:
-  explicit LocalityRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit LocalityRoutingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -2328,116 +2452,96 @@ class LocalityRouting final :
 
   // nested types ----------------------------------------------------
 
-  typedef LocalityRouting_LocalityLevel LocalityLevel;
+  typedef LocalityRoutingConfig_LocalityLevel LocalityLevel;
   static constexpr LocalityLevel CAMPUS =
-    LocalityRouting_LocalityLevel_CAMPUS;
+    LocalityRoutingConfig_LocalityLevel_CAMPUS;
   static constexpr LocalityLevel ZONE =
-    LocalityRouting_LocalityLevel_ZONE;
+    LocalityRoutingConfig_LocalityLevel_ZONE;
   static constexpr LocalityLevel REGION =
-    LocalityRouting_LocalityLevel_REGION;
+    LocalityRoutingConfig_LocalityLevel_REGION;
   static constexpr LocalityLevel ALL =
-    LocalityRouting_LocalityLevel_ALL;
+    LocalityRoutingConfig_LocalityLevel_ALL;
   static inline bool LocalityLevel_IsValid(int value) {
-    return LocalityRouting_LocalityLevel_IsValid(value);
+    return LocalityRoutingConfig_LocalityLevel_IsValid(value);
   }
   static constexpr LocalityLevel LocalityLevel_MIN =
-    LocalityRouting_LocalityLevel_LocalityLevel_MIN;
+    LocalityRoutingConfig_LocalityLevel_LocalityLevel_MIN;
   static constexpr LocalityLevel LocalityLevel_MAX =
-    LocalityRouting_LocalityLevel_LocalityLevel_MAX;
+    LocalityRoutingConfig_LocalityLevel_LocalityLevel_MAX;
   static constexpr int LocalityLevel_ARRAYSIZE =
-    LocalityRouting_LocalityLevel_LocalityLevel_ARRAYSIZE;
+    LocalityRoutingConfig_LocalityLevel_LocalityLevel_ARRAYSIZE;
   static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
   LocalityLevel_descriptor() {
-    return LocalityRouting_LocalityLevel_descriptor();
+    return LocalityRoutingConfig_LocalityLevel_descriptor();
   }
   template<typename T>
   static inline const std::string& LocalityLevel_Name(T enum_t_value) {
     static_assert(::std::is_same<T, LocalityLevel>::value ||
       ::std::is_integral<T>::value,
       "Incorrect type passed to function LocalityLevel_Name.");
-    return LocalityRouting_LocalityLevel_Name(enum_t_value);
+    return LocalityRoutingConfig_LocalityLevel_Name(enum_t_value);
   }
   static inline bool LocalityLevel_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
       LocalityLevel* value) {
-    return LocalityRouting_LocalityLevel_Parse(name, value);
+    return LocalityRoutingConfig_LocalityLevel_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDegradeFieldNumber = 3,
-    kStartingLevelFieldNumber = 1,
-    kMaxDegradeLevelFieldNumber = 2,
+    kLocalityLevelFieldNumber = 1,
+    kMaxLocalityLevelFieldNumber = 2,
   };
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  bool has_degrade() const;
+  // .trafficcontrol.LocalityRoutingConfig.LocalityLevel locality_level = 1;
+  void clear_locality_level();
+  ::trafficcontrol::LocalityRoutingConfig_LocalityLevel locality_level() const;
+  void set_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value);
   private:
-  bool _internal_has_degrade() const;
-  public:
-  void clear_degrade();
-  const ::trafficcontrol::DegradeConfig& degrade() const;
-  PROTOBUF_NODISCARD ::trafficcontrol::DegradeConfig* release_degrade();
-  ::trafficcontrol::DegradeConfig* mutable_degrade();
-  void set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade);
-  private:
-  const ::trafficcontrol::DegradeConfig& _internal_degrade() const;
-  ::trafficcontrol::DegradeConfig* _internal_mutable_degrade();
-  public:
-  void unsafe_arena_set_allocated_degrade(
-      ::trafficcontrol::DegradeConfig* degrade);
-  ::trafficcontrol::DegradeConfig* unsafe_arena_release_degrade();
-
-  // .trafficcontrol.LocalityRouting.LocalityLevel startingLevel = 1;
-  void clear_startinglevel();
-  ::trafficcontrol::LocalityRouting_LocalityLevel startinglevel() const;
-  void set_startinglevel(::trafficcontrol::LocalityRouting_LocalityLevel value);
-  private:
-  ::trafficcontrol::LocalityRouting_LocalityLevel _internal_startinglevel() const;
-  void _internal_set_startinglevel(::trafficcontrol::LocalityRouting_LocalityLevel value);
+  ::trafficcontrol::LocalityRoutingConfig_LocalityLevel _internal_locality_level() const;
+  void _internal_set_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value);
   public:
 
-  // .trafficcontrol.LocalityRouting.LocalityLevel maxDegradeLevel = 2;
-  void clear_maxdegradelevel();
-  ::trafficcontrol::LocalityRouting_LocalityLevel maxdegradelevel() const;
-  void set_maxdegradelevel(::trafficcontrol::LocalityRouting_LocalityLevel value);
+  // .trafficcontrol.LocalityRoutingConfig.LocalityLevel max_locality_level = 2;
+  void clear_max_locality_level();
+  ::trafficcontrol::LocalityRoutingConfig_LocalityLevel max_locality_level() const;
+  void set_max_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value);
   private:
-  ::trafficcontrol::LocalityRouting_LocalityLevel _internal_maxdegradelevel() const;
-  void _internal_set_maxdegradelevel(::trafficcontrol::LocalityRouting_LocalityLevel value);
+  ::trafficcontrol::LocalityRoutingConfig_LocalityLevel _internal_max_locality_level() const;
+  void _internal_set_max_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value);
   public:
 
-  // @@protoc_insertion_point(class_scope:trafficcontrol.LocalityRouting)
+  // @@protoc_insertion_point(class_scope:trafficcontrol.LocalityRoutingConfig)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::trafficcontrol::DegradeConfig* degrade_;
-  int startinglevel_;
-  int maxdegradelevel_;
+  int locality_level_;
+  int max_locality_level_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_router_2eproto;
 };
 // -------------------------------------------------------------------
 
-class MetadataRouting final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.MetadataRouting) */ {
+class MetadataRoutingConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.MetadataRoutingConfig) */ {
  public:
-  inline MetadataRouting() : MetadataRouting(nullptr) {}
-  ~MetadataRouting() override;
-  explicit PROTOBUF_CONSTEXPR MetadataRouting(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline MetadataRoutingConfig() : MetadataRoutingConfig(nullptr) {}
+  ~MetadataRoutingConfig() override;
+  explicit PROTOBUF_CONSTEXPR MetadataRoutingConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  MetadataRouting(const MetadataRouting& from);
-  MetadataRouting(MetadataRouting&& from) noexcept
-    : MetadataRouting() {
+  MetadataRoutingConfig(const MetadataRoutingConfig& from);
+  MetadataRoutingConfig(MetadataRoutingConfig&& from) noexcept
+    : MetadataRoutingConfig() {
     *this = ::std::move(from);
   }
 
-  inline MetadataRouting& operator=(const MetadataRouting& from) {
+  inline MetadataRoutingConfig& operator=(const MetadataRoutingConfig& from) {
     CopyFrom(from);
     return *this;
   }
-  inline MetadataRouting& operator=(MetadataRouting&& from) noexcept {
+  inline MetadataRoutingConfig& operator=(MetadataRoutingConfig&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -2460,20 +2564,20 @@ class MetadataRouting final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const MetadataRouting& default_instance() {
+  static const MetadataRoutingConfig& default_instance() {
     return *internal_default_instance();
   }
-  static inline const MetadataRouting* internal_default_instance() {
-    return reinterpret_cast<const MetadataRouting*>(
-               &_MetadataRouting_default_instance_);
+  static inline const MetadataRoutingConfig* internal_default_instance() {
+    return reinterpret_cast<const MetadataRoutingConfig*>(
+               &_MetadataRoutingConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     12;
 
-  friend void swap(MetadataRouting& a, MetadataRouting& b) {
+  friend void swap(MetadataRoutingConfig& a, MetadataRoutingConfig& b) {
     a.Swap(&b);
   }
-  inline void Swap(MetadataRouting* other) {
+  inline void Swap(MetadataRoutingConfig* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -2486,7 +2590,7 @@ class MetadataRouting final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(MetadataRouting* other) {
+  void UnsafeArenaSwap(MetadataRoutingConfig* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -2494,13 +2598,13 @@ class MetadataRouting final :
 
   // implements Message ----------------------------------------------
 
-  MetadataRouting* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<MetadataRouting>(arena);
+  MetadataRoutingConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MetadataRoutingConfig>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const MetadataRouting& from);
+  void CopyFrom(const MetadataRoutingConfig& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const MetadataRouting& from);
+  void MergeFrom(const MetadataRoutingConfig& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -2517,15 +2621,15 @@ class MetadataRouting final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(MetadataRouting* other);
+  void InternalSwap(MetadataRoutingConfig* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.MetadataRouting";
+    return "trafficcontrol.MetadataRoutingConfig";
   }
   protected:
-  explicit MetadataRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit MetadataRoutingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -2536,390 +2640,61 @@ class MetadataRouting final :
 
   // nested types ----------------------------------------------------
 
-  typedef MetadataRouting_DegradeLevel DegradeLevel;
-  static constexpr DegradeLevel ALL =
-    MetadataRouting_DegradeLevel_ALL;
-  static constexpr DegradeLevel OTHERS =
-    MetadataRouting_DegradeLevel_OTHERS;
-  static inline bool DegradeLevel_IsValid(int value) {
-    return MetadataRouting_DegradeLevel_IsValid(value);
+  typedef MetadataRoutingConfig_FailoverRange FailoverRange;
+  static constexpr FailoverRange ALL =
+    MetadataRoutingConfig_FailoverRange_ALL;
+  static constexpr FailoverRange OTHERS =
+    MetadataRoutingConfig_FailoverRange_OTHERS;
+  static constexpr FailoverRange OTHER_KEYS =
+    MetadataRoutingConfig_FailoverRange_OTHER_KEYS;
+  static inline bool FailoverRange_IsValid(int value) {
+    return MetadataRoutingConfig_FailoverRange_IsValid(value);
   }
-  static constexpr DegradeLevel DegradeLevel_MIN =
-    MetadataRouting_DegradeLevel_DegradeLevel_MIN;
-  static constexpr DegradeLevel DegradeLevel_MAX =
-    MetadataRouting_DegradeLevel_DegradeLevel_MAX;
-  static constexpr int DegradeLevel_ARRAYSIZE =
-    MetadataRouting_DegradeLevel_DegradeLevel_ARRAYSIZE;
+  static constexpr FailoverRange FailoverRange_MIN =
+    MetadataRoutingConfig_FailoverRange_FailoverRange_MIN;
+  static constexpr FailoverRange FailoverRange_MAX =
+    MetadataRoutingConfig_FailoverRange_FailoverRange_MAX;
+  static constexpr int FailoverRange_ARRAYSIZE =
+    MetadataRoutingConfig_FailoverRange_FailoverRange_ARRAYSIZE;
   static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
-  DegradeLevel_descriptor() {
-    return MetadataRouting_DegradeLevel_descriptor();
+  FailoverRange_descriptor() {
+    return MetadataRoutingConfig_FailoverRange_descriptor();
   }
   template<typename T>
-  static inline const std::string& DegradeLevel_Name(T enum_t_value) {
-    static_assert(::std::is_same<T, DegradeLevel>::value ||
+  static inline const std::string& FailoverRange_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, FailoverRange>::value ||
       ::std::is_integral<T>::value,
-      "Incorrect type passed to function DegradeLevel_Name.");
-    return MetadataRouting_DegradeLevel_Name(enum_t_value);
+      "Incorrect type passed to function FailoverRange_Name.");
+    return MetadataRoutingConfig_FailoverRange_Name(enum_t_value);
   }
-  static inline bool DegradeLevel_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
-      DegradeLevel* value) {
-    return MetadataRouting_DegradeLevel_Parse(name, value);
+  static inline bool FailoverRange_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      FailoverRange* value) {
+    return MetadataRoutingConfig_FailoverRange_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDegradeFieldNumber = 3,
-    kDegradeLevelFieldNumber = 1,
+    kFailoverRangeFieldNumber = 1,
   };
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  bool has_degrade() const;
+  // .trafficcontrol.MetadataRoutingConfig.FailoverRange failover_range = 1;
+  void clear_failover_range();
+  ::trafficcontrol::MetadataRoutingConfig_FailoverRange failover_range() const;
+  void set_failover_range(::trafficcontrol::MetadataRoutingConfig_FailoverRange value);
   private:
-  bool _internal_has_degrade() const;
-  public:
-  void clear_degrade();
-  const ::trafficcontrol::DegradeConfig& degrade() const;
-  PROTOBUF_NODISCARD ::trafficcontrol::DegradeConfig* release_degrade();
-  ::trafficcontrol::DegradeConfig* mutable_degrade();
-  void set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade);
-  private:
-  const ::trafficcontrol::DegradeConfig& _internal_degrade() const;
-  ::trafficcontrol::DegradeConfig* _internal_mutable_degrade();
-  public:
-  void unsafe_arena_set_allocated_degrade(
-      ::trafficcontrol::DegradeConfig* degrade);
-  ::trafficcontrol::DegradeConfig* unsafe_arena_release_degrade();
-
-  // .trafficcontrol.MetadataRouting.DegradeLevel degrade_level = 1;
-  void clear_degrade_level();
-  ::trafficcontrol::MetadataRouting_DegradeLevel degrade_level() const;
-  void set_degrade_level(::trafficcontrol::MetadataRouting_DegradeLevel value);
-  private:
-  ::trafficcontrol::MetadataRouting_DegradeLevel _internal_degrade_level() const;
-  void _internal_set_degrade_level(::trafficcontrol::MetadataRouting_DegradeLevel value);
+  ::trafficcontrol::MetadataRoutingConfig_FailoverRange _internal_failover_range() const;
+  void _internal_set_failover_range(::trafficcontrol::MetadataRoutingConfig_FailoverRange value);
   public:
 
-  // @@protoc_insertion_point(class_scope:trafficcontrol.MetadataRouting)
+  // @@protoc_insertion_point(class_scope:trafficcontrol.MetadataRoutingConfig)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::trafficcontrol::DegradeConfig* degrade_;
-  int degrade_level_;
+  int failover_range_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CanaryRouting final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.CanaryRouting) */ {
- public:
-  inline CanaryRouting() : CanaryRouting(nullptr) {}
-  ~CanaryRouting() override;
-  explicit PROTOBUF_CONSTEXPR CanaryRouting(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CanaryRouting(const CanaryRouting& from);
-  CanaryRouting(CanaryRouting&& from) noexcept
-    : CanaryRouting() {
-    *this = ::std::move(from);
-  }
-
-  inline CanaryRouting& operator=(const CanaryRouting& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CanaryRouting& operator=(CanaryRouting&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CanaryRouting& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CanaryRouting* internal_default_instance() {
-    return reinterpret_cast<const CanaryRouting*>(
-               &_CanaryRouting_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    13;
-
-  friend void swap(CanaryRouting& a, CanaryRouting& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CanaryRouting* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CanaryRouting* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CanaryRouting* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CanaryRouting>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CanaryRouting& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const CanaryRouting& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CanaryRouting* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.CanaryRouting";
-  }
-  protected:
-  explicit CanaryRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  typedef CanaryRouting_DegradeLevel DegradeLevel;
-  static constexpr DegradeLevel ALL =
-    CanaryRouting_DegradeLevel_ALL;
-  static constexpr DegradeLevel OTHERS =
-    CanaryRouting_DegradeLevel_OTHERS;
-  static constexpr DegradeLevel OTHERS_WITHOUT_CANARY =
-    CanaryRouting_DegradeLevel_OTHERS_WITHOUT_CANARY;
-  static inline bool DegradeLevel_IsValid(int value) {
-    return CanaryRouting_DegradeLevel_IsValid(value);
-  }
-  static constexpr DegradeLevel DegradeLevel_MIN =
-    CanaryRouting_DegradeLevel_DegradeLevel_MIN;
-  static constexpr DegradeLevel DegradeLevel_MAX =
-    CanaryRouting_DegradeLevel_DegradeLevel_MAX;
-  static constexpr int DegradeLevel_ARRAYSIZE =
-    CanaryRouting_DegradeLevel_DegradeLevel_ARRAYSIZE;
-  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
-  DegradeLevel_descriptor() {
-    return CanaryRouting_DegradeLevel_descriptor();
-  }
-  template<typename T>
-  static inline const std::string& DegradeLevel_Name(T enum_t_value) {
-    static_assert(::std::is_same<T, DegradeLevel>::value ||
-      ::std::is_integral<T>::value,
-      "Incorrect type passed to function DegradeLevel_Name.");
-    return CanaryRouting_DegradeLevel_Name(enum_t_value);
-  }
-  static inline bool DegradeLevel_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
-      DegradeLevel* value) {
-    return CanaryRouting_DegradeLevel_Parse(name, value);
-  }
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kDegradeFieldNumber = 3,
-    kDegradeLevelFieldNumber = 1,
-  };
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  bool has_degrade() const;
-  private:
-  bool _internal_has_degrade() const;
-  public:
-  void clear_degrade();
-  const ::trafficcontrol::DegradeConfig& degrade() const;
-  PROTOBUF_NODISCARD ::trafficcontrol::DegradeConfig* release_degrade();
-  ::trafficcontrol::DegradeConfig* mutable_degrade();
-  void set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade);
-  private:
-  const ::trafficcontrol::DegradeConfig& _internal_degrade() const;
-  ::trafficcontrol::DegradeConfig* _internal_mutable_degrade();
-  public:
-  void unsafe_arena_set_allocated_degrade(
-      ::trafficcontrol::DegradeConfig* degrade);
-  ::trafficcontrol::DegradeConfig* unsafe_arena_release_degrade();
-
-  // .trafficcontrol.CanaryRouting.DegradeLevel degrade_level = 1;
-  void clear_degrade_level();
-  ::trafficcontrol::CanaryRouting_DegradeLevel degrade_level() const;
-  void set_degrade_level(::trafficcontrol::CanaryRouting_DegradeLevel value);
-  private:
-  ::trafficcontrol::CanaryRouting_DegradeLevel _internal_degrade_level() const;
-  void _internal_set_degrade_level(::trafficcontrol::CanaryRouting_DegradeLevel value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:trafficcontrol.CanaryRouting)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::trafficcontrol::DegradeConfig* degrade_;
-  int degrade_level_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_router_2eproto;
-};
-// -------------------------------------------------------------------
-
-class SetRouting final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:trafficcontrol.SetRouting) */ {
- public:
-  inline SetRouting() : SetRouting(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR SetRouting(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  SetRouting(const SetRouting& from);
-  SetRouting(SetRouting&& from) noexcept
-    : SetRouting() {
-    *this = ::std::move(from);
-  }
-
-  inline SetRouting& operator=(const SetRouting& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline SetRouting& operator=(SetRouting&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const SetRouting& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const SetRouting* internal_default_instance() {
-    return reinterpret_cast<const SetRouting*>(
-               &_SetRouting_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    14;
-
-  friend void swap(SetRouting& a, SetRouting& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(SetRouting* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(SetRouting* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  SetRouting* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<SetRouting>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const SetRouting& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const SetRouting& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "trafficcontrol.SetRouting";
-  }
-  protected:
-  explicit SetRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:trafficcontrol.SetRouting)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
   friend struct ::TableStruct_router_2eproto;
 };
 // ===================================================================
@@ -2931,105 +2706,41 @@ class SetRouting final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// RouteConfiguration
+// Routing
 
-// repeated .trafficcontrol.Router routers = 1;
-inline int RouteConfiguration::_internal_routers_size() const {
-  return routers_.size();
+// .google.protobuf.StringValue namespace = 1;
+inline bool Routing::_internal_has_namespace_() const {
+  return this != internal_default_instance() && namespace__ != nullptr;
 }
-inline int RouteConfiguration::routers_size() const {
-  return _internal_routers_size();
+inline bool Routing::has_namespace_() const {
+  return _internal_has_namespace_();
 }
-inline void RouteConfiguration::clear_routers() {
-  routers_.Clear();
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_namespace_() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = namespace__;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
 }
-inline ::trafficcontrol::Router* RouteConfiguration::mutable_routers(int index) {
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.RouteConfiguration.routers)
-  return routers_.Mutable(index);
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::namespace_() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.namespace)
+  return _internal_namespace_();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Router >*
-RouteConfiguration::mutable_routers() {
-  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.RouteConfiguration.routers)
-  return &routers_;
-}
-inline const ::trafficcontrol::Router& RouteConfiguration::_internal_routers(int index) const {
-  return routers_.Get(index);
-}
-inline const ::trafficcontrol::Router& RouteConfiguration::routers(int index) const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.RouteConfiguration.routers)
-  return _internal_routers(index);
-}
-inline ::trafficcontrol::Router* RouteConfiguration::_internal_add_routers() {
-  return routers_.Add();
-}
-inline ::trafficcontrol::Router* RouteConfiguration::add_routers() {
-  ::trafficcontrol::Router* _add = _internal_add_routers();
-  // @@protoc_insertion_point(field_add:trafficcontrol.RouteConfiguration.routers)
-  return _add;
-}
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Router >&
-RouteConfiguration::routers() const {
-  // @@protoc_insertion_point(field_list:trafficcontrol.RouteConfiguration.routers)
-  return routers_;
-}
-
-// -------------------------------------------------------------------
-
-// Router
-
-// .trafficcontrol.RouterType type = 1;
-inline void Router::clear_type() {
-  type_ = 0;
-}
-inline ::trafficcontrol::RouterType Router::_internal_type() const {
-  return static_cast< ::trafficcontrol::RouterType >(type_);
-}
-inline ::trafficcontrol::RouterType Router::type() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.Router.type)
-  return _internal_type();
-}
-inline void Router::_internal_set_type(::trafficcontrol::RouterType value) {
-  
-  type_ = value;
-}
-inline void Router::set_type(::trafficcontrol::RouterType value) {
-  _internal_set_type(value);
-  // @@protoc_insertion_point(field_set:trafficcontrol.Router.type)
-}
-
-// .google.protobuf.Any routing = 2;
-inline bool Router::_internal_has_routing() const {
-  return this != internal_default_instance() && routing_ != nullptr;
-}
-inline bool Router::has_routing() const {
-  return _internal_has_routing();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Any& Router::_internal_routing() const {
-  const ::PROTOBUF_NAMESPACE_ID::Any* p = routing_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Any&>(
-      ::PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Any& Router::routing() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.Router.routing)
-  return _internal_routing();
-}
-inline void Router::unsafe_arena_set_allocated_routing(
-    ::PROTOBUF_NAMESPACE_ID::Any* routing) {
+inline void Routing::unsafe_arena_set_allocated_namespace_(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
   if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(routing_);
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
   }
-  routing_ = routing;
-  if (routing) {
+  namespace__ = namespace_;
+  if (namespace_) {
     
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Router.routing)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.namespace)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Any* Router::release_routing() {
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_namespace_() {
   
-  ::PROTOBUF_NAMESPACE_ID::Any* temp = routing_;
-  routing_ = nullptr;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
   temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
@@ -3041,45 +2752,959 @@ inline ::PROTOBUF_NAMESPACE_ID::Any* Router::release_routing() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Any* Router::unsafe_arena_release_routing() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.Router.routing)
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_namespace_() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.namespace)
   
-  ::PROTOBUF_NAMESPACE_ID::Any* temp = routing_;
-  routing_ = nullptr;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Any* Router::_internal_mutable_routing() {
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_namespace_() {
   
-  if (routing_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Any>(GetArenaForAllocation());
-    routing_ = p;
+  if (namespace__ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    namespace__ = p;
   }
-  return routing_;
+  return namespace__;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Any* Router::mutable_routing() {
-  ::PROTOBUF_NAMESPACE_ID::Any* _msg = _internal_mutable_routing();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.Router.routing)
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_namespace_() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_namespace_();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.namespace)
   return _msg;
 }
-inline void Router::set_allocated_routing(::PROTOBUF_NAMESPACE_ID::Any* routing) {
+inline void Routing::set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(routing_);
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
   }
-  if (routing) {
+  if (namespace_) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
         ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(routing));
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace_));
     if (message_arena != submessage_arena) {
-      routing = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, routing, submessage_arena);
+      namespace_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, namespace_, submessage_arena);
     }
     
   } else {
     
   }
-  routing_ = routing;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Router.routing)
+  namespace__ = namespace_;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.namespace)
+}
+
+// .google.protobuf.StringValue service = 2;
+inline bool Routing::_internal_has_service() const {
+  return this != internal_default_instance() && service_ != nullptr;
+}
+inline bool Routing::has_service() const {
+  return _internal_has_service();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_service() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::service() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.service)
+  return _internal_service();
+}
+inline void Routing::unsafe_arena_set_allocated_service(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  service_ = service;
+  if (service) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.service)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_service() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_service() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.service)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_service() {
+  
+  if (service_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    service_ = p;
+  }
+  return service_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_service() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.service)
+  return _msg;
+}
+inline void Routing::set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  if (service) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service));
+    if (message_arena != submessage_arena) {
+      service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, service, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  service_ = service;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.service)
+}
+
+// repeated .trafficcontrol.Route inbounds = 3;
+inline int Routing::_internal_inbounds_size() const {
+  return inbounds_.size();
+}
+inline int Routing::inbounds_size() const {
+  return _internal_inbounds_size();
+}
+inline void Routing::clear_inbounds() {
+  inbounds_.Clear();
+}
+inline ::trafficcontrol::Route* Routing::mutable_inbounds(int index) {
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.inbounds)
+  return inbounds_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >*
+Routing::mutable_inbounds() {
+  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.Routing.inbounds)
+  return &inbounds_;
+}
+inline const ::trafficcontrol::Route& Routing::_internal_inbounds(int index) const {
+  return inbounds_.Get(index);
+}
+inline const ::trafficcontrol::Route& Routing::inbounds(int index) const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.inbounds)
+  return _internal_inbounds(index);
+}
+inline ::trafficcontrol::Route* Routing::_internal_add_inbounds() {
+  return inbounds_.Add();
+}
+inline ::trafficcontrol::Route* Routing::add_inbounds() {
+  ::trafficcontrol::Route* _add = _internal_add_inbounds();
+  // @@protoc_insertion_point(field_add:trafficcontrol.Routing.inbounds)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
+Routing::inbounds() const {
+  // @@protoc_insertion_point(field_list:trafficcontrol.Routing.inbounds)
+  return inbounds_;
+}
+
+// repeated .trafficcontrol.Route outbounds = 4;
+inline int Routing::_internal_outbounds_size() const {
+  return outbounds_.size();
+}
+inline int Routing::outbounds_size() const {
+  return _internal_outbounds_size();
+}
+inline void Routing::clear_outbounds() {
+  outbounds_.Clear();
+}
+inline ::trafficcontrol::Route* Routing::mutable_outbounds(int index) {
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.outbounds)
+  return outbounds_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >*
+Routing::mutable_outbounds() {
+  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.Routing.outbounds)
+  return &outbounds_;
+}
+inline const ::trafficcontrol::Route& Routing::_internal_outbounds(int index) const {
+  return outbounds_.Get(index);
+}
+inline const ::trafficcontrol::Route& Routing::outbounds(int index) const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.outbounds)
+  return _internal_outbounds(index);
+}
+inline ::trafficcontrol::Route* Routing::_internal_add_outbounds() {
+  return outbounds_.Add();
+}
+inline ::trafficcontrol::Route* Routing::add_outbounds() {
+  ::trafficcontrol::Route* _add = _internal_add_outbounds();
+  // @@protoc_insertion_point(field_add:trafficcontrol.Routing.outbounds)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
+Routing::outbounds() const {
+  // @@protoc_insertion_point(field_list:trafficcontrol.Routing.outbounds)
+  return outbounds_;
+}
+
+// .google.protobuf.StringValue ctime = 5;
+inline bool Routing::_internal_has_ctime() const {
+  return this != internal_default_instance() && ctime_ != nullptr;
+}
+inline bool Routing::has_ctime() const {
+  return _internal_has_ctime();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_ctime() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = ctime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::ctime() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.ctime)
+  return _internal_ctime();
+}
+inline void Routing::unsafe_arena_set_allocated_ctime(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* ctime) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ctime_);
+  }
+  ctime_ = ctime;
+  if (ctime) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.ctime)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_ctime() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = ctime_;
+  ctime_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_ctime() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.ctime)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = ctime_;
+  ctime_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_ctime() {
+  
+  if (ctime_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    ctime_ = p;
+  }
+  return ctime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_ctime() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_ctime();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.ctime)
+  return _msg;
+}
+inline void Routing::set_allocated_ctime(::PROTOBUF_NAMESPACE_ID::StringValue* ctime) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(ctime_);
+  }
+  if (ctime) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ctime));
+    if (message_arena != submessage_arena) {
+      ctime = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ctime, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ctime_ = ctime;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.ctime)
+}
+
+// .google.protobuf.StringValue mtime = 6;
+inline bool Routing::_internal_has_mtime() const {
+  return this != internal_default_instance() && mtime_ != nullptr;
+}
+inline bool Routing::has_mtime() const {
+  return _internal_has_mtime();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_mtime() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = mtime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::mtime() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.mtime)
+  return _internal_mtime();
+}
+inline void Routing::unsafe_arena_set_allocated_mtime(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* mtime) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(mtime_);
+  }
+  mtime_ = mtime;
+  if (mtime) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.mtime)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_mtime() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = mtime_;
+  mtime_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_mtime() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.mtime)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = mtime_;
+  mtime_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_mtime() {
+  
+  if (mtime_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    mtime_ = p;
+  }
+  return mtime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_mtime() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_mtime();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.mtime)
+  return _msg;
+}
+inline void Routing::set_allocated_mtime(::PROTOBUF_NAMESPACE_ID::StringValue* mtime) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(mtime_);
+  }
+  if (mtime) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(mtime));
+    if (message_arena != submessage_arena) {
+      mtime = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, mtime, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  mtime_ = mtime;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.mtime)
+}
+
+// .google.protobuf.StringValue revision = 7;
+inline bool Routing::_internal_has_revision() const {
+  return this != internal_default_instance() && revision_ != nullptr;
+}
+inline bool Routing::has_revision() const {
+  return _internal_has_revision();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_revision() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = revision_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::revision() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.revision)
+  return _internal_revision();
+}
+inline void Routing::unsafe_arena_set_allocated_revision(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* revision) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(revision_);
+  }
+  revision_ = revision;
+  if (revision) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.revision)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_revision() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = revision_;
+  revision_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_revision() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.revision)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = revision_;
+  revision_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_revision() {
+  
+  if (revision_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    revision_ = p;
+  }
+  return revision_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_revision() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.revision)
+  return _msg;
+}
+inline void Routing::set_allocated_revision(::PROTOBUF_NAMESPACE_ID::StringValue* revision) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(revision_);
+  }
+  if (revision) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(revision));
+    if (message_arena != submessage_arena) {
+      revision = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, revision, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  revision_ = revision;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.revision)
+}
+
+// .google.protobuf.StringValue service_token = 8 [json_name = "service_token"];
+inline bool Routing::_internal_has_service_token() const {
+  return this != internal_default_instance() && service_token_ != nullptr;
+}
+inline bool Routing::has_service_token() const {
+  return _internal_has_service_token();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_service_token() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::service_token() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.service_token)
+  return _internal_service_token();
+}
+inline void Routing::unsafe_arena_set_allocated_service_token(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* service_token) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_token_);
+  }
+  service_token_ = service_token;
+  if (service_token) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.service_token)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_service_token() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_token_;
+  service_token_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_service_token() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.service_token)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_token_;
+  service_token_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_service_token() {
+  
+  if (service_token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    service_token_ = p;
+  }
+  return service_token_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_service_token() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service_token();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.service_token)
+  return _msg;
+}
+inline void Routing::set_allocated_service_token(::PROTOBUF_NAMESPACE_ID::StringValue* service_token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_token_);
+  }
+  if (service_token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_token));
+    if (message_arena != submessage_arena) {
+      service_token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, service_token, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  service_token_ = service_token;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.service_token)
+}
+
+// .google.protobuf.StringValue id = 9;
+inline bool Routing::_internal_has_id() const {
+  return this != internal_default_instance() && id_ != nullptr;
+}
+inline bool Routing::has_id() const {
+  return _internal_has_id();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::_internal_id() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& Routing::id() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.id)
+  return _internal_id();
+}
+inline void Routing::unsafe_arena_set_allocated_id(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* id) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(id_);
+  }
+  id_ = id;
+  if (id) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.id)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::release_id() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = id_;
+  id_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::unsafe_arena_release_id() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.id)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = id_;
+  id_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::_internal_mutable_id() {
+  
+  if (id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    id_ = p;
+  }
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* Routing::mutable_id() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.id)
+  return _msg;
+}
+inline void Routing::set_allocated_id(::PROTOBUF_NAMESPACE_ID::StringValue* id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(id_);
+  }
+  if (id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(id));
+    if (message_arena != submessage_arena) {
+      id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  id_ = id;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.id)
+}
+
+// repeated .trafficcontrol.Router routers = 10;
+inline int Routing::_internal_routers_size() const {
+  return routers_.size();
+}
+inline int Routing::routers_size() const {
+  return _internal_routers_size();
+}
+inline void Routing::clear_routers() {
+  routers_.Clear();
+}
+inline ::trafficcontrol::Router* Routing::mutable_routers(int index) {
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.routers)
+  return routers_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Router >*
+Routing::mutable_routers() {
+  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.Routing.routers)
+  return &routers_;
+}
+inline const ::trafficcontrol::Router& Routing::_internal_routers(int index) const {
+  return routers_.Get(index);
+}
+inline const ::trafficcontrol::Router& Routing::routers(int index) const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.routers)
+  return _internal_routers(index);
+}
+inline ::trafficcontrol::Router* Routing::_internal_add_routers() {
+  return routers_.Add();
+}
+inline ::trafficcontrol::Router* Routing::add_routers() {
+  ::trafficcontrol::Router* _add = _internal_add_routers();
+  // @@protoc_insertion_point(field_add:trafficcontrol.Routing.routers)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Router >&
+Routing::routers() const {
+  // @@protoc_insertion_point(field_list:trafficcontrol.Routing.routers)
+  return routers_;
+}
+
+// .trafficcontrol.FailoverConfig failover = 11;
+inline bool Routing::_internal_has_failover() const {
+  return this != internal_default_instance() && failover_ != nullptr;
+}
+inline bool Routing::has_failover() const {
+  return _internal_has_failover();
+}
+inline void Routing::clear_failover() {
+  if (GetArenaForAllocation() == nullptr && failover_ != nullptr) {
+    delete failover_;
+  }
+  failover_ = nullptr;
+}
+inline const ::trafficcontrol::FailoverConfig& Routing::_internal_failover() const {
+  const ::trafficcontrol::FailoverConfig* p = failover_;
+  return p != nullptr ? *p : reinterpret_cast<const ::trafficcontrol::FailoverConfig&>(
+      ::trafficcontrol::_FailoverConfig_default_instance_);
+}
+inline const ::trafficcontrol::FailoverConfig& Routing::failover() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Routing.failover)
+  return _internal_failover();
+}
+inline void Routing::unsafe_arena_set_allocated_failover(
+    ::trafficcontrol::FailoverConfig* failover) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(failover_);
+  }
+  failover_ = failover;
+  if (failover) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Routing.failover)
+}
+inline ::trafficcontrol::FailoverConfig* Routing::release_failover() {
+  
+  ::trafficcontrol::FailoverConfig* temp = failover_;
+  failover_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::trafficcontrol::FailoverConfig* Routing::unsafe_arena_release_failover() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Routing.failover)
+  
+  ::trafficcontrol::FailoverConfig* temp = failover_;
+  failover_ = nullptr;
+  return temp;
+}
+inline ::trafficcontrol::FailoverConfig* Routing::_internal_mutable_failover() {
+  
+  if (failover_ == nullptr) {
+    auto* p = CreateMaybeMessage<::trafficcontrol::FailoverConfig>(GetArenaForAllocation());
+    failover_ = p;
+  }
+  return failover_;
+}
+inline ::trafficcontrol::FailoverConfig* Routing::mutable_failover() {
+  ::trafficcontrol::FailoverConfig* _msg = _internal_mutable_failover();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Routing.failover)
+  return _msg;
+}
+inline void Routing::set_allocated_failover(::trafficcontrol::FailoverConfig* failover) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete failover_;
+  }
+  if (failover) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(failover);
+    if (message_arena != submessage_arena) {
+      failover = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, failover, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  failover_ = failover;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Routing.failover)
+}
+
+// -------------------------------------------------------------------
+
+// Router
+
+// .google.protobuf.BoolValue enable = 1;
+inline bool Router::_internal_has_enable() const {
+  return this != internal_default_instance() && enable_ != nullptr;
+}
+inline bool Router::has_enable() const {
+  return _internal_has_enable();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& Router::_internal_enable() const {
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue* p = enable_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::BoolValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_BoolValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& Router::enable() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Router.enable)
+  return _internal_enable();
+}
+inline void Router::unsafe_arena_set_allocated_enable(
+    ::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  enable_ = enable;
+  if (enable) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Router.enable)
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* Router::release_enable() {
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* Router::unsafe_arena_release_enable() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Router.enable)
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* Router::_internal_mutable_enable() {
+  
+  if (enable_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::BoolValue>(GetArenaForAllocation());
+    enable_ = p;
+  }
+  return enable_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* Router::mutable_enable() {
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _msg = _internal_mutable_enable();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Router.enable)
+  return _msg;
+}
+inline void Router::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  if (enable) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable));
+    if (message_arena != submessage_arena) {
+      enable = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, enable, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  enable_ = enable;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Router.enable)
+}
+
+// .trafficcontrol.RoutingPolicy routing_policy = 2;
+inline void Router::clear_routing_policy() {
+  routing_policy_ = 0;
+}
+inline ::trafficcontrol::RoutingPolicy Router::_internal_routing_policy() const {
+  return static_cast< ::trafficcontrol::RoutingPolicy >(routing_policy_);
+}
+inline ::trafficcontrol::RoutingPolicy Router::routing_policy() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Router.routing_policy)
+  return _internal_routing_policy();
+}
+inline void Router::_internal_set_routing_policy(::trafficcontrol::RoutingPolicy value) {
+  
+  routing_policy_ = value;
+}
+inline void Router::set_routing_policy(::trafficcontrol::RoutingPolicy value) {
+  _internal_set_routing_policy(value);
+  // @@protoc_insertion_point(field_set:trafficcontrol.Router.routing_policy)
+}
+
+// .google.protobuf.Any routing_config = 3;
+inline bool Router::_internal_has_routing_config() const {
+  return this != internal_default_instance() && routing_config_ != nullptr;
+}
+inline bool Router::has_routing_config() const {
+  return _internal_has_routing_config();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Any& Router::_internal_routing_config() const {
+  const ::PROTOBUF_NAMESPACE_ID::Any* p = routing_config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Any&>(
+      ::PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Any& Router::routing_config() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Router.routing_config)
+  return _internal_routing_config();
+}
+inline void Router::unsafe_arena_set_allocated_routing_config(
+    ::PROTOBUF_NAMESPACE_ID::Any* routing_config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(routing_config_);
+  }
+  routing_config_ = routing_config;
+  if (routing_config) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Router.routing_config)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Any* Router::release_routing_config() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Any* temp = routing_config_;
+  routing_config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Any* Router::unsafe_arena_release_routing_config() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Router.routing_config)
+  
+  ::PROTOBUF_NAMESPACE_ID::Any* temp = routing_config_;
+  routing_config_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Any* Router::_internal_mutable_routing_config() {
+  
+  if (routing_config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Any>(GetArenaForAllocation());
+    routing_config_ = p;
+  }
+  return routing_config_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Any* Router::mutable_routing_config() {
+  ::PROTOBUF_NAMESPACE_ID::Any* _msg = _internal_mutable_routing_config();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Router.routing_config)
+  return _msg;
+}
+inline void Router::set_allocated_routing_config(::PROTOBUF_NAMESPACE_ID::Any* routing_config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(routing_config_);
+  }
+  if (routing_config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(routing_config));
+    if (message_arena != submessage_arena) {
+      routing_config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, routing_config, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  routing_config_ = routing_config;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Router.routing_config)
 }
 
 // -------------------------------------------------------------------
@@ -3487,25 +4112,25 @@ inline void Locality::set_allocated_campus(::trafficcontrol::MatchString* campus
 
 // -------------------------------------------------------------------
 
-// DegradeConfig
+// FailoverConfig
 
 // .google.protobuf.BoolValue enable = 1;
-inline bool DegradeConfig::_internal_has_enable() const {
+inline bool FailoverConfig::_internal_has_enable() const {
   return this != internal_default_instance() && enable_ != nullptr;
 }
-inline bool DegradeConfig::has_enable() const {
+inline bool FailoverConfig::has_enable() const {
   return _internal_has_enable();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& DegradeConfig::_internal_enable() const {
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& FailoverConfig::_internal_enable() const {
   const ::PROTOBUF_NAMESPACE_ID::BoolValue* p = enable_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::BoolValue&>(
       ::PROTOBUF_NAMESPACE_ID::_BoolValue_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& DegradeConfig::enable() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.DegradeConfig.enable)
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& FailoverConfig::enable() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.FailoverConfig.enable)
   return _internal_enable();
 }
-inline void DegradeConfig::unsafe_arena_set_allocated_enable(
+inline void FailoverConfig::unsafe_arena_set_allocated_enable(
     ::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
@@ -3516,9 +4141,9 @@ inline void DegradeConfig::unsafe_arena_set_allocated_enable(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.DegradeConfig.enable)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.FailoverConfig.enable)
 }
-inline ::PROTOBUF_NAMESPACE_ID::BoolValue* DegradeConfig::release_enable() {
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* FailoverConfig::release_enable() {
   
   ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
   enable_ = nullptr;
@@ -3533,14 +4158,14 @@ inline ::PROTOBUF_NAMESPACE_ID::BoolValue* DegradeConfig::release_enable() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::BoolValue* DegradeConfig::unsafe_arena_release_enable() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.DegradeConfig.enable)
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* FailoverConfig::unsafe_arena_release_enable() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.FailoverConfig.enable)
   
   ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
   enable_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::BoolValue* DegradeConfig::_internal_mutable_enable() {
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* FailoverConfig::_internal_mutable_enable() {
   
   if (enable_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::BoolValue>(GetArenaForAllocation());
@@ -3548,12 +4173,12 @@ inline ::PROTOBUF_NAMESPACE_ID::BoolValue* DegradeConfig::_internal_mutable_enab
   }
   return enable_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::BoolValue* DegradeConfig::mutable_enable() {
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* FailoverConfig::mutable_enable() {
   ::PROTOBUF_NAMESPACE_ID::BoolValue* _msg = _internal_mutable_enable();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.DegradeConfig.enable)
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.FailoverConfig.enable)
   return _msg;
 }
-inline void DegradeConfig::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+inline void FailoverConfig::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
@@ -3571,26 +4196,26 @@ inline void DegradeConfig::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolVal
     
   }
   enable_ = enable;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.DegradeConfig.enable)
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.FailoverConfig.enable)
 }
 
 // .google.protobuf.UInt32Value total_count = 2;
-inline bool DegradeConfig::_internal_has_total_count() const {
+inline bool FailoverConfig::_internal_has_total_count() const {
   return this != internal_default_instance() && total_count_ != nullptr;
 }
-inline bool DegradeConfig::has_total_count() const {
+inline bool FailoverConfig::has_total_count() const {
   return _internal_has_total_count();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& DegradeConfig::_internal_total_count() const {
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& FailoverConfig::_internal_total_count() const {
   const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = total_count_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
       ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& DegradeConfig::total_count() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.DegradeConfig.total_count)
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& FailoverConfig::total_count() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.FailoverConfig.total_count)
   return _internal_total_count();
 }
-inline void DegradeConfig::unsafe_arena_set_allocated_total_count(
+inline void FailoverConfig::unsafe_arena_set_allocated_total_count(
     ::PROTOBUF_NAMESPACE_ID::UInt32Value* total_count) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(total_count_);
@@ -3601,9 +4226,9 @@ inline void DegradeConfig::unsafe_arena_set_allocated_total_count(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.DegradeConfig.total_count)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.FailoverConfig.total_count)
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::release_total_count() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::release_total_count() {
   
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = total_count_;
   total_count_ = nullptr;
@@ -3618,14 +4243,14 @@ inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::release_total_count(
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::unsafe_arena_release_total_count() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.DegradeConfig.total_count)
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::unsafe_arena_release_total_count() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.FailoverConfig.total_count)
   
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = total_count_;
   total_count_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::_internal_mutable_total_count() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::_internal_mutable_total_count() {
   
   if (total_count_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
@@ -3633,12 +4258,12 @@ inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::_internal_mutable_to
   }
   return total_count_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::mutable_total_count() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::mutable_total_count() {
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_total_count();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.DegradeConfig.total_count)
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.FailoverConfig.total_count)
   return _msg;
 }
-inline void DegradeConfig::set_allocated_total_count(::PROTOBUF_NAMESPACE_ID::UInt32Value* total_count) {
+inline void FailoverConfig::set_allocated_total_count(::PROTOBUF_NAMESPACE_ID::UInt32Value* total_count) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(total_count_);
@@ -3656,26 +4281,26 @@ inline void DegradeConfig::set_allocated_total_count(::PROTOBUF_NAMESPACE_ID::UI
     
   }
   total_count_ = total_count;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.DegradeConfig.total_count)
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.FailoverConfig.total_count)
 }
 
 // .google.protobuf.UInt32Value healthy_count = 3;
-inline bool DegradeConfig::_internal_has_healthy_count() const {
+inline bool FailoverConfig::_internal_has_healthy_count() const {
   return this != internal_default_instance() && healthy_count_ != nullptr;
 }
-inline bool DegradeConfig::has_healthy_count() const {
+inline bool FailoverConfig::has_healthy_count() const {
   return _internal_has_healthy_count();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& DegradeConfig::_internal_healthy_count() const {
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& FailoverConfig::_internal_healthy_count() const {
   const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = healthy_count_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
       ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& DegradeConfig::healthy_count() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.DegradeConfig.healthy_count)
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& FailoverConfig::healthy_count() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.FailoverConfig.healthy_count)
   return _internal_healthy_count();
 }
-inline void DegradeConfig::unsafe_arena_set_allocated_healthy_count(
+inline void FailoverConfig::unsafe_arena_set_allocated_healthy_count(
     ::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_count) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(healthy_count_);
@@ -3686,9 +4311,9 @@ inline void DegradeConfig::unsafe_arena_set_allocated_healthy_count(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.DegradeConfig.healthy_count)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.FailoverConfig.healthy_count)
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::release_healthy_count() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::release_healthy_count() {
   
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = healthy_count_;
   healthy_count_ = nullptr;
@@ -3703,14 +4328,14 @@ inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::release_healthy_coun
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::unsafe_arena_release_healthy_count() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.DegradeConfig.healthy_count)
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::unsafe_arena_release_healthy_count() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.FailoverConfig.healthy_count)
   
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = healthy_count_;
   healthy_count_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::_internal_mutable_healthy_count() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::_internal_mutable_healthy_count() {
   
   if (healthy_count_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
@@ -3718,12 +4343,12 @@ inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::_internal_mutable_he
   }
   return healthy_count_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::mutable_healthy_count() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::mutable_healthy_count() {
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_healthy_count();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.DegradeConfig.healthy_count)
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.FailoverConfig.healthy_count)
   return _msg;
 }
-inline void DegradeConfig::set_allocated_healthy_count(::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_count) {
+inline void FailoverConfig::set_allocated_healthy_count(::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_count) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(healthy_count_);
@@ -3741,26 +4366,26 @@ inline void DegradeConfig::set_allocated_healthy_count(::PROTOBUF_NAMESPACE_ID::
     
   }
   healthy_count_ = healthy_count;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.DegradeConfig.healthy_count)
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.FailoverConfig.healthy_count)
 }
 
 // .google.protobuf.UInt32Value healthy_percent = 4;
-inline bool DegradeConfig::_internal_has_healthy_percent() const {
+inline bool FailoverConfig::_internal_has_healthy_percent() const {
   return this != internal_default_instance() && healthy_percent_ != nullptr;
 }
-inline bool DegradeConfig::has_healthy_percent() const {
+inline bool FailoverConfig::has_healthy_percent() const {
   return _internal_has_healthy_percent();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& DegradeConfig::_internal_healthy_percent() const {
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& FailoverConfig::_internal_healthy_percent() const {
   const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = healthy_percent_;
   return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
       ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& DegradeConfig::healthy_percent() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.DegradeConfig.healthy_percent)
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& FailoverConfig::healthy_percent() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.FailoverConfig.healthy_percent)
   return _internal_healthy_percent();
 }
-inline void DegradeConfig::unsafe_arena_set_allocated_healthy_percent(
+inline void FailoverConfig::unsafe_arena_set_allocated_healthy_percent(
     ::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_percent) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(healthy_percent_);
@@ -3771,9 +4396,9 @@ inline void DegradeConfig::unsafe_arena_set_allocated_healthy_percent(
   } else {
     
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.DegradeConfig.healthy_percent)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.FailoverConfig.healthy_percent)
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::release_healthy_percent() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::release_healthy_percent() {
   
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = healthy_percent_;
   healthy_percent_ = nullptr;
@@ -3788,14 +4413,14 @@ inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::release_healthy_perc
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::unsafe_arena_release_healthy_percent() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.DegradeConfig.healthy_percent)
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::unsafe_arena_release_healthy_percent() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.FailoverConfig.healthy_percent)
   
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = healthy_percent_;
   healthy_percent_ = nullptr;
   return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::_internal_mutable_healthy_percent() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::_internal_mutable_healthy_percent() {
   
   if (healthy_percent_ == nullptr) {
     auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
@@ -3803,12 +4428,12 @@ inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::_internal_mutable_he
   }
   return healthy_percent_;
 }
-inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* DegradeConfig::mutable_healthy_percent() {
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* FailoverConfig::mutable_healthy_percent() {
   ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_healthy_percent();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.DegradeConfig.healthy_percent)
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.FailoverConfig.healthy_percent)
   return _msg;
 }
-inline void DegradeConfig::set_allocated_healthy_percent(::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_percent) {
+inline void FailoverConfig::set_allocated_healthy_percent(::PROTOBUF_NAMESPACE_ID::UInt32Value* healthy_percent) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(healthy_percent_);
@@ -3826,351 +4451,91 @@ inline void DegradeConfig::set_allocated_healthy_percent(::PROTOBUF_NAMESPACE_ID
     
   }
   healthy_percent_ = healthy_percent;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.DegradeConfig.healthy_percent)
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.FailoverConfig.healthy_percent)
 }
 
 // -------------------------------------------------------------------
 
-// RuleRouting
+// RuleRoutingConfig
 
-// .google.protobuf.StringValue namespace = 1;
-inline bool RuleRouting::_internal_has_namespace_() const {
-  return this != internal_default_instance() && namespace__ != nullptr;
-}
-inline bool RuleRouting::has_namespace_() const {
-  return _internal_has_namespace_();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::StringValue& RuleRouting::_internal_namespace_() const {
-  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = namespace__;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
-      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::StringValue& RuleRouting::namespace_() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRouting.namespace)
-  return _internal_namespace_();
-}
-inline void RuleRouting::unsafe_arena_set_allocated_namespace_(
-    ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
-  }
-  namespace__ = namespace_;
-  if (namespace_) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.RuleRouting.namespace)
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::release_namespace_() {
-  
-  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
-  namespace__ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::unsafe_arena_release_namespace_() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.RuleRouting.namespace)
-  
-  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
-  namespace__ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::_internal_mutable_namespace_() {
-  
-  if (namespace__ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
-    namespace__ = p;
-  }
-  return namespace__;
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::mutable_namespace_() {
-  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_namespace_();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRouting.namespace)
-  return _msg;
-}
-inline void RuleRouting::set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
-  }
-  if (namespace_) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace_));
-    if (message_arena != submessage_arena) {
-      namespace_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, namespace_, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  namespace__ = namespace_;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.RuleRouting.namespace)
-}
-
-// .google.protobuf.StringValue service = 2;
-inline bool RuleRouting::_internal_has_service() const {
-  return this != internal_default_instance() && service_ != nullptr;
-}
-inline bool RuleRouting::has_service() const {
-  return _internal_has_service();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::StringValue& RuleRouting::_internal_service() const {
-  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
-      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::StringValue& RuleRouting::service() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRouting.service)
-  return _internal_service();
-}
-inline void RuleRouting::unsafe_arena_set_allocated_service(
-    ::PROTOBUF_NAMESPACE_ID::StringValue* service) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
-  }
-  service_ = service;
-  if (service) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.RuleRouting.service)
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::release_service() {
-  
-  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
-  service_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::unsafe_arena_release_service() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.RuleRouting.service)
-  
-  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
-  service_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::_internal_mutable_service() {
-  
-  if (service_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
-    service_ = p;
-  }
-  return service_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::StringValue* RuleRouting::mutable_service() {
-  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRouting.service)
-  return _msg;
-}
-inline void RuleRouting::set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
-  }
-  if (service) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service));
-    if (message_arena != submessage_arena) {
-      service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, service, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  service_ = service;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.RuleRouting.service)
-}
-
-// repeated .trafficcontrol.Route inbounds = 3;
-inline int RuleRouting::_internal_inbounds_size() const {
+// repeated .trafficcontrol.Route inbounds = 1;
+inline int RuleRoutingConfig::_internal_inbounds_size() const {
   return inbounds_.size();
 }
-inline int RuleRouting::inbounds_size() const {
+inline int RuleRoutingConfig::inbounds_size() const {
   return _internal_inbounds_size();
 }
-inline void RuleRouting::clear_inbounds() {
+inline void RuleRoutingConfig::clear_inbounds() {
   inbounds_.Clear();
 }
-inline ::trafficcontrol::Route* RuleRouting::mutable_inbounds(int index) {
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRouting.inbounds)
+inline ::trafficcontrol::Route* RuleRoutingConfig::mutable_inbounds(int index) {
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRoutingConfig.inbounds)
   return inbounds_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >*
-RuleRouting::mutable_inbounds() {
-  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.RuleRouting.inbounds)
+RuleRoutingConfig::mutable_inbounds() {
+  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.RuleRoutingConfig.inbounds)
   return &inbounds_;
 }
-inline const ::trafficcontrol::Route& RuleRouting::_internal_inbounds(int index) const {
+inline const ::trafficcontrol::Route& RuleRoutingConfig::_internal_inbounds(int index) const {
   return inbounds_.Get(index);
 }
-inline const ::trafficcontrol::Route& RuleRouting::inbounds(int index) const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRouting.inbounds)
+inline const ::trafficcontrol::Route& RuleRoutingConfig::inbounds(int index) const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRoutingConfig.inbounds)
   return _internal_inbounds(index);
 }
-inline ::trafficcontrol::Route* RuleRouting::_internal_add_inbounds() {
+inline ::trafficcontrol::Route* RuleRoutingConfig::_internal_add_inbounds() {
   return inbounds_.Add();
 }
-inline ::trafficcontrol::Route* RuleRouting::add_inbounds() {
+inline ::trafficcontrol::Route* RuleRoutingConfig::add_inbounds() {
   ::trafficcontrol::Route* _add = _internal_add_inbounds();
-  // @@protoc_insertion_point(field_add:trafficcontrol.RuleRouting.inbounds)
+  // @@protoc_insertion_point(field_add:trafficcontrol.RuleRoutingConfig.inbounds)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
-RuleRouting::inbounds() const {
-  // @@protoc_insertion_point(field_list:trafficcontrol.RuleRouting.inbounds)
+RuleRoutingConfig::inbounds() const {
+  // @@protoc_insertion_point(field_list:trafficcontrol.RuleRoutingConfig.inbounds)
   return inbounds_;
 }
 
-// repeated .trafficcontrol.Route outbounds = 4;
-inline int RuleRouting::_internal_outbounds_size() const {
+// repeated .trafficcontrol.Route outbounds = 2;
+inline int RuleRoutingConfig::_internal_outbounds_size() const {
   return outbounds_.size();
 }
-inline int RuleRouting::outbounds_size() const {
+inline int RuleRoutingConfig::outbounds_size() const {
   return _internal_outbounds_size();
 }
-inline void RuleRouting::clear_outbounds() {
+inline void RuleRoutingConfig::clear_outbounds() {
   outbounds_.Clear();
 }
-inline ::trafficcontrol::Route* RuleRouting::mutable_outbounds(int index) {
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRouting.outbounds)
+inline ::trafficcontrol::Route* RuleRoutingConfig::mutable_outbounds(int index) {
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRoutingConfig.outbounds)
   return outbounds_.Mutable(index);
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >*
-RuleRouting::mutable_outbounds() {
-  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.RuleRouting.outbounds)
+RuleRoutingConfig::mutable_outbounds() {
+  // @@protoc_insertion_point(field_mutable_list:trafficcontrol.RuleRoutingConfig.outbounds)
   return &outbounds_;
 }
-inline const ::trafficcontrol::Route& RuleRouting::_internal_outbounds(int index) const {
+inline const ::trafficcontrol::Route& RuleRoutingConfig::_internal_outbounds(int index) const {
   return outbounds_.Get(index);
 }
-inline const ::trafficcontrol::Route& RuleRouting::outbounds(int index) const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRouting.outbounds)
+inline const ::trafficcontrol::Route& RuleRoutingConfig::outbounds(int index) const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRoutingConfig.outbounds)
   return _internal_outbounds(index);
 }
-inline ::trafficcontrol::Route* RuleRouting::_internal_add_outbounds() {
+inline ::trafficcontrol::Route* RuleRoutingConfig::_internal_add_outbounds() {
   return outbounds_.Add();
 }
-inline ::trafficcontrol::Route* RuleRouting::add_outbounds() {
+inline ::trafficcontrol::Route* RuleRoutingConfig::add_outbounds() {
   ::trafficcontrol::Route* _add = _internal_add_outbounds();
-  // @@protoc_insertion_point(field_add:trafficcontrol.RuleRouting.outbounds)
+  // @@protoc_insertion_point(field_add:trafficcontrol.RuleRoutingConfig.outbounds)
   return _add;
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::trafficcontrol::Route >&
-RuleRouting::outbounds() const {
-  // @@protoc_insertion_point(field_list:trafficcontrol.RuleRouting.outbounds)
+RuleRoutingConfig::outbounds() const {
+  // @@protoc_insertion_point(field_list:trafficcontrol.RuleRoutingConfig.outbounds)
   return outbounds_;
-}
-
-// .trafficcontrol.DegradeConfig degrade = 5;
-inline bool RuleRouting::_internal_has_degrade() const {
-  return this != internal_default_instance() && degrade_ != nullptr;
-}
-inline bool RuleRouting::has_degrade() const {
-  return _internal_has_degrade();
-}
-inline void RuleRouting::clear_degrade() {
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
-}
-inline const ::trafficcontrol::DegradeConfig& RuleRouting::_internal_degrade() const {
-  const ::trafficcontrol::DegradeConfig* p = degrade_;
-  return p != nullptr ? *p : reinterpret_cast<const ::trafficcontrol::DegradeConfig&>(
-      ::trafficcontrol::_DegradeConfig_default_instance_);
-}
-inline const ::trafficcontrol::DegradeConfig& RuleRouting::degrade() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.RuleRouting.degrade)
-  return _internal_degrade();
-}
-inline void RuleRouting::unsafe_arena_set_allocated_degrade(
-    ::trafficcontrol::DegradeConfig* degrade) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(degrade_);
-  }
-  degrade_ = degrade;
-  if (degrade) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.RuleRouting.degrade)
-}
-inline ::trafficcontrol::DegradeConfig* RuleRouting::release_degrade() {
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* RuleRouting::unsafe_arena_release_degrade() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.RuleRouting.degrade)
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* RuleRouting::_internal_mutable_degrade() {
-  
-  if (degrade_ == nullptr) {
-    auto* p = CreateMaybeMessage<::trafficcontrol::DegradeConfig>(GetArenaForAllocation());
-    degrade_ = p;
-  }
-  return degrade_;
-}
-inline ::trafficcontrol::DegradeConfig* RuleRouting::mutable_degrade() {
-  ::trafficcontrol::DegradeConfig* _msg = _internal_mutable_degrade();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.RuleRouting.degrade)
-  return _msg;
-}
-inline void RuleRouting::set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete degrade_;
-  }
-  if (degrade) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(degrade);
-    if (message_arena != submessage_arena) {
-      degrade = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, degrade, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  degrade_ = degrade;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.RuleRouting.degrade)
 }
 
 // -------------------------------------------------------------------
@@ -5189,377 +5554,75 @@ inline void Destination::set_allocated_locality(::trafficcontrol::Locality* loca
 
 // -------------------------------------------------------------------
 
-// LocalityRouting
+// LocalityRoutingConfig
 
-// .trafficcontrol.LocalityRouting.LocalityLevel startingLevel = 1;
-inline void LocalityRouting::clear_startinglevel() {
-  startinglevel_ = 0;
+// .trafficcontrol.LocalityRoutingConfig.LocalityLevel locality_level = 1;
+inline void LocalityRoutingConfig::clear_locality_level() {
+  locality_level_ = 0;
 }
-inline ::trafficcontrol::LocalityRouting_LocalityLevel LocalityRouting::_internal_startinglevel() const {
-  return static_cast< ::trafficcontrol::LocalityRouting_LocalityLevel >(startinglevel_);
+inline ::trafficcontrol::LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::_internal_locality_level() const {
+  return static_cast< ::trafficcontrol::LocalityRoutingConfig_LocalityLevel >(locality_level_);
 }
-inline ::trafficcontrol::LocalityRouting_LocalityLevel LocalityRouting::startinglevel() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.LocalityRouting.startingLevel)
-  return _internal_startinglevel();
+inline ::trafficcontrol::LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::locality_level() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.LocalityRoutingConfig.locality_level)
+  return _internal_locality_level();
 }
-inline void LocalityRouting::_internal_set_startinglevel(::trafficcontrol::LocalityRouting_LocalityLevel value) {
+inline void LocalityRoutingConfig::_internal_set_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value) {
   
-  startinglevel_ = value;
+  locality_level_ = value;
 }
-inline void LocalityRouting::set_startinglevel(::trafficcontrol::LocalityRouting_LocalityLevel value) {
-  _internal_set_startinglevel(value);
-  // @@protoc_insertion_point(field_set:trafficcontrol.LocalityRouting.startingLevel)
-}
-
-// .trafficcontrol.LocalityRouting.LocalityLevel maxDegradeLevel = 2;
-inline void LocalityRouting::clear_maxdegradelevel() {
-  maxdegradelevel_ = 0;
-}
-inline ::trafficcontrol::LocalityRouting_LocalityLevel LocalityRouting::_internal_maxdegradelevel() const {
-  return static_cast< ::trafficcontrol::LocalityRouting_LocalityLevel >(maxdegradelevel_);
-}
-inline ::trafficcontrol::LocalityRouting_LocalityLevel LocalityRouting::maxdegradelevel() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.LocalityRouting.maxDegradeLevel)
-  return _internal_maxdegradelevel();
-}
-inline void LocalityRouting::_internal_set_maxdegradelevel(::trafficcontrol::LocalityRouting_LocalityLevel value) {
-  
-  maxdegradelevel_ = value;
-}
-inline void LocalityRouting::set_maxdegradelevel(::trafficcontrol::LocalityRouting_LocalityLevel value) {
-  _internal_set_maxdegradelevel(value);
-  // @@protoc_insertion_point(field_set:trafficcontrol.LocalityRouting.maxDegradeLevel)
+inline void LocalityRoutingConfig::set_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value) {
+  _internal_set_locality_level(value);
+  // @@protoc_insertion_point(field_set:trafficcontrol.LocalityRoutingConfig.locality_level)
 }
 
-// .trafficcontrol.DegradeConfig degrade = 3;
-inline bool LocalityRouting::_internal_has_degrade() const {
-  return this != internal_default_instance() && degrade_ != nullptr;
+// .trafficcontrol.LocalityRoutingConfig.LocalityLevel max_locality_level = 2;
+inline void LocalityRoutingConfig::clear_max_locality_level() {
+  max_locality_level_ = 0;
 }
-inline bool LocalityRouting::has_degrade() const {
-  return _internal_has_degrade();
+inline ::trafficcontrol::LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::_internal_max_locality_level() const {
+  return static_cast< ::trafficcontrol::LocalityRoutingConfig_LocalityLevel >(max_locality_level_);
 }
-inline void LocalityRouting::clear_degrade() {
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
+inline ::trafficcontrol::LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::max_locality_level() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.LocalityRoutingConfig.max_locality_level)
+  return _internal_max_locality_level();
 }
-inline const ::trafficcontrol::DegradeConfig& LocalityRouting::_internal_degrade() const {
-  const ::trafficcontrol::DegradeConfig* p = degrade_;
-  return p != nullptr ? *p : reinterpret_cast<const ::trafficcontrol::DegradeConfig&>(
-      ::trafficcontrol::_DegradeConfig_default_instance_);
-}
-inline const ::trafficcontrol::DegradeConfig& LocalityRouting::degrade() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.LocalityRouting.degrade)
-  return _internal_degrade();
-}
-inline void LocalityRouting::unsafe_arena_set_allocated_degrade(
-    ::trafficcontrol::DegradeConfig* degrade) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(degrade_);
-  }
-  degrade_ = degrade;
-  if (degrade) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.LocalityRouting.degrade)
-}
-inline ::trafficcontrol::DegradeConfig* LocalityRouting::release_degrade() {
+inline void LocalityRoutingConfig::_internal_set_max_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value) {
   
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
+  max_locality_level_ = value;
 }
-inline ::trafficcontrol::DegradeConfig* LocalityRouting::unsafe_arena_release_degrade() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.LocalityRouting.degrade)
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* LocalityRouting::_internal_mutable_degrade() {
-  
-  if (degrade_ == nullptr) {
-    auto* p = CreateMaybeMessage<::trafficcontrol::DegradeConfig>(GetArenaForAllocation());
-    degrade_ = p;
-  }
-  return degrade_;
-}
-inline ::trafficcontrol::DegradeConfig* LocalityRouting::mutable_degrade() {
-  ::trafficcontrol::DegradeConfig* _msg = _internal_mutable_degrade();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.LocalityRouting.degrade)
-  return _msg;
-}
-inline void LocalityRouting::set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete degrade_;
-  }
-  if (degrade) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(degrade);
-    if (message_arena != submessage_arena) {
-      degrade = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, degrade, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  degrade_ = degrade;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.LocalityRouting.degrade)
+inline void LocalityRoutingConfig::set_max_locality_level(::trafficcontrol::LocalityRoutingConfig_LocalityLevel value) {
+  _internal_set_max_locality_level(value);
+  // @@protoc_insertion_point(field_set:trafficcontrol.LocalityRoutingConfig.max_locality_level)
 }
 
 // -------------------------------------------------------------------
 
-// MetadataRouting
+// MetadataRoutingConfig
 
-// .trafficcontrol.MetadataRouting.DegradeLevel degrade_level = 1;
-inline void MetadataRouting::clear_degrade_level() {
-  degrade_level_ = 0;
+// .trafficcontrol.MetadataRoutingConfig.FailoverRange failover_range = 1;
+inline void MetadataRoutingConfig::clear_failover_range() {
+  failover_range_ = 0;
 }
-inline ::trafficcontrol::MetadataRouting_DegradeLevel MetadataRouting::_internal_degrade_level() const {
-  return static_cast< ::trafficcontrol::MetadataRouting_DegradeLevel >(degrade_level_);
+inline ::trafficcontrol::MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::_internal_failover_range() const {
+  return static_cast< ::trafficcontrol::MetadataRoutingConfig_FailoverRange >(failover_range_);
 }
-inline ::trafficcontrol::MetadataRouting_DegradeLevel MetadataRouting::degrade_level() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.MetadataRouting.degrade_level)
-  return _internal_degrade_level();
+inline ::trafficcontrol::MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::failover_range() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.MetadataRoutingConfig.failover_range)
+  return _internal_failover_range();
 }
-inline void MetadataRouting::_internal_set_degrade_level(::trafficcontrol::MetadataRouting_DegradeLevel value) {
+inline void MetadataRoutingConfig::_internal_set_failover_range(::trafficcontrol::MetadataRoutingConfig_FailoverRange value) {
   
-  degrade_level_ = value;
+  failover_range_ = value;
 }
-inline void MetadataRouting::set_degrade_level(::trafficcontrol::MetadataRouting_DegradeLevel value) {
-  _internal_set_degrade_level(value);
-  // @@protoc_insertion_point(field_set:trafficcontrol.MetadataRouting.degrade_level)
+inline void MetadataRoutingConfig::set_failover_range(::trafficcontrol::MetadataRoutingConfig_FailoverRange value) {
+  _internal_set_failover_range(value);
+  // @@protoc_insertion_point(field_set:trafficcontrol.MetadataRoutingConfig.failover_range)
 }
-
-// .trafficcontrol.DegradeConfig degrade = 3;
-inline bool MetadataRouting::_internal_has_degrade() const {
-  return this != internal_default_instance() && degrade_ != nullptr;
-}
-inline bool MetadataRouting::has_degrade() const {
-  return _internal_has_degrade();
-}
-inline void MetadataRouting::clear_degrade() {
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
-}
-inline const ::trafficcontrol::DegradeConfig& MetadataRouting::_internal_degrade() const {
-  const ::trafficcontrol::DegradeConfig* p = degrade_;
-  return p != nullptr ? *p : reinterpret_cast<const ::trafficcontrol::DegradeConfig&>(
-      ::trafficcontrol::_DegradeConfig_default_instance_);
-}
-inline const ::trafficcontrol::DegradeConfig& MetadataRouting::degrade() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.MetadataRouting.degrade)
-  return _internal_degrade();
-}
-inline void MetadataRouting::unsafe_arena_set_allocated_degrade(
-    ::trafficcontrol::DegradeConfig* degrade) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(degrade_);
-  }
-  degrade_ = degrade;
-  if (degrade) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.MetadataRouting.degrade)
-}
-inline ::trafficcontrol::DegradeConfig* MetadataRouting::release_degrade() {
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* MetadataRouting::unsafe_arena_release_degrade() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.MetadataRouting.degrade)
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* MetadataRouting::_internal_mutable_degrade() {
-  
-  if (degrade_ == nullptr) {
-    auto* p = CreateMaybeMessage<::trafficcontrol::DegradeConfig>(GetArenaForAllocation());
-    degrade_ = p;
-  }
-  return degrade_;
-}
-inline ::trafficcontrol::DegradeConfig* MetadataRouting::mutable_degrade() {
-  ::trafficcontrol::DegradeConfig* _msg = _internal_mutable_degrade();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.MetadataRouting.degrade)
-  return _msg;
-}
-inline void MetadataRouting::set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete degrade_;
-  }
-  if (degrade) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(degrade);
-    if (message_arena != submessage_arena) {
-      degrade = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, degrade, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  degrade_ = degrade;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.MetadataRouting.degrade)
-}
-
-// -------------------------------------------------------------------
-
-// CanaryRouting
-
-// .trafficcontrol.CanaryRouting.DegradeLevel degrade_level = 1;
-inline void CanaryRouting::clear_degrade_level() {
-  degrade_level_ = 0;
-}
-inline ::trafficcontrol::CanaryRouting_DegradeLevel CanaryRouting::_internal_degrade_level() const {
-  return static_cast< ::trafficcontrol::CanaryRouting_DegradeLevel >(degrade_level_);
-}
-inline ::trafficcontrol::CanaryRouting_DegradeLevel CanaryRouting::degrade_level() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.CanaryRouting.degrade_level)
-  return _internal_degrade_level();
-}
-inline void CanaryRouting::_internal_set_degrade_level(::trafficcontrol::CanaryRouting_DegradeLevel value) {
-  
-  degrade_level_ = value;
-}
-inline void CanaryRouting::set_degrade_level(::trafficcontrol::CanaryRouting_DegradeLevel value) {
-  _internal_set_degrade_level(value);
-  // @@protoc_insertion_point(field_set:trafficcontrol.CanaryRouting.degrade_level)
-}
-
-// .trafficcontrol.DegradeConfig degrade = 3;
-inline bool CanaryRouting::_internal_has_degrade() const {
-  return this != internal_default_instance() && degrade_ != nullptr;
-}
-inline bool CanaryRouting::has_degrade() const {
-  return _internal_has_degrade();
-}
-inline void CanaryRouting::clear_degrade() {
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
-}
-inline const ::trafficcontrol::DegradeConfig& CanaryRouting::_internal_degrade() const {
-  const ::trafficcontrol::DegradeConfig* p = degrade_;
-  return p != nullptr ? *p : reinterpret_cast<const ::trafficcontrol::DegradeConfig&>(
-      ::trafficcontrol::_DegradeConfig_default_instance_);
-}
-inline const ::trafficcontrol::DegradeConfig& CanaryRouting::degrade() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.CanaryRouting.degrade)
-  return _internal_degrade();
-}
-inline void CanaryRouting::unsafe_arena_set_allocated_degrade(
-    ::trafficcontrol::DegradeConfig* degrade) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(degrade_);
-  }
-  degrade_ = degrade;
-  if (degrade) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.CanaryRouting.degrade)
-}
-inline ::trafficcontrol::DegradeConfig* CanaryRouting::release_degrade() {
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* CanaryRouting::unsafe_arena_release_degrade() {
-  // @@protoc_insertion_point(field_release:trafficcontrol.CanaryRouting.degrade)
-  
-  ::trafficcontrol::DegradeConfig* temp = degrade_;
-  degrade_ = nullptr;
-  return temp;
-}
-inline ::trafficcontrol::DegradeConfig* CanaryRouting::_internal_mutable_degrade() {
-  
-  if (degrade_ == nullptr) {
-    auto* p = CreateMaybeMessage<::trafficcontrol::DegradeConfig>(GetArenaForAllocation());
-    degrade_ = p;
-  }
-  return degrade_;
-}
-inline ::trafficcontrol::DegradeConfig* CanaryRouting::mutable_degrade() {
-  ::trafficcontrol::DegradeConfig* _msg = _internal_mutable_degrade();
-  // @@protoc_insertion_point(field_mutable:trafficcontrol.CanaryRouting.degrade)
-  return _msg;
-}
-inline void CanaryRouting::set_allocated_degrade(::trafficcontrol::DegradeConfig* degrade) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete degrade_;
-  }
-  if (degrade) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(degrade);
-    if (message_arena != submessage_arena) {
-      degrade = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, degrade, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  degrade_ = degrade;
-  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.CanaryRouting.degrade)
-}
-
-// -------------------------------------------------------------------
-
-// SetRouting
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -5601,25 +5664,20 @@ template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::MatchString_ValueType>() {
   return ::trafficcontrol::MatchString_ValueType_descriptor();
 }
-template <> struct is_proto_enum< ::trafficcontrol::LocalityRouting_LocalityLevel> : ::std::true_type {};
+template <> struct is_proto_enum< ::trafficcontrol::LocalityRoutingConfig_LocalityLevel> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::LocalityRouting_LocalityLevel>() {
-  return ::trafficcontrol::LocalityRouting_LocalityLevel_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::LocalityRoutingConfig_LocalityLevel>() {
+  return ::trafficcontrol::LocalityRoutingConfig_LocalityLevel_descriptor();
 }
-template <> struct is_proto_enum< ::trafficcontrol::MetadataRouting_DegradeLevel> : ::std::true_type {};
+template <> struct is_proto_enum< ::trafficcontrol::MetadataRoutingConfig_FailoverRange> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::MetadataRouting_DegradeLevel>() {
-  return ::trafficcontrol::MetadataRouting_DegradeLevel_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::MetadataRoutingConfig_FailoverRange>() {
+  return ::trafficcontrol::MetadataRoutingConfig_FailoverRange_descriptor();
 }
-template <> struct is_proto_enum< ::trafficcontrol::CanaryRouting_DegradeLevel> : ::std::true_type {};
+template <> struct is_proto_enum< ::trafficcontrol::RoutingPolicy> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::CanaryRouting_DegradeLevel>() {
-  return ::trafficcontrol::CanaryRouting_DegradeLevel_descriptor();
-}
-template <> struct is_proto_enum< ::trafficcontrol::RouterType> : ::std::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::RouterType>() {
-  return ::trafficcontrol::RouterType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::trafficcontrol::RoutingPolicy>() {
+  return ::trafficcontrol::RoutingPolicy_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

@@ -123,12 +123,15 @@ namespace accesscontrol {
 enum MatchString_MatchStringType : int {
   MatchString_MatchStringType_EXACT = 0,
   MatchString_MatchStringType_REGEX = 1,
+  MatchString_MatchStringType_NOT_EQUALS = 2,
+  MatchString_MatchStringType_INCLUDE = 3,
+  MatchString_MatchStringType_NOT_INCLUDE = 4,
   MatchString_MatchStringType_MatchString_MatchStringType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MatchString_MatchStringType_MatchString_MatchStringType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MatchString_MatchStringType_IsValid(int value);
 constexpr MatchString_MatchStringType MatchString_MatchStringType_MatchStringType_MIN = MatchString_MatchStringType_EXACT;
-constexpr MatchString_MatchStringType MatchString_MatchStringType_MatchStringType_MAX = MatchString_MatchStringType_REGEX;
+constexpr MatchString_MatchStringType MatchString_MatchStringType_MatchStringType_MAX = MatchString_MatchStringType_NOT_INCLUDE;
 constexpr int MatchString_MatchStringType_MatchStringType_ARRAYSIZE = MatchString_MatchStringType_MatchStringType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MatchString_MatchStringType_descriptor();
@@ -147,14 +150,12 @@ inline bool MatchString_MatchStringType_Parse(
 }
 enum MatchString_ValueType : int {
   MatchString_ValueType_TEXT = 0,
-  MatchString_ValueType_PARAMETER = 1,
-  MatchString_ValueType_VARIABLE = 2,
   MatchString_ValueType_MatchString_ValueType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   MatchString_ValueType_MatchString_ValueType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool MatchString_ValueType_IsValid(int value);
 constexpr MatchString_ValueType MatchString_ValueType_ValueType_MIN = MatchString_ValueType_TEXT;
-constexpr MatchString_ValueType MatchString_ValueType_ValueType_MAX = MatchString_ValueType_VARIABLE;
+constexpr MatchString_ValueType MatchString_ValueType_ValueType_MAX = MatchString_ValueType_TEXT;
 constexpr int MatchString_ValueType_ValueType_ARRAYSIZE = MatchString_ValueType_ValueType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MatchString_ValueType_descriptor();
@@ -1163,6 +1164,12 @@ class MatchString final :
     MatchString_MatchStringType_EXACT;
   static constexpr MatchStringType REGEX =
     MatchString_MatchStringType_REGEX;
+  static constexpr MatchStringType NOT_EQUALS =
+    MatchString_MatchStringType_NOT_EQUALS;
+  static constexpr MatchStringType INCLUDE =
+    MatchString_MatchStringType_INCLUDE;
+  static constexpr MatchStringType NOT_INCLUDE =
+    MatchString_MatchStringType_NOT_INCLUDE;
   static inline bool MatchStringType_IsValid(int value) {
     return MatchString_MatchStringType_IsValid(value);
   }
@@ -1191,10 +1198,6 @@ class MatchString final :
   typedef MatchString_ValueType ValueType;
   static constexpr ValueType TEXT =
     MatchString_ValueType_TEXT;
-  static constexpr ValueType PARAMETER =
-    MatchString_ValueType_PARAMETER;
-  static constexpr ValueType VARIABLE =
-    MatchString_ValueType_VARIABLE;
   static inline bool ValueType_IsValid(int value) {
     return MatchString_ValueType_IsValid(value);
   }
@@ -1225,7 +1228,6 @@ class MatchString final :
   enum : int {
     kValueFieldNumber = 2,
     kTypeFieldNumber = 1,
-    kValueTypeFieldNumber = 3,
   };
   // .google.protobuf.StringValue value = 2;
   bool has_value() const;
@@ -1254,15 +1256,6 @@ class MatchString final :
   void _internal_set_type(::accesscontrol::MatchString_MatchStringType value);
   public:
 
-  // .accesscontrol.MatchString.ValueType value_type = 3;
-  void clear_value_type();
-  ::accesscontrol::MatchString_ValueType value_type() const;
-  void set_value_type(::accesscontrol::MatchString_ValueType value);
-  private:
-  ::accesscontrol::MatchString_ValueType _internal_value_type() const;
-  void _internal_set_value_type(::accesscontrol::MatchString_ValueType value);
-  public:
-
   // @@protoc_insertion_point(class_scope:accesscontrol.MatchString)
  private:
   class _Internal;
@@ -1272,7 +1265,6 @@ class MatchString final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::StringValue* value_;
   int type_;
-  int value_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_limiter_2eproto;
 };
@@ -5201,26 +5193,6 @@ inline void MatchString::set_allocated_value(::PROTOBUF_NAMESPACE_ID::StringValu
   }
   value_ = value;
   // @@protoc_insertion_point(field_set_allocated:accesscontrol.MatchString.value)
-}
-
-// .accesscontrol.MatchString.ValueType value_type = 3;
-inline void MatchString::clear_value_type() {
-  value_type_ = 0;
-}
-inline ::accesscontrol::MatchString_ValueType MatchString::_internal_value_type() const {
-  return static_cast< ::accesscontrol::MatchString_ValueType >(value_type_);
-}
-inline ::accesscontrol::MatchString_ValueType MatchString::value_type() const {
-  // @@protoc_insertion_point(field_get:accesscontrol.MatchString.value_type)
-  return _internal_value_type();
-}
-inline void MatchString::_internal_set_value_type(::accesscontrol::MatchString_ValueType value) {
-  
-  value_type_ = value;
-}
-inline void MatchString::set_value_type(::accesscontrol::MatchString_ValueType value) {
-  _internal_set_value_type(value);
-  // @@protoc_insertion_point(field_set:accesscontrol.MatchString.value_type)
 }
 
 // -------------------------------------------------------------------

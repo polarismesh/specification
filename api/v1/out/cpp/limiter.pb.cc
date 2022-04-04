@@ -97,8 +97,6 @@ PROTOBUF_CONSTEXPR MatchString::MatchString(
     ::_pbi::ConstantInitialized)
   : value_(nullptr)
   , type_(0)
-
-  , value_type_(0)
 {}
 struct MatchStringDefaultTypeInternal {
   PROTOBUF_CONSTEXPR MatchStringDefaultTypeInternal()
@@ -337,7 +335,6 @@ const uint32_t TableStruct_limiter_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::accesscontrol::MatchString, type_),
   PROTOBUF_FIELD_OFFSET(::accesscontrol::MatchString, value_),
-  PROTOBUF_FIELD_OFFSET(::accesscontrol::MatchString, value_type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::accesscontrol::Amount, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -448,17 +445,17 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 18, 26, -1, sizeof(::accesscontrol::Rule_LabelsEntry_DoNotUse)},
   { 28, -1, -1, sizeof(::accesscontrol::Rule)},
   { 56, -1, -1, sizeof(::accesscontrol::MatchString)},
-  { 65, -1, -1, sizeof(::accesscontrol::Amount)},
-  { 76, -1, -1, sizeof(::accesscontrol::ReportPolicy)},
-  { 84, -1, -1, sizeof(::accesscontrol::AmountAdjusterAlgorithm)},
-  { 91, -1, -1, sizeof(::accesscontrol::ClimbConfig_MetricConfig)},
-  { 100, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig)},
-  { 109, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy_ErrorRate)},
-  { 119, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy_SlowRate)},
-  { 128, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy)},
-  { 136, -1, -1, sizeof(::accesscontrol::ClimbConfig_ClimbThrottling)},
-  { 150, -1, -1, sizeof(::accesscontrol::ClimbConfig)},
-  { 160, -1, -1, sizeof(::accesscontrol::RateLimitCluster)},
+  { 64, -1, -1, sizeof(::accesscontrol::Amount)},
+  { 75, -1, -1, sizeof(::accesscontrol::ReportPolicy)},
+  { 83, -1, -1, sizeof(::accesscontrol::AmountAdjusterAlgorithm)},
+  { 90, -1, -1, sizeof(::accesscontrol::ClimbConfig_MetricConfig)},
+  { 99, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig)},
+  { 108, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy_ErrorRate)},
+  { 118, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy_SlowRate)},
+  { 127, -1, -1, sizeof(::accesscontrol::ClimbConfig_TriggerPolicy)},
+  { 135, -1, -1, sizeof(::accesscontrol::ClimbConfig_ClimbThrottling)},
+  { 149, -1, -1, sizeof(::accesscontrol::ClimbConfig)},
+  { 159, -1, -1, sizeof(::accesscontrol::RateLimitCluster)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -515,73 +512,73 @@ const char descriptor_table_protodef_limiter_2eproto[] PROTOBUF_SECTION_VARIABLE
   "String\032I\n\013SubsetEntry\022\013\n\003key\030\001 \001(\t\022)\n\005va"
   "lue\030\002 \001(\0132\032.accesscontrol.MatchString:\0028"
   "\001\032I\n\013LabelsEntry\022\013\n\003key\030\001 \001(\t\022)\n\005value\030\002"
-  " \001(\0132\032.accesscontrol.MatchString:\0028\001\"\213\002\n"
+  " \001(\0132\032.accesscontrol.MatchString:\0028\001\"\342\001\n"
   "\013MatchString\0228\n\004type\030\001 \001(\0162*.accesscontr"
   "ol.MatchString.MatchStringType\022+\n\005value\030"
-  "\002 \001(\0132\034.google.protobuf.StringValue\0228\n\nv"
-  "alue_type\030\003 \001(\0162$.accesscontrol.MatchStr"
-  "ing.ValueType\"\'\n\017MatchStringType\022\t\n\005EXAC"
-  "T\020\000\022\t\n\005REGEX\020\001\"2\n\tValueType\022\010\n\004TEXT\020\000\022\r\n"
-  "\tPARAMETER\020\001\022\014\n\010VARIABLE\020\002\"\200\002\n\006Amount\022/\n"
-  "\tmaxAmount\030\001 \001(\0132\034.google.protobuf.UInt3"
-  "2Value\0220\n\rvalidDuration\030\002 \001(\0132\031.google.p"
-  "rotobuf.Duration\022/\n\tprecision\030\003 \001(\0132\034.go"
-  "ogle.protobuf.UInt32Value\0221\n\013startAmount"
-  "\030\004 \001(\0132\034.google.protobuf.UInt32Value\022/\n\t"
-  "minAmount\030\005 \001(\0132\034.google.protobuf.UInt32"
-  "Value\"p\n\014ReportPolicy\022+\n\010interval\030\001 \001(\0132"
-  "\031.google.protobuf.Duration\0223\n\ramountPerc"
-  "ent\030\002 \001(\0132\034.google.protobuf.UInt32Value\""
-  "D\n\027AmountAdjusterAlgorithm\022)\n\005climb\030\001 \001("
-  "\0132\032.accesscontrol.ClimbConfig\"\256\014\n\013ClimbC"
-  "onfig\022*\n\006enable\030\001 \001(\0132\032.google.protobuf."
-  "BoolValue\0227\n\006metric\030\002 \001(\0132\'.accesscontro"
-  "l.ClimbConfig.MetricConfig\0228\n\006policy\030\003 \001"
-  "(\0132(.accesscontrol.ClimbConfig.TriggerPo"
-  "licy\022>\n\nthrottling\030\004 \001(\0132*.accesscontrol"
-  ".ClimbConfig.ClimbThrottling\032\235\001\n\014MetricC"
-  "onfig\022)\n\006window\030\001 \001(\0132\031.google.protobuf."
-  "Duration\022/\n\tprecision\030\002 \001(\0132\034.google.pro"
-  "tobuf.UInt32Value\0221\n\016reportInterval\030\003 \001("
-  "\0132\031.google.protobuf.Duration\032\310\005\n\rTrigger"
-  "Policy\022E\n\terrorRate\030\001 \001(\01322.accesscontro"
-  "l.ClimbConfig.TriggerPolicy.ErrorRate\022C\n"
-  "\010slowRate\030\002 \001(\01321.accesscontrol.ClimbCon"
-  "fig.TriggerPolicy.SlowRate\032\230\003\n\tErrorRate"
-  "\022*\n\006enable\030\001 \001(\0132\032.google.protobuf.BoolV"
-  "alue\022<\n\026requestVolumeThreshold\030\002 \001(\0132\034.g"
-  "oogle.protobuf.UInt32Value\022.\n\terrorRate\030"
-  "\003 \001(\0132\033.google.protobuf.Int32Value\022R\n\010sp"
-  "ecials\030\004 \003(\0132@.accesscontrol.ClimbConfig"
-  ".TriggerPolicy.ErrorRate.SpecialConfig\032\234"
-  "\001\n\rSpecialConfig\022*\n\004type\030\001 \001(\0132\034.google."
-  "protobuf.StringValue\022/\n\nerrorCodes\030\002 \003(\013"
-  "2\033.google.protobuf.Int64Value\022.\n\terrorRa"
-  "te\030\003 \001(\0132\033.google.protobuf.Int32Value\032\217\001"
-  "\n\010SlowRate\022*\n\006enable\030\001 \001(\0132\032.google.prot"
-  "obuf.BoolValue\022(\n\005maxRt\030\002 \001(\0132\031.google.p"
-  "rotobuf.Duration\022-\n\010slowRate\030\003 \001(\0132\033.goo"
-  "gle.protobuf.Int32Value\032\324\003\n\017ClimbThrottl"
-  "ing\022:\n\025coldBelowTuneDownRate\030\001 \001(\0132\033.goo"
-  "gle.protobuf.Int32Value\0228\n\023coldBelowTune"
-  "UpRate\030\002 \001(\0132\033.google.protobuf.Int32Valu"
-  "e\022:\n\025coldAboveTuneDownRate\030\003 \001(\0132\033.googl"
-  "e.protobuf.Int32Value\0228\n\023coldAboveTuneUp"
-  "Rate\030\004 \001(\0132\033.google.protobuf.Int32Value\022"
-  ";\n\026limitThresholdToTuneUp\030\005 \001(\0132\033.google"
-  ".protobuf.Int32Value\0220\n\rjudgeDuration\030\006 "
-  "\001(\0132\031.google.protobuf.Duration\0221\n\014tuneUp"
-  "Period\030\007 \001(\0132\033.google.protobuf.Int32Valu"
-  "e\0223\n\016tuneDownPeriod\030\010 \001(\0132\033.google.proto"
-  "buf.Int32Value\"r\n\020RateLimitCluster\022-\n\007se"
-  "rvice\030\001 \001(\0132\034.google.protobuf.StringValu"
-  "e\022/\n\tnamespace\030\002 \001(\0132\034.google.protobuf.S"
-  "tringValue*(\n\014ResourceType\022\007\n\003QPS\020\000\022\017\n\013C"
-  "ONCURRENCY\020\001*\035\n\004Type\022\n\n\006GLOBAL\020\000\022\t\n\005LOCA"
-  "L\020\001*1\n\nAmountMode\022\020\n\014GLOBAL_TOTAL\020\000\022\021\n\rS"
-  "HARE_EQUALLY\020\001*5\n\014FailoverType\022\022\n\016FAILOV"
-  "ER_LOCAL\020\000\022\021\n\rFAILOVER_PASS\020\001B\026Z\024api/v1/"
-  "accesscontrolb\006proto3"
+  "\002 \001(\0132\034.google.protobuf.StringValue\"U\n\017M"
+  "atchStringType\022\t\n\005EXACT\020\000\022\t\n\005REGEX\020\001\022\016\n\n"
+  "NOT_EQUALS\020\002\022\013\n\007INCLUDE\020\003\022\017\n\013NOT_INCLUDE"
+  "\020\004\"\025\n\tValueType\022\010\n\004TEXT\020\000\"\200\002\n\006Amount\022/\n\t"
+  "maxAmount\030\001 \001(\0132\034.google.protobuf.UInt32"
+  "Value\0220\n\rvalidDuration\030\002 \001(\0132\031.google.pr"
+  "otobuf.Duration\022/\n\tprecision\030\003 \001(\0132\034.goo"
+  "gle.protobuf.UInt32Value\0221\n\013startAmount\030"
+  "\004 \001(\0132\034.google.protobuf.UInt32Value\022/\n\tm"
+  "inAmount\030\005 \001(\0132\034.google.protobuf.UInt32V"
+  "alue\"p\n\014ReportPolicy\022+\n\010interval\030\001 \001(\0132\031"
+  ".google.protobuf.Duration\0223\n\ramountPerce"
+  "nt\030\002 \001(\0132\034.google.protobuf.UInt32Value\"D"
+  "\n\027AmountAdjusterAlgorithm\022)\n\005climb\030\001 \001(\013"
+  "2\032.accesscontrol.ClimbConfig\"\256\014\n\013ClimbCo"
+  "nfig\022*\n\006enable\030\001 \001(\0132\032.google.protobuf.B"
+  "oolValue\0227\n\006metric\030\002 \001(\0132\'.accesscontrol"
+  ".ClimbConfig.MetricConfig\0228\n\006policy\030\003 \001("
+  "\0132(.accesscontrol.ClimbConfig.TriggerPol"
+  "icy\022>\n\nthrottling\030\004 \001(\0132*.accesscontrol."
+  "ClimbConfig.ClimbThrottling\032\235\001\n\014MetricCo"
+  "nfig\022)\n\006window\030\001 \001(\0132\031.google.protobuf.D"
+  "uration\022/\n\tprecision\030\002 \001(\0132\034.google.prot"
+  "obuf.UInt32Value\0221\n\016reportInterval\030\003 \001(\013"
+  "2\031.google.protobuf.Duration\032\310\005\n\rTriggerP"
+  "olicy\022E\n\terrorRate\030\001 \001(\01322.accesscontrol"
+  ".ClimbConfig.TriggerPolicy.ErrorRate\022C\n\010"
+  "slowRate\030\002 \001(\01321.accesscontrol.ClimbConf"
+  "ig.TriggerPolicy.SlowRate\032\230\003\n\tErrorRate\022"
+  "*\n\006enable\030\001 \001(\0132\032.google.protobuf.BoolVa"
+  "lue\022<\n\026requestVolumeThreshold\030\002 \001(\0132\034.go"
+  "ogle.protobuf.UInt32Value\022.\n\terrorRate\030\003"
+  " \001(\0132\033.google.protobuf.Int32Value\022R\n\010spe"
+  "cials\030\004 \003(\0132@.accesscontrol.ClimbConfig."
+  "TriggerPolicy.ErrorRate.SpecialConfig\032\234\001"
+  "\n\rSpecialConfig\022*\n\004type\030\001 \001(\0132\034.google.p"
+  "rotobuf.StringValue\022/\n\nerrorCodes\030\002 \003(\0132"
+  "\033.google.protobuf.Int64Value\022.\n\terrorRat"
+  "e\030\003 \001(\0132\033.google.protobuf.Int32Value\032\217\001\n"
+  "\010SlowRate\022*\n\006enable\030\001 \001(\0132\032.google.proto"
+  "buf.BoolValue\022(\n\005maxRt\030\002 \001(\0132\031.google.pr"
+  "otobuf.Duration\022-\n\010slowRate\030\003 \001(\0132\033.goog"
+  "le.protobuf.Int32Value\032\324\003\n\017ClimbThrottli"
+  "ng\022:\n\025coldBelowTuneDownRate\030\001 \001(\0132\033.goog"
+  "le.protobuf.Int32Value\0228\n\023coldBelowTuneU"
+  "pRate\030\002 \001(\0132\033.google.protobuf.Int32Value"
+  "\022:\n\025coldAboveTuneDownRate\030\003 \001(\0132\033.google"
+  ".protobuf.Int32Value\0228\n\023coldAboveTuneUpR"
+  "ate\030\004 \001(\0132\033.google.protobuf.Int32Value\022;"
+  "\n\026limitThresholdToTuneUp\030\005 \001(\0132\033.google."
+  "protobuf.Int32Value\0220\n\rjudgeDuration\030\006 \001"
+  "(\0132\031.google.protobuf.Duration\0221\n\014tuneUpP"
+  "eriod\030\007 \001(\0132\033.google.protobuf.Int32Value"
+  "\0223\n\016tuneDownPeriod\030\010 \001(\0132\033.google.protob"
+  "uf.Int32Value\"r\n\020RateLimitCluster\022-\n\007ser"
+  "vice\030\001 \001(\0132\034.google.protobuf.StringValue"
+  "\022/\n\tnamespace\030\002 \001(\0132\034.google.protobuf.St"
+  "ringValue*(\n\014ResourceType\022\007\n\003QPS\020\000\022\017\n\013CO"
+  "NCURRENCY\020\001*\035\n\004Type\022\n\n\006GLOBAL\020\000\022\t\n\005LOCAL"
+  "\020\001*1\n\nAmountMode\022\020\n\014GLOBAL_TOTAL\020\000\022\021\n\rSH"
+  "ARE_EQUALLY\020\001*5\n\014FailoverType\022\022\n\016FAILOVE"
+  "R_LOCAL\020\000\022\021\n\rFAILOVER_PASS\020\001B<\n$cn.polar"
+  "ismesh.polaris.accesscontrolZ\024api/v1/acc"
+  "esscontrolb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_limiter_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fduration_2eproto,
@@ -589,7 +586,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_limiter_2eproto_dep
 };
 static ::_pbi::once_flag descriptor_table_limiter_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_limiter_2eproto = {
-    false, false, 4021, descriptor_table_protodef_limiter_2eproto,
+    false, false, 4018, descriptor_table_protodef_limiter_2eproto,
     "limiter.proto",
     &descriptor_table_limiter_2eproto_once, descriptor_table_limiter_2eproto_deps, 2, 16,
     schemas, file_default_instances, TableStruct_limiter_2eproto::offsets,
@@ -611,6 +608,9 @@ bool MatchString_MatchStringType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
+    case 3:
+    case 4:
       return true;
     default:
       return false;
@@ -620,6 +620,9 @@ bool MatchString_MatchStringType_IsValid(int value) {
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr MatchString_MatchStringType MatchString::EXACT;
 constexpr MatchString_MatchStringType MatchString::REGEX;
+constexpr MatchString_MatchStringType MatchString::NOT_EQUALS;
+constexpr MatchString_MatchStringType MatchString::INCLUDE;
+constexpr MatchString_MatchStringType MatchString::NOT_INCLUDE;
 constexpr MatchString_MatchStringType MatchString::MatchStringType_MIN;
 constexpr MatchString_MatchStringType MatchString::MatchStringType_MAX;
 constexpr int MatchString::MatchStringType_ARRAYSIZE;
@@ -631,8 +634,6 @@ const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MatchString_ValueType_descriptor(
 bool MatchString_ValueType_IsValid(int value) {
   switch (value) {
     case 0:
-    case 1:
-    case 2:
       return true;
     default:
       return false;
@@ -641,8 +642,6 @@ bool MatchString_ValueType_IsValid(int value) {
 
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 constexpr MatchString_ValueType MatchString::TEXT;
-constexpr MatchString_ValueType MatchString::PARAMETER;
-constexpr MatchString_ValueType MatchString::VARIABLE;
 constexpr MatchString_ValueType MatchString::ValueType_MIN;
 constexpr MatchString_ValueType MatchString::ValueType_MAX;
 constexpr int MatchString::ValueType_ARRAYSIZE;
@@ -2066,17 +2065,15 @@ MatchString::MatchString(const MatchString& from)
   } else {
     value_ = nullptr;
   }
-  ::memcpy(&type_, &from.type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&value_type_) -
-    reinterpret_cast<char*>(&type_)) + sizeof(value_type_));
+  type_ = from.type_;
   // @@protoc_insertion_point(copy_constructor:accesscontrol.MatchString)
 }
 
 inline void MatchString::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&value_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&value_type_) -
-    reinterpret_cast<char*>(&value_)) + sizeof(value_type_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&value_)) + sizeof(type_));
 }
 
 MatchString::~MatchString() {
@@ -2107,9 +2104,7 @@ void MatchString::Clear() {
     delete value_;
   }
   value_ = nullptr;
-  ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&value_type_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(value_type_));
+  type_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2133,15 +2128,6 @@ const char* MatchString::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr = ctx->ParseMessage(_internal_mutable_value(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .accesscontrol.MatchString.ValueType value_type = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_value_type(static_cast<::accesscontrol::MatchString_ValueType>(val));
         } else
           goto handle_unusual;
         continue;
@@ -2188,13 +2174,6 @@ uint8_t* MatchString::_InternalSerialize(
         _Internal::value(this).GetCachedSize(), target, stream);
   }
 
-  // .accesscontrol.MatchString.ValueType value_type = 3;
-  if (this->_internal_value_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      3, this->_internal_value_type(), target);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2222,12 +2201,6 @@ size_t MatchString::ByteSizeLong() const {
   if (this->_internal_type() != 0) {
     total_size += 1 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
-  }
-
-  // .accesscontrol.MatchString.ValueType value_type = 3;
-  if (this->_internal_value_type() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_value_type());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -2258,9 +2231,6 @@ void MatchString::MergeFrom(const MatchString& from) {
   if (from._internal_type() != 0) {
     _internal_set_type(from._internal_type());
   }
-  if (from._internal_value_type() != 0) {
-    _internal_set_value_type(from._internal_value_type());
-  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2279,8 +2249,8 @@ void MatchString::InternalSwap(MatchString* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MatchString, value_type_)
-      + sizeof(MatchString::value_type_)
+      PROTOBUF_FIELD_OFFSET(MatchString, type_)
+      + sizeof(MatchString::type_)
       - PROTOBUF_FIELD_OFFSET(MatchString, value_)>(
           reinterpret_cast<char*>(&value_),
           reinterpret_cast<char*>(&other->value_));
