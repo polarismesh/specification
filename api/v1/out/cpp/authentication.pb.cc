@@ -29,12 +29,13 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_authentication_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\024authentication.proto\022\raccesscontrolB\026Z"
-  "\024api/v1/accesscontrolb\006proto3"
+  "\n\024authentication.proto\022\raccesscontrolB<\n"
+  "$cn.polarismesh.polaris.accesscontrolZ\024a"
+  "pi/v1/accesscontrolb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_authentication_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_authentication_2eproto = {
-    false, false, 69, descriptor_table_protodef_authentication_2eproto,
+    false, false, 107, descriptor_table_protodef_authentication_2eproto,
     "authentication.proto",
     &descriptor_table_authentication_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_authentication_2eproto::offsets,

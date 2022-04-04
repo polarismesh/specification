@@ -26,8 +26,13 @@
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata_lite.h>
 #include <google/protobuf/generated_message_reflection.h>
+#include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
+#include <google/protobuf/unknown_field_set.h>
+#include <google/protobuf/wrappers.pb.h>
+#include <google/protobuf/duration.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_circuitbreaker_2eproto
@@ -42,13 +47,2816 @@ struct TableStruct_circuitbreaker_2eproto {
   static const uint32_t offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_circuitbreaker_2eproto;
+namespace faulttolerance {
+class CbPolicy;
+struct CbPolicyDefaultTypeInternal;
+extern CbPolicyDefaultTypeInternal _CbPolicy_default_instance_;
+class CbPolicy_ConsecutiveErrConfig;
+struct CbPolicy_ConsecutiveErrConfigDefaultTypeInternal;
+extern CbPolicy_ConsecutiveErrConfigDefaultTypeInternal _CbPolicy_ConsecutiveErrConfig_default_instance_;
+class CbPolicy_ErrRateConfig;
+struct CbPolicy_ErrRateConfigDefaultTypeInternal;
+extern CbPolicy_ErrRateConfigDefaultTypeInternal _CbPolicy_ErrRateConfig_default_instance_;
+class CbPolicy_ErrRateConfig_SpecialConfig;
+struct CbPolicy_ErrRateConfig_SpecialConfigDefaultTypeInternal;
+extern CbPolicy_ErrRateConfig_SpecialConfigDefaultTypeInternal _CbPolicy_ErrRateConfig_SpecialConfig_default_instance_;
+class CbPolicy_SlowRateConfig;
+struct CbPolicy_SlowRateConfigDefaultTypeInternal;
+extern CbPolicy_SlowRateConfigDefaultTypeInternal _CbPolicy_SlowRateConfig_default_instance_;
+class CbRule;
+struct CbRuleDefaultTypeInternal;
+extern CbRuleDefaultTypeInternal _CbRule_default_instance_;
+class CircuitBreaker;
+struct CircuitBreakerDefaultTypeInternal;
+extern CircuitBreakerDefaultTypeInternal _CircuitBreaker_default_instance_;
+class DestinationSet;
+struct DestinationSetDefaultTypeInternal;
+extern DestinationSetDefaultTypeInternal _DestinationSet_default_instance_;
+class MatchString;
+struct MatchStringDefaultTypeInternal;
+extern MatchStringDefaultTypeInternal _MatchString_default_instance_;
+class RecoverConfig;
+struct RecoverConfigDefaultTypeInternal;
+extern RecoverConfigDefaultTypeInternal _RecoverConfig_default_instance_;
+class SourceMatcher;
+struct SourceMatcherDefaultTypeInternal;
+extern SourceMatcherDefaultTypeInternal _SourceMatcher_default_instance_;
+}  // namespace faulttolerance
 PROTOBUF_NAMESPACE_OPEN
+template<> ::faulttolerance::CbPolicy* Arena::CreateMaybeMessage<::faulttolerance::CbPolicy>(Arena*);
+template<> ::faulttolerance::CbPolicy_ConsecutiveErrConfig* Arena::CreateMaybeMessage<::faulttolerance::CbPolicy_ConsecutiveErrConfig>(Arena*);
+template<> ::faulttolerance::CbPolicy_ErrRateConfig* Arena::CreateMaybeMessage<::faulttolerance::CbPolicy_ErrRateConfig>(Arena*);
+template<> ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* Arena::CreateMaybeMessage<::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig>(Arena*);
+template<> ::faulttolerance::CbPolicy_SlowRateConfig* Arena::CreateMaybeMessage<::faulttolerance::CbPolicy_SlowRateConfig>(Arena*);
+template<> ::faulttolerance::CbRule* Arena::CreateMaybeMessage<::faulttolerance::CbRule>(Arena*);
+template<> ::faulttolerance::CircuitBreaker* Arena::CreateMaybeMessage<::faulttolerance::CircuitBreaker>(Arena*);
+template<> ::faulttolerance::DestinationSet* Arena::CreateMaybeMessage<::faulttolerance::DestinationSet>(Arena*);
+template<> ::faulttolerance::MatchString* Arena::CreateMaybeMessage<::faulttolerance::MatchString>(Arena*);
+template<> ::faulttolerance::RecoverConfig* Arena::CreateMaybeMessage<::faulttolerance::RecoverConfig>(Arena*);
+template<> ::faulttolerance::SourceMatcher* Arena::CreateMaybeMessage<::faulttolerance::SourceMatcher>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace faulttolerance {
 
+enum MatchString_MatchStringType : int {
+  MatchString_MatchStringType_EXACT = 0,
+  MatchString_MatchStringType_REGEX = 1,
+  MatchString_MatchStringType_NOT_EQUALS = 2,
+  MatchString_MatchStringType_INCLUDE = 3,
+  MatchString_MatchStringType_NOT_INCLUDE = 4,
+  MatchString_MatchStringType_MatchString_MatchStringType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MatchString_MatchStringType_MatchString_MatchStringType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool MatchString_MatchStringType_IsValid(int value);
+constexpr MatchString_MatchStringType MatchString_MatchStringType_MatchStringType_MIN = MatchString_MatchStringType_EXACT;
+constexpr MatchString_MatchStringType MatchString_MatchStringType_MatchStringType_MAX = MatchString_MatchStringType_NOT_INCLUDE;
+constexpr int MatchString_MatchStringType_MatchStringType_ARRAYSIZE = MatchString_MatchStringType_MatchStringType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MatchString_MatchStringType_descriptor();
+template<typename T>
+inline const std::string& MatchString_MatchStringType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MatchString_MatchStringType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MatchString_MatchStringType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MatchString_MatchStringType_descriptor(), enum_t_value);
+}
+inline bool MatchString_MatchStringType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MatchString_MatchStringType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MatchString_MatchStringType>(
+    MatchString_MatchStringType_descriptor(), name, value);
+}
+enum MatchString_ValueType : int {
+  MatchString_ValueType_TEXT = 0,
+  MatchString_ValueType_MatchString_ValueType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MatchString_ValueType_MatchString_ValueType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool MatchString_ValueType_IsValid(int value);
+constexpr MatchString_ValueType MatchString_ValueType_ValueType_MIN = MatchString_ValueType_TEXT;
+constexpr MatchString_ValueType MatchString_ValueType_ValueType_MAX = MatchString_ValueType_TEXT;
+constexpr int MatchString_ValueType_ValueType_ARRAYSIZE = MatchString_ValueType_ValueType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MatchString_ValueType_descriptor();
+template<typename T>
+inline const std::string& MatchString_ValueType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MatchString_ValueType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MatchString_ValueType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MatchString_ValueType_descriptor(), enum_t_value);
+}
+inline bool MatchString_ValueType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MatchString_ValueType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MatchString_ValueType>(
+    MatchString_ValueType_descriptor(), name, value);
+}
+enum RecoverConfig_OutlierDetectWhen : int {
+  RecoverConfig_OutlierDetectWhen_NEVER = 0,
+  RecoverConfig_OutlierDetectWhen_ON_RECOVER = 1,
+  RecoverConfig_OutlierDetectWhen_ALWAYS = 2,
+  RecoverConfig_OutlierDetectWhen_RecoverConfig_OutlierDetectWhen_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  RecoverConfig_OutlierDetectWhen_RecoverConfig_OutlierDetectWhen_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool RecoverConfig_OutlierDetectWhen_IsValid(int value);
+constexpr RecoverConfig_OutlierDetectWhen RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_MIN = RecoverConfig_OutlierDetectWhen_NEVER;
+constexpr RecoverConfig_OutlierDetectWhen RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_MAX = RecoverConfig_OutlierDetectWhen_ALWAYS;
+constexpr int RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_ARRAYSIZE = RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RecoverConfig_OutlierDetectWhen_descriptor();
+template<typename T>
+inline const std::string& RecoverConfig_OutlierDetectWhen_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, RecoverConfig_OutlierDetectWhen>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function RecoverConfig_OutlierDetectWhen_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    RecoverConfig_OutlierDetectWhen_descriptor(), enum_t_value);
+}
+inline bool RecoverConfig_OutlierDetectWhen_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, RecoverConfig_OutlierDetectWhen* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<RecoverConfig_OutlierDetectWhen>(
+    RecoverConfig_OutlierDetectWhen_descriptor(), name, value);
+}
+enum DestinationSet_Resource : int {
+  DestinationSet_Resource_SUBSET = 0,
+  DestinationSet_Resource_INSTANCE = 1,
+  DestinationSet_Resource_DestinationSet_Resource_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  DestinationSet_Resource_DestinationSet_Resource_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool DestinationSet_Resource_IsValid(int value);
+constexpr DestinationSet_Resource DestinationSet_Resource_Resource_MIN = DestinationSet_Resource_SUBSET;
+constexpr DestinationSet_Resource DestinationSet_Resource_Resource_MAX = DestinationSet_Resource_INSTANCE;
+constexpr int DestinationSet_Resource_Resource_ARRAYSIZE = DestinationSet_Resource_Resource_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DestinationSet_Resource_descriptor();
+template<typename T>
+inline const std::string& DestinationSet_Resource_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, DestinationSet_Resource>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function DestinationSet_Resource_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    DestinationSet_Resource_descriptor(), enum_t_value);
+}
+inline bool DestinationSet_Resource_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, DestinationSet_Resource* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<DestinationSet_Resource>(
+    DestinationSet_Resource_descriptor(), name, value);
+}
 // ===================================================================
 
+class MatchString final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.MatchString) */ {
+ public:
+  inline MatchString() : MatchString(nullptr) {}
+  ~MatchString() override;
+  explicit PROTOBUF_CONSTEXPR MatchString(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
+  MatchString(const MatchString& from);
+  MatchString(MatchString&& from) noexcept
+    : MatchString() {
+    *this = ::std::move(from);
+  }
+
+  inline MatchString& operator=(const MatchString& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MatchString& operator=(MatchString&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MatchString& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MatchString* internal_default_instance() {
+    return reinterpret_cast<const MatchString*>(
+               &_MatchString_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(MatchString& a, MatchString& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MatchString* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MatchString* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MatchString* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MatchString>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MatchString& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MatchString& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MatchString* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.MatchString";
+  }
+  protected:
+  explicit MatchString(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef MatchString_MatchStringType MatchStringType;
+  static constexpr MatchStringType EXACT =
+    MatchString_MatchStringType_EXACT;
+  static constexpr MatchStringType REGEX =
+    MatchString_MatchStringType_REGEX;
+  static constexpr MatchStringType NOT_EQUALS =
+    MatchString_MatchStringType_NOT_EQUALS;
+  static constexpr MatchStringType INCLUDE =
+    MatchString_MatchStringType_INCLUDE;
+  static constexpr MatchStringType NOT_INCLUDE =
+    MatchString_MatchStringType_NOT_INCLUDE;
+  static inline bool MatchStringType_IsValid(int value) {
+    return MatchString_MatchStringType_IsValid(value);
+  }
+  static constexpr MatchStringType MatchStringType_MIN =
+    MatchString_MatchStringType_MatchStringType_MIN;
+  static constexpr MatchStringType MatchStringType_MAX =
+    MatchString_MatchStringType_MatchStringType_MAX;
+  static constexpr int MatchStringType_ARRAYSIZE =
+    MatchString_MatchStringType_MatchStringType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  MatchStringType_descriptor() {
+    return MatchString_MatchStringType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& MatchStringType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, MatchStringType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function MatchStringType_Name.");
+    return MatchString_MatchStringType_Name(enum_t_value);
+  }
+  static inline bool MatchStringType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      MatchStringType* value) {
+    return MatchString_MatchStringType_Parse(name, value);
+  }
+
+  typedef MatchString_ValueType ValueType;
+  static constexpr ValueType TEXT =
+    MatchString_ValueType_TEXT;
+  static inline bool ValueType_IsValid(int value) {
+    return MatchString_ValueType_IsValid(value);
+  }
+  static constexpr ValueType ValueType_MIN =
+    MatchString_ValueType_ValueType_MIN;
+  static constexpr ValueType ValueType_MAX =
+    MatchString_ValueType_ValueType_MAX;
+  static constexpr int ValueType_ARRAYSIZE =
+    MatchString_ValueType_ValueType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  ValueType_descriptor() {
+    return MatchString_ValueType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& ValueType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, ValueType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function ValueType_Name.");
+    return MatchString_ValueType_Name(enum_t_value);
+  }
+  static inline bool ValueType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      ValueType* value) {
+    return MatchString_ValueType_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kValueFieldNumber = 2,
+    kTypeFieldNumber = 1,
+  };
+  // .google.protobuf.StringValue value = 2;
+  bool has_value() const;
+  private:
+  bool _internal_has_value() const;
+  public:
+  void clear_value();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& value() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_value();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_value();
+  void set_allocated_value(::PROTOBUF_NAMESPACE_ID::StringValue* value);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_value() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_value();
+  public:
+  void unsafe_arena_set_allocated_value(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* value);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_value();
+
+  // .faulttolerance.MatchString.MatchStringType type = 1;
+  void clear_type();
+  ::faulttolerance::MatchString_MatchStringType type() const;
+  void set_type(::faulttolerance::MatchString_MatchStringType value);
+  private:
+  ::faulttolerance::MatchString_MatchStringType _internal_type() const;
+  void _internal_set_type(::faulttolerance::MatchString_MatchStringType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.MatchString)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* value_;
+  int type_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CircuitBreaker final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CircuitBreaker) */ {
+ public:
+  inline CircuitBreaker() : CircuitBreaker(nullptr) {}
+  ~CircuitBreaker() override;
+  explicit PROTOBUF_CONSTEXPR CircuitBreaker(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CircuitBreaker(const CircuitBreaker& from);
+  CircuitBreaker(CircuitBreaker&& from) noexcept
+    : CircuitBreaker() {
+    *this = ::std::move(from);
+  }
+
+  inline CircuitBreaker& operator=(const CircuitBreaker& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CircuitBreaker& operator=(CircuitBreaker&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CircuitBreaker& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CircuitBreaker* internal_default_instance() {
+    return reinterpret_cast<const CircuitBreaker*>(
+               &_CircuitBreaker_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(CircuitBreaker& a, CircuitBreaker& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CircuitBreaker* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CircuitBreaker* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CircuitBreaker* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CircuitBreaker>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CircuitBreaker& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CircuitBreaker& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CircuitBreaker* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CircuitBreaker";
+  }
+  protected:
+  explicit CircuitBreaker(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInboundsFieldNumber = 7,
+    kOutboundsFieldNumber = 8,
+    kIdFieldNumber = 1,
+    kVersionFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kNamespaceFieldNumber = 4,
+    kServiceFieldNumber = 5,
+    kServiceNamespaceFieldNumber = 6,
+    kTokenFieldNumber = 9,
+    kOwnersFieldNumber = 10,
+    kBusinessFieldNumber = 11,
+    kDepartmentFieldNumber = 12,
+    kCommentFieldNumber = 13,
+    kCtimeFieldNumber = 14,
+    kMtimeFieldNumber = 15,
+    kRevisionFieldNumber = 16,
+  };
+  // repeated .faulttolerance.CbRule inbounds = 7;
+  int inbounds_size() const;
+  private:
+  int _internal_inbounds_size() const;
+  public:
+  void clear_inbounds();
+  ::faulttolerance::CbRule* mutable_inbounds(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >*
+      mutable_inbounds();
+  private:
+  const ::faulttolerance::CbRule& _internal_inbounds(int index) const;
+  ::faulttolerance::CbRule* _internal_add_inbounds();
+  public:
+  const ::faulttolerance::CbRule& inbounds(int index) const;
+  ::faulttolerance::CbRule* add_inbounds();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >&
+      inbounds() const;
+
+  // repeated .faulttolerance.CbRule outbounds = 8;
+  int outbounds_size() const;
+  private:
+  int _internal_outbounds_size() const;
+  public:
+  void clear_outbounds();
+  ::faulttolerance::CbRule* mutable_outbounds(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >*
+      mutable_outbounds();
+  private:
+  const ::faulttolerance::CbRule& _internal_outbounds(int index) const;
+  ::faulttolerance::CbRule* _internal_add_outbounds();
+  public:
+  const ::faulttolerance::CbRule& outbounds(int index) const;
+  ::faulttolerance::CbRule* add_outbounds();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >&
+      outbounds() const;
+
+  // .google.protobuf.StringValue id = 1;
+  bool has_id() const;
+  private:
+  bool _internal_has_id() const;
+  public:
+  void clear_id();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& id() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_id();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_id();
+  void set_allocated_id(::PROTOBUF_NAMESPACE_ID::StringValue* id);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_id() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_id();
+  public:
+  void unsafe_arena_set_allocated_id(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* id);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_id();
+
+  // .google.protobuf.StringValue version = 2;
+  bool has_version() const;
+  private:
+  bool _internal_has_version() const;
+  public:
+  void clear_version();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& version() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_version();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_version();
+  void set_allocated_version(::PROTOBUF_NAMESPACE_ID::StringValue* version);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_version() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_version();
+  public:
+  void unsafe_arena_set_allocated_version(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* version);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_version();
+
+  // .google.protobuf.StringValue name = 3;
+  bool has_name() const;
+  private:
+  bool _internal_has_name() const;
+  public:
+  void clear_name();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& name() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_name();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_name();
+  void set_allocated_name(::PROTOBUF_NAMESPACE_ID::StringValue* name);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_name() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_name();
+  public:
+  void unsafe_arena_set_allocated_name(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* name);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_name();
+
+  // .google.protobuf.StringValue namespace = 4;
+  bool has_namespace_() const;
+  private:
+  bool _internal_has_namespace_() const;
+  public:
+  void clear_namespace_();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_namespace_();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_namespace_();
+  void set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_namespace_() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_namespace_();
+  public:
+  void unsafe_arena_set_allocated_namespace_(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_namespace_();
+
+  // .google.protobuf.StringValue service = 5;
+  bool has_service() const;
+  private:
+  bool _internal_has_service() const;
+  public:
+  void clear_service();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& service() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service();
+  void set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service();
+  public:
+  void unsafe_arena_set_allocated_service(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service();
+
+  // .google.protobuf.StringValue service_namespace = 6;
+  bool has_service_namespace() const;
+  private:
+  bool _internal_has_service_namespace() const;
+  public:
+  void clear_service_namespace();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& service_namespace() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service_namespace();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service_namespace();
+  void set_allocated_service_namespace(::PROTOBUF_NAMESPACE_ID::StringValue* service_namespace);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service_namespace() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service_namespace();
+  public:
+  void unsafe_arena_set_allocated_service_namespace(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* service_namespace);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service_namespace();
+
+  // .google.protobuf.StringValue token = 9;
+  bool has_token() const;
+  private:
+  bool _internal_has_token() const;
+  public:
+  void clear_token();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& token() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_token();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_token();
+  void set_allocated_token(::PROTOBUF_NAMESPACE_ID::StringValue* token);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_token() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_token();
+  public:
+  void unsafe_arena_set_allocated_token(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* token);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_token();
+
+  // .google.protobuf.StringValue owners = 10;
+  bool has_owners() const;
+  private:
+  bool _internal_has_owners() const;
+  public:
+  void clear_owners();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& owners() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_owners();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_owners();
+  void set_allocated_owners(::PROTOBUF_NAMESPACE_ID::StringValue* owners);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_owners() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_owners();
+  public:
+  void unsafe_arena_set_allocated_owners(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* owners);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_owners();
+
+  // .google.protobuf.StringValue business = 11;
+  bool has_business() const;
+  private:
+  bool _internal_has_business() const;
+  public:
+  void clear_business();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& business() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_business();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_business();
+  void set_allocated_business(::PROTOBUF_NAMESPACE_ID::StringValue* business);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_business() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_business();
+  public:
+  void unsafe_arena_set_allocated_business(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* business);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_business();
+
+  // .google.protobuf.StringValue department = 12;
+  bool has_department() const;
+  private:
+  bool _internal_has_department() const;
+  public:
+  void clear_department();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& department() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_department();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_department();
+  void set_allocated_department(::PROTOBUF_NAMESPACE_ID::StringValue* department);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_department() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_department();
+  public:
+  void unsafe_arena_set_allocated_department(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* department);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_department();
+
+  // .google.protobuf.StringValue comment = 13;
+  bool has_comment() const;
+  private:
+  bool _internal_has_comment() const;
+  public:
+  void clear_comment();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& comment() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_comment();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_comment();
+  void set_allocated_comment(::PROTOBUF_NAMESPACE_ID::StringValue* comment);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_comment() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_comment();
+  public:
+  void unsafe_arena_set_allocated_comment(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* comment);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_comment();
+
+  // .google.protobuf.StringValue ctime = 14;
+  bool has_ctime() const;
+  private:
+  bool _internal_has_ctime() const;
+  public:
+  void clear_ctime();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& ctime() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_ctime();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_ctime();
+  void set_allocated_ctime(::PROTOBUF_NAMESPACE_ID::StringValue* ctime);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_ctime() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_ctime();
+  public:
+  void unsafe_arena_set_allocated_ctime(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* ctime);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_ctime();
+
+  // .google.protobuf.StringValue mtime = 15;
+  bool has_mtime() const;
+  private:
+  bool _internal_has_mtime() const;
+  public:
+  void clear_mtime();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& mtime() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_mtime();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_mtime();
+  void set_allocated_mtime(::PROTOBUF_NAMESPACE_ID::StringValue* mtime);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_mtime() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_mtime();
+  public:
+  void unsafe_arena_set_allocated_mtime(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* mtime);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_mtime();
+
+  // .google.protobuf.StringValue revision = 16;
+  bool has_revision() const;
+  private:
+  bool _internal_has_revision() const;
+  public:
+  void clear_revision();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& revision() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_revision();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_revision();
+  void set_allocated_revision(::PROTOBUF_NAMESPACE_ID::StringValue* revision);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_revision() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_revision();
+  public:
+  void unsafe_arena_set_allocated_revision(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* revision);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_revision();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CircuitBreaker)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule > inbounds_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule > outbounds_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* id_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* version_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* name_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* namespace__;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* service_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* service_namespace_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* token_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* owners_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* business_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* department_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* comment_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* ctime_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mtime_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* revision_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SourceMatcher final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.SourceMatcher) */ {
+ public:
+  inline SourceMatcher() : SourceMatcher(nullptr) {}
+  ~SourceMatcher() override;
+  explicit PROTOBUF_CONSTEXPR SourceMatcher(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  SourceMatcher(const SourceMatcher& from);
+  SourceMatcher(SourceMatcher&& from) noexcept
+    : SourceMatcher() {
+    *this = ::std::move(from);
+  }
+
+  inline SourceMatcher& operator=(const SourceMatcher& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SourceMatcher& operator=(SourceMatcher&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const SourceMatcher& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const SourceMatcher* internal_default_instance() {
+    return reinterpret_cast<const SourceMatcher*>(
+               &_SourceMatcher_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(SourceMatcher& a, SourceMatcher& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SourceMatcher* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(SourceMatcher* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  SourceMatcher* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<SourceMatcher>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const SourceMatcher& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const SourceMatcher& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SourceMatcher* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.SourceMatcher";
+  }
+  protected:
+  explicit SourceMatcher(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kServiceFieldNumber = 1,
+    kNamespaceFieldNumber = 2,
+  };
+  // .google.protobuf.StringValue service = 1;
+  bool has_service() const;
+  private:
+  bool _internal_has_service() const;
+  public:
+  void clear_service();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& service() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service();
+  void set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service();
+  public:
+  void unsafe_arena_set_allocated_service(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service();
+
+  // .google.protobuf.StringValue namespace = 2;
+  bool has_namespace_() const;
+  private:
+  bool _internal_has_namespace_() const;
+  public:
+  void clear_namespace_();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_namespace_();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_namespace_();
+  void set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_namespace_() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_namespace_();
+  public:
+  void unsafe_arena_set_allocated_namespace_(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_namespace_();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.SourceMatcher)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* service_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* namespace__;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RecoverConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.RecoverConfig) */ {
+ public:
+  inline RecoverConfig() : RecoverConfig(nullptr) {}
+  ~RecoverConfig() override;
+  explicit PROTOBUF_CONSTEXPR RecoverConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RecoverConfig(const RecoverConfig& from);
+  RecoverConfig(RecoverConfig&& from) noexcept
+    : RecoverConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline RecoverConfig& operator=(const RecoverConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RecoverConfig& operator=(RecoverConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RecoverConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RecoverConfig* internal_default_instance() {
+    return reinterpret_cast<const RecoverConfig*>(
+               &_RecoverConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(RecoverConfig& a, RecoverConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RecoverConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RecoverConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RecoverConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RecoverConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RecoverConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RecoverConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RecoverConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.RecoverConfig";
+  }
+  protected:
+  explicit RecoverConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef RecoverConfig_OutlierDetectWhen OutlierDetectWhen;
+  static constexpr OutlierDetectWhen NEVER =
+    RecoverConfig_OutlierDetectWhen_NEVER;
+  static constexpr OutlierDetectWhen ON_RECOVER =
+    RecoverConfig_OutlierDetectWhen_ON_RECOVER;
+  static constexpr OutlierDetectWhen ALWAYS =
+    RecoverConfig_OutlierDetectWhen_ALWAYS;
+  static inline bool OutlierDetectWhen_IsValid(int value) {
+    return RecoverConfig_OutlierDetectWhen_IsValid(value);
+  }
+  static constexpr OutlierDetectWhen OutlierDetectWhen_MIN =
+    RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_MIN;
+  static constexpr OutlierDetectWhen OutlierDetectWhen_MAX =
+    RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_MAX;
+  static constexpr int OutlierDetectWhen_ARRAYSIZE =
+    RecoverConfig_OutlierDetectWhen_OutlierDetectWhen_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  OutlierDetectWhen_descriptor() {
+    return RecoverConfig_OutlierDetectWhen_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& OutlierDetectWhen_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, OutlierDetectWhen>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function OutlierDetectWhen_Name.");
+    return RecoverConfig_OutlierDetectWhen_Name(enum_t_value);
+  }
+  static inline bool OutlierDetectWhen_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      OutlierDetectWhen* value) {
+    return RecoverConfig_OutlierDetectWhen_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRequestRateAfterHalfOpenFieldNumber = 3,
+    kSleepWindowFieldNumber = 1,
+    kMaxRetryAfterHalfOpenFieldNumber = 2,
+    kSuccessRateToCloseFieldNumber = 4,
+    kRequestCountAfterHalfOpenFieldNumber = 5,
+    kOutlierDetectWhenFieldNumber = 6,
+  };
+  // repeated .google.protobuf.UInt32Value requestRateAfterHalfOpen = 3;
+  int requestrateafterhalfopen_size() const;
+  private:
+  int _internal_requestrateafterhalfopen_size() const;
+  public:
+  void clear_requestrateafterhalfopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_requestrateafterhalfopen(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::UInt32Value >*
+      mutable_requestrateafterhalfopen();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_requestrateafterhalfopen(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_add_requestrateafterhalfopen();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& requestrateafterhalfopen(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* add_requestrateafterhalfopen();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::UInt32Value >&
+      requestrateafterhalfopen() const;
+
+  // .google.protobuf.Duration sleepWindow = 1;
+  bool has_sleepwindow() const;
+  private:
+  bool _internal_has_sleepwindow() const;
+  public:
+  void clear_sleepwindow();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& sleepwindow() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_sleepwindow();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_sleepwindow();
+  void set_allocated_sleepwindow(::PROTOBUF_NAMESPACE_ID::Duration* sleepwindow);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_sleepwindow() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_sleepwindow();
+  public:
+  void unsafe_arena_set_allocated_sleepwindow(
+      ::PROTOBUF_NAMESPACE_ID::Duration* sleepwindow);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_sleepwindow();
+
+  // .google.protobuf.UInt32Value maxRetryAfterHalfOpen = 2;
+  bool has_maxretryafterhalfopen() const;
+  private:
+  bool _internal_has_maxretryafterhalfopen() const;
+  public:
+  void clear_maxretryafterhalfopen();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& maxretryafterhalfopen() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_maxretryafterhalfopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_maxretryafterhalfopen();
+  void set_allocated_maxretryafterhalfopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* maxretryafterhalfopen);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_maxretryafterhalfopen() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_maxretryafterhalfopen();
+  public:
+  void unsafe_arena_set_allocated_maxretryafterhalfopen(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* maxretryafterhalfopen);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_maxretryafterhalfopen();
+
+  // .google.protobuf.UInt32Value successRateToClose = 4;
+  bool has_successratetoclose() const;
+  private:
+  bool _internal_has_successratetoclose() const;
+  public:
+  void clear_successratetoclose();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& successratetoclose() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_successratetoclose();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_successratetoclose();
+  void set_allocated_successratetoclose(::PROTOBUF_NAMESPACE_ID::UInt32Value* successratetoclose);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_successratetoclose() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_successratetoclose();
+  public:
+  void unsafe_arena_set_allocated_successratetoclose(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* successratetoclose);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_successratetoclose();
+
+  // .google.protobuf.UInt32Value requestCountAfterHalfOpen = 5;
+  bool has_requestcountafterhalfopen() const;
+  private:
+  bool _internal_has_requestcountafterhalfopen() const;
+  public:
+  void clear_requestcountafterhalfopen();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& requestcountafterhalfopen() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_requestcountafterhalfopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_requestcountafterhalfopen();
+  void set_allocated_requestcountafterhalfopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* requestcountafterhalfopen);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_requestcountafterhalfopen() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_requestcountafterhalfopen();
+  public:
+  void unsafe_arena_set_allocated_requestcountafterhalfopen(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* requestcountafterhalfopen);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_requestcountafterhalfopen();
+
+  // .faulttolerance.RecoverConfig.OutlierDetectWhen outlierDetectWhen = 6;
+  void clear_outlierdetectwhen();
+  ::faulttolerance::RecoverConfig_OutlierDetectWhen outlierdetectwhen() const;
+  void set_outlierdetectwhen(::faulttolerance::RecoverConfig_OutlierDetectWhen value);
+  private:
+  ::faulttolerance::RecoverConfig_OutlierDetectWhen _internal_outlierdetectwhen() const;
+  void _internal_set_outlierdetectwhen(::faulttolerance::RecoverConfig_OutlierDetectWhen value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.RecoverConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::UInt32Value > requestrateafterhalfopen_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* sleepwindow_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* maxretryafterhalfopen_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* successratetoclose_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* requestcountafterhalfopen_;
+  int outlierdetectwhen_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CbPolicy_ErrRateConfig_SpecialConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig) */ {
+ public:
+  inline CbPolicy_ErrRateConfig_SpecialConfig() : CbPolicy_ErrRateConfig_SpecialConfig(nullptr) {}
+  ~CbPolicy_ErrRateConfig_SpecialConfig() override;
+  explicit PROTOBUF_CONSTEXPR CbPolicy_ErrRateConfig_SpecialConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CbPolicy_ErrRateConfig_SpecialConfig(const CbPolicy_ErrRateConfig_SpecialConfig& from);
+  CbPolicy_ErrRateConfig_SpecialConfig(CbPolicy_ErrRateConfig_SpecialConfig&& from) noexcept
+    : CbPolicy_ErrRateConfig_SpecialConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline CbPolicy_ErrRateConfig_SpecialConfig& operator=(const CbPolicy_ErrRateConfig_SpecialConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CbPolicy_ErrRateConfig_SpecialConfig& operator=(CbPolicy_ErrRateConfig_SpecialConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CbPolicy_ErrRateConfig_SpecialConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CbPolicy_ErrRateConfig_SpecialConfig* internal_default_instance() {
+    return reinterpret_cast<const CbPolicy_ErrRateConfig_SpecialConfig*>(
+               &_CbPolicy_ErrRateConfig_SpecialConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(CbPolicy_ErrRateConfig_SpecialConfig& a, CbPolicy_ErrRateConfig_SpecialConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CbPolicy_ErrRateConfig_SpecialConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CbPolicy_ErrRateConfig_SpecialConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CbPolicy_ErrRateConfig_SpecialConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CbPolicy_ErrRateConfig_SpecialConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CbPolicy_ErrRateConfig_SpecialConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CbPolicy_ErrRateConfig_SpecialConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CbPolicy_ErrRateConfig_SpecialConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig";
+  }
+  protected:
+  explicit CbPolicy_ErrRateConfig_SpecialConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrorCodesFieldNumber = 2,
+    kTypeFieldNumber = 1,
+    kErrorRateToPreservedFieldNumber = 3,
+    kErrorRateToOpenFieldNumber = 4,
+  };
+  // repeated .google.protobuf.Int64Value errorCodes = 2;
+  int errorcodes_size() const;
+  private:
+  int _internal_errorcodes_size() const;
+  public:
+  void clear_errorcodes();
+  ::PROTOBUF_NAMESPACE_ID::Int64Value* mutable_errorcodes(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Int64Value >*
+      mutable_errorcodes();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Int64Value& _internal_errorcodes(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::Int64Value* _internal_add_errorcodes();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Int64Value& errorcodes(int index) const;
+  ::PROTOBUF_NAMESPACE_ID::Int64Value* add_errorcodes();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Int64Value >&
+      errorcodes() const;
+
+  // .google.protobuf.StringValue type = 1;
+  bool has_type() const;
+  private:
+  bool _internal_has_type() const;
+  public:
+  void clear_type();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& type() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_type();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_type();
+  void set_allocated_type(::PROTOBUF_NAMESPACE_ID::StringValue* type);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_type() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_type();
+  public:
+  void unsafe_arena_set_allocated_type(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* type);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_type();
+
+  // .google.protobuf.UInt32Value errorRateToPreserved = 3;
+  bool has_errorratetopreserved() const;
+  private:
+  bool _internal_has_errorratetopreserved() const;
+  public:
+  void clear_errorratetopreserved();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& errorratetopreserved() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_errorratetopreserved();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_errorratetopreserved();
+  void set_allocated_errorratetopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_errorratetopreserved() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_errorratetopreserved();
+  public:
+  void unsafe_arena_set_allocated_errorratetopreserved(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_errorratetopreserved();
+
+  // .google.protobuf.UInt32Value errorRateToOpen = 4;
+  bool has_errorratetoopen() const;
+  private:
+  bool _internal_has_errorratetoopen() const;
+  public:
+  void clear_errorratetoopen();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& errorratetoopen() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_errorratetoopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_errorratetoopen();
+  void set_allocated_errorratetoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_errorratetoopen() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_errorratetoopen();
+  public:
+  void unsafe_arena_set_allocated_errorratetoopen(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_errorratetoopen();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Int64Value > errorcodes_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* type_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CbPolicy_ErrRateConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CbPolicy.ErrRateConfig) */ {
+ public:
+  inline CbPolicy_ErrRateConfig() : CbPolicy_ErrRateConfig(nullptr) {}
+  ~CbPolicy_ErrRateConfig() override;
+  explicit PROTOBUF_CONSTEXPR CbPolicy_ErrRateConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CbPolicy_ErrRateConfig(const CbPolicy_ErrRateConfig& from);
+  CbPolicy_ErrRateConfig(CbPolicy_ErrRateConfig&& from) noexcept
+    : CbPolicy_ErrRateConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline CbPolicy_ErrRateConfig& operator=(const CbPolicy_ErrRateConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CbPolicy_ErrRateConfig& operator=(CbPolicy_ErrRateConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CbPolicy_ErrRateConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CbPolicy_ErrRateConfig* internal_default_instance() {
+    return reinterpret_cast<const CbPolicy_ErrRateConfig*>(
+               &_CbPolicy_ErrRateConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(CbPolicy_ErrRateConfig& a, CbPolicy_ErrRateConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CbPolicy_ErrRateConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CbPolicy_ErrRateConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CbPolicy_ErrRateConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CbPolicy_ErrRateConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CbPolicy_ErrRateConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CbPolicy_ErrRateConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CbPolicy_ErrRateConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CbPolicy.ErrRateConfig";
+  }
+  protected:
+  explicit CbPolicy_ErrRateConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef CbPolicy_ErrRateConfig_SpecialConfig SpecialConfig;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSpecialsFieldNumber = 5,
+    kEnableFieldNumber = 1,
+    kRequestVolumeThresholdFieldNumber = 2,
+    kErrorRateToPreservedFieldNumber = 3,
+    kErrorRateToOpenFieldNumber = 4,
+  };
+  // repeated .faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig specials = 5;
+  int specials_size() const;
+  private:
+  int _internal_specials_size() const;
+  public:
+  void clear_specials();
+  ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* mutable_specials(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig >*
+      mutable_specials();
+  private:
+  const ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig& _internal_specials(int index) const;
+  ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* _internal_add_specials();
+  public:
+  const ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig& specials(int index) const;
+  ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* add_specials();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig >&
+      specials() const;
+
+  // .google.protobuf.BoolValue enable = 1;
+  bool has_enable() const;
+  private:
+  bool _internal_has_enable() const;
+  public:
+  void clear_enable();
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::BoolValue* release_enable();
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* mutable_enable();
+  void set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& _internal_enable() const;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _internal_mutable_enable();
+  public:
+  void unsafe_arena_set_allocated_enable(
+      ::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* unsafe_arena_release_enable();
+
+  // .google.protobuf.UInt32Value requestVolumeThreshold = 2;
+  bool has_requestvolumethreshold() const;
+  private:
+  bool _internal_has_requestvolumethreshold() const;
+  public:
+  void clear_requestvolumethreshold();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& requestvolumethreshold() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_requestvolumethreshold();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_requestvolumethreshold();
+  void set_allocated_requestvolumethreshold(::PROTOBUF_NAMESPACE_ID::UInt32Value* requestvolumethreshold);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_requestvolumethreshold() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_requestvolumethreshold();
+  public:
+  void unsafe_arena_set_allocated_requestvolumethreshold(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* requestvolumethreshold);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_requestvolumethreshold();
+
+  // .google.protobuf.UInt32Value errorRateToPreserved = 3;
+  bool has_errorratetopreserved() const;
+  private:
+  bool _internal_has_errorratetopreserved() const;
+  public:
+  void clear_errorratetopreserved();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& errorratetopreserved() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_errorratetopreserved();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_errorratetopreserved();
+  void set_allocated_errorratetopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_errorratetopreserved() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_errorratetopreserved();
+  public:
+  void unsafe_arena_set_allocated_errorratetopreserved(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_errorratetopreserved();
+
+  // .google.protobuf.UInt32Value errorRateToOpen = 4;
+  bool has_errorratetoopen() const;
+  private:
+  bool _internal_has_errorratetoopen() const;
+  public:
+  void clear_errorratetoopen();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& errorratetoopen() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_errorratetoopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_errorratetoopen();
+  void set_allocated_errorratetoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_errorratetoopen() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_errorratetoopen();
+  public:
+  void unsafe_arena_set_allocated_errorratetoopen(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_errorratetoopen();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CbPolicy.ErrRateConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig > specials_;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* enable_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* requestvolumethreshold_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CbPolicy_SlowRateConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CbPolicy.SlowRateConfig) */ {
+ public:
+  inline CbPolicy_SlowRateConfig() : CbPolicy_SlowRateConfig(nullptr) {}
+  ~CbPolicy_SlowRateConfig() override;
+  explicit PROTOBUF_CONSTEXPR CbPolicy_SlowRateConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CbPolicy_SlowRateConfig(const CbPolicy_SlowRateConfig& from);
+  CbPolicy_SlowRateConfig(CbPolicy_SlowRateConfig&& from) noexcept
+    : CbPolicy_SlowRateConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline CbPolicy_SlowRateConfig& operator=(const CbPolicy_SlowRateConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CbPolicy_SlowRateConfig& operator=(CbPolicy_SlowRateConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CbPolicy_SlowRateConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CbPolicy_SlowRateConfig* internal_default_instance() {
+    return reinterpret_cast<const CbPolicy_SlowRateConfig*>(
+               &_CbPolicy_SlowRateConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(CbPolicy_SlowRateConfig& a, CbPolicy_SlowRateConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CbPolicy_SlowRateConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CbPolicy_SlowRateConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CbPolicy_SlowRateConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CbPolicy_SlowRateConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CbPolicy_SlowRateConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CbPolicy_SlowRateConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CbPolicy_SlowRateConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CbPolicy.SlowRateConfig";
+  }
+  protected:
+  explicit CbPolicy_SlowRateConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEnableFieldNumber = 1,
+    kMaxRtFieldNumber = 2,
+    kSlowRateToPreservedFieldNumber = 3,
+    kSlowRateToOpenFieldNumber = 4,
+  };
+  // .google.protobuf.BoolValue enable = 1;
+  bool has_enable() const;
+  private:
+  bool _internal_has_enable() const;
+  public:
+  void clear_enable();
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::BoolValue* release_enable();
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* mutable_enable();
+  void set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& _internal_enable() const;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _internal_mutable_enable();
+  public:
+  void unsafe_arena_set_allocated_enable(
+      ::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* unsafe_arena_release_enable();
+
+  // .google.protobuf.Duration maxRt = 2;
+  bool has_maxrt() const;
+  private:
+  bool _internal_has_maxrt() const;
+  public:
+  void clear_maxrt();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& maxrt() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_maxrt();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_maxrt();
+  void set_allocated_maxrt(::PROTOBUF_NAMESPACE_ID::Duration* maxrt);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_maxrt() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_maxrt();
+  public:
+  void unsafe_arena_set_allocated_maxrt(
+      ::PROTOBUF_NAMESPACE_ID::Duration* maxrt);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_maxrt();
+
+  // .google.protobuf.UInt32Value slowRateToPreserved = 3;
+  bool has_slowratetopreserved() const;
+  private:
+  bool _internal_has_slowratetopreserved() const;
+  public:
+  void clear_slowratetopreserved();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& slowratetopreserved() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_slowratetopreserved();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_slowratetopreserved();
+  void set_allocated_slowratetopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetopreserved);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_slowratetopreserved() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_slowratetopreserved();
+  public:
+  void unsafe_arena_set_allocated_slowratetopreserved(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetopreserved);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_slowratetopreserved();
+
+  // .google.protobuf.UInt32Value slowRateToOpen = 4;
+  bool has_slowratetoopen() const;
+  private:
+  bool _internal_has_slowratetoopen() const;
+  public:
+  void clear_slowratetoopen();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& slowratetoopen() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_slowratetoopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_slowratetoopen();
+  void set_allocated_slowratetoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetoopen);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_slowratetoopen() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_slowratetoopen();
+  public:
+  void unsafe_arena_set_allocated_slowratetoopen(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetoopen);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_slowratetoopen();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CbPolicy.SlowRateConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* enable_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* maxrt_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetopreserved_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetoopen_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CbPolicy_ConsecutiveErrConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CbPolicy.ConsecutiveErrConfig) */ {
+ public:
+  inline CbPolicy_ConsecutiveErrConfig() : CbPolicy_ConsecutiveErrConfig(nullptr) {}
+  ~CbPolicy_ConsecutiveErrConfig() override;
+  explicit PROTOBUF_CONSTEXPR CbPolicy_ConsecutiveErrConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CbPolicy_ConsecutiveErrConfig(const CbPolicy_ConsecutiveErrConfig& from);
+  CbPolicy_ConsecutiveErrConfig(CbPolicy_ConsecutiveErrConfig&& from) noexcept
+    : CbPolicy_ConsecutiveErrConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline CbPolicy_ConsecutiveErrConfig& operator=(const CbPolicy_ConsecutiveErrConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CbPolicy_ConsecutiveErrConfig& operator=(CbPolicy_ConsecutiveErrConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CbPolicy_ConsecutiveErrConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CbPolicy_ConsecutiveErrConfig* internal_default_instance() {
+    return reinterpret_cast<const CbPolicy_ConsecutiveErrConfig*>(
+               &_CbPolicy_ConsecutiveErrConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(CbPolicy_ConsecutiveErrConfig& a, CbPolicy_ConsecutiveErrConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CbPolicy_ConsecutiveErrConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CbPolicy_ConsecutiveErrConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CbPolicy_ConsecutiveErrConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CbPolicy_ConsecutiveErrConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CbPolicy_ConsecutiveErrConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CbPolicy_ConsecutiveErrConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CbPolicy_ConsecutiveErrConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CbPolicy.ConsecutiveErrConfig";
+  }
+  protected:
+  explicit CbPolicy_ConsecutiveErrConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kEnableFieldNumber = 1,
+    kConsecutiveErrorToPreservedFieldNumber = 2,
+    kConsecutiveErrorToOpenFieldNumber = 3,
+  };
+  // .google.protobuf.BoolValue enable = 1;
+  bool has_enable() const;
+  private:
+  bool _internal_has_enable() const;
+  public:
+  void clear_enable();
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::BoolValue* release_enable();
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* mutable_enable();
+  void set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue& _internal_enable() const;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _internal_mutable_enable();
+  public:
+  void unsafe_arena_set_allocated_enable(
+      ::PROTOBUF_NAMESPACE_ID::BoolValue* enable);
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* unsafe_arena_release_enable();
+
+  // .google.protobuf.UInt32Value consecutiveErrorToPreserved = 2;
+  bool has_consecutiveerrortopreserved() const;
+  private:
+  bool _internal_has_consecutiveerrortopreserved() const;
+  public:
+  void clear_consecutiveerrortopreserved();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& consecutiveerrortopreserved() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_consecutiveerrortopreserved();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_consecutiveerrortopreserved();
+  void set_allocated_consecutiveerrortopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortopreserved);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_consecutiveerrortopreserved() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_consecutiveerrortopreserved();
+  public:
+  void unsafe_arena_set_allocated_consecutiveerrortopreserved(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortopreserved);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_consecutiveerrortopreserved();
+
+  // .google.protobuf.UInt32Value consecutiveErrorToOpen = 3;
+  bool has_consecutiveerrortoopen() const;
+  private:
+  bool _internal_has_consecutiveerrortoopen() const;
+  public:
+  void clear_consecutiveerrortoopen();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& consecutiveerrortoopen() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_consecutiveerrortoopen();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_consecutiveerrortoopen();
+  void set_allocated_consecutiveerrortoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortoopen);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_consecutiveerrortoopen() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_consecutiveerrortoopen();
+  public:
+  void unsafe_arena_set_allocated_consecutiveerrortoopen(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortoopen);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_consecutiveerrortoopen();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CbPolicy.ConsecutiveErrConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* enable_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortopreserved_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortoopen_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CbPolicy final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CbPolicy) */ {
+ public:
+  inline CbPolicy() : CbPolicy(nullptr) {}
+  ~CbPolicy() override;
+  explicit PROTOBUF_CONSTEXPR CbPolicy(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CbPolicy(const CbPolicy& from);
+  CbPolicy(CbPolicy&& from) noexcept
+    : CbPolicy() {
+    *this = ::std::move(from);
+  }
+
+  inline CbPolicy& operator=(const CbPolicy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CbPolicy& operator=(CbPolicy&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CbPolicy& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CbPolicy* internal_default_instance() {
+    return reinterpret_cast<const CbPolicy*>(
+               &_CbPolicy_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(CbPolicy& a, CbPolicy& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CbPolicy* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CbPolicy* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CbPolicy* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CbPolicy>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CbPolicy& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CbPolicy& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CbPolicy* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CbPolicy";
+  }
+  protected:
+  explicit CbPolicy(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef CbPolicy_ErrRateConfig ErrRateConfig;
+  typedef CbPolicy_SlowRateConfig SlowRateConfig;
+  typedef CbPolicy_ConsecutiveErrConfig ConsecutiveErrConfig;
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrorRateFieldNumber = 1,
+    kSlowRateFieldNumber = 2,
+    kJudgeDurationFieldNumber = 3,
+    kMaxEjectionPercentFieldNumber = 4,
+    kConsecutiveFieldNumber = 5,
+  };
+  // .faulttolerance.CbPolicy.ErrRateConfig errorRate = 1;
+  bool has_errorrate() const;
+  private:
+  bool _internal_has_errorrate() const;
+  public:
+  void clear_errorrate();
+  const ::faulttolerance::CbPolicy_ErrRateConfig& errorrate() const;
+  PROTOBUF_NODISCARD ::faulttolerance::CbPolicy_ErrRateConfig* release_errorrate();
+  ::faulttolerance::CbPolicy_ErrRateConfig* mutable_errorrate();
+  void set_allocated_errorrate(::faulttolerance::CbPolicy_ErrRateConfig* errorrate);
+  private:
+  const ::faulttolerance::CbPolicy_ErrRateConfig& _internal_errorrate() const;
+  ::faulttolerance::CbPolicy_ErrRateConfig* _internal_mutable_errorrate();
+  public:
+  void unsafe_arena_set_allocated_errorrate(
+      ::faulttolerance::CbPolicy_ErrRateConfig* errorrate);
+  ::faulttolerance::CbPolicy_ErrRateConfig* unsafe_arena_release_errorrate();
+
+  // .faulttolerance.CbPolicy.SlowRateConfig slowRate = 2;
+  bool has_slowrate() const;
+  private:
+  bool _internal_has_slowrate() const;
+  public:
+  void clear_slowrate();
+  const ::faulttolerance::CbPolicy_SlowRateConfig& slowrate() const;
+  PROTOBUF_NODISCARD ::faulttolerance::CbPolicy_SlowRateConfig* release_slowrate();
+  ::faulttolerance::CbPolicy_SlowRateConfig* mutable_slowrate();
+  void set_allocated_slowrate(::faulttolerance::CbPolicy_SlowRateConfig* slowrate);
+  private:
+  const ::faulttolerance::CbPolicy_SlowRateConfig& _internal_slowrate() const;
+  ::faulttolerance::CbPolicy_SlowRateConfig* _internal_mutable_slowrate();
+  public:
+  void unsafe_arena_set_allocated_slowrate(
+      ::faulttolerance::CbPolicy_SlowRateConfig* slowrate);
+  ::faulttolerance::CbPolicy_SlowRateConfig* unsafe_arena_release_slowrate();
+
+  // .google.protobuf.Duration judgeDuration = 3;
+  bool has_judgeduration() const;
+  private:
+  bool _internal_has_judgeduration() const;
+  public:
+  void clear_judgeduration();
+  const ::PROTOBUF_NAMESPACE_ID::Duration& judgeduration() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Duration* release_judgeduration();
+  ::PROTOBUF_NAMESPACE_ID::Duration* mutable_judgeduration();
+  void set_allocated_judgeduration(::PROTOBUF_NAMESPACE_ID::Duration* judgeduration);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Duration& _internal_judgeduration() const;
+  ::PROTOBUF_NAMESPACE_ID::Duration* _internal_mutable_judgeduration();
+  public:
+  void unsafe_arena_set_allocated_judgeduration(
+      ::PROTOBUF_NAMESPACE_ID::Duration* judgeduration);
+  ::PROTOBUF_NAMESPACE_ID::Duration* unsafe_arena_release_judgeduration();
+
+  // .google.protobuf.UInt32Value maxEjectionPercent = 4;
+  bool has_maxejectionpercent() const;
+  private:
+  bool _internal_has_maxejectionpercent() const;
+  public:
+  void clear_maxejectionpercent();
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& maxejectionpercent() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt32Value* release_maxejectionpercent();
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* mutable_maxejectionpercent();
+  void set_allocated_maxejectionpercent(::PROTOBUF_NAMESPACE_ID::UInt32Value* maxejectionpercent);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value& _internal_maxejectionpercent() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _internal_mutable_maxejectionpercent();
+  public:
+  void unsafe_arena_set_allocated_maxejectionpercent(
+      ::PROTOBUF_NAMESPACE_ID::UInt32Value* maxejectionpercent);
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* unsafe_arena_release_maxejectionpercent();
+
+  // .faulttolerance.CbPolicy.ConsecutiveErrConfig consecutive = 5;
+  bool has_consecutive() const;
+  private:
+  bool _internal_has_consecutive() const;
+  public:
+  void clear_consecutive();
+  const ::faulttolerance::CbPolicy_ConsecutiveErrConfig& consecutive() const;
+  PROTOBUF_NODISCARD ::faulttolerance::CbPolicy_ConsecutiveErrConfig* release_consecutive();
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* mutable_consecutive();
+  void set_allocated_consecutive(::faulttolerance::CbPolicy_ConsecutiveErrConfig* consecutive);
+  private:
+  const ::faulttolerance::CbPolicy_ConsecutiveErrConfig& _internal_consecutive() const;
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* _internal_mutable_consecutive();
+  public:
+  void unsafe_arena_set_allocated_consecutive(
+      ::faulttolerance::CbPolicy_ConsecutiveErrConfig* consecutive);
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* unsafe_arena_release_consecutive();
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CbPolicy)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::faulttolerance::CbPolicy_ErrRateConfig* errorrate_;
+  ::faulttolerance::CbPolicy_SlowRateConfig* slowrate_;
+  ::PROTOBUF_NAMESPACE_ID::Duration* judgeduration_;
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* maxejectionpercent_;
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* consecutive_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DestinationSet final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.DestinationSet) */ {
+ public:
+  inline DestinationSet() : DestinationSet(nullptr) {}
+  ~DestinationSet() override;
+  explicit PROTOBUF_CONSTEXPR DestinationSet(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DestinationSet(const DestinationSet& from);
+  DestinationSet(DestinationSet&& from) noexcept
+    : DestinationSet() {
+    *this = ::std::move(from);
+  }
+
+  inline DestinationSet& operator=(const DestinationSet& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DestinationSet& operator=(DestinationSet&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DestinationSet& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DestinationSet* internal_default_instance() {
+    return reinterpret_cast<const DestinationSet*>(
+               &_DestinationSet_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(DestinationSet& a, DestinationSet& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DestinationSet* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DestinationSet* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DestinationSet* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DestinationSet>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DestinationSet& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DestinationSet& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DestinationSet* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.DestinationSet";
+  }
+  protected:
+  explicit DestinationSet(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef DestinationSet_Resource Resource;
+  static constexpr Resource SUBSET =
+    DestinationSet_Resource_SUBSET;
+  static constexpr Resource INSTANCE =
+    DestinationSet_Resource_INSTANCE;
+  static inline bool Resource_IsValid(int value) {
+    return DestinationSet_Resource_IsValid(value);
+  }
+  static constexpr Resource Resource_MIN =
+    DestinationSet_Resource_Resource_MIN;
+  static constexpr Resource Resource_MAX =
+    DestinationSet_Resource_Resource_MAX;
+  static constexpr int Resource_ARRAYSIZE =
+    DestinationSet_Resource_Resource_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  Resource_descriptor() {
+    return DestinationSet_Resource_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& Resource_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, Resource>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function Resource_Name.");
+    return DestinationSet_Resource_Name(enum_t_value);
+  }
+  static inline bool Resource_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      Resource* value) {
+    return DestinationSet_Resource_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kServiceFieldNumber = 1,
+    kNamespaceFieldNumber = 2,
+    kRecoverFieldNumber = 10,
+    kPolicyFieldNumber = 11,
+    kMethodFieldNumber = 12,
+    kResourceFieldNumber = 4,
+  };
+  // .google.protobuf.StringValue service = 1;
+  bool has_service() const;
+  private:
+  bool _internal_has_service() const;
+  public:
+  void clear_service();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& service() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_service();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_service();
+  void set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_service() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_service();
+  public:
+  void unsafe_arena_set_allocated_service(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* service);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service();
+
+  // .google.protobuf.StringValue namespace = 2;
+  bool has_namespace_() const;
+  private:
+  bool _internal_has_namespace_() const;
+  public:
+  void clear_namespace_();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_namespace_();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_namespace_();
+  void set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_namespace_() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_namespace_();
+  public:
+  void unsafe_arena_set_allocated_namespace_(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_namespace_();
+
+  // .faulttolerance.RecoverConfig recover = 10;
+  bool has_recover() const;
+  private:
+  bool _internal_has_recover() const;
+  public:
+  void clear_recover();
+  const ::faulttolerance::RecoverConfig& recover() const;
+  PROTOBUF_NODISCARD ::faulttolerance::RecoverConfig* release_recover();
+  ::faulttolerance::RecoverConfig* mutable_recover();
+  void set_allocated_recover(::faulttolerance::RecoverConfig* recover);
+  private:
+  const ::faulttolerance::RecoverConfig& _internal_recover() const;
+  ::faulttolerance::RecoverConfig* _internal_mutable_recover();
+  public:
+  void unsafe_arena_set_allocated_recover(
+      ::faulttolerance::RecoverConfig* recover);
+  ::faulttolerance::RecoverConfig* unsafe_arena_release_recover();
+
+  // .faulttolerance.CbPolicy policy = 11;
+  bool has_policy() const;
+  private:
+  bool _internal_has_policy() const;
+  public:
+  void clear_policy();
+  const ::faulttolerance::CbPolicy& policy() const;
+  PROTOBUF_NODISCARD ::faulttolerance::CbPolicy* release_policy();
+  ::faulttolerance::CbPolicy* mutable_policy();
+  void set_allocated_policy(::faulttolerance::CbPolicy* policy);
+  private:
+  const ::faulttolerance::CbPolicy& _internal_policy() const;
+  ::faulttolerance::CbPolicy* _internal_mutable_policy();
+  public:
+  void unsafe_arena_set_allocated_policy(
+      ::faulttolerance::CbPolicy* policy);
+  ::faulttolerance::CbPolicy* unsafe_arena_release_policy();
+
+  // .faulttolerance.MatchString method = 12;
+  bool has_method() const;
+  private:
+  bool _internal_has_method() const;
+  public:
+  void clear_method();
+  const ::faulttolerance::MatchString& method() const;
+  PROTOBUF_NODISCARD ::faulttolerance::MatchString* release_method();
+  ::faulttolerance::MatchString* mutable_method();
+  void set_allocated_method(::faulttolerance::MatchString* method);
+  private:
+  const ::faulttolerance::MatchString& _internal_method() const;
+  ::faulttolerance::MatchString* _internal_mutable_method();
+  public:
+  void unsafe_arena_set_allocated_method(
+      ::faulttolerance::MatchString* method);
+  ::faulttolerance::MatchString* unsafe_arena_release_method();
+
+  // .faulttolerance.DestinationSet.Resource resource = 4;
+  void clear_resource();
+  ::faulttolerance::DestinationSet_Resource resource() const;
+  void set_resource(::faulttolerance::DestinationSet_Resource value);
+  private:
+  ::faulttolerance::DestinationSet_Resource _internal_resource() const;
+  void _internal_set_resource(::faulttolerance::DestinationSet_Resource value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.DestinationSet)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* service_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* namespace__;
+  ::faulttolerance::RecoverConfig* recover_;
+  ::faulttolerance::CbPolicy* policy_;
+  ::faulttolerance::MatchString* method_;
+  int resource_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CbRule final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:faulttolerance.CbRule) */ {
+ public:
+  inline CbRule() : CbRule(nullptr) {}
+  ~CbRule() override;
+  explicit PROTOBUF_CONSTEXPR CbRule(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CbRule(const CbRule& from);
+  CbRule(CbRule&& from) noexcept
+    : CbRule() {
+    *this = ::std::move(from);
+  }
+
+  inline CbRule& operator=(const CbRule& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CbRule& operator=(CbRule&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CbRule& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CbRule* internal_default_instance() {
+    return reinterpret_cast<const CbRule*>(
+               &_CbRule_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(CbRule& a, CbRule& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CbRule* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CbRule* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CbRule* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CbRule>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CbRule& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const CbRule& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CbRule* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "faulttolerance.CbRule";
+  }
+  protected:
+  explicit CbRule(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSourcesFieldNumber = 1,
+    kDestinationsFieldNumber = 2,
+  };
+  // repeated .faulttolerance.SourceMatcher sources = 1;
+  int sources_size() const;
+  private:
+  int _internal_sources_size() const;
+  public:
+  void clear_sources();
+  ::faulttolerance::SourceMatcher* mutable_sources(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::SourceMatcher >*
+      mutable_sources();
+  private:
+  const ::faulttolerance::SourceMatcher& _internal_sources(int index) const;
+  ::faulttolerance::SourceMatcher* _internal_add_sources();
+  public:
+  const ::faulttolerance::SourceMatcher& sources(int index) const;
+  ::faulttolerance::SourceMatcher* add_sources();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::SourceMatcher >&
+      sources() const;
+
+  // repeated .faulttolerance.DestinationSet destinations = 2;
+  int destinations_size() const;
+  private:
+  int _internal_destinations_size() const;
+  public:
+  void clear_destinations();
+  ::faulttolerance::DestinationSet* mutable_destinations(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::DestinationSet >*
+      mutable_destinations();
+  private:
+  const ::faulttolerance::DestinationSet& _internal_destinations(int index) const;
+  ::faulttolerance::DestinationSet* _internal_add_destinations();
+  public:
+  const ::faulttolerance::DestinationSet& destinations(int index) const;
+  ::faulttolerance::DestinationSet* add_destinations();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::DestinationSet >&
+      destinations() const;
+
+  // @@protoc_insertion_point(class_scope:faulttolerance.CbRule)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::SourceMatcher > sources_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::DestinationSet > destinations_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_circuitbreaker_2eproto;
+};
 // ===================================================================
 
 
@@ -58,13 +2866,4289 @@ namespace faulttolerance {
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// MatchString
+
+// .faulttolerance.MatchString.MatchStringType type = 1;
+inline void MatchString::clear_type() {
+  type_ = 0;
+}
+inline ::faulttolerance::MatchString_MatchStringType MatchString::_internal_type() const {
+  return static_cast< ::faulttolerance::MatchString_MatchStringType >(type_);
+}
+inline ::faulttolerance::MatchString_MatchStringType MatchString::type() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.MatchString.type)
+  return _internal_type();
+}
+inline void MatchString::_internal_set_type(::faulttolerance::MatchString_MatchStringType value) {
+  
+  type_ = value;
+}
+inline void MatchString::set_type(::faulttolerance::MatchString_MatchStringType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:faulttolerance.MatchString.type)
+}
+
+// .google.protobuf.StringValue value = 2;
+inline bool MatchString::_internal_has_value() const {
+  return this != internal_default_instance() && value_ != nullptr;
+}
+inline bool MatchString::has_value() const {
+  return _internal_has_value();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& MatchString::_internal_value() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = value_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& MatchString::value() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.MatchString.value)
+  return _internal_value();
+}
+inline void MatchString::unsafe_arena_set_allocated_value(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* value) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(value_);
+  }
+  value_ = value;
+  if (value) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.MatchString.value)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MatchString::release_value() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = value_;
+  value_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MatchString::unsafe_arena_release_value() {
+  // @@protoc_insertion_point(field_release:faulttolerance.MatchString.value)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = value_;
+  value_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MatchString::_internal_mutable_value() {
+  
+  if (value_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    value_ = p;
+  }
+  return value_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MatchString::mutable_value() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_value();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.MatchString.value)
+  return _msg;
+}
+inline void MatchString::set_allocated_value(::PROTOBUF_NAMESPACE_ID::StringValue* value) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(value_);
+  }
+  if (value) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(value));
+    if (message_arena != submessage_arena) {
+      value = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, value, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  value_ = value;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.MatchString.value)
+}
+
+// -------------------------------------------------------------------
+
+// CircuitBreaker
+
+// .google.protobuf.StringValue id = 1;
+inline bool CircuitBreaker::_internal_has_id() const {
+  return this != internal_default_instance() && id_ != nullptr;
+}
+inline bool CircuitBreaker::has_id() const {
+  return _internal_has_id();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_id() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = id_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::id() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.id)
+  return _internal_id();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_id(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* id) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(id_);
+  }
+  id_ = id;
+  if (id) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.id)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_id() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = id_;
+  id_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_id() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.id)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = id_;
+  id_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_id() {
+  
+  if (id_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    id_ = p;
+  }
+  return id_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_id() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_id();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.id)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_id(::PROTOBUF_NAMESPACE_ID::StringValue* id) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(id_);
+  }
+  if (id) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(id));
+    if (message_arena != submessage_arena) {
+      id = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, id, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  id_ = id;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.id)
+}
+
+// .google.protobuf.StringValue version = 2;
+inline bool CircuitBreaker::_internal_has_version() const {
+  return this != internal_default_instance() && version_ != nullptr;
+}
+inline bool CircuitBreaker::has_version() const {
+  return _internal_has_version();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_version() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = version_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::version() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.version)
+  return _internal_version();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_version(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* version) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(version_);
+  }
+  version_ = version;
+  if (version) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.version)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_version() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = version_;
+  version_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_version() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.version)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = version_;
+  version_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_version() {
+  
+  if (version_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    version_ = p;
+  }
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_version() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_version();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.version)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_version(::PROTOBUF_NAMESPACE_ID::StringValue* version) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(version_);
+  }
+  if (version) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(version));
+    if (message_arena != submessage_arena) {
+      version = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, version, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  version_ = version;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.version)
+}
+
+// .google.protobuf.StringValue name = 3;
+inline bool CircuitBreaker::_internal_has_name() const {
+  return this != internal_default_instance() && name_ != nullptr;
+}
+inline bool CircuitBreaker::has_name() const {
+  return _internal_has_name();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_name() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = name_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::name() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.name)
+  return _internal_name();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_name(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* name) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(name_);
+  }
+  name_ = name;
+  if (name) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.name)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_name() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = name_;
+  name_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_name() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.name)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = name_;
+  name_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_name() {
+  
+  if (name_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    name_ = p;
+  }
+  return name_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_name() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.name)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_name(::PROTOBUF_NAMESPACE_ID::StringValue* name) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(name_);
+  }
+  if (name) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(name));
+    if (message_arena != submessage_arena) {
+      name = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, name, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  name_ = name;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.name)
+}
+
+// .google.protobuf.StringValue namespace = 4;
+inline bool CircuitBreaker::_internal_has_namespace_() const {
+  return this != internal_default_instance() && namespace__ != nullptr;
+}
+inline bool CircuitBreaker::has_namespace_() const {
+  return _internal_has_namespace_();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_namespace_() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = namespace__;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::namespace_() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.namespace)
+  return _internal_namespace_();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_namespace_(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
+  }
+  namespace__ = namespace_;
+  if (namespace_) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.namespace)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_namespace_() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_namespace_() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.namespace)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_namespace_() {
+  
+  if (namespace__ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    namespace__ = p;
+  }
+  return namespace__;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_namespace_() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_namespace_();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.namespace)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
+  }
+  if (namespace_) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace_));
+    if (message_arena != submessage_arena) {
+      namespace_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, namespace_, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  namespace__ = namespace_;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.namespace)
+}
+
+// .google.protobuf.StringValue service = 5;
+inline bool CircuitBreaker::_internal_has_service() const {
+  return this != internal_default_instance() && service_ != nullptr;
+}
+inline bool CircuitBreaker::has_service() const {
+  return _internal_has_service();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_service() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::service() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.service)
+  return _internal_service();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_service(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  service_ = service;
+  if (service) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.service)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_service() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_service() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.service)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_service() {
+  
+  if (service_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    service_ = p;
+  }
+  return service_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_service() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.service)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  if (service) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service));
+    if (message_arena != submessage_arena) {
+      service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, service, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  service_ = service;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.service)
+}
+
+// .google.protobuf.StringValue service_namespace = 6;
+inline bool CircuitBreaker::_internal_has_service_namespace() const {
+  return this != internal_default_instance() && service_namespace_ != nullptr;
+}
+inline bool CircuitBreaker::has_service_namespace() const {
+  return _internal_has_service_namespace();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_service_namespace() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_namespace_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::service_namespace() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.service_namespace)
+  return _internal_service_namespace();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_service_namespace(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* service_namespace) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_namespace_);
+  }
+  service_namespace_ = service_namespace;
+  if (service_namespace) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.service_namespace)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_service_namespace() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_namespace_;
+  service_namespace_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_service_namespace() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.service_namespace)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_namespace_;
+  service_namespace_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_service_namespace() {
+  
+  if (service_namespace_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    service_namespace_ = p;
+  }
+  return service_namespace_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_service_namespace() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service_namespace();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.service_namespace)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_service_namespace(::PROTOBUF_NAMESPACE_ID::StringValue* service_namespace) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_namespace_);
+  }
+  if (service_namespace) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_namespace));
+    if (message_arena != submessage_arena) {
+      service_namespace = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, service_namespace, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  service_namespace_ = service_namespace;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.service_namespace)
+}
+
+// repeated .faulttolerance.CbRule inbounds = 7;
+inline int CircuitBreaker::_internal_inbounds_size() const {
+  return inbounds_.size();
+}
+inline int CircuitBreaker::inbounds_size() const {
+  return _internal_inbounds_size();
+}
+inline void CircuitBreaker::clear_inbounds() {
+  inbounds_.Clear();
+}
+inline ::faulttolerance::CbRule* CircuitBreaker::mutable_inbounds(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.inbounds)
+  return inbounds_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >*
+CircuitBreaker::mutable_inbounds() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.CircuitBreaker.inbounds)
+  return &inbounds_;
+}
+inline const ::faulttolerance::CbRule& CircuitBreaker::_internal_inbounds(int index) const {
+  return inbounds_.Get(index);
+}
+inline const ::faulttolerance::CbRule& CircuitBreaker::inbounds(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.inbounds)
+  return _internal_inbounds(index);
+}
+inline ::faulttolerance::CbRule* CircuitBreaker::_internal_add_inbounds() {
+  return inbounds_.Add();
+}
+inline ::faulttolerance::CbRule* CircuitBreaker::add_inbounds() {
+  ::faulttolerance::CbRule* _add = _internal_add_inbounds();
+  // @@protoc_insertion_point(field_add:faulttolerance.CircuitBreaker.inbounds)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >&
+CircuitBreaker::inbounds() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.CircuitBreaker.inbounds)
+  return inbounds_;
+}
+
+// repeated .faulttolerance.CbRule outbounds = 8;
+inline int CircuitBreaker::_internal_outbounds_size() const {
+  return outbounds_.size();
+}
+inline int CircuitBreaker::outbounds_size() const {
+  return _internal_outbounds_size();
+}
+inline void CircuitBreaker::clear_outbounds() {
+  outbounds_.Clear();
+}
+inline ::faulttolerance::CbRule* CircuitBreaker::mutable_outbounds(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.outbounds)
+  return outbounds_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >*
+CircuitBreaker::mutable_outbounds() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.CircuitBreaker.outbounds)
+  return &outbounds_;
+}
+inline const ::faulttolerance::CbRule& CircuitBreaker::_internal_outbounds(int index) const {
+  return outbounds_.Get(index);
+}
+inline const ::faulttolerance::CbRule& CircuitBreaker::outbounds(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.outbounds)
+  return _internal_outbounds(index);
+}
+inline ::faulttolerance::CbRule* CircuitBreaker::_internal_add_outbounds() {
+  return outbounds_.Add();
+}
+inline ::faulttolerance::CbRule* CircuitBreaker::add_outbounds() {
+  ::faulttolerance::CbRule* _add = _internal_add_outbounds();
+  // @@protoc_insertion_point(field_add:faulttolerance.CircuitBreaker.outbounds)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbRule >&
+CircuitBreaker::outbounds() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.CircuitBreaker.outbounds)
+  return outbounds_;
+}
+
+// .google.protobuf.StringValue token = 9;
+inline bool CircuitBreaker::_internal_has_token() const {
+  return this != internal_default_instance() && token_ != nullptr;
+}
+inline bool CircuitBreaker::has_token() const {
+  return _internal_has_token();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_token() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = token_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::token() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.token)
+  return _internal_token();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_token(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* token) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(token_);
+  }
+  token_ = token;
+  if (token) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.token)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_token() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = token_;
+  token_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_token() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.token)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = token_;
+  token_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_token() {
+  
+  if (token_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    token_ = p;
+  }
+  return token_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_token() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.token)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_token(::PROTOBUF_NAMESPACE_ID::StringValue* token) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(token_);
+  }
+  if (token) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(token));
+    if (message_arena != submessage_arena) {
+      token = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, token, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  token_ = token;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.token)
+}
+
+// .google.protobuf.StringValue owners = 10;
+inline bool CircuitBreaker::_internal_has_owners() const {
+  return this != internal_default_instance() && owners_ != nullptr;
+}
+inline bool CircuitBreaker::has_owners() const {
+  return _internal_has_owners();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_owners() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = owners_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::owners() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.owners)
+  return _internal_owners();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_owners(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* owners) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(owners_);
+  }
+  owners_ = owners;
+  if (owners) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.owners)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_owners() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = owners_;
+  owners_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_owners() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.owners)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = owners_;
+  owners_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_owners() {
+  
+  if (owners_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    owners_ = p;
+  }
+  return owners_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_owners() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_owners();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.owners)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_owners(::PROTOBUF_NAMESPACE_ID::StringValue* owners) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(owners_);
+  }
+  if (owners) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(owners));
+    if (message_arena != submessage_arena) {
+      owners = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, owners, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  owners_ = owners;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.owners)
+}
+
+// .google.protobuf.StringValue business = 11;
+inline bool CircuitBreaker::_internal_has_business() const {
+  return this != internal_default_instance() && business_ != nullptr;
+}
+inline bool CircuitBreaker::has_business() const {
+  return _internal_has_business();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_business() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = business_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::business() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.business)
+  return _internal_business();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_business(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* business) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(business_);
+  }
+  business_ = business;
+  if (business) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.business)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_business() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = business_;
+  business_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_business() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.business)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = business_;
+  business_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_business() {
+  
+  if (business_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    business_ = p;
+  }
+  return business_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_business() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_business();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.business)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_business(::PROTOBUF_NAMESPACE_ID::StringValue* business) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(business_);
+  }
+  if (business) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(business));
+    if (message_arena != submessage_arena) {
+      business = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, business, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  business_ = business;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.business)
+}
+
+// .google.protobuf.StringValue department = 12;
+inline bool CircuitBreaker::_internal_has_department() const {
+  return this != internal_default_instance() && department_ != nullptr;
+}
+inline bool CircuitBreaker::has_department() const {
+  return _internal_has_department();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_department() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = department_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::department() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.department)
+  return _internal_department();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_department(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* department) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(department_);
+  }
+  department_ = department;
+  if (department) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.department)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_department() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = department_;
+  department_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_department() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.department)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = department_;
+  department_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_department() {
+  
+  if (department_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    department_ = p;
+  }
+  return department_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_department() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_department();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.department)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_department(::PROTOBUF_NAMESPACE_ID::StringValue* department) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(department_);
+  }
+  if (department) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(department));
+    if (message_arena != submessage_arena) {
+      department = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, department, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  department_ = department;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.department)
+}
+
+// .google.protobuf.StringValue comment = 13;
+inline bool CircuitBreaker::_internal_has_comment() const {
+  return this != internal_default_instance() && comment_ != nullptr;
+}
+inline bool CircuitBreaker::has_comment() const {
+  return _internal_has_comment();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_comment() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = comment_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::comment() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.comment)
+  return _internal_comment();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_comment(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* comment) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(comment_);
+  }
+  comment_ = comment;
+  if (comment) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.comment)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_comment() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = comment_;
+  comment_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_comment() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.comment)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = comment_;
+  comment_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_comment() {
+  
+  if (comment_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    comment_ = p;
+  }
+  return comment_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_comment() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_comment();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.comment)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_comment(::PROTOBUF_NAMESPACE_ID::StringValue* comment) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(comment_);
+  }
+  if (comment) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(comment));
+    if (message_arena != submessage_arena) {
+      comment = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, comment, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  comment_ = comment;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.comment)
+}
+
+// .google.protobuf.StringValue ctime = 14;
+inline bool CircuitBreaker::_internal_has_ctime() const {
+  return this != internal_default_instance() && ctime_ != nullptr;
+}
+inline bool CircuitBreaker::has_ctime() const {
+  return _internal_has_ctime();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_ctime() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = ctime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::ctime() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.ctime)
+  return _internal_ctime();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_ctime(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* ctime) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ctime_);
+  }
+  ctime_ = ctime;
+  if (ctime) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.ctime)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_ctime() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = ctime_;
+  ctime_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_ctime() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.ctime)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = ctime_;
+  ctime_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_ctime() {
+  
+  if (ctime_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    ctime_ = p;
+  }
+  return ctime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_ctime() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_ctime();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.ctime)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_ctime(::PROTOBUF_NAMESPACE_ID::StringValue* ctime) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(ctime_);
+  }
+  if (ctime) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(ctime));
+    if (message_arena != submessage_arena) {
+      ctime = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, ctime, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  ctime_ = ctime;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.ctime)
+}
+
+// .google.protobuf.StringValue mtime = 15;
+inline bool CircuitBreaker::_internal_has_mtime() const {
+  return this != internal_default_instance() && mtime_ != nullptr;
+}
+inline bool CircuitBreaker::has_mtime() const {
+  return _internal_has_mtime();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_mtime() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = mtime_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::mtime() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.mtime)
+  return _internal_mtime();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_mtime(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* mtime) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(mtime_);
+  }
+  mtime_ = mtime;
+  if (mtime) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.mtime)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_mtime() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = mtime_;
+  mtime_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_mtime() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.mtime)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = mtime_;
+  mtime_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_mtime() {
+  
+  if (mtime_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    mtime_ = p;
+  }
+  return mtime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_mtime() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_mtime();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.mtime)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_mtime(::PROTOBUF_NAMESPACE_ID::StringValue* mtime) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(mtime_);
+  }
+  if (mtime) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(mtime));
+    if (message_arena != submessage_arena) {
+      mtime = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, mtime, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  mtime_ = mtime;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.mtime)
+}
+
+// .google.protobuf.StringValue revision = 16;
+inline bool CircuitBreaker::_internal_has_revision() const {
+  return this != internal_default_instance() && revision_ != nullptr;
+}
+inline bool CircuitBreaker::has_revision() const {
+  return _internal_has_revision();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::_internal_revision() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = revision_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CircuitBreaker::revision() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CircuitBreaker.revision)
+  return _internal_revision();
+}
+inline void CircuitBreaker::unsafe_arena_set_allocated_revision(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* revision) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(revision_);
+  }
+  revision_ = revision;
+  if (revision) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CircuitBreaker.revision)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::release_revision() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = revision_;
+  revision_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::unsafe_arena_release_revision() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CircuitBreaker.revision)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = revision_;
+  revision_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::_internal_mutable_revision() {
+  
+  if (revision_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    revision_ = p;
+  }
+  return revision_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CircuitBreaker::mutable_revision() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_revision();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CircuitBreaker.revision)
+  return _msg;
+}
+inline void CircuitBreaker::set_allocated_revision(::PROTOBUF_NAMESPACE_ID::StringValue* revision) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(revision_);
+  }
+  if (revision) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(revision));
+    if (message_arena != submessage_arena) {
+      revision = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, revision, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  revision_ = revision;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CircuitBreaker.revision)
+}
+
+// -------------------------------------------------------------------
+
+// SourceMatcher
+
+// .google.protobuf.StringValue service = 1;
+inline bool SourceMatcher::_internal_has_service() const {
+  return this != internal_default_instance() && service_ != nullptr;
+}
+inline bool SourceMatcher::has_service() const {
+  return _internal_has_service();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& SourceMatcher::_internal_service() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& SourceMatcher::service() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.SourceMatcher.service)
+  return _internal_service();
+}
+inline void SourceMatcher::unsafe_arena_set_allocated_service(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  service_ = service;
+  if (service) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.SourceMatcher.service)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::release_service() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::unsafe_arena_release_service() {
+  // @@protoc_insertion_point(field_release:faulttolerance.SourceMatcher.service)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::_internal_mutable_service() {
+  
+  if (service_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    service_ = p;
+  }
+  return service_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::mutable_service() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.SourceMatcher.service)
+  return _msg;
+}
+inline void SourceMatcher::set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  if (service) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service));
+    if (message_arena != submessage_arena) {
+      service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, service, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  service_ = service;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.SourceMatcher.service)
+}
+
+// .google.protobuf.StringValue namespace = 2;
+inline bool SourceMatcher::_internal_has_namespace_() const {
+  return this != internal_default_instance() && namespace__ != nullptr;
+}
+inline bool SourceMatcher::has_namespace_() const {
+  return _internal_has_namespace_();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& SourceMatcher::_internal_namespace_() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = namespace__;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& SourceMatcher::namespace_() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.SourceMatcher.namespace)
+  return _internal_namespace_();
+}
+inline void SourceMatcher::unsafe_arena_set_allocated_namespace_(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
+  }
+  namespace__ = namespace_;
+  if (namespace_) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.SourceMatcher.namespace)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::release_namespace_() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::unsafe_arena_release_namespace_() {
+  // @@protoc_insertion_point(field_release:faulttolerance.SourceMatcher.namespace)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::_internal_mutable_namespace_() {
+  
+  if (namespace__ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    namespace__ = p;
+  }
+  return namespace__;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* SourceMatcher::mutable_namespace_() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_namespace_();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.SourceMatcher.namespace)
+  return _msg;
+}
+inline void SourceMatcher::set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
+  }
+  if (namespace_) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace_));
+    if (message_arena != submessage_arena) {
+      namespace_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, namespace_, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  namespace__ = namespace_;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.SourceMatcher.namespace)
+}
+
+// -------------------------------------------------------------------
+
+// RecoverConfig
+
+// .google.protobuf.Duration sleepWindow = 1;
+inline bool RecoverConfig::_internal_has_sleepwindow() const {
+  return this != internal_default_instance() && sleepwindow_ != nullptr;
+}
+inline bool RecoverConfig::has_sleepwindow() const {
+  return _internal_has_sleepwindow();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& RecoverConfig::_internal_sleepwindow() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = sleepwindow_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& RecoverConfig::sleepwindow() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.RecoverConfig.sleepWindow)
+  return _internal_sleepwindow();
+}
+inline void RecoverConfig::unsafe_arena_set_allocated_sleepwindow(
+    ::PROTOBUF_NAMESPACE_ID::Duration* sleepwindow) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(sleepwindow_);
+  }
+  sleepwindow_ = sleepwindow;
+  if (sleepwindow) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.RecoverConfig.sleepWindow)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* RecoverConfig::release_sleepwindow() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = sleepwindow_;
+  sleepwindow_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* RecoverConfig::unsafe_arena_release_sleepwindow() {
+  // @@protoc_insertion_point(field_release:faulttolerance.RecoverConfig.sleepWindow)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = sleepwindow_;
+  sleepwindow_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* RecoverConfig::_internal_mutable_sleepwindow() {
+  
+  if (sleepwindow_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    sleepwindow_ = p;
+  }
+  return sleepwindow_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* RecoverConfig::mutable_sleepwindow() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_sleepwindow();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.RecoverConfig.sleepWindow)
+  return _msg;
+}
+inline void RecoverConfig::set_allocated_sleepwindow(::PROTOBUF_NAMESPACE_ID::Duration* sleepwindow) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(sleepwindow_);
+  }
+  if (sleepwindow) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(sleepwindow));
+    if (message_arena != submessage_arena) {
+      sleepwindow = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, sleepwindow, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  sleepwindow_ = sleepwindow;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.RecoverConfig.sleepWindow)
+}
+
+// .google.protobuf.UInt32Value maxRetryAfterHalfOpen = 2;
+inline bool RecoverConfig::_internal_has_maxretryafterhalfopen() const {
+  return this != internal_default_instance() && maxretryafterhalfopen_ != nullptr;
+}
+inline bool RecoverConfig::has_maxretryafterhalfopen() const {
+  return _internal_has_maxretryafterhalfopen();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::_internal_maxretryafterhalfopen() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = maxretryafterhalfopen_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::maxretryafterhalfopen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.RecoverConfig.maxRetryAfterHalfOpen)
+  return _internal_maxretryafterhalfopen();
+}
+inline void RecoverConfig::unsafe_arena_set_allocated_maxretryafterhalfopen(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* maxretryafterhalfopen) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxretryafterhalfopen_);
+  }
+  maxretryafterhalfopen_ = maxretryafterhalfopen;
+  if (maxretryafterhalfopen) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.RecoverConfig.maxRetryAfterHalfOpen)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::release_maxretryafterhalfopen() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = maxretryafterhalfopen_;
+  maxretryafterhalfopen_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::unsafe_arena_release_maxretryafterhalfopen() {
+  // @@protoc_insertion_point(field_release:faulttolerance.RecoverConfig.maxRetryAfterHalfOpen)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = maxretryafterhalfopen_;
+  maxretryafterhalfopen_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::_internal_mutable_maxretryafterhalfopen() {
+  
+  if (maxretryafterhalfopen_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    maxretryafterhalfopen_ = p;
+  }
+  return maxretryafterhalfopen_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::mutable_maxretryafterhalfopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_maxretryafterhalfopen();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.RecoverConfig.maxRetryAfterHalfOpen)
+  return _msg;
+}
+inline void RecoverConfig::set_allocated_maxretryafterhalfopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* maxretryafterhalfopen) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxretryafterhalfopen_);
+  }
+  if (maxretryafterhalfopen) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxretryafterhalfopen));
+    if (message_arena != submessage_arena) {
+      maxretryafterhalfopen = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, maxretryafterhalfopen, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  maxretryafterhalfopen_ = maxretryafterhalfopen;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.RecoverConfig.maxRetryAfterHalfOpen)
+}
+
+// repeated .google.protobuf.UInt32Value requestRateAfterHalfOpen = 3;
+inline int RecoverConfig::_internal_requestrateafterhalfopen_size() const {
+  return requestrateafterhalfopen_.size();
+}
+inline int RecoverConfig::requestrateafterhalfopen_size() const {
+  return _internal_requestrateafterhalfopen_size();
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::mutable_requestrateafterhalfopen(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.RecoverConfig.requestRateAfterHalfOpen)
+  return requestrateafterhalfopen_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::UInt32Value >*
+RecoverConfig::mutable_requestrateafterhalfopen() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.RecoverConfig.requestRateAfterHalfOpen)
+  return &requestrateafterhalfopen_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::_internal_requestrateafterhalfopen(int index) const {
+  return requestrateafterhalfopen_.Get(index);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::requestrateafterhalfopen(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.RecoverConfig.requestRateAfterHalfOpen)
+  return _internal_requestrateafterhalfopen(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::_internal_add_requestrateafterhalfopen() {
+  return requestrateafterhalfopen_.Add();
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::add_requestrateafterhalfopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _add = _internal_add_requestrateafterhalfopen();
+  // @@protoc_insertion_point(field_add:faulttolerance.RecoverConfig.requestRateAfterHalfOpen)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::UInt32Value >&
+RecoverConfig::requestrateafterhalfopen() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.RecoverConfig.requestRateAfterHalfOpen)
+  return requestrateafterhalfopen_;
+}
+
+// .google.protobuf.UInt32Value successRateToClose = 4;
+inline bool RecoverConfig::_internal_has_successratetoclose() const {
+  return this != internal_default_instance() && successratetoclose_ != nullptr;
+}
+inline bool RecoverConfig::has_successratetoclose() const {
+  return _internal_has_successratetoclose();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::_internal_successratetoclose() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = successratetoclose_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::successratetoclose() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.RecoverConfig.successRateToClose)
+  return _internal_successratetoclose();
+}
+inline void RecoverConfig::unsafe_arena_set_allocated_successratetoclose(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* successratetoclose) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(successratetoclose_);
+  }
+  successratetoclose_ = successratetoclose;
+  if (successratetoclose) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.RecoverConfig.successRateToClose)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::release_successratetoclose() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = successratetoclose_;
+  successratetoclose_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::unsafe_arena_release_successratetoclose() {
+  // @@protoc_insertion_point(field_release:faulttolerance.RecoverConfig.successRateToClose)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = successratetoclose_;
+  successratetoclose_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::_internal_mutable_successratetoclose() {
+  
+  if (successratetoclose_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    successratetoclose_ = p;
+  }
+  return successratetoclose_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::mutable_successratetoclose() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_successratetoclose();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.RecoverConfig.successRateToClose)
+  return _msg;
+}
+inline void RecoverConfig::set_allocated_successratetoclose(::PROTOBUF_NAMESPACE_ID::UInt32Value* successratetoclose) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(successratetoclose_);
+  }
+  if (successratetoclose) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(successratetoclose));
+    if (message_arena != submessage_arena) {
+      successratetoclose = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, successratetoclose, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  successratetoclose_ = successratetoclose;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.RecoverConfig.successRateToClose)
+}
+
+// .google.protobuf.UInt32Value requestCountAfterHalfOpen = 5;
+inline bool RecoverConfig::_internal_has_requestcountafterhalfopen() const {
+  return this != internal_default_instance() && requestcountafterhalfopen_ != nullptr;
+}
+inline bool RecoverConfig::has_requestcountafterhalfopen() const {
+  return _internal_has_requestcountafterhalfopen();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::_internal_requestcountafterhalfopen() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = requestcountafterhalfopen_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& RecoverConfig::requestcountafterhalfopen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.RecoverConfig.requestCountAfterHalfOpen)
+  return _internal_requestcountafterhalfopen();
+}
+inline void RecoverConfig::unsafe_arena_set_allocated_requestcountafterhalfopen(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* requestcountafterhalfopen) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(requestcountafterhalfopen_);
+  }
+  requestcountafterhalfopen_ = requestcountafterhalfopen;
+  if (requestcountafterhalfopen) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.RecoverConfig.requestCountAfterHalfOpen)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::release_requestcountafterhalfopen() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = requestcountafterhalfopen_;
+  requestcountafterhalfopen_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::unsafe_arena_release_requestcountafterhalfopen() {
+  // @@protoc_insertion_point(field_release:faulttolerance.RecoverConfig.requestCountAfterHalfOpen)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = requestcountafterhalfopen_;
+  requestcountafterhalfopen_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::_internal_mutable_requestcountafterhalfopen() {
+  
+  if (requestcountafterhalfopen_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    requestcountafterhalfopen_ = p;
+  }
+  return requestcountafterhalfopen_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* RecoverConfig::mutable_requestcountafterhalfopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_requestcountafterhalfopen();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.RecoverConfig.requestCountAfterHalfOpen)
+  return _msg;
+}
+inline void RecoverConfig::set_allocated_requestcountafterhalfopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* requestcountafterhalfopen) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(requestcountafterhalfopen_);
+  }
+  if (requestcountafterhalfopen) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(requestcountafterhalfopen));
+    if (message_arena != submessage_arena) {
+      requestcountafterhalfopen = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, requestcountafterhalfopen, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  requestcountafterhalfopen_ = requestcountafterhalfopen;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.RecoverConfig.requestCountAfterHalfOpen)
+}
+
+// .faulttolerance.RecoverConfig.OutlierDetectWhen outlierDetectWhen = 6;
+inline void RecoverConfig::clear_outlierdetectwhen() {
+  outlierdetectwhen_ = 0;
+}
+inline ::faulttolerance::RecoverConfig_OutlierDetectWhen RecoverConfig::_internal_outlierdetectwhen() const {
+  return static_cast< ::faulttolerance::RecoverConfig_OutlierDetectWhen >(outlierdetectwhen_);
+}
+inline ::faulttolerance::RecoverConfig_OutlierDetectWhen RecoverConfig::outlierdetectwhen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.RecoverConfig.outlierDetectWhen)
+  return _internal_outlierdetectwhen();
+}
+inline void RecoverConfig::_internal_set_outlierdetectwhen(::faulttolerance::RecoverConfig_OutlierDetectWhen value) {
+  
+  outlierdetectwhen_ = value;
+}
+inline void RecoverConfig::set_outlierdetectwhen(::faulttolerance::RecoverConfig_OutlierDetectWhen value) {
+  _internal_set_outlierdetectwhen(value);
+  // @@protoc_insertion_point(field_set:faulttolerance.RecoverConfig.outlierDetectWhen)
+}
+
+// -------------------------------------------------------------------
+
+// CbPolicy_ErrRateConfig_SpecialConfig
+
+// .google.protobuf.StringValue type = 1;
+inline bool CbPolicy_ErrRateConfig_SpecialConfig::_internal_has_type() const {
+  return this != internal_default_instance() && type_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig_SpecialConfig::has_type() const {
+  return _internal_has_type();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CbPolicy_ErrRateConfig_SpecialConfig::_internal_type() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = type_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& CbPolicy_ErrRateConfig_SpecialConfig::type() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.type)
+  return _internal_type();
+}
+inline void CbPolicy_ErrRateConfig_SpecialConfig::unsafe_arena_set_allocated_type(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* type) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(type_);
+  }
+  type_ = type;
+  if (type) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.type)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CbPolicy_ErrRateConfig_SpecialConfig::release_type() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = type_;
+  type_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CbPolicy_ErrRateConfig_SpecialConfig::unsafe_arena_release_type() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.type)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = type_;
+  type_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CbPolicy_ErrRateConfig_SpecialConfig::_internal_mutable_type() {
+  
+  if (type_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    type_ = p;
+  }
+  return type_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* CbPolicy_ErrRateConfig_SpecialConfig::mutable_type() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_type();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.type)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig_SpecialConfig::set_allocated_type(::PROTOBUF_NAMESPACE_ID::StringValue* type) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(type_);
+  }
+  if (type) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(type));
+    if (message_arena != submessage_arena) {
+      type = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, type, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  type_ = type;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.type)
+}
+
+// repeated .google.protobuf.Int64Value errorCodes = 2;
+inline int CbPolicy_ErrRateConfig_SpecialConfig::_internal_errorcodes_size() const {
+  return errorcodes_.size();
+}
+inline int CbPolicy_ErrRateConfig_SpecialConfig::errorcodes_size() const {
+  return _internal_errorcodes_size();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Int64Value* CbPolicy_ErrRateConfig_SpecialConfig::mutable_errorcodes(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes)
+  return errorcodes_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Int64Value >*
+CbPolicy_ErrRateConfig_SpecialConfig::mutable_errorcodes() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes)
+  return &errorcodes_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Int64Value& CbPolicy_ErrRateConfig_SpecialConfig::_internal_errorcodes(int index) const {
+  return errorcodes_.Get(index);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Int64Value& CbPolicy_ErrRateConfig_SpecialConfig::errorcodes(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes)
+  return _internal_errorcodes(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::Int64Value* CbPolicy_ErrRateConfig_SpecialConfig::_internal_add_errorcodes() {
+  return errorcodes_.Add();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Int64Value* CbPolicy_ErrRateConfig_SpecialConfig::add_errorcodes() {
+  ::PROTOBUF_NAMESPACE_ID::Int64Value* _add = _internal_add_errorcodes();
+  // @@protoc_insertion_point(field_add:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::PROTOBUF_NAMESPACE_ID::Int64Value >&
+CbPolicy_ErrRateConfig_SpecialConfig::errorcodes() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes)
+  return errorcodes_;
+}
+
+// .google.protobuf.UInt32Value errorRateToPreserved = 3;
+inline bool CbPolicy_ErrRateConfig_SpecialConfig::_internal_has_errorratetopreserved() const {
+  return this != internal_default_instance() && errorratetopreserved_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig_SpecialConfig::has_errorratetopreserved() const {
+  return _internal_has_errorratetopreserved();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig_SpecialConfig::_internal_errorratetopreserved() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = errorratetopreserved_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig_SpecialConfig::errorratetopreserved() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved)
+  return _internal_errorratetopreserved();
+}
+inline void CbPolicy_ErrRateConfig_SpecialConfig::unsafe_arena_set_allocated_errorratetopreserved(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetopreserved_);
+  }
+  errorratetopreserved_ = errorratetopreserved;
+  if (errorratetopreserved) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::release_errorratetopreserved() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetopreserved_;
+  errorratetopreserved_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::unsafe_arena_release_errorratetopreserved() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetopreserved_;
+  errorratetopreserved_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::_internal_mutable_errorratetopreserved() {
+  
+  if (errorratetopreserved_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    errorratetopreserved_ = p;
+  }
+  return errorratetopreserved_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::mutable_errorratetopreserved() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_errorratetopreserved();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig_SpecialConfig::set_allocated_errorratetopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetopreserved_);
+  }
+  if (errorratetopreserved) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetopreserved));
+    if (message_arena != submessage_arena) {
+      errorratetopreserved = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, errorratetopreserved, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  errorratetopreserved_ = errorratetopreserved;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved)
+}
+
+// .google.protobuf.UInt32Value errorRateToOpen = 4;
+inline bool CbPolicy_ErrRateConfig_SpecialConfig::_internal_has_errorratetoopen() const {
+  return this != internal_default_instance() && errorratetoopen_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig_SpecialConfig::has_errorratetoopen() const {
+  return _internal_has_errorratetoopen();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig_SpecialConfig::_internal_errorratetoopen() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = errorratetoopen_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig_SpecialConfig::errorratetoopen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen)
+  return _internal_errorratetoopen();
+}
+inline void CbPolicy_ErrRateConfig_SpecialConfig::unsafe_arena_set_allocated_errorratetoopen(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetoopen_);
+  }
+  errorratetoopen_ = errorratetoopen;
+  if (errorratetoopen) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::release_errorratetoopen() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetoopen_;
+  errorratetoopen_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::unsafe_arena_release_errorratetoopen() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetoopen_;
+  errorratetoopen_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::_internal_mutable_errorratetoopen() {
+  
+  if (errorratetoopen_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    errorratetoopen_ = p;
+  }
+  return errorratetoopen_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig_SpecialConfig::mutable_errorratetoopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_errorratetoopen();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig_SpecialConfig::set_allocated_errorratetoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetoopen_);
+  }
+  if (errorratetoopen) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetoopen));
+    if (message_arena != submessage_arena) {
+      errorratetoopen = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, errorratetoopen, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  errorratetoopen_ = errorratetoopen;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen)
+}
+
+// -------------------------------------------------------------------
+
+// CbPolicy_ErrRateConfig
+
+// .google.protobuf.BoolValue enable = 1;
+inline bool CbPolicy_ErrRateConfig::_internal_has_enable() const {
+  return this != internal_default_instance() && enable_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig::has_enable() const {
+  return _internal_has_enable();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& CbPolicy_ErrRateConfig::_internal_enable() const {
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue* p = enable_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::BoolValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_BoolValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& CbPolicy_ErrRateConfig::enable() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.enable)
+  return _internal_enable();
+}
+inline void CbPolicy_ErrRateConfig::unsafe_arena_set_allocated_enable(
+    ::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  enable_ = enable;
+  if (enable) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.enable)
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ErrRateConfig::release_enable() {
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ErrRateConfig::unsafe_arena_release_enable() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.enable)
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ErrRateConfig::_internal_mutable_enable() {
+  
+  if (enable_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::BoolValue>(GetArenaForAllocation());
+    enable_ = p;
+  }
+  return enable_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ErrRateConfig::mutable_enable() {
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _msg = _internal_mutable_enable();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.enable)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  if (enable) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable));
+    if (message_arena != submessage_arena) {
+      enable = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, enable, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  enable_ = enable;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.enable)
+}
+
+// .google.protobuf.UInt32Value requestVolumeThreshold = 2;
+inline bool CbPolicy_ErrRateConfig::_internal_has_requestvolumethreshold() const {
+  return this != internal_default_instance() && requestvolumethreshold_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig::has_requestvolumethreshold() const {
+  return _internal_has_requestvolumethreshold();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig::_internal_requestvolumethreshold() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = requestvolumethreshold_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig::requestvolumethreshold() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.requestVolumeThreshold)
+  return _internal_requestvolumethreshold();
+}
+inline void CbPolicy_ErrRateConfig::unsafe_arena_set_allocated_requestvolumethreshold(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* requestvolumethreshold) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(requestvolumethreshold_);
+  }
+  requestvolumethreshold_ = requestvolumethreshold;
+  if (requestvolumethreshold) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.requestVolumeThreshold)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::release_requestvolumethreshold() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = requestvolumethreshold_;
+  requestvolumethreshold_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::unsafe_arena_release_requestvolumethreshold() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.requestVolumeThreshold)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = requestvolumethreshold_;
+  requestvolumethreshold_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::_internal_mutable_requestvolumethreshold() {
+  
+  if (requestvolumethreshold_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    requestvolumethreshold_ = p;
+  }
+  return requestvolumethreshold_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::mutable_requestvolumethreshold() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_requestvolumethreshold();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.requestVolumeThreshold)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig::set_allocated_requestvolumethreshold(::PROTOBUF_NAMESPACE_ID::UInt32Value* requestvolumethreshold) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(requestvolumethreshold_);
+  }
+  if (requestvolumethreshold) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(requestvolumethreshold));
+    if (message_arena != submessage_arena) {
+      requestvolumethreshold = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, requestvolumethreshold, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  requestvolumethreshold_ = requestvolumethreshold;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.requestVolumeThreshold)
+}
+
+// .google.protobuf.UInt32Value errorRateToPreserved = 3;
+inline bool CbPolicy_ErrRateConfig::_internal_has_errorratetopreserved() const {
+  return this != internal_default_instance() && errorratetopreserved_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig::has_errorratetopreserved() const {
+  return _internal_has_errorratetopreserved();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig::_internal_errorratetopreserved() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = errorratetopreserved_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig::errorratetopreserved() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.errorRateToPreserved)
+  return _internal_errorratetopreserved();
+}
+inline void CbPolicy_ErrRateConfig::unsafe_arena_set_allocated_errorratetopreserved(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetopreserved_);
+  }
+  errorratetopreserved_ = errorratetopreserved;
+  if (errorratetopreserved) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.errorRateToPreserved)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::release_errorratetopreserved() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetopreserved_;
+  errorratetopreserved_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::unsafe_arena_release_errorratetopreserved() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.errorRateToPreserved)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetopreserved_;
+  errorratetopreserved_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::_internal_mutable_errorratetopreserved() {
+  
+  if (errorratetopreserved_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    errorratetopreserved_ = p;
+  }
+  return errorratetopreserved_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::mutable_errorratetopreserved() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_errorratetopreserved();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.errorRateToPreserved)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig::set_allocated_errorratetopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetopreserved) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetopreserved_);
+  }
+  if (errorratetopreserved) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetopreserved));
+    if (message_arena != submessage_arena) {
+      errorratetopreserved = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, errorratetopreserved, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  errorratetopreserved_ = errorratetopreserved;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.errorRateToPreserved)
+}
+
+// .google.protobuf.UInt32Value errorRateToOpen = 4;
+inline bool CbPolicy_ErrRateConfig::_internal_has_errorratetoopen() const {
+  return this != internal_default_instance() && errorratetoopen_ != nullptr;
+}
+inline bool CbPolicy_ErrRateConfig::has_errorratetoopen() const {
+  return _internal_has_errorratetoopen();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig::_internal_errorratetoopen() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = errorratetoopen_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ErrRateConfig::errorratetoopen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.errorRateToOpen)
+  return _internal_errorratetoopen();
+}
+inline void CbPolicy_ErrRateConfig::unsafe_arena_set_allocated_errorratetoopen(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetoopen_);
+  }
+  errorratetoopen_ = errorratetoopen;
+  if (errorratetoopen) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.errorRateToOpen)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::release_errorratetoopen() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetoopen_;
+  errorratetoopen_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::unsafe_arena_release_errorratetoopen() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ErrRateConfig.errorRateToOpen)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = errorratetoopen_;
+  errorratetoopen_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::_internal_mutable_errorratetoopen() {
+  
+  if (errorratetoopen_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    errorratetoopen_ = p;
+  }
+  return errorratetoopen_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ErrRateConfig::mutable_errorratetoopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_errorratetoopen();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.errorRateToOpen)
+  return _msg;
+}
+inline void CbPolicy_ErrRateConfig::set_allocated_errorratetoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* errorratetoopen) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetoopen_);
+  }
+  if (errorratetoopen) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorratetoopen));
+    if (message_arena != submessage_arena) {
+      errorratetoopen = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, errorratetoopen, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  errorratetoopen_ = errorratetoopen;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ErrRateConfig.errorRateToOpen)
+}
+
+// repeated .faulttolerance.CbPolicy.ErrRateConfig.SpecialConfig specials = 5;
+inline int CbPolicy_ErrRateConfig::_internal_specials_size() const {
+  return specials_.size();
+}
+inline int CbPolicy_ErrRateConfig::specials_size() const {
+  return _internal_specials_size();
+}
+inline void CbPolicy_ErrRateConfig::clear_specials() {
+  specials_.Clear();
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* CbPolicy_ErrRateConfig::mutable_specials(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ErrRateConfig.specials)
+  return specials_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig >*
+CbPolicy_ErrRateConfig::mutable_specials() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.CbPolicy.ErrRateConfig.specials)
+  return &specials_;
+}
+inline const ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig& CbPolicy_ErrRateConfig::_internal_specials(int index) const {
+  return specials_.Get(index);
+}
+inline const ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig& CbPolicy_ErrRateConfig::specials(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ErrRateConfig.specials)
+  return _internal_specials(index);
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* CbPolicy_ErrRateConfig::_internal_add_specials() {
+  return specials_.Add();
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* CbPolicy_ErrRateConfig::add_specials() {
+  ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig* _add = _internal_add_specials();
+  // @@protoc_insertion_point(field_add:faulttolerance.CbPolicy.ErrRateConfig.specials)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::CbPolicy_ErrRateConfig_SpecialConfig >&
+CbPolicy_ErrRateConfig::specials() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.CbPolicy.ErrRateConfig.specials)
+  return specials_;
+}
+
+// -------------------------------------------------------------------
+
+// CbPolicy_SlowRateConfig
+
+// .google.protobuf.BoolValue enable = 1;
+inline bool CbPolicy_SlowRateConfig::_internal_has_enable() const {
+  return this != internal_default_instance() && enable_ != nullptr;
+}
+inline bool CbPolicy_SlowRateConfig::has_enable() const {
+  return _internal_has_enable();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& CbPolicy_SlowRateConfig::_internal_enable() const {
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue* p = enable_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::BoolValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_BoolValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& CbPolicy_SlowRateConfig::enable() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.SlowRateConfig.enable)
+  return _internal_enable();
+}
+inline void CbPolicy_SlowRateConfig::unsafe_arena_set_allocated_enable(
+    ::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  enable_ = enable;
+  if (enable) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.enable)
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_SlowRateConfig::release_enable() {
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_SlowRateConfig::unsafe_arena_release_enable() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.SlowRateConfig.enable)
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_SlowRateConfig::_internal_mutable_enable() {
+  
+  if (enable_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::BoolValue>(GetArenaForAllocation());
+    enable_ = p;
+  }
+  return enable_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_SlowRateConfig::mutable_enable() {
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _msg = _internal_mutable_enable();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.SlowRateConfig.enable)
+  return _msg;
+}
+inline void CbPolicy_SlowRateConfig::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  if (enable) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable));
+    if (message_arena != submessage_arena) {
+      enable = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, enable, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  enable_ = enable;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.enable)
+}
+
+// .google.protobuf.Duration maxRt = 2;
+inline bool CbPolicy_SlowRateConfig::_internal_has_maxrt() const {
+  return this != internal_default_instance() && maxrt_ != nullptr;
+}
+inline bool CbPolicy_SlowRateConfig::has_maxrt() const {
+  return _internal_has_maxrt();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& CbPolicy_SlowRateConfig::_internal_maxrt() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = maxrt_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& CbPolicy_SlowRateConfig::maxrt() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.SlowRateConfig.maxRt)
+  return _internal_maxrt();
+}
+inline void CbPolicy_SlowRateConfig::unsafe_arena_set_allocated_maxrt(
+    ::PROTOBUF_NAMESPACE_ID::Duration* maxrt) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxrt_);
+  }
+  maxrt_ = maxrt;
+  if (maxrt) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.maxRt)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy_SlowRateConfig::release_maxrt() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = maxrt_;
+  maxrt_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy_SlowRateConfig::unsafe_arena_release_maxrt() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.SlowRateConfig.maxRt)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = maxrt_;
+  maxrt_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy_SlowRateConfig::_internal_mutable_maxrt() {
+  
+  if (maxrt_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    maxrt_ = p;
+  }
+  return maxrt_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy_SlowRateConfig::mutable_maxrt() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_maxrt();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.SlowRateConfig.maxRt)
+  return _msg;
+}
+inline void CbPolicy_SlowRateConfig::set_allocated_maxrt(::PROTOBUF_NAMESPACE_ID::Duration* maxrt) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxrt_);
+  }
+  if (maxrt) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxrt));
+    if (message_arena != submessage_arena) {
+      maxrt = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, maxrt, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  maxrt_ = maxrt;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.maxRt)
+}
+
+// .google.protobuf.UInt32Value slowRateToPreserved = 3;
+inline bool CbPolicy_SlowRateConfig::_internal_has_slowratetopreserved() const {
+  return this != internal_default_instance() && slowratetopreserved_ != nullptr;
+}
+inline bool CbPolicy_SlowRateConfig::has_slowratetopreserved() const {
+  return _internal_has_slowratetopreserved();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_SlowRateConfig::_internal_slowratetopreserved() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = slowratetopreserved_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_SlowRateConfig::slowratetopreserved() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.SlowRateConfig.slowRateToPreserved)
+  return _internal_slowratetopreserved();
+}
+inline void CbPolicy_SlowRateConfig::unsafe_arena_set_allocated_slowratetopreserved(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetopreserved) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowratetopreserved_);
+  }
+  slowratetopreserved_ = slowratetopreserved;
+  if (slowratetopreserved) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.slowRateToPreserved)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::release_slowratetopreserved() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = slowratetopreserved_;
+  slowratetopreserved_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::unsafe_arena_release_slowratetopreserved() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.SlowRateConfig.slowRateToPreserved)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = slowratetopreserved_;
+  slowratetopreserved_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::_internal_mutable_slowratetopreserved() {
+  
+  if (slowratetopreserved_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    slowratetopreserved_ = p;
+  }
+  return slowratetopreserved_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::mutable_slowratetopreserved() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_slowratetopreserved();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.SlowRateConfig.slowRateToPreserved)
+  return _msg;
+}
+inline void CbPolicy_SlowRateConfig::set_allocated_slowratetopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetopreserved) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowratetopreserved_);
+  }
+  if (slowratetopreserved) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowratetopreserved));
+    if (message_arena != submessage_arena) {
+      slowratetopreserved = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, slowratetopreserved, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  slowratetopreserved_ = slowratetopreserved;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.slowRateToPreserved)
+}
+
+// .google.protobuf.UInt32Value slowRateToOpen = 4;
+inline bool CbPolicy_SlowRateConfig::_internal_has_slowratetoopen() const {
+  return this != internal_default_instance() && slowratetoopen_ != nullptr;
+}
+inline bool CbPolicy_SlowRateConfig::has_slowratetoopen() const {
+  return _internal_has_slowratetoopen();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_SlowRateConfig::_internal_slowratetoopen() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = slowratetoopen_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_SlowRateConfig::slowratetoopen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.SlowRateConfig.slowRateToOpen)
+  return _internal_slowratetoopen();
+}
+inline void CbPolicy_SlowRateConfig::unsafe_arena_set_allocated_slowratetoopen(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetoopen) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowratetoopen_);
+  }
+  slowratetoopen_ = slowratetoopen;
+  if (slowratetoopen) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.slowRateToOpen)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::release_slowratetoopen() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = slowratetoopen_;
+  slowratetoopen_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::unsafe_arena_release_slowratetoopen() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.SlowRateConfig.slowRateToOpen)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = slowratetoopen_;
+  slowratetoopen_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::_internal_mutable_slowratetoopen() {
+  
+  if (slowratetoopen_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    slowratetoopen_ = p;
+  }
+  return slowratetoopen_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_SlowRateConfig::mutable_slowratetoopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_slowratetoopen();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.SlowRateConfig.slowRateToOpen)
+  return _msg;
+}
+inline void CbPolicy_SlowRateConfig::set_allocated_slowratetoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* slowratetoopen) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowratetoopen_);
+  }
+  if (slowratetoopen) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowratetoopen));
+    if (message_arena != submessage_arena) {
+      slowratetoopen = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, slowratetoopen, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  slowratetoopen_ = slowratetoopen;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.SlowRateConfig.slowRateToOpen)
+}
+
+// -------------------------------------------------------------------
+
+// CbPolicy_ConsecutiveErrConfig
+
+// .google.protobuf.BoolValue enable = 1;
+inline bool CbPolicy_ConsecutiveErrConfig::_internal_has_enable() const {
+  return this != internal_default_instance() && enable_ != nullptr;
+}
+inline bool CbPolicy_ConsecutiveErrConfig::has_enable() const {
+  return _internal_has_enable();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& CbPolicy_ConsecutiveErrConfig::_internal_enable() const {
+  const ::PROTOBUF_NAMESPACE_ID::BoolValue* p = enable_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::BoolValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_BoolValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::BoolValue& CbPolicy_ConsecutiveErrConfig::enable() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ConsecutiveErrConfig.enable)
+  return _internal_enable();
+}
+inline void CbPolicy_ConsecutiveErrConfig::unsafe_arena_set_allocated_enable(
+    ::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  enable_ = enable;
+  if (enable) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ConsecutiveErrConfig.enable)
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ConsecutiveErrConfig::release_enable() {
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ConsecutiveErrConfig::unsafe_arena_release_enable() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ConsecutiveErrConfig.enable)
+  
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* temp = enable_;
+  enable_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ConsecutiveErrConfig::_internal_mutable_enable() {
+  
+  if (enable_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::BoolValue>(GetArenaForAllocation());
+    enable_ = p;
+  }
+  return enable_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::BoolValue* CbPolicy_ConsecutiveErrConfig::mutable_enable() {
+  ::PROTOBUF_NAMESPACE_ID::BoolValue* _msg = _internal_mutable_enable();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ConsecutiveErrConfig.enable)
+  return _msg;
+}
+inline void CbPolicy_ConsecutiveErrConfig::set_allocated_enable(::PROTOBUF_NAMESPACE_ID::BoolValue* enable) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable_);
+  }
+  if (enable) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(enable));
+    if (message_arena != submessage_arena) {
+      enable = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, enable, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  enable_ = enable;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ConsecutiveErrConfig.enable)
+}
+
+// .google.protobuf.UInt32Value consecutiveErrorToPreserved = 2;
+inline bool CbPolicy_ConsecutiveErrConfig::_internal_has_consecutiveerrortopreserved() const {
+  return this != internal_default_instance() && consecutiveerrortopreserved_ != nullptr;
+}
+inline bool CbPolicy_ConsecutiveErrConfig::has_consecutiveerrortopreserved() const {
+  return _internal_has_consecutiveerrortopreserved();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ConsecutiveErrConfig::_internal_consecutiveerrortopreserved() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = consecutiveerrortopreserved_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ConsecutiveErrConfig::consecutiveerrortopreserved() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved)
+  return _internal_consecutiveerrortopreserved();
+}
+inline void CbPolicy_ConsecutiveErrConfig::unsafe_arena_set_allocated_consecutiveerrortopreserved(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortopreserved) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutiveerrortopreserved_);
+  }
+  consecutiveerrortopreserved_ = consecutiveerrortopreserved;
+  if (consecutiveerrortopreserved) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::release_consecutiveerrortopreserved() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = consecutiveerrortopreserved_;
+  consecutiveerrortopreserved_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::unsafe_arena_release_consecutiveerrortopreserved() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = consecutiveerrortopreserved_;
+  consecutiveerrortopreserved_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::_internal_mutable_consecutiveerrortopreserved() {
+  
+  if (consecutiveerrortopreserved_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    consecutiveerrortopreserved_ = p;
+  }
+  return consecutiveerrortopreserved_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::mutable_consecutiveerrortopreserved() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_consecutiveerrortopreserved();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved)
+  return _msg;
+}
+inline void CbPolicy_ConsecutiveErrConfig::set_allocated_consecutiveerrortopreserved(::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortopreserved) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutiveerrortopreserved_);
+  }
+  if (consecutiveerrortopreserved) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutiveerrortopreserved));
+    if (message_arena != submessage_arena) {
+      consecutiveerrortopreserved = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, consecutiveerrortopreserved, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  consecutiveerrortopreserved_ = consecutiveerrortopreserved;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved)
+}
+
+// .google.protobuf.UInt32Value consecutiveErrorToOpen = 3;
+inline bool CbPolicy_ConsecutiveErrConfig::_internal_has_consecutiveerrortoopen() const {
+  return this != internal_default_instance() && consecutiveerrortoopen_ != nullptr;
+}
+inline bool CbPolicy_ConsecutiveErrConfig::has_consecutiveerrortoopen() const {
+  return _internal_has_consecutiveerrortoopen();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ConsecutiveErrConfig::_internal_consecutiveerrortoopen() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = consecutiveerrortoopen_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy_ConsecutiveErrConfig::consecutiveerrortoopen() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen)
+  return _internal_consecutiveerrortoopen();
+}
+inline void CbPolicy_ConsecutiveErrConfig::unsafe_arena_set_allocated_consecutiveerrortoopen(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortoopen) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutiveerrortoopen_);
+  }
+  consecutiveerrortoopen_ = consecutiveerrortoopen;
+  if (consecutiveerrortoopen) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::release_consecutiveerrortoopen() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = consecutiveerrortoopen_;
+  consecutiveerrortoopen_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::unsafe_arena_release_consecutiveerrortoopen() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = consecutiveerrortoopen_;
+  consecutiveerrortoopen_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::_internal_mutable_consecutiveerrortoopen() {
+  
+  if (consecutiveerrortoopen_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    consecutiveerrortoopen_ = p;
+  }
+  return consecutiveerrortoopen_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy_ConsecutiveErrConfig::mutable_consecutiveerrortoopen() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_consecutiveerrortoopen();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen)
+  return _msg;
+}
+inline void CbPolicy_ConsecutiveErrConfig::set_allocated_consecutiveerrortoopen(::PROTOBUF_NAMESPACE_ID::UInt32Value* consecutiveerrortoopen) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutiveerrortoopen_);
+  }
+  if (consecutiveerrortoopen) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutiveerrortoopen));
+    if (message_arena != submessage_arena) {
+      consecutiveerrortoopen = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, consecutiveerrortoopen, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  consecutiveerrortoopen_ = consecutiveerrortoopen;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen)
+}
+
+// -------------------------------------------------------------------
+
+// CbPolicy
+
+// .faulttolerance.CbPolicy.ErrRateConfig errorRate = 1;
+inline bool CbPolicy::_internal_has_errorrate() const {
+  return this != internal_default_instance() && errorrate_ != nullptr;
+}
+inline bool CbPolicy::has_errorrate() const {
+  return _internal_has_errorrate();
+}
+inline void CbPolicy::clear_errorrate() {
+  if (GetArenaForAllocation() == nullptr && errorrate_ != nullptr) {
+    delete errorrate_;
+  }
+  errorrate_ = nullptr;
+}
+inline const ::faulttolerance::CbPolicy_ErrRateConfig& CbPolicy::_internal_errorrate() const {
+  const ::faulttolerance::CbPolicy_ErrRateConfig* p = errorrate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::faulttolerance::CbPolicy_ErrRateConfig&>(
+      ::faulttolerance::_CbPolicy_ErrRateConfig_default_instance_);
+}
+inline const ::faulttolerance::CbPolicy_ErrRateConfig& CbPolicy::errorrate() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.errorRate)
+  return _internal_errorrate();
+}
+inline void CbPolicy::unsafe_arena_set_allocated_errorrate(
+    ::faulttolerance::CbPolicy_ErrRateConfig* errorrate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(errorrate_);
+  }
+  errorrate_ = errorrate;
+  if (errorrate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.errorRate)
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig* CbPolicy::release_errorrate() {
+  
+  ::faulttolerance::CbPolicy_ErrRateConfig* temp = errorrate_;
+  errorrate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig* CbPolicy::unsafe_arena_release_errorrate() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.errorRate)
+  
+  ::faulttolerance::CbPolicy_ErrRateConfig* temp = errorrate_;
+  errorrate_ = nullptr;
+  return temp;
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig* CbPolicy::_internal_mutable_errorrate() {
+  
+  if (errorrate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::faulttolerance::CbPolicy_ErrRateConfig>(GetArenaForAllocation());
+    errorrate_ = p;
+  }
+  return errorrate_;
+}
+inline ::faulttolerance::CbPolicy_ErrRateConfig* CbPolicy::mutable_errorrate() {
+  ::faulttolerance::CbPolicy_ErrRateConfig* _msg = _internal_mutable_errorrate();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.errorRate)
+  return _msg;
+}
+inline void CbPolicy::set_allocated_errorrate(::faulttolerance::CbPolicy_ErrRateConfig* errorrate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete errorrate_;
+  }
+  if (errorrate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(errorrate);
+    if (message_arena != submessage_arena) {
+      errorrate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, errorrate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  errorrate_ = errorrate;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.errorRate)
+}
+
+// .faulttolerance.CbPolicy.SlowRateConfig slowRate = 2;
+inline bool CbPolicy::_internal_has_slowrate() const {
+  return this != internal_default_instance() && slowrate_ != nullptr;
+}
+inline bool CbPolicy::has_slowrate() const {
+  return _internal_has_slowrate();
+}
+inline void CbPolicy::clear_slowrate() {
+  if (GetArenaForAllocation() == nullptr && slowrate_ != nullptr) {
+    delete slowrate_;
+  }
+  slowrate_ = nullptr;
+}
+inline const ::faulttolerance::CbPolicy_SlowRateConfig& CbPolicy::_internal_slowrate() const {
+  const ::faulttolerance::CbPolicy_SlowRateConfig* p = slowrate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::faulttolerance::CbPolicy_SlowRateConfig&>(
+      ::faulttolerance::_CbPolicy_SlowRateConfig_default_instance_);
+}
+inline const ::faulttolerance::CbPolicy_SlowRateConfig& CbPolicy::slowrate() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.slowRate)
+  return _internal_slowrate();
+}
+inline void CbPolicy::unsafe_arena_set_allocated_slowrate(
+    ::faulttolerance::CbPolicy_SlowRateConfig* slowrate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(slowrate_);
+  }
+  slowrate_ = slowrate;
+  if (slowrate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.slowRate)
+}
+inline ::faulttolerance::CbPolicy_SlowRateConfig* CbPolicy::release_slowrate() {
+  
+  ::faulttolerance::CbPolicy_SlowRateConfig* temp = slowrate_;
+  slowrate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::faulttolerance::CbPolicy_SlowRateConfig* CbPolicy::unsafe_arena_release_slowrate() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.slowRate)
+  
+  ::faulttolerance::CbPolicy_SlowRateConfig* temp = slowrate_;
+  slowrate_ = nullptr;
+  return temp;
+}
+inline ::faulttolerance::CbPolicy_SlowRateConfig* CbPolicy::_internal_mutable_slowrate() {
+  
+  if (slowrate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::faulttolerance::CbPolicy_SlowRateConfig>(GetArenaForAllocation());
+    slowrate_ = p;
+  }
+  return slowrate_;
+}
+inline ::faulttolerance::CbPolicy_SlowRateConfig* CbPolicy::mutable_slowrate() {
+  ::faulttolerance::CbPolicy_SlowRateConfig* _msg = _internal_mutable_slowrate();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.slowRate)
+  return _msg;
+}
+inline void CbPolicy::set_allocated_slowrate(::faulttolerance::CbPolicy_SlowRateConfig* slowrate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete slowrate_;
+  }
+  if (slowrate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(slowrate);
+    if (message_arena != submessage_arena) {
+      slowrate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, slowrate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  slowrate_ = slowrate;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.slowRate)
+}
+
+// .google.protobuf.Duration judgeDuration = 3;
+inline bool CbPolicy::_internal_has_judgeduration() const {
+  return this != internal_default_instance() && judgeduration_ != nullptr;
+}
+inline bool CbPolicy::has_judgeduration() const {
+  return _internal_has_judgeduration();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& CbPolicy::_internal_judgeduration() const {
+  const ::PROTOBUF_NAMESPACE_ID::Duration* p = judgeduration_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Duration&>(
+      ::PROTOBUF_NAMESPACE_ID::_Duration_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Duration& CbPolicy::judgeduration() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.judgeDuration)
+  return _internal_judgeduration();
+}
+inline void CbPolicy::unsafe_arena_set_allocated_judgeduration(
+    ::PROTOBUF_NAMESPACE_ID::Duration* judgeduration) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(judgeduration_);
+  }
+  judgeduration_ = judgeduration;
+  if (judgeduration) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.judgeDuration)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy::release_judgeduration() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = judgeduration_;
+  judgeduration_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy::unsafe_arena_release_judgeduration() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.judgeDuration)
+  
+  ::PROTOBUF_NAMESPACE_ID::Duration* temp = judgeduration_;
+  judgeduration_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy::_internal_mutable_judgeduration() {
+  
+  if (judgeduration_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Duration>(GetArenaForAllocation());
+    judgeduration_ = p;
+  }
+  return judgeduration_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Duration* CbPolicy::mutable_judgeduration() {
+  ::PROTOBUF_NAMESPACE_ID::Duration* _msg = _internal_mutable_judgeduration();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.judgeDuration)
+  return _msg;
+}
+inline void CbPolicy::set_allocated_judgeduration(::PROTOBUF_NAMESPACE_ID::Duration* judgeduration) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(judgeduration_);
+  }
+  if (judgeduration) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(judgeduration));
+    if (message_arena != submessage_arena) {
+      judgeduration = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, judgeduration, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  judgeduration_ = judgeduration;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.judgeDuration)
+}
+
+// .google.protobuf.UInt32Value maxEjectionPercent = 4;
+inline bool CbPolicy::_internal_has_maxejectionpercent() const {
+  return this != internal_default_instance() && maxejectionpercent_ != nullptr;
+}
+inline bool CbPolicy::has_maxejectionpercent() const {
+  return _internal_has_maxejectionpercent();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy::_internal_maxejectionpercent() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt32Value* p = maxejectionpercent_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt32Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt32Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt32Value& CbPolicy::maxejectionpercent() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.maxEjectionPercent)
+  return _internal_maxejectionpercent();
+}
+inline void CbPolicy::unsafe_arena_set_allocated_maxejectionpercent(
+    ::PROTOBUF_NAMESPACE_ID::UInt32Value* maxejectionpercent) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxejectionpercent_);
+  }
+  maxejectionpercent_ = maxejectionpercent;
+  if (maxejectionpercent) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.maxEjectionPercent)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy::release_maxejectionpercent() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = maxejectionpercent_;
+  maxejectionpercent_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy::unsafe_arena_release_maxejectionpercent() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.maxEjectionPercent)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* temp = maxejectionpercent_;
+  maxejectionpercent_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy::_internal_mutable_maxejectionpercent() {
+  
+  if (maxejectionpercent_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt32Value>(GetArenaForAllocation());
+    maxejectionpercent_ = p;
+  }
+  return maxejectionpercent_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt32Value* CbPolicy::mutable_maxejectionpercent() {
+  ::PROTOBUF_NAMESPACE_ID::UInt32Value* _msg = _internal_mutable_maxejectionpercent();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.maxEjectionPercent)
+  return _msg;
+}
+inline void CbPolicy::set_allocated_maxejectionpercent(::PROTOBUF_NAMESPACE_ID::UInt32Value* maxejectionpercent) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxejectionpercent_);
+  }
+  if (maxejectionpercent) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(maxejectionpercent));
+    if (message_arena != submessage_arena) {
+      maxejectionpercent = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, maxejectionpercent, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  maxejectionpercent_ = maxejectionpercent;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.maxEjectionPercent)
+}
+
+// .faulttolerance.CbPolicy.ConsecutiveErrConfig consecutive = 5;
+inline bool CbPolicy::_internal_has_consecutive() const {
+  return this != internal_default_instance() && consecutive_ != nullptr;
+}
+inline bool CbPolicy::has_consecutive() const {
+  return _internal_has_consecutive();
+}
+inline void CbPolicy::clear_consecutive() {
+  if (GetArenaForAllocation() == nullptr && consecutive_ != nullptr) {
+    delete consecutive_;
+  }
+  consecutive_ = nullptr;
+}
+inline const ::faulttolerance::CbPolicy_ConsecutiveErrConfig& CbPolicy::_internal_consecutive() const {
+  const ::faulttolerance::CbPolicy_ConsecutiveErrConfig* p = consecutive_;
+  return p != nullptr ? *p : reinterpret_cast<const ::faulttolerance::CbPolicy_ConsecutiveErrConfig&>(
+      ::faulttolerance::_CbPolicy_ConsecutiveErrConfig_default_instance_);
+}
+inline const ::faulttolerance::CbPolicy_ConsecutiveErrConfig& CbPolicy::consecutive() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbPolicy.consecutive)
+  return _internal_consecutive();
+}
+inline void CbPolicy::unsafe_arena_set_allocated_consecutive(
+    ::faulttolerance::CbPolicy_ConsecutiveErrConfig* consecutive) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(consecutive_);
+  }
+  consecutive_ = consecutive;
+  if (consecutive) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.CbPolicy.consecutive)
+}
+inline ::faulttolerance::CbPolicy_ConsecutiveErrConfig* CbPolicy::release_consecutive() {
+  
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* temp = consecutive_;
+  consecutive_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::faulttolerance::CbPolicy_ConsecutiveErrConfig* CbPolicy::unsafe_arena_release_consecutive() {
+  // @@protoc_insertion_point(field_release:faulttolerance.CbPolicy.consecutive)
+  
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* temp = consecutive_;
+  consecutive_ = nullptr;
+  return temp;
+}
+inline ::faulttolerance::CbPolicy_ConsecutiveErrConfig* CbPolicy::_internal_mutable_consecutive() {
+  
+  if (consecutive_ == nullptr) {
+    auto* p = CreateMaybeMessage<::faulttolerance::CbPolicy_ConsecutiveErrConfig>(GetArenaForAllocation());
+    consecutive_ = p;
+  }
+  return consecutive_;
+}
+inline ::faulttolerance::CbPolicy_ConsecutiveErrConfig* CbPolicy::mutable_consecutive() {
+  ::faulttolerance::CbPolicy_ConsecutiveErrConfig* _msg = _internal_mutable_consecutive();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbPolicy.consecutive)
+  return _msg;
+}
+inline void CbPolicy::set_allocated_consecutive(::faulttolerance::CbPolicy_ConsecutiveErrConfig* consecutive) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete consecutive_;
+  }
+  if (consecutive) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(consecutive);
+    if (message_arena != submessage_arena) {
+      consecutive = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, consecutive, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  consecutive_ = consecutive;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.CbPolicy.consecutive)
+}
+
+// -------------------------------------------------------------------
+
+// DestinationSet
+
+// .google.protobuf.StringValue service = 1;
+inline bool DestinationSet::_internal_has_service() const {
+  return this != internal_default_instance() && service_ != nullptr;
+}
+inline bool DestinationSet::has_service() const {
+  return _internal_has_service();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& DestinationSet::_internal_service() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = service_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& DestinationSet::service() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.DestinationSet.service)
+  return _internal_service();
+}
+inline void DestinationSet::unsafe_arena_set_allocated_service(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  service_ = service;
+  if (service) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.DestinationSet.service)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::release_service() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::unsafe_arena_release_service() {
+  // @@protoc_insertion_point(field_release:faulttolerance.DestinationSet.service)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = service_;
+  service_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::_internal_mutable_service() {
+  
+  if (service_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    service_ = p;
+  }
+  return service_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::mutable_service() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_service();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.DestinationSet.service)
+  return _msg;
+}
+inline void DestinationSet::set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringValue* service) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(service_);
+  }
+  if (service) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(service));
+    if (message_arena != submessage_arena) {
+      service = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, service, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  service_ = service;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.DestinationSet.service)
+}
+
+// .google.protobuf.StringValue namespace = 2;
+inline bool DestinationSet::_internal_has_namespace_() const {
+  return this != internal_default_instance() && namespace__ != nullptr;
+}
+inline bool DestinationSet::has_namespace_() const {
+  return _internal_has_namespace_();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& DestinationSet::_internal_namespace_() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = namespace__;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& DestinationSet::namespace_() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.DestinationSet.namespace)
+  return _internal_namespace_();
+}
+inline void DestinationSet::unsafe_arena_set_allocated_namespace_(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
+  }
+  namespace__ = namespace_;
+  if (namespace_) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.DestinationSet.namespace)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::release_namespace_() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::unsafe_arena_release_namespace_() {
+  // @@protoc_insertion_point(field_release:faulttolerance.DestinationSet.namespace)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = namespace__;
+  namespace__ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::_internal_mutable_namespace_() {
+  
+  if (namespace__ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    namespace__ = p;
+  }
+  return namespace__;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* DestinationSet::mutable_namespace_() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_namespace_();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.DestinationSet.namespace)
+  return _msg;
+}
+inline void DestinationSet::set_allocated_namespace_(::PROTOBUF_NAMESPACE_ID::StringValue* namespace_) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace__);
+  }
+  if (namespace_) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(namespace_));
+    if (message_arena != submessage_arena) {
+      namespace_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, namespace_, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  namespace__ = namespace_;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.DestinationSet.namespace)
+}
+
+// .faulttolerance.DestinationSet.Resource resource = 4;
+inline void DestinationSet::clear_resource() {
+  resource_ = 0;
+}
+inline ::faulttolerance::DestinationSet_Resource DestinationSet::_internal_resource() const {
+  return static_cast< ::faulttolerance::DestinationSet_Resource >(resource_);
+}
+inline ::faulttolerance::DestinationSet_Resource DestinationSet::resource() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.DestinationSet.resource)
+  return _internal_resource();
+}
+inline void DestinationSet::_internal_set_resource(::faulttolerance::DestinationSet_Resource value) {
+  
+  resource_ = value;
+}
+inline void DestinationSet::set_resource(::faulttolerance::DestinationSet_Resource value) {
+  _internal_set_resource(value);
+  // @@protoc_insertion_point(field_set:faulttolerance.DestinationSet.resource)
+}
+
+// .faulttolerance.RecoverConfig recover = 10;
+inline bool DestinationSet::_internal_has_recover() const {
+  return this != internal_default_instance() && recover_ != nullptr;
+}
+inline bool DestinationSet::has_recover() const {
+  return _internal_has_recover();
+}
+inline void DestinationSet::clear_recover() {
+  if (GetArenaForAllocation() == nullptr && recover_ != nullptr) {
+    delete recover_;
+  }
+  recover_ = nullptr;
+}
+inline const ::faulttolerance::RecoverConfig& DestinationSet::_internal_recover() const {
+  const ::faulttolerance::RecoverConfig* p = recover_;
+  return p != nullptr ? *p : reinterpret_cast<const ::faulttolerance::RecoverConfig&>(
+      ::faulttolerance::_RecoverConfig_default_instance_);
+}
+inline const ::faulttolerance::RecoverConfig& DestinationSet::recover() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.DestinationSet.recover)
+  return _internal_recover();
+}
+inline void DestinationSet::unsafe_arena_set_allocated_recover(
+    ::faulttolerance::RecoverConfig* recover) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(recover_);
+  }
+  recover_ = recover;
+  if (recover) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.DestinationSet.recover)
+}
+inline ::faulttolerance::RecoverConfig* DestinationSet::release_recover() {
+  
+  ::faulttolerance::RecoverConfig* temp = recover_;
+  recover_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::faulttolerance::RecoverConfig* DestinationSet::unsafe_arena_release_recover() {
+  // @@protoc_insertion_point(field_release:faulttolerance.DestinationSet.recover)
+  
+  ::faulttolerance::RecoverConfig* temp = recover_;
+  recover_ = nullptr;
+  return temp;
+}
+inline ::faulttolerance::RecoverConfig* DestinationSet::_internal_mutable_recover() {
+  
+  if (recover_ == nullptr) {
+    auto* p = CreateMaybeMessage<::faulttolerance::RecoverConfig>(GetArenaForAllocation());
+    recover_ = p;
+  }
+  return recover_;
+}
+inline ::faulttolerance::RecoverConfig* DestinationSet::mutable_recover() {
+  ::faulttolerance::RecoverConfig* _msg = _internal_mutable_recover();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.DestinationSet.recover)
+  return _msg;
+}
+inline void DestinationSet::set_allocated_recover(::faulttolerance::RecoverConfig* recover) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete recover_;
+  }
+  if (recover) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(recover);
+    if (message_arena != submessage_arena) {
+      recover = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, recover, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  recover_ = recover;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.DestinationSet.recover)
+}
+
+// .faulttolerance.CbPolicy policy = 11;
+inline bool DestinationSet::_internal_has_policy() const {
+  return this != internal_default_instance() && policy_ != nullptr;
+}
+inline bool DestinationSet::has_policy() const {
+  return _internal_has_policy();
+}
+inline void DestinationSet::clear_policy() {
+  if (GetArenaForAllocation() == nullptr && policy_ != nullptr) {
+    delete policy_;
+  }
+  policy_ = nullptr;
+}
+inline const ::faulttolerance::CbPolicy& DestinationSet::_internal_policy() const {
+  const ::faulttolerance::CbPolicy* p = policy_;
+  return p != nullptr ? *p : reinterpret_cast<const ::faulttolerance::CbPolicy&>(
+      ::faulttolerance::_CbPolicy_default_instance_);
+}
+inline const ::faulttolerance::CbPolicy& DestinationSet::policy() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.DestinationSet.policy)
+  return _internal_policy();
+}
+inline void DestinationSet::unsafe_arena_set_allocated_policy(
+    ::faulttolerance::CbPolicy* policy) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(policy_);
+  }
+  policy_ = policy;
+  if (policy) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.DestinationSet.policy)
+}
+inline ::faulttolerance::CbPolicy* DestinationSet::release_policy() {
+  
+  ::faulttolerance::CbPolicy* temp = policy_;
+  policy_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::faulttolerance::CbPolicy* DestinationSet::unsafe_arena_release_policy() {
+  // @@protoc_insertion_point(field_release:faulttolerance.DestinationSet.policy)
+  
+  ::faulttolerance::CbPolicy* temp = policy_;
+  policy_ = nullptr;
+  return temp;
+}
+inline ::faulttolerance::CbPolicy* DestinationSet::_internal_mutable_policy() {
+  
+  if (policy_ == nullptr) {
+    auto* p = CreateMaybeMessage<::faulttolerance::CbPolicy>(GetArenaForAllocation());
+    policy_ = p;
+  }
+  return policy_;
+}
+inline ::faulttolerance::CbPolicy* DestinationSet::mutable_policy() {
+  ::faulttolerance::CbPolicy* _msg = _internal_mutable_policy();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.DestinationSet.policy)
+  return _msg;
+}
+inline void DestinationSet::set_allocated_policy(::faulttolerance::CbPolicy* policy) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete policy_;
+  }
+  if (policy) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(policy);
+    if (message_arena != submessage_arena) {
+      policy = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, policy, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  policy_ = policy;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.DestinationSet.policy)
+}
+
+// .faulttolerance.MatchString method = 12;
+inline bool DestinationSet::_internal_has_method() const {
+  return this != internal_default_instance() && method_ != nullptr;
+}
+inline bool DestinationSet::has_method() const {
+  return _internal_has_method();
+}
+inline void DestinationSet::clear_method() {
+  if (GetArenaForAllocation() == nullptr && method_ != nullptr) {
+    delete method_;
+  }
+  method_ = nullptr;
+}
+inline const ::faulttolerance::MatchString& DestinationSet::_internal_method() const {
+  const ::faulttolerance::MatchString* p = method_;
+  return p != nullptr ? *p : reinterpret_cast<const ::faulttolerance::MatchString&>(
+      ::faulttolerance::_MatchString_default_instance_);
+}
+inline const ::faulttolerance::MatchString& DestinationSet::method() const {
+  // @@protoc_insertion_point(field_get:faulttolerance.DestinationSet.method)
+  return _internal_method();
+}
+inline void DestinationSet::unsafe_arena_set_allocated_method(
+    ::faulttolerance::MatchString* method) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(method_);
+  }
+  method_ = method;
+  if (method) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:faulttolerance.DestinationSet.method)
+}
+inline ::faulttolerance::MatchString* DestinationSet::release_method() {
+  
+  ::faulttolerance::MatchString* temp = method_;
+  method_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::faulttolerance::MatchString* DestinationSet::unsafe_arena_release_method() {
+  // @@protoc_insertion_point(field_release:faulttolerance.DestinationSet.method)
+  
+  ::faulttolerance::MatchString* temp = method_;
+  method_ = nullptr;
+  return temp;
+}
+inline ::faulttolerance::MatchString* DestinationSet::_internal_mutable_method() {
+  
+  if (method_ == nullptr) {
+    auto* p = CreateMaybeMessage<::faulttolerance::MatchString>(GetArenaForAllocation());
+    method_ = p;
+  }
+  return method_;
+}
+inline ::faulttolerance::MatchString* DestinationSet::mutable_method() {
+  ::faulttolerance::MatchString* _msg = _internal_mutable_method();
+  // @@protoc_insertion_point(field_mutable:faulttolerance.DestinationSet.method)
+  return _msg;
+}
+inline void DestinationSet::set_allocated_method(::faulttolerance::MatchString* method) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete method_;
+  }
+  if (method) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(method);
+    if (message_arena != submessage_arena) {
+      method = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, method, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  method_ = method;
+  // @@protoc_insertion_point(field_set_allocated:faulttolerance.DestinationSet.method)
+}
+
+// -------------------------------------------------------------------
+
+// CbRule
+
+// repeated .faulttolerance.SourceMatcher sources = 1;
+inline int CbRule::_internal_sources_size() const {
+  return sources_.size();
+}
+inline int CbRule::sources_size() const {
+  return _internal_sources_size();
+}
+inline void CbRule::clear_sources() {
+  sources_.Clear();
+}
+inline ::faulttolerance::SourceMatcher* CbRule::mutable_sources(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbRule.sources)
+  return sources_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::SourceMatcher >*
+CbRule::mutable_sources() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.CbRule.sources)
+  return &sources_;
+}
+inline const ::faulttolerance::SourceMatcher& CbRule::_internal_sources(int index) const {
+  return sources_.Get(index);
+}
+inline const ::faulttolerance::SourceMatcher& CbRule::sources(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbRule.sources)
+  return _internal_sources(index);
+}
+inline ::faulttolerance::SourceMatcher* CbRule::_internal_add_sources() {
+  return sources_.Add();
+}
+inline ::faulttolerance::SourceMatcher* CbRule::add_sources() {
+  ::faulttolerance::SourceMatcher* _add = _internal_add_sources();
+  // @@protoc_insertion_point(field_add:faulttolerance.CbRule.sources)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::SourceMatcher >&
+CbRule::sources() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.CbRule.sources)
+  return sources_;
+}
+
+// repeated .faulttolerance.DestinationSet destinations = 2;
+inline int CbRule::_internal_destinations_size() const {
+  return destinations_.size();
+}
+inline int CbRule::destinations_size() const {
+  return _internal_destinations_size();
+}
+inline void CbRule::clear_destinations() {
+  destinations_.Clear();
+}
+inline ::faulttolerance::DestinationSet* CbRule::mutable_destinations(int index) {
+  // @@protoc_insertion_point(field_mutable:faulttolerance.CbRule.destinations)
+  return destinations_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::DestinationSet >*
+CbRule::mutable_destinations() {
+  // @@protoc_insertion_point(field_mutable_list:faulttolerance.CbRule.destinations)
+  return &destinations_;
+}
+inline const ::faulttolerance::DestinationSet& CbRule::_internal_destinations(int index) const {
+  return destinations_.Get(index);
+}
+inline const ::faulttolerance::DestinationSet& CbRule::destinations(int index) const {
+  // @@protoc_insertion_point(field_get:faulttolerance.CbRule.destinations)
+  return _internal_destinations(index);
+}
+inline ::faulttolerance::DestinationSet* CbRule::_internal_add_destinations() {
+  return destinations_.Add();
+}
+inline ::faulttolerance::DestinationSet* CbRule::add_destinations() {
+  ::faulttolerance::DestinationSet* _add = _internal_add_destinations();
+  // @@protoc_insertion_point(field_add:faulttolerance.CbRule.destinations)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::faulttolerance::DestinationSet >&
+CbRule::destinations() const {
+  // @@protoc_insertion_point(field_list:faulttolerance.CbRule.destinations)
+  return destinations_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace faulttolerance
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::faulttolerance::MatchString_MatchStringType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::faulttolerance::MatchString_MatchStringType>() {
+  return ::faulttolerance::MatchString_MatchStringType_descriptor();
+}
+template <> struct is_proto_enum< ::faulttolerance::MatchString_ValueType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::faulttolerance::MatchString_ValueType>() {
+  return ::faulttolerance::MatchString_ValueType_descriptor();
+}
+template <> struct is_proto_enum< ::faulttolerance::RecoverConfig_OutlierDetectWhen> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::faulttolerance::RecoverConfig_OutlierDetectWhen>() {
+  return ::faulttolerance::RecoverConfig_OutlierDetectWhen_descriptor();
+}
+template <> struct is_proto_enum< ::faulttolerance::DestinationSet_Resource> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::faulttolerance::DestinationSet_Resource>() {
+  return ::faulttolerance::DestinationSet_Resource_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

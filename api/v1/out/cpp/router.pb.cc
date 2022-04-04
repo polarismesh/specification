@@ -21,22 +21,33 @@ namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
 namespace trafficcontrol {
-PROTOBUF_CONSTEXPR RouteConfiguration::RouteConfiguration(
+PROTOBUF_CONSTEXPR Routing::Routing(
     ::_pbi::ConstantInitialized)
-  : routers_(){}
-struct RouteConfigurationDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RouteConfigurationDefaultTypeInternal()
+  : inbounds_()
+  , outbounds_()
+  , routers_()
+  , namespace__(nullptr)
+  , service_(nullptr)
+  , ctime_(nullptr)
+  , mtime_(nullptr)
+  , revision_(nullptr)
+  , service_token_(nullptr)
+  , id_(nullptr)
+  , failover_(nullptr){}
+struct RoutingDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RoutingDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RouteConfigurationDefaultTypeInternal() {}
+  ~RoutingDefaultTypeInternal() {}
   union {
-    RouteConfiguration _instance;
+    Routing _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RouteConfigurationDefaultTypeInternal _RouteConfiguration_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RoutingDefaultTypeInternal _Routing_default_instance_;
 PROTOBUF_CONSTEXPR Router::Router(
     ::_pbi::ConstantInitialized)
-  : routing_(nullptr)
-  , type_(0)
+  : enable_(nullptr)
+  , routing_config_(nullptr)
+  , routing_policy_(0)
 {}
 struct RouterDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RouterDefaultTypeInternal()
@@ -77,37 +88,34 @@ struct LocalityDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocalityDefaultTypeInternal _Locality_default_instance_;
-PROTOBUF_CONSTEXPR DegradeConfig::DegradeConfig(
+PROTOBUF_CONSTEXPR FailoverConfig::FailoverConfig(
     ::_pbi::ConstantInitialized)
   : enable_(nullptr)
   , total_count_(nullptr)
   , healthy_count_(nullptr)
   , healthy_percent_(nullptr){}
-struct DegradeConfigDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR DegradeConfigDefaultTypeInternal()
+struct FailoverConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR FailoverConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~DegradeConfigDefaultTypeInternal() {}
+  ~FailoverConfigDefaultTypeInternal() {}
   union {
-    DegradeConfig _instance;
+    FailoverConfig _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DegradeConfigDefaultTypeInternal _DegradeConfig_default_instance_;
-PROTOBUF_CONSTEXPR RuleRouting::RuleRouting(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FailoverConfigDefaultTypeInternal _FailoverConfig_default_instance_;
+PROTOBUF_CONSTEXPR RuleRoutingConfig::RuleRoutingConfig(
     ::_pbi::ConstantInitialized)
   : inbounds_()
-  , outbounds_()
-  , namespace__(nullptr)
-  , service_(nullptr)
-  , degrade_(nullptr){}
-struct RuleRoutingDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR RuleRoutingDefaultTypeInternal()
+  , outbounds_(){}
+struct RuleRoutingConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR RuleRoutingConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~RuleRoutingDefaultTypeInternal() {}
+  ~RuleRoutingConfigDefaultTypeInternal() {}
   union {
-    RuleRouting _instance;
+    RuleRoutingConfig _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleRoutingDefaultTypeInternal _RuleRouting_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RuleRoutingConfigDefaultTypeInternal _RuleRoutingConfig_default_instance_;
 PROTOBUF_CONSTEXPR Route::Route(
     ::_pbi::ConstantInitialized)
   : sources_()
@@ -177,82 +185,66 @@ struct DestinationDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DestinationDefaultTypeInternal _Destination_default_instance_;
-PROTOBUF_CONSTEXPR LocalityRouting::LocalityRouting(
+PROTOBUF_CONSTEXPR LocalityRoutingConfig::LocalityRoutingConfig(
     ::_pbi::ConstantInitialized)
-  : degrade_(nullptr)
-  , startinglevel_(0)
+  : locality_level_(0)
 
-  , maxdegradelevel_(0)
+  , max_locality_level_(0)
 {}
-struct LocalityRoutingDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR LocalityRoutingDefaultTypeInternal()
+struct LocalityRoutingConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LocalityRoutingConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~LocalityRoutingDefaultTypeInternal() {}
+  ~LocalityRoutingConfigDefaultTypeInternal() {}
   union {
-    LocalityRouting _instance;
+    LocalityRoutingConfig _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocalityRoutingDefaultTypeInternal _LocalityRouting_default_instance_;
-PROTOBUF_CONSTEXPR MetadataRouting::MetadataRouting(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LocalityRoutingConfigDefaultTypeInternal _LocalityRoutingConfig_default_instance_;
+PROTOBUF_CONSTEXPR MetadataRoutingConfig::MetadataRoutingConfig(
     ::_pbi::ConstantInitialized)
-  : degrade_(nullptr)
-  , degrade_level_(0)
+  : failover_range_(0)
 {}
-struct MetadataRoutingDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR MetadataRoutingDefaultTypeInternal()
+struct MetadataRoutingConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MetadataRoutingConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~MetadataRoutingDefaultTypeInternal() {}
+  ~MetadataRoutingConfigDefaultTypeInternal() {}
   union {
-    MetadataRouting _instance;
+    MetadataRoutingConfig _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetadataRoutingDefaultTypeInternal _MetadataRouting_default_instance_;
-PROTOBUF_CONSTEXPR CanaryRouting::CanaryRouting(
-    ::_pbi::ConstantInitialized)
-  : degrade_(nullptr)
-  , degrade_level_(0)
-{}
-struct CanaryRoutingDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR CanaryRoutingDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~CanaryRoutingDefaultTypeInternal() {}
-  union {
-    CanaryRouting _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CanaryRoutingDefaultTypeInternal _CanaryRouting_default_instance_;
-PROTOBUF_CONSTEXPR SetRouting::SetRouting(
-    ::_pbi::ConstantInitialized){}
-struct SetRoutingDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SetRoutingDefaultTypeInternal()
-      : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SetRoutingDefaultTypeInternal() {}
-  union {
-    SetRouting _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SetRoutingDefaultTypeInternal _SetRouting_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MetadataRoutingConfigDefaultTypeInternal _MetadataRoutingConfig_default_instance_;
 }  // namespace trafficcontrol
-static ::_pb::Metadata file_level_metadata_router_2eproto[15];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_router_2eproto[6];
+static ::_pb::Metadata file_level_metadata_router_2eproto[13];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_router_2eproto[5];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_router_2eproto = nullptr;
 
 const uint32_t TableStruct_router_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RouteConfiguration, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RouteConfiguration, routers_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, namespace__),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, service_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, inbounds_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, outbounds_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, ctime_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, mtime_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, revision_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, service_token_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, id_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, routers_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Routing, failover_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::Router, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Router, type_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Router, routing_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Router, enable_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Router, routing_policy_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::Router, routing_config_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::MatchString, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -272,26 +264,23 @@ const uint32_t TableStruct_router_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::Locality, zone_),
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::Locality, campus_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::DegradeConfig, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::FailoverConfig, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::DegradeConfig, enable_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::DegradeConfig, total_count_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::DegradeConfig, healthy_count_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::DegradeConfig, healthy_percent_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::FailoverConfig, enable_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::FailoverConfig, total_count_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::FailoverConfig, healthy_count_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::FailoverConfig, healthy_percent_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRouting, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRoutingConfig, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRouting, namespace__),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRouting, service_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRouting, inbounds_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRouting, outbounds_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRouting, degrade_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRoutingConfig, inbounds_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::RuleRoutingConfig, outbounds_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::Route, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -345,145 +334,129 @@ const uint32_t TableStruct_router_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(p
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::Destination, isolate_),
   PROTOBUF_FIELD_OFFSET(::trafficcontrol::Destination, locality_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRouting, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRoutingConfig, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRouting, startinglevel_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRouting, maxdegradelevel_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRouting, degrade_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRoutingConfig, locality_level_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::LocalityRoutingConfig, max_locality_level_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::MetadataRouting, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::MetadataRoutingConfig, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::MetadataRouting, degrade_level_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::MetadataRouting, degrade_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::CanaryRouting, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::CanaryRouting, degrade_level_),
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::CanaryRouting, degrade_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::trafficcontrol::SetRouting, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::trafficcontrol::MetadataRoutingConfig, failover_range_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::trafficcontrol::RouteConfiguration)},
-  { 7, -1, -1, sizeof(::trafficcontrol::Router)},
-  { 15, -1, -1, sizeof(::trafficcontrol::MatchString)},
-  { 24, -1, -1, sizeof(::trafficcontrol::Locality)},
-  { 33, -1, -1, sizeof(::trafficcontrol::DegradeConfig)},
-  { 43, -1, -1, sizeof(::trafficcontrol::RuleRouting)},
-  { 54, -1, -1, sizeof(::trafficcontrol::Route)},
-  { 62, 70, -1, sizeof(::trafficcontrol::Source_MetadataEntry_DoNotUse)},
-  { 72, -1, -1, sizeof(::trafficcontrol::Source)},
-  { 82, 90, -1, sizeof(::trafficcontrol::Destination_MetadataEntry_DoNotUse)},
-  { 92, -1, -1, sizeof(::trafficcontrol::Destination)},
-  { 106, -1, -1, sizeof(::trafficcontrol::LocalityRouting)},
-  { 115, -1, -1, sizeof(::trafficcontrol::MetadataRouting)},
-  { 123, -1, -1, sizeof(::trafficcontrol::CanaryRouting)},
-  { 131, -1, -1, sizeof(::trafficcontrol::SetRouting)},
+  { 0, -1, -1, sizeof(::trafficcontrol::Routing)},
+  { 17, -1, -1, sizeof(::trafficcontrol::Router)},
+  { 26, -1, -1, sizeof(::trafficcontrol::MatchString)},
+  { 35, -1, -1, sizeof(::trafficcontrol::Locality)},
+  { 44, -1, -1, sizeof(::trafficcontrol::FailoverConfig)},
+  { 54, -1, -1, sizeof(::trafficcontrol::RuleRoutingConfig)},
+  { 62, -1, -1, sizeof(::trafficcontrol::Route)},
+  { 70, 78, -1, sizeof(::trafficcontrol::Source_MetadataEntry_DoNotUse)},
+  { 80, -1, -1, sizeof(::trafficcontrol::Source)},
+  { 90, 98, -1, sizeof(::trafficcontrol::Destination_MetadataEntry_DoNotUse)},
+  { 100, -1, -1, sizeof(::trafficcontrol::Destination)},
+  { 114, -1, -1, sizeof(::trafficcontrol::LocalityRoutingConfig)},
+  { 122, -1, -1, sizeof(::trafficcontrol::MetadataRoutingConfig)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::trafficcontrol::_RouteConfiguration_default_instance_._instance,
+  &::trafficcontrol::_Routing_default_instance_._instance,
   &::trafficcontrol::_Router_default_instance_._instance,
   &::trafficcontrol::_MatchString_default_instance_._instance,
   &::trafficcontrol::_Locality_default_instance_._instance,
-  &::trafficcontrol::_DegradeConfig_default_instance_._instance,
-  &::trafficcontrol::_RuleRouting_default_instance_._instance,
+  &::trafficcontrol::_FailoverConfig_default_instance_._instance,
+  &::trafficcontrol::_RuleRoutingConfig_default_instance_._instance,
   &::trafficcontrol::_Route_default_instance_._instance,
   &::trafficcontrol::_Source_MetadataEntry_DoNotUse_default_instance_._instance,
   &::trafficcontrol::_Source_default_instance_._instance,
   &::trafficcontrol::_Destination_MetadataEntry_DoNotUse_default_instance_._instance,
   &::trafficcontrol::_Destination_default_instance_._instance,
-  &::trafficcontrol::_LocalityRouting_default_instance_._instance,
-  &::trafficcontrol::_MetadataRouting_default_instance_._instance,
-  &::trafficcontrol::_CanaryRouting_default_instance_._instance,
-  &::trafficcontrol::_SetRouting_default_instance_._instance,
+  &::trafficcontrol::_LocalityRoutingConfig_default_instance_._instance,
+  &::trafficcontrol::_MetadataRoutingConfig_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_router_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\014router.proto\022\016trafficcontrol\032\036google/p"
   "rotobuf/wrappers.proto\032\031google/protobuf/"
-  "any.proto\"=\n\022RouteConfiguration\022\'\n\007route"
-  "rs\030\001 \003(\0132\026.trafficcontrol.Router\"Y\n\006Rout"
-  "er\022(\n\004type\030\001 \001(\0162\032.trafficcontrol.Router"
-  "Type\022%\n\007routing\030\002 \001(\0132\024.google.protobuf."
-  "Any\"\273\002\n\013MatchString\0229\n\004type\030\001 \001(\0162+.traf"
-  "ficcontrol.MatchString.MatchStringType\022+"
-  "\n\005value\030\002 \001(\0132\034.google.protobuf.StringVa"
-  "lue\0229\n\nvalue_type\030\003 \001(\0162%.trafficcontrol"
-  ".MatchString.ValueType\"U\n\017MatchStringTyp"
-  "e\022\t\n\005EXACT\020\000\022\t\n\005REGEX\020\001\022\016\n\nNOT_EQUALS\020\002\022"
-  "\013\n\007INCLUDE\020\003\022\017\n\013NOT_INCLUDE\020\004\"2\n\tValueTy"
-  "pe\022\010\n\004TEXT\020\000\022\r\n\tPARAMETER\020\001\022\014\n\010VARIABLE\020"
-  "\002\"\217\001\n\010Locality\022+\n\006region\030\001 \001(\0132\033.traffic"
-  "control.MatchString\022)\n\004zone\030\002 \001(\0132\033.traf"
-  "ficcontrol.MatchString\022+\n\006campus\030\003 \001(\0132\033"
-  ".trafficcontrol.MatchString\"\332\001\n\rDegradeC"
-  "onfig\022*\n\006enable\030\001 \001(\0132\032.google.protobuf."
-  "BoolValue\0221\n\013total_count\030\002 \001(\0132\034.google."
-  "protobuf.UInt32Value\0223\n\rhealthy_count\030\003 "
-  "\001(\0132\034.google.protobuf.UInt32Value\0225\n\017hea"
-  "lthy_percent\030\004 \001(\0132\034.google.protobuf.UIn"
-  "t32Value\"\360\001\n\013RuleRouting\022/\n\tnamespace\030\001 "
-  "\001(\0132\034.google.protobuf.StringValue\022-\n\007ser"
-  "vice\030\002 \001(\0132\034.google.protobuf.StringValue"
-  "\022\'\n\010inbounds\030\003 \003(\0132\025.trafficcontrol.Rout"
-  "e\022(\n\toutbounds\030\004 \003(\0132\025.trafficcontrol.Ro"
-  "ute\022.\n\007degrade\030\005 \001(\0132\035.trafficcontrol.De"
-  "gradeConfig\"c\n\005Route\022\'\n\007sources\030\001 \003(\0132\026."
-  "trafficcontrol.Source\0221\n\014destinations\030\002 "
-  "\003(\0132\033.trafficcontrol.Destination\"\232\002\n\006Sou"
-  "rce\022-\n\007service\030\001 \001(\0132\034.google.protobuf.S"
-  "tringValue\022/\n\tnamespace\030\002 \001(\0132\034.google.p"
-  "rotobuf.StringValue\0226\n\010metadata\030\003 \003(\0132$."
-  "trafficcontrol.Source.MetadataEntry\022*\n\010l"
-  "ocality\030\004 \001(\0132\030.trafficcontrol.Locality\032"
-  "L\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022*\n\005value\030\002"
-  " \001(\0132\033.trafficcontrol.MatchString:\0028\001\"\337\003"
-  "\n\013Destination\022-\n\007service\030\001 \001(\0132\034.google."
-  "protobuf.StringValue\022/\n\tnamespace\030\002 \001(\0132"
-  "\034.google.protobuf.StringValue\022;\n\010metadat"
-  "a\030\003 \003(\0132).trafficcontrol.Destination.Met"
-  "adataEntry\022.\n\010priority\030\004 \001(\0132\034.google.pr"
-  "otobuf.UInt32Value\022,\n\006weight\030\005 \001(\0132\034.goo"
-  "gle.protobuf.UInt32Value\022.\n\010transfer\030\006 \001"
-  "(\0132\034.google.protobuf.StringValue\022+\n\007isol"
-  "ate\030\007 \001(\0132\032.google.protobuf.BoolValue\022*\n"
-  "\010locality\030\010 \001(\0132\030.trafficcontrol.Localit"
-  "y\032L\n\rMetadataEntry\022\013\n\003key\030\001 \001(\t\022*\n\005value"
-  "\030\002 \001(\0132\033.trafficcontrol.MatchString:\0028\001\""
-  "\213\002\n\017LocalityRouting\022D\n\rstartingLevel\030\001 \001"
-  "(\0162-.trafficcontrol.LocalityRouting.Loca"
-  "lityLevel\022F\n\017maxDegradeLevel\030\002 \001(\0162-.tra"
-  "fficcontrol.LocalityRouting.LocalityLeve"
-  "l\022.\n\007degrade\030\003 \001(\0132\035.trafficcontrol.Degr"
-  "adeConfig\":\n\rLocalityLevel\022\n\n\006CAMPUS\020\000\022\010"
-  "\n\004ZONE\020\001\022\n\n\006REGION\020\002\022\007\n\003ALL\020\003\"\253\001\n\017Metada"
-  "taRouting\022C\n\rdegrade_level\030\001 \001(\0162,.traff"
-  "iccontrol.MetadataRouting.DegradeLevel\022."
-  "\n\007degrade\030\003 \001(\0132\035.trafficcontrol.Degrade"
-  "Config\"#\n\014DegradeLevel\022\007\n\003ALL\020\000\022\n\n\006OTHER"
-  "S\020\001\"\302\001\n\rCanaryRouting\022A\n\rdegrade_level\030\001"
-  " \001(\0162*.trafficcontrol.CanaryRouting.Degr"
-  "adeLevel\022.\n\007degrade\030\003 \001(\0132\035.trafficcontr"
-  "ol.DegradeConfig\">\n\014DegradeLevel\022\007\n\003ALL\020"
-  "\000\022\n\n\006OTHERS\020\001\022\031\n\025OTHERS_WITHOUT_CANARY\020\002"
-  "\"\014\n\nSetRouting*e\n\nRouterType\022\016\n\nRuleRout"
-  "er\020\000\022\022\n\016MetadataRouter\020\001\022\022\n\016LocalityRout"
-  "er\020\002\022\020\n\014CanaryRouter\020\003\022\r\n\tSetRouter\020\004B\027Z"
-  "\025api/v1/trafficcontrolb\006proto3"
+  "any.proto\"\217\004\n\007Routing\022/\n\tnamespace\030\001 \001(\013"
+  "2\034.google.protobuf.StringValue\022-\n\007servic"
+  "e\030\002 \001(\0132\034.google.protobuf.StringValue\022\'\n"
+  "\010inbounds\030\003 \003(\0132\025.trafficcontrol.Route\022("
+  "\n\toutbounds\030\004 \003(\0132\025.trafficcontrol.Route"
+  "\022+\n\005ctime\030\005 \001(\0132\034.google.protobuf.String"
+  "Value\022+\n\005mtime\030\006 \001(\0132\034.google.protobuf.S"
+  "tringValue\022.\n\010revision\030\007 \001(\0132\034.google.pr"
+  "otobuf.StringValue\022B\n\rservice_token\030\010 \001("
+  "\0132\034.google.protobuf.StringValueR\rservice"
+  "_token\022(\n\002id\030\t \001(\0132\034.google.protobuf.Str"
+  "ingValue\022\'\n\007routers\030\n \003(\0132\026.trafficcontr"
+  "ol.Router\0220\n\010failover\030\013 \001(\0132\036.trafficcon"
+  "trol.FailoverConfig\"\231\001\n\006Router\022*\n\006enable"
+  "\030\001 \001(\0132\032.google.protobuf.BoolValue\0225\n\016ro"
+  "uting_policy\030\002 \001(\0162\035.trafficcontrol.Rout"
+  "ingPolicy\022,\n\016routing_config\030\003 \001(\0132\024.goog"
+  "le.protobuf.Any\"\273\002\n\013MatchString\0229\n\004type\030"
+  "\001 \001(\0162+.trafficcontrol.MatchString.Match"
+  "StringType\022+\n\005value\030\002 \001(\0132\034.google.proto"
+  "buf.StringValue\0229\n\nvalue_type\030\003 \001(\0162%.tr"
+  "afficcontrol.MatchString.ValueType\"U\n\017Ma"
+  "tchStringType\022\t\n\005EXACT\020\000\022\t\n\005REGEX\020\001\022\016\n\nN"
+  "OT_EQUALS\020\002\022\013\n\007INCLUDE\020\003\022\017\n\013NOT_INCLUDE\020"
+  "\004\"2\n\tValueType\022\010\n\004TEXT\020\000\022\r\n\tPARAMETER\020\001\022"
+  "\014\n\010VARIABLE\020\002\"\217\001\n\010Locality\022+\n\006region\030\001 \001"
+  "(\0132\033.trafficcontrol.MatchString\022)\n\004zone\030"
+  "\002 \001(\0132\033.trafficcontrol.MatchString\022+\n\006ca"
+  "mpus\030\003 \001(\0132\033.trafficcontrol.MatchString\""
+  "\333\001\n\016FailoverConfig\022*\n\006enable\030\001 \001(\0132\032.goo"
+  "gle.protobuf.BoolValue\0221\n\013total_count\030\002 "
+  "\001(\0132\034.google.protobuf.UInt32Value\0223\n\rhea"
+  "lthy_count\030\003 \001(\0132\034.google.protobuf.UInt3"
+  "2Value\0225\n\017healthy_percent\030\004 \001(\0132\034.google"
+  ".protobuf.UInt32Value\"f\n\021RuleRoutingConf"
+  "ig\022\'\n\010inbounds\030\001 \003(\0132\025.trafficcontrol.Ro"
+  "ute\022(\n\toutbounds\030\002 \003(\0132\025.trafficcontrol."
+  "Route\"c\n\005Route\022\'\n\007sources\030\001 \003(\0132\026.traffi"
+  "ccontrol.Source\0221\n\014destinations\030\002 \003(\0132\033."
+  "trafficcontrol.Destination\"\232\002\n\006Source\022-\n"
+  "\007service\030\001 \001(\0132\034.google.protobuf.StringV"
+  "alue\022/\n\tnamespace\030\002 \001(\0132\034.google.protobu"
+  "f.StringValue\0226\n\010metadata\030\003 \003(\0132$.traffi"
+  "ccontrol.Source.MetadataEntry\022*\n\010localit"
+  "y\030\004 \001(\0132\030.trafficcontrol.Locality\032L\n\rMet"
+  "adataEntry\022\013\n\003key\030\001 \001(\t\022*\n\005value\030\002 \001(\0132\033"
+  ".trafficcontrol.MatchString:\0028\001\"\337\003\n\013Dest"
+  "ination\022-\n\007service\030\001 \001(\0132\034.google.protob"
+  "uf.StringValue\022/\n\tnamespace\030\002 \001(\0132\034.goog"
+  "le.protobuf.StringValue\022;\n\010metadata\030\003 \003("
+  "\0132).trafficcontrol.Destination.MetadataE"
+  "ntry\022.\n\010priority\030\004 \001(\0132\034.google.protobuf"
+  ".UInt32Value\022,\n\006weight\030\005 \001(\0132\034.google.pr"
+  "otobuf.UInt32Value\022.\n\010transfer\030\006 \001(\0132\034.g"
+  "oogle.protobuf.StringValue\022+\n\007isolate\030\007 "
+  "\001(\0132\032.google.protobuf.BoolValue\022*\n\010local"
+  "ity\030\010 \001(\0132\030.trafficcontrol.Locality\032L\n\rM"
+  "etadataEntry\022\013\n\003key\030\001 \001(\t\022*\n\005value\030\002 \001(\013"
+  "2\033.trafficcontrol.MatchString:\0028\001\"\361\001\n\025Lo"
+  "calityRoutingConfig\022K\n\016locality_level\030\001 "
+  "\001(\01623.trafficcontrol.LocalityRoutingConf"
+  "ig.LocalityLevel\022O\n\022max_locality_level\030\002"
+  " \001(\01623.trafficcontrol.LocalityRoutingCon"
+  "fig.LocalityLevel\":\n\rLocalityLevel\022\n\n\006CA"
+  "MPUS\020\000\022\010\n\004ZONE\020\001\022\n\n\006REGION\020\002\022\007\n\003ALL\020\003\"\232\001"
+  "\n\025MetadataRoutingConfig\022K\n\016failover_rang"
+  "e\030\001 \001(\01623.trafficcontrol.MetadataRouting"
+  "Config.FailoverRange\"4\n\rFailoverRange\022\007\n"
+  "\003ALL\020\000\022\n\n\006OTHERS\020\001\022\016\n\nOTHER_KEYS\020\002*G\n\rRo"
+  "utingPolicy\022\016\n\nRulePolicy\020\000\022\022\n\016MetadataP"
+  "olicy\020\001\022\022\n\016LocalityPolicy\020\002B>\n%cn.polari"
+  "smesh.polaris.trafficcontrolZ\025api/v1/tra"
+  "fficcontrolb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_router_2eproto_deps[2] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
@@ -491,9 +464,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_router_2eproto_deps
 };
 static ::_pbi::once_flag descriptor_table_router_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_router_2eproto = {
-    false, false, 2830, descriptor_table_protodef_router_2eproto,
+    false, false, 2979, descriptor_table_protodef_router_2eproto,
     "router.proto",
-    &descriptor_table_router_2eproto_once, descriptor_table_router_2eproto_deps, 2, 15,
+    &descriptor_table_router_2eproto_once, descriptor_table_router_2eproto_deps, 2, 13,
     schemas, file_default_instances, TableStruct_router_2eproto::offsets,
     file_level_metadata_router_2eproto, file_level_enum_descriptors_router_2eproto,
     file_level_service_descriptors_router_2eproto,
@@ -555,11 +528,11 @@ constexpr MatchString_ValueType MatchString::ValueType_MIN;
 constexpr MatchString_ValueType MatchString::ValueType_MAX;
 constexpr int MatchString::ValueType_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LocalityRouting_LocalityLevel_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* LocalityRoutingConfig_LocalityLevel_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_router_2eproto);
   return file_level_enum_descriptors_router_2eproto[2];
 }
-bool LocalityRouting_LocalityLevel_IsValid(int value) {
+bool LocalityRoutingConfig_LocalityLevel_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
@@ -572,22 +545,23 @@ bool LocalityRouting_LocalityLevel_IsValid(int value) {
 }
 
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-constexpr LocalityRouting_LocalityLevel LocalityRouting::CAMPUS;
-constexpr LocalityRouting_LocalityLevel LocalityRouting::ZONE;
-constexpr LocalityRouting_LocalityLevel LocalityRouting::REGION;
-constexpr LocalityRouting_LocalityLevel LocalityRouting::ALL;
-constexpr LocalityRouting_LocalityLevel LocalityRouting::LocalityLevel_MIN;
-constexpr LocalityRouting_LocalityLevel LocalityRouting::LocalityLevel_MAX;
-constexpr int LocalityRouting::LocalityLevel_ARRAYSIZE;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::CAMPUS;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::ZONE;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::REGION;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::ALL;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::LocalityLevel_MIN;
+constexpr LocalityRoutingConfig_LocalityLevel LocalityRoutingConfig::LocalityLevel_MAX;
+constexpr int LocalityRoutingConfig::LocalityLevel_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MetadataRouting_DegradeLevel_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MetadataRoutingConfig_FailoverRange_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_router_2eproto);
   return file_level_enum_descriptors_router_2eproto[3];
 }
-bool MetadataRouting_DegradeLevel_IsValid(int value) {
+bool MetadataRoutingConfig_FailoverRange_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
       return true;
     default:
       return false;
@@ -595,46 +569,22 @@ bool MetadataRouting_DegradeLevel_IsValid(int value) {
 }
 
 #if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-constexpr MetadataRouting_DegradeLevel MetadataRouting::ALL;
-constexpr MetadataRouting_DegradeLevel MetadataRouting::OTHERS;
-constexpr MetadataRouting_DegradeLevel MetadataRouting::DegradeLevel_MIN;
-constexpr MetadataRouting_DegradeLevel MetadataRouting::DegradeLevel_MAX;
-constexpr int MetadataRouting::DegradeLevel_ARRAYSIZE;
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::ALL;
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::OTHERS;
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::OTHER_KEYS;
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::FailoverRange_MIN;
+constexpr MetadataRoutingConfig_FailoverRange MetadataRoutingConfig::FailoverRange_MAX;
+constexpr int MetadataRoutingConfig::FailoverRange_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CanaryRouting_DegradeLevel_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RoutingPolicy_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_router_2eproto);
   return file_level_enum_descriptors_router_2eproto[4];
 }
-bool CanaryRouting_DegradeLevel_IsValid(int value) {
+bool RoutingPolicy_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
     case 2:
-      return true;
-    default:
-      return false;
-  }
-}
-
-#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-constexpr CanaryRouting_DegradeLevel CanaryRouting::ALL;
-constexpr CanaryRouting_DegradeLevel CanaryRouting::OTHERS;
-constexpr CanaryRouting_DegradeLevel CanaryRouting::OTHERS_WITHOUT_CANARY;
-constexpr CanaryRouting_DegradeLevel CanaryRouting::DegradeLevel_MIN;
-constexpr CanaryRouting_DegradeLevel CanaryRouting::DegradeLevel_MAX;
-constexpr int CanaryRouting::DegradeLevel_ARRAYSIZE;
-#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* RouterType_descriptor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_router_2eproto);
-  return file_level_enum_descriptors_router_2eproto[5];
-}
-bool RouterType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
       return true;
     default:
       return false;
@@ -644,29 +594,159 @@ bool RouterType_IsValid(int value) {
 
 // ===================================================================
 
-class RouteConfiguration::_Internal {
+class Routing::_Internal {
  public:
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_(const Routing* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& service(const Routing* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& ctime(const Routing* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& mtime(const Routing* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& revision(const Routing* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& service_token(const Routing* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::StringValue& id(const Routing* msg);
+  static const ::trafficcontrol::FailoverConfig& failover(const Routing* msg);
 };
 
-RouteConfiguration::RouteConfiguration(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::namespace_(const Routing* msg) {
+  return *msg->namespace__;
+}
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::service(const Routing* msg) {
+  return *msg->service_;
+}
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::ctime(const Routing* msg) {
+  return *msg->ctime_;
+}
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::mtime(const Routing* msg) {
+  return *msg->mtime_;
+}
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::revision(const Routing* msg) {
+  return *msg->revision_;
+}
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::service_token(const Routing* msg) {
+  return *msg->service_token_;
+}
+const ::PROTOBUF_NAMESPACE_ID::StringValue&
+Routing::_Internal::id(const Routing* msg) {
+  return *msg->id_;
+}
+const ::trafficcontrol::FailoverConfig&
+Routing::_Internal::failover(const Routing* msg) {
+  return *msg->failover_;
+}
+void Routing::clear_namespace_() {
+  if (GetArenaForAllocation() == nullptr && namespace__ != nullptr) {
+    delete namespace__;
+  }
+  namespace__ = nullptr;
+}
+void Routing::clear_service() {
+  if (GetArenaForAllocation() == nullptr && service_ != nullptr) {
+    delete service_;
+  }
+  service_ = nullptr;
+}
+void Routing::clear_ctime() {
+  if (GetArenaForAllocation() == nullptr && ctime_ != nullptr) {
+    delete ctime_;
+  }
+  ctime_ = nullptr;
+}
+void Routing::clear_mtime() {
+  if (GetArenaForAllocation() == nullptr && mtime_ != nullptr) {
+    delete mtime_;
+  }
+  mtime_ = nullptr;
+}
+void Routing::clear_revision() {
+  if (GetArenaForAllocation() == nullptr && revision_ != nullptr) {
+    delete revision_;
+  }
+  revision_ = nullptr;
+}
+void Routing::clear_service_token() {
+  if (GetArenaForAllocation() == nullptr && service_token_ != nullptr) {
+    delete service_token_;
+  }
+  service_token_ = nullptr;
+}
+void Routing::clear_id() {
+  if (GetArenaForAllocation() == nullptr && id_ != nullptr) {
+    delete id_;
+  }
+  id_ = nullptr;
+}
+Routing::Routing(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  inbounds_(arena),
+  outbounds_(arena),
   routers_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.RouteConfiguration)
+  // @@protoc_insertion_point(arena_constructor:trafficcontrol.Routing)
 }
-RouteConfiguration::RouteConfiguration(const RouteConfiguration& from)
+Routing::Routing(const Routing& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
+      inbounds_(from.inbounds_),
+      outbounds_(from.outbounds_),
       routers_(from.routers_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.RouteConfiguration)
+  if (from._internal_has_namespace_()) {
+    namespace__ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.namespace__);
+  } else {
+    namespace__ = nullptr;
+  }
+  if (from._internal_has_service()) {
+    service_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.service_);
+  } else {
+    service_ = nullptr;
+  }
+  if (from._internal_has_ctime()) {
+    ctime_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.ctime_);
+  } else {
+    ctime_ = nullptr;
+  }
+  if (from._internal_has_mtime()) {
+    mtime_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.mtime_);
+  } else {
+    mtime_ = nullptr;
+  }
+  if (from._internal_has_revision()) {
+    revision_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.revision_);
+  } else {
+    revision_ = nullptr;
+  }
+  if (from._internal_has_service_token()) {
+    service_token_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.service_token_);
+  } else {
+    service_token_ = nullptr;
+  }
+  if (from._internal_has_id()) {
+    id_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.id_);
+  } else {
+    id_ = nullptr;
+  }
+  if (from._internal_has_failover()) {
+    failover_ = new ::trafficcontrol::FailoverConfig(*from.failover_);
+  } else {
+    failover_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:trafficcontrol.Routing)
 }
 
-inline void RouteConfiguration::SharedCtor() {
+inline void Routing::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&namespace__) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&failover_) -
+    reinterpret_cast<char*>(&namespace__)) + sizeof(failover_));
 }
 
-RouteConfiguration::~RouteConfiguration() {
-  // @@protoc_insertion_point(destructor:trafficcontrol.RouteConfiguration)
+Routing::~Routing() {
+  // @@protoc_insertion_point(destructor:trafficcontrol.Routing)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -674,40 +754,172 @@ RouteConfiguration::~RouteConfiguration() {
   SharedDtor();
 }
 
-inline void RouteConfiguration::SharedDtor() {
+inline void Routing::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete namespace__;
+  if (this != internal_default_instance()) delete service_;
+  if (this != internal_default_instance()) delete ctime_;
+  if (this != internal_default_instance()) delete mtime_;
+  if (this != internal_default_instance()) delete revision_;
+  if (this != internal_default_instance()) delete service_token_;
+  if (this != internal_default_instance()) delete id_;
+  if (this != internal_default_instance()) delete failover_;
 }
 
-void RouteConfiguration::SetCachedSize(int size) const {
+void Routing::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void RouteConfiguration::Clear() {
-// @@protoc_insertion_point(message_clear_start:trafficcontrol.RouteConfiguration)
+void Routing::Clear() {
+// @@protoc_insertion_point(message_clear_start:trafficcontrol.Routing)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  inbounds_.Clear();
+  outbounds_.Clear();
   routers_.Clear();
+  if (GetArenaForAllocation() == nullptr && namespace__ != nullptr) {
+    delete namespace__;
+  }
+  namespace__ = nullptr;
+  if (GetArenaForAllocation() == nullptr && service_ != nullptr) {
+    delete service_;
+  }
+  service_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && ctime_ != nullptr) {
+    delete ctime_;
+  }
+  ctime_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && mtime_ != nullptr) {
+    delete mtime_;
+  }
+  mtime_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && revision_ != nullptr) {
+    delete revision_;
+  }
+  revision_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && service_token_ != nullptr) {
+    delete service_token_;
+  }
+  service_token_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && id_ != nullptr) {
+    delete id_;
+  }
+  id_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && failover_ != nullptr) {
+    delete failover_;
+  }
+  failover_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* RouteConfiguration::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* Routing::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .trafficcontrol.Router routers = 1;
+      // .google.protobuf.StringValue namespace = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_namespace_(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.StringValue service = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_service(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .trafficcontrol.Route inbounds = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_inbounds(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .trafficcontrol.Route outbounds = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_outbounds(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.StringValue ctime = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_ctime(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.StringValue mtime = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_mtime(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.StringValue revision = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_revision(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.StringValue service_token = 8 [json_name = "service_token"];
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_service_token(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.StringValue id = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_id(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .trafficcontrol.Router routers = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
           ptr -= 1;
           do {
             ptr += 1;
             ptr = ctx->ParseMessage(_internal_add_routers(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<82>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .trafficcontrol.FailoverConfig failover = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr = ctx->ParseMessage(_internal_mutable_failover(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -734,87 +946,263 @@ failure:
 #undef CHK_
 }
 
-uint8_t* RouteConfiguration::_InternalSerialize(
+uint8_t* Routing::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.RouteConfiguration)
+  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.Routing)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .trafficcontrol.Router routers = 1;
+  // .google.protobuf.StringValue namespace = 1;
+  if (this->_internal_has_namespace_()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::namespace_(this),
+        _Internal::namespace_(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.StringValue service = 2;
+  if (this->_internal_has_service()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(2, _Internal::service(this),
+        _Internal::service(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .trafficcontrol.Route inbounds = 3;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_inbounds_size()); i < n; i++) {
+    const auto& repfield = this->_internal_inbounds(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // repeated .trafficcontrol.Route outbounds = 4;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_outbounds_size()); i < n; i++) {
+    const auto& repfield = this->_internal_outbounds(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.StringValue ctime = 5;
+  if (this->_internal_has_ctime()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(5, _Internal::ctime(this),
+        _Internal::ctime(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.StringValue mtime = 6;
+  if (this->_internal_has_mtime()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::mtime(this),
+        _Internal::mtime(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.StringValue revision = 7;
+  if (this->_internal_has_revision()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(7, _Internal::revision(this),
+        _Internal::revision(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.StringValue service_token = 8 [json_name = "service_token"];
+  if (this->_internal_has_service_token()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::service_token(this),
+        _Internal::service_token(this).GetCachedSize(), target, stream);
+  }
+
+  // .google.protobuf.StringValue id = 9;
+  if (this->_internal_has_id()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::id(this),
+        _Internal::id(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .trafficcontrol.Router routers = 10;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_routers_size()); i < n; i++) {
     const auto& repfield = this->_internal_routers(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+        InternalWriteMessage(10, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // .trafficcontrol.FailoverConfig failover = 11;
+  if (this->_internal_has_failover()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(11, _Internal::failover(this),
+        _Internal::failover(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.RouteConfiguration)
+  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.Routing)
   return target;
 }
 
-size_t RouteConfiguration::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.RouteConfiguration)
+size_t Routing::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.Routing)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .trafficcontrol.Router routers = 1;
+  // repeated .trafficcontrol.Route inbounds = 3;
+  total_size += 1UL * this->_internal_inbounds_size();
+  for (const auto& msg : this->inbounds_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .trafficcontrol.Route outbounds = 4;
+  total_size += 1UL * this->_internal_outbounds_size();
+  for (const auto& msg : this->outbounds_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .trafficcontrol.Router routers = 10;
   total_size += 1UL * this->_internal_routers_size();
   for (const auto& msg : this->routers_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
+  // .google.protobuf.StringValue namespace = 1;
+  if (this->_internal_has_namespace_()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *namespace__);
+  }
+
+  // .google.protobuf.StringValue service = 2;
+  if (this->_internal_has_service()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *service_);
+  }
+
+  // .google.protobuf.StringValue ctime = 5;
+  if (this->_internal_has_ctime()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *ctime_);
+  }
+
+  // .google.protobuf.StringValue mtime = 6;
+  if (this->_internal_has_mtime()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *mtime_);
+  }
+
+  // .google.protobuf.StringValue revision = 7;
+  if (this->_internal_has_revision()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *revision_);
+  }
+
+  // .google.protobuf.StringValue service_token = 8 [json_name = "service_token"];
+  if (this->_internal_has_service_token()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *service_token_);
+  }
+
+  // .google.protobuf.StringValue id = 9;
+  if (this->_internal_has_id()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *id_);
+  }
+
+  // .trafficcontrol.FailoverConfig failover = 11;
+  if (this->_internal_has_failover()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *failover_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RouteConfiguration::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Routing::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RouteConfiguration::MergeImpl
+    Routing::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RouteConfiguration::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Routing::GetClassData() const { return &_class_data_; }
 
-void RouteConfiguration::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void Routing::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RouteConfiguration *>(to)->MergeFrom(
-      static_cast<const RouteConfiguration &>(from));
+  static_cast<Routing *>(to)->MergeFrom(
+      static_cast<const Routing &>(from));
 }
 
 
-void RouteConfiguration::MergeFrom(const RouteConfiguration& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.RouteConfiguration)
+void Routing::MergeFrom(const Routing& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.Routing)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  inbounds_.MergeFrom(from.inbounds_);
+  outbounds_.MergeFrom(from.outbounds_);
   routers_.MergeFrom(from.routers_);
+  if (from._internal_has_namespace_()) {
+    _internal_mutable_namespace_()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_namespace_());
+  }
+  if (from._internal_has_service()) {
+    _internal_mutable_service()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_service());
+  }
+  if (from._internal_has_ctime()) {
+    _internal_mutable_ctime()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_ctime());
+  }
+  if (from._internal_has_mtime()) {
+    _internal_mutable_mtime()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_mtime());
+  }
+  if (from._internal_has_revision()) {
+    _internal_mutable_revision()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_revision());
+  }
+  if (from._internal_has_service_token()) {
+    _internal_mutable_service_token()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_service_token());
+  }
+  if (from._internal_has_id()) {
+    _internal_mutable_id()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_id());
+  }
+  if (from._internal_has_failover()) {
+    _internal_mutable_failover()->::trafficcontrol::FailoverConfig::MergeFrom(from._internal_failover());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RouteConfiguration::CopyFrom(const RouteConfiguration& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.RouteConfiguration)
+void Routing::CopyFrom(const Routing& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.Routing)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool RouteConfiguration::IsInitialized() const {
+bool Routing::IsInitialized() const {
   return true;
 }
 
-void RouteConfiguration::InternalSwap(RouteConfiguration* other) {
+void Routing::InternalSwap(Routing* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  inbounds_.InternalSwap(&other->inbounds_);
+  outbounds_.InternalSwap(&other->outbounds_);
   routers_.InternalSwap(&other->routers_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Routing, failover_)
+      + sizeof(Routing::failover_)
+      - PROTOBUF_FIELD_OFFSET(Routing, namespace__)>(
+          reinterpret_cast<char*>(&namespace__),
+          reinterpret_cast<char*>(&other->namespace__));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata RouteConfiguration::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata Routing::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
       file_level_metadata_router_2eproto[0]);
@@ -824,18 +1212,29 @@ void RouteConfiguration::InternalSwap(RouteConfiguration* other) {
 
 class Router::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::Any& routing(const Router* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable(const Router* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::Any& routing_config(const Router* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::Any&
-Router::_Internal::routing(const Router* msg) {
-  return *msg->routing_;
+const ::PROTOBUF_NAMESPACE_ID::BoolValue&
+Router::_Internal::enable(const Router* msg) {
+  return *msg->enable_;
 }
-void Router::clear_routing() {
-  if (GetArenaForAllocation() == nullptr && routing_ != nullptr) {
-    delete routing_;
+const ::PROTOBUF_NAMESPACE_ID::Any&
+Router::_Internal::routing_config(const Router* msg) {
+  return *msg->routing_config_;
+}
+void Router::clear_enable() {
+  if (GetArenaForAllocation() == nullptr && enable_ != nullptr) {
+    delete enable_;
   }
-  routing_ = nullptr;
+  enable_ = nullptr;
+}
+void Router::clear_routing_config() {
+  if (GetArenaForAllocation() == nullptr && routing_config_ != nullptr) {
+    delete routing_config_;
+  }
+  routing_config_ = nullptr;
 }
 Router::Router(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -846,20 +1245,25 @@ Router::Router(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 Router::Router(const Router& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_routing()) {
-    routing_ = new ::PROTOBUF_NAMESPACE_ID::Any(*from.routing_);
+  if (from._internal_has_enable()) {
+    enable_ = new ::PROTOBUF_NAMESPACE_ID::BoolValue(*from.enable_);
   } else {
-    routing_ = nullptr;
+    enable_ = nullptr;
   }
-  type_ = from.type_;
+  if (from._internal_has_routing_config()) {
+    routing_config_ = new ::PROTOBUF_NAMESPACE_ID::Any(*from.routing_config_);
+  } else {
+    routing_config_ = nullptr;
+  }
+  routing_policy_ = from.routing_policy_;
   // @@protoc_insertion_point(copy_constructor:trafficcontrol.Router)
 }
 
 inline void Router::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&routing_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&type_) -
-    reinterpret_cast<char*>(&routing_)) + sizeof(type_));
+    reinterpret_cast<char*>(&enable_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&routing_policy_) -
+    reinterpret_cast<char*>(&enable_)) + sizeof(routing_policy_));
 }
 
 Router::~Router() {
@@ -873,7 +1277,8 @@ Router::~Router() {
 
 inline void Router::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete routing_;
+  if (this != internal_default_instance()) delete enable_;
+  if (this != internal_default_instance()) delete routing_config_;
 }
 
 void Router::SetCachedSize(int size) const {
@@ -886,11 +1291,15 @@ void Router::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && routing_ != nullptr) {
-    delete routing_;
+  if (GetArenaForAllocation() == nullptr && enable_ != nullptr) {
+    delete enable_;
   }
-  routing_ = nullptr;
-  type_ = 0;
+  enable_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && routing_config_ != nullptr) {
+    delete routing_config_;
+  }
+  routing_config_ = nullptr;
+  routing_policy_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -900,19 +1309,27 @@ const char* Router::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .trafficcontrol.RouterType type = 1;
+      // .google.protobuf.BoolValue enable = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_enable(), ptr);
           CHK_(ptr);
-          _internal_set_type(static_cast<::trafficcontrol::RouterType>(val));
         } else
           goto handle_unusual;
         continue;
-      // .google.protobuf.Any routing = 2;
+      // .trafficcontrol.RoutingPolicy routing_policy = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_routing(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_routing_policy(static_cast<::trafficcontrol::RoutingPolicy>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .google.protobuf.Any routing_config = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_routing_config(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -946,18 +1363,25 @@ uint8_t* Router::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .trafficcontrol.RouterType type = 1;
-  if (this->_internal_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_type(), target);
+  // .google.protobuf.BoolValue enable = 1;
+  if (this->_internal_has_enable()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::enable(this),
+        _Internal::enable(this).GetCachedSize(), target, stream);
   }
 
-  // .google.protobuf.Any routing = 2;
-  if (this->_internal_has_routing()) {
+  // .trafficcontrol.RoutingPolicy routing_policy = 2;
+  if (this->_internal_routing_policy() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_routing_policy(), target);
+  }
+
+  // .google.protobuf.Any routing_config = 3;
+  if (this->_internal_has_routing_config()) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::routing(this),
-        _Internal::routing(this).GetCachedSize(), target, stream);
+      InternalWriteMessage(3, _Internal::routing_config(this),
+        _Internal::routing_config(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -976,17 +1400,24 @@ size_t Router::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .google.protobuf.Any routing = 2;
-  if (this->_internal_has_routing()) {
+  // .google.protobuf.BoolValue enable = 1;
+  if (this->_internal_has_enable()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *routing_);
+        *enable_);
   }
 
-  // .trafficcontrol.RouterType type = 1;
-  if (this->_internal_type() != 0) {
+  // .google.protobuf.Any routing_config = 3;
+  if (this->_internal_has_routing_config()) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_type());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *routing_config_);
+  }
+
+  // .trafficcontrol.RoutingPolicy routing_policy = 2;
+  if (this->_internal_routing_policy() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_routing_policy());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -1011,11 +1442,14 @@ void Router::MergeFrom(const Router& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_routing()) {
-    _internal_mutable_routing()->::PROTOBUF_NAMESPACE_ID::Any::MergeFrom(from._internal_routing());
+  if (from._internal_has_enable()) {
+    _internal_mutable_enable()->::PROTOBUF_NAMESPACE_ID::BoolValue::MergeFrom(from._internal_enable());
   }
-  if (from._internal_type() != 0) {
-    _internal_set_type(from._internal_type());
+  if (from._internal_has_routing_config()) {
+    _internal_mutable_routing_config()->::PROTOBUF_NAMESPACE_ID::Any::MergeFrom(from._internal_routing_config());
+  }
+  if (from._internal_routing_policy() != 0) {
+    _internal_set_routing_policy(from._internal_routing_policy());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -1035,11 +1469,11 @@ void Router::InternalSwap(Router* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Router, type_)
-      + sizeof(Router::type_)
-      - PROTOBUF_FIELD_OFFSET(Router, routing_)>(
-          reinterpret_cast<char*>(&routing_),
-          reinterpret_cast<char*>(&other->routing_));
+      PROTOBUF_FIELD_OFFSET(Router, routing_policy_)
+      + sizeof(Router::routing_policy_)
+      - PROTOBUF_FIELD_OFFSET(Router, enable_)>(
+          reinterpret_cast<char*>(&enable_),
+          reinterpret_cast<char*>(&other->enable_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Router::GetMetadata() const {
@@ -1582,61 +2016,61 @@ void Locality::InternalSwap(Locality* other) {
 
 // ===================================================================
 
-class DegradeConfig::_Internal {
+class FailoverConfig::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable(const DegradeConfig* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::UInt32Value& total_count(const DegradeConfig* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::UInt32Value& healthy_count(const DegradeConfig* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::UInt32Value& healthy_percent(const DegradeConfig* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::BoolValue& enable(const FailoverConfig* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::UInt32Value& total_count(const FailoverConfig* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::UInt32Value& healthy_count(const FailoverConfig* msg);
+  static const ::PROTOBUF_NAMESPACE_ID::UInt32Value& healthy_percent(const FailoverConfig* msg);
 };
 
 const ::PROTOBUF_NAMESPACE_ID::BoolValue&
-DegradeConfig::_Internal::enable(const DegradeConfig* msg) {
+FailoverConfig::_Internal::enable(const FailoverConfig* msg) {
   return *msg->enable_;
 }
 const ::PROTOBUF_NAMESPACE_ID::UInt32Value&
-DegradeConfig::_Internal::total_count(const DegradeConfig* msg) {
+FailoverConfig::_Internal::total_count(const FailoverConfig* msg) {
   return *msg->total_count_;
 }
 const ::PROTOBUF_NAMESPACE_ID::UInt32Value&
-DegradeConfig::_Internal::healthy_count(const DegradeConfig* msg) {
+FailoverConfig::_Internal::healthy_count(const FailoverConfig* msg) {
   return *msg->healthy_count_;
 }
 const ::PROTOBUF_NAMESPACE_ID::UInt32Value&
-DegradeConfig::_Internal::healthy_percent(const DegradeConfig* msg) {
+FailoverConfig::_Internal::healthy_percent(const FailoverConfig* msg) {
   return *msg->healthy_percent_;
 }
-void DegradeConfig::clear_enable() {
+void FailoverConfig::clear_enable() {
   if (GetArenaForAllocation() == nullptr && enable_ != nullptr) {
     delete enable_;
   }
   enable_ = nullptr;
 }
-void DegradeConfig::clear_total_count() {
+void FailoverConfig::clear_total_count() {
   if (GetArenaForAllocation() == nullptr && total_count_ != nullptr) {
     delete total_count_;
   }
   total_count_ = nullptr;
 }
-void DegradeConfig::clear_healthy_count() {
+void FailoverConfig::clear_healthy_count() {
   if (GetArenaForAllocation() == nullptr && healthy_count_ != nullptr) {
     delete healthy_count_;
   }
   healthy_count_ = nullptr;
 }
-void DegradeConfig::clear_healthy_percent() {
+void FailoverConfig::clear_healthy_percent() {
   if (GetArenaForAllocation() == nullptr && healthy_percent_ != nullptr) {
     delete healthy_percent_;
   }
   healthy_percent_ = nullptr;
 }
-DegradeConfig::DegradeConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+FailoverConfig::FailoverConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.DegradeConfig)
+  // @@protoc_insertion_point(arena_constructor:trafficcontrol.FailoverConfig)
 }
-DegradeConfig::DegradeConfig(const DegradeConfig& from)
+FailoverConfig::FailoverConfig(const FailoverConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_enable()) {
@@ -1659,18 +2093,18 @@ DegradeConfig::DegradeConfig(const DegradeConfig& from)
   } else {
     healthy_percent_ = nullptr;
   }
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.DegradeConfig)
+  // @@protoc_insertion_point(copy_constructor:trafficcontrol.FailoverConfig)
 }
 
-inline void DegradeConfig::SharedCtor() {
+inline void FailoverConfig::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&enable_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&healthy_percent_) -
     reinterpret_cast<char*>(&enable_)) + sizeof(healthy_percent_));
 }
 
-DegradeConfig::~DegradeConfig() {
-  // @@protoc_insertion_point(destructor:trafficcontrol.DegradeConfig)
+FailoverConfig::~FailoverConfig() {
+  // @@protoc_insertion_point(destructor:trafficcontrol.FailoverConfig)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1678,7 +2112,7 @@ DegradeConfig::~DegradeConfig() {
   SharedDtor();
 }
 
-inline void DegradeConfig::SharedDtor() {
+inline void FailoverConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete enable_;
   if (this != internal_default_instance()) delete total_count_;
@@ -1686,12 +2120,12 @@ inline void DegradeConfig::SharedDtor() {
   if (this != internal_default_instance()) delete healthy_percent_;
 }
 
-void DegradeConfig::SetCachedSize(int size) const {
+void FailoverConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void DegradeConfig::Clear() {
-// @@protoc_insertion_point(message_clear_start:trafficcontrol.DegradeConfig)
+void FailoverConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:trafficcontrol.FailoverConfig)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -1715,7 +2149,7 @@ void DegradeConfig::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* DegradeConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* FailoverConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1776,9 +2210,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* DegradeConfig::_InternalSerialize(
+uint8_t* FailoverConfig::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.DegradeConfig)
+  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.FailoverConfig)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1814,12 +2248,12 @@ uint8_t* DegradeConfig::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.DegradeConfig)
+  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.FailoverConfig)
   return target;
 }
 
-size_t DegradeConfig::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.DegradeConfig)
+size_t FailoverConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.FailoverConfig)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -1857,21 +2291,21 @@ size_t DegradeConfig::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DegradeConfig::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData FailoverConfig::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    DegradeConfig::MergeImpl
+    FailoverConfig::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DegradeConfig::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*FailoverConfig::GetClassData() const { return &_class_data_; }
 
-void DegradeConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void FailoverConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<DegradeConfig *>(to)->MergeFrom(
-      static_cast<const DegradeConfig &>(from));
+  static_cast<FailoverConfig *>(to)->MergeFrom(
+      static_cast<const FailoverConfig &>(from));
 }
 
 
-void DegradeConfig::MergeFrom(const DegradeConfig& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.DegradeConfig)
+void FailoverConfig::MergeFrom(const FailoverConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.FailoverConfig)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1891,29 +2325,29 @@ void DegradeConfig::MergeFrom(const DegradeConfig& from) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void DegradeConfig::CopyFrom(const DegradeConfig& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.DegradeConfig)
+void FailoverConfig::CopyFrom(const FailoverConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.FailoverConfig)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool DegradeConfig::IsInitialized() const {
+bool FailoverConfig::IsInitialized() const {
   return true;
 }
 
-void DegradeConfig::InternalSwap(DegradeConfig* other) {
+void FailoverConfig::InternalSwap(FailoverConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DegradeConfig, healthy_percent_)
-      + sizeof(DegradeConfig::healthy_percent_)
-      - PROTOBUF_FIELD_OFFSET(DegradeConfig, enable_)>(
+      PROTOBUF_FIELD_OFFSET(FailoverConfig, healthy_percent_)
+      + sizeof(FailoverConfig::healthy_percent_)
+      - PROTOBUF_FIELD_OFFSET(FailoverConfig, enable_)>(
           reinterpret_cast<char*>(&enable_),
           reinterpret_cast<char*>(&other->enable_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata DegradeConfig::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata FailoverConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
       file_level_metadata_router_2eproto[4]);
@@ -1921,77 +2355,31 @@ void DegradeConfig::InternalSwap(DegradeConfig* other) {
 
 // ===================================================================
 
-class RuleRouting::_Internal {
+class RuleRoutingConfig::_Internal {
  public:
-  static const ::PROTOBUF_NAMESPACE_ID::StringValue& namespace_(const RuleRouting* msg);
-  static const ::PROTOBUF_NAMESPACE_ID::StringValue& service(const RuleRouting* msg);
-  static const ::trafficcontrol::DegradeConfig& degrade(const RuleRouting* msg);
 };
 
-const ::PROTOBUF_NAMESPACE_ID::StringValue&
-RuleRouting::_Internal::namespace_(const RuleRouting* msg) {
-  return *msg->namespace__;
-}
-const ::PROTOBUF_NAMESPACE_ID::StringValue&
-RuleRouting::_Internal::service(const RuleRouting* msg) {
-  return *msg->service_;
-}
-const ::trafficcontrol::DegradeConfig&
-RuleRouting::_Internal::degrade(const RuleRouting* msg) {
-  return *msg->degrade_;
-}
-void RuleRouting::clear_namespace_() {
-  if (GetArenaForAllocation() == nullptr && namespace__ != nullptr) {
-    delete namespace__;
-  }
-  namespace__ = nullptr;
-}
-void RuleRouting::clear_service() {
-  if (GetArenaForAllocation() == nullptr && service_ != nullptr) {
-    delete service_;
-  }
-  service_ = nullptr;
-}
-RuleRouting::RuleRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+RuleRoutingConfig::RuleRoutingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
   inbounds_(arena),
   outbounds_(arena) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.RuleRouting)
+  // @@protoc_insertion_point(arena_constructor:trafficcontrol.RuleRoutingConfig)
 }
-RuleRouting::RuleRouting(const RuleRouting& from)
+RuleRoutingConfig::RuleRoutingConfig(const RuleRoutingConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       inbounds_(from.inbounds_),
       outbounds_(from.outbounds_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_namespace_()) {
-    namespace__ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.namespace__);
-  } else {
-    namespace__ = nullptr;
-  }
-  if (from._internal_has_service()) {
-    service_ = new ::PROTOBUF_NAMESPACE_ID::StringValue(*from.service_);
-  } else {
-    service_ = nullptr;
-  }
-  if (from._internal_has_degrade()) {
-    degrade_ = new ::trafficcontrol::DegradeConfig(*from.degrade_);
-  } else {
-    degrade_ = nullptr;
-  }
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.RuleRouting)
+  // @@protoc_insertion_point(copy_constructor:trafficcontrol.RuleRoutingConfig)
 }
 
-inline void RuleRouting::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&namespace__) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&degrade_) -
-    reinterpret_cast<char*>(&namespace__)) + sizeof(degrade_));
+inline void RuleRoutingConfig::SharedCtor() {
 }
 
-RuleRouting::~RuleRouting() {
-  // @@protoc_insertion_point(destructor:trafficcontrol.RuleRouting)
+RuleRoutingConfig::~RuleRoutingConfig() {
+  // @@protoc_insertion_point(destructor:trafficcontrol.RuleRoutingConfig)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1999,93 +2387,54 @@ RuleRouting::~RuleRouting() {
   SharedDtor();
 }
 
-inline void RuleRouting::SharedDtor() {
+inline void RuleRoutingConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete namespace__;
-  if (this != internal_default_instance()) delete service_;
-  if (this != internal_default_instance()) delete degrade_;
 }
 
-void RuleRouting::SetCachedSize(int size) const {
+void RuleRoutingConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void RuleRouting::Clear() {
-// @@protoc_insertion_point(message_clear_start:trafficcontrol.RuleRouting)
+void RuleRoutingConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:trafficcontrol.RuleRoutingConfig)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
   inbounds_.Clear();
   outbounds_.Clear();
-  if (GetArenaForAllocation() == nullptr && namespace__ != nullptr) {
-    delete namespace__;
-  }
-  namespace__ = nullptr;
-  if (GetArenaForAllocation() == nullptr && service_ != nullptr) {
-    delete service_;
-  }
-  service_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* RuleRouting::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* RuleRoutingConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .google.protobuf.StringValue namespace = 1;
+      // repeated .trafficcontrol.Route inbounds = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_namespace_(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .google.protobuf.StringValue service = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr = ctx->ParseMessage(_internal_mutable_service(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .trafficcontrol.Route inbounds = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
           ptr -= 1;
           do {
             ptr += 1;
             ptr = ctx->ParseMessage(_internal_add_inbounds(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
         } else
           goto handle_unusual;
         continue;
-      // repeated .trafficcontrol.Route outbounds = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+      // repeated .trafficcontrol.Route outbounds = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
           ptr -= 1;
           do {
             ptr += 1;
             ptr = ctx->ParseMessage(_internal_add_outbounds(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // .trafficcontrol.DegradeConfig degrade = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
-          ptr = ctx->ParseMessage(_internal_mutable_degrade(), ptr);
-          CHK_(ptr);
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -2112,161 +2461,104 @@ failure:
 #undef CHK_
 }
 
-uint8_t* RuleRouting::_InternalSerialize(
+uint8_t* RuleRoutingConfig::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.RuleRouting)
+  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.RuleRoutingConfig)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .google.protobuf.StringValue namespace = 1;
-  if (this->_internal_has_namespace_()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::namespace_(this),
-        _Internal::namespace_(this).GetCachedSize(), target, stream);
-  }
-
-  // .google.protobuf.StringValue service = 2;
-  if (this->_internal_has_service()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(2, _Internal::service(this),
-        _Internal::service(this).GetCachedSize(), target, stream);
-  }
-
-  // repeated .trafficcontrol.Route inbounds = 3;
+  // repeated .trafficcontrol.Route inbounds = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_inbounds_size()); i < n; i++) {
     const auto& repfield = this->_internal_inbounds(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
 
-  // repeated .trafficcontrol.Route outbounds = 4;
+  // repeated .trafficcontrol.Route outbounds = 2;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_outbounds_size()); i < n; i++) {
     const auto& repfield = this->_internal_outbounds(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(4, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // .trafficcontrol.DegradeConfig degrade = 5;
-  if (this->_internal_has_degrade()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(5, _Internal::degrade(this),
-        _Internal::degrade(this).GetCachedSize(), target, stream);
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.RuleRouting)
+  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.RuleRoutingConfig)
   return target;
 }
 
-size_t RuleRouting::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.RuleRouting)
+size_t RuleRoutingConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.RuleRoutingConfig)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .trafficcontrol.Route inbounds = 3;
+  // repeated .trafficcontrol.Route inbounds = 1;
   total_size += 1UL * this->_internal_inbounds_size();
   for (const auto& msg : this->inbounds_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // repeated .trafficcontrol.Route outbounds = 4;
+  // repeated .trafficcontrol.Route outbounds = 2;
   total_size += 1UL * this->_internal_outbounds_size();
   for (const auto& msg : this->outbounds_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  // .google.protobuf.StringValue namespace = 1;
-  if (this->_internal_has_namespace_()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *namespace__);
-  }
-
-  // .google.protobuf.StringValue service = 2;
-  if (this->_internal_has_service()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *service_);
-  }
-
-  // .trafficcontrol.DegradeConfig degrade = 5;
-  if (this->_internal_has_degrade()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *degrade_);
-  }
-
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RuleRouting::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData RuleRoutingConfig::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    RuleRouting::MergeImpl
+    RuleRoutingConfig::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RuleRouting::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*RuleRoutingConfig::GetClassData() const { return &_class_data_; }
 
-void RuleRouting::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void RuleRoutingConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<RuleRouting *>(to)->MergeFrom(
-      static_cast<const RuleRouting &>(from));
+  static_cast<RuleRoutingConfig *>(to)->MergeFrom(
+      static_cast<const RuleRoutingConfig &>(from));
 }
 
 
-void RuleRouting::MergeFrom(const RuleRouting& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.RuleRouting)
+void RuleRoutingConfig::MergeFrom(const RuleRoutingConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.RuleRoutingConfig)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   inbounds_.MergeFrom(from.inbounds_);
   outbounds_.MergeFrom(from.outbounds_);
-  if (from._internal_has_namespace_()) {
-    _internal_mutable_namespace_()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_namespace_());
-  }
-  if (from._internal_has_service()) {
-    _internal_mutable_service()->::PROTOBUF_NAMESPACE_ID::StringValue::MergeFrom(from._internal_service());
-  }
-  if (from._internal_has_degrade()) {
-    _internal_mutable_degrade()->::trafficcontrol::DegradeConfig::MergeFrom(from._internal_degrade());
-  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void RuleRouting::CopyFrom(const RuleRouting& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.RuleRouting)
+void RuleRoutingConfig::CopyFrom(const RuleRoutingConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.RuleRoutingConfig)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool RuleRouting::IsInitialized() const {
+bool RuleRoutingConfig::IsInitialized() const {
   return true;
 }
 
-void RuleRouting::InternalSwap(RuleRouting* other) {
+void RuleRoutingConfig::InternalSwap(RuleRoutingConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   inbounds_.InternalSwap(&other->inbounds_);
   outbounds_.InternalSwap(&other->outbounds_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RuleRouting, degrade_)
-      + sizeof(RuleRouting::degrade_)
-      - PROTOBUF_FIELD_OFFSET(RuleRouting, namespace__)>(
-          reinterpret_cast<char*>(&namespace__),
-          reinterpret_cast<char*>(&other->namespace__));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata RuleRouting::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata RuleRoutingConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
       file_level_metadata_router_2eproto[5]);
@@ -3395,44 +3687,34 @@ void Destination::InternalSwap(Destination* other) {
 
 // ===================================================================
 
-class LocalityRouting::_Internal {
+class LocalityRoutingConfig::_Internal {
  public:
-  static const ::trafficcontrol::DegradeConfig& degrade(const LocalityRouting* msg);
 };
 
-const ::trafficcontrol::DegradeConfig&
-LocalityRouting::_Internal::degrade(const LocalityRouting* msg) {
-  return *msg->degrade_;
-}
-LocalityRouting::LocalityRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+LocalityRoutingConfig::LocalityRoutingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.LocalityRouting)
+  // @@protoc_insertion_point(arena_constructor:trafficcontrol.LocalityRoutingConfig)
 }
-LocalityRouting::LocalityRouting(const LocalityRouting& from)
+LocalityRoutingConfig::LocalityRoutingConfig(const LocalityRoutingConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_degrade()) {
-    degrade_ = new ::trafficcontrol::DegradeConfig(*from.degrade_);
-  } else {
-    degrade_ = nullptr;
-  }
-  ::memcpy(&startinglevel_, &from.startinglevel_,
-    static_cast<size_t>(reinterpret_cast<char*>(&maxdegradelevel_) -
-    reinterpret_cast<char*>(&startinglevel_)) + sizeof(maxdegradelevel_));
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.LocalityRouting)
+  ::memcpy(&locality_level_, &from.locality_level_,
+    static_cast<size_t>(reinterpret_cast<char*>(&max_locality_level_) -
+    reinterpret_cast<char*>(&locality_level_)) + sizeof(max_locality_level_));
+  // @@protoc_insertion_point(copy_constructor:trafficcontrol.LocalityRoutingConfig)
 }
 
-inline void LocalityRouting::SharedCtor() {
+inline void LocalityRoutingConfig::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&degrade_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&maxdegradelevel_) -
-    reinterpret_cast<char*>(&degrade_)) + sizeof(maxdegradelevel_));
+    reinterpret_cast<char*>(&locality_level_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_locality_level_) -
+    reinterpret_cast<char*>(&locality_level_)) + sizeof(max_locality_level_));
 }
 
-LocalityRouting::~LocalityRouting() {
-  // @@protoc_insertion_point(destructor:trafficcontrol.LocalityRouting)
+LocalityRoutingConfig::~LocalityRoutingConfig() {
+  // @@protoc_insertion_point(destructor:trafficcontrol.LocalityRoutingConfig)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -3440,60 +3722,47 @@ LocalityRouting::~LocalityRouting() {
   SharedDtor();
 }
 
-inline void LocalityRouting::SharedDtor() {
+inline void LocalityRoutingConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete degrade_;
 }
 
-void LocalityRouting::SetCachedSize(int size) const {
+void LocalityRoutingConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void LocalityRouting::Clear() {
-// @@protoc_insertion_point(message_clear_start:trafficcontrol.LocalityRouting)
+void LocalityRoutingConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:trafficcontrol.LocalityRoutingConfig)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
-  ::memset(&startinglevel_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&maxdegradelevel_) -
-      reinterpret_cast<char*>(&startinglevel_)) + sizeof(maxdegradelevel_));
+  ::memset(&locality_level_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&max_locality_level_) -
+      reinterpret_cast<char*>(&locality_level_)) + sizeof(max_locality_level_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* LocalityRouting::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* LocalityRoutingConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .trafficcontrol.LocalityRouting.LocalityLevel startingLevel = 1;
+      // .trafficcontrol.LocalityRoutingConfig.LocalityLevel locality_level = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_startinglevel(static_cast<::trafficcontrol::LocalityRouting_LocalityLevel>(val));
+          _internal_set_locality_level(static_cast<::trafficcontrol::LocalityRoutingConfig_LocalityLevel>(val));
         } else
           goto handle_unusual;
         continue;
-      // .trafficcontrol.LocalityRouting.LocalityLevel maxDegradeLevel = 2;
+      // .trafficcontrol.LocalityRoutingConfig.LocalityLevel max_locality_level = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_maxdegradelevel(static_cast<::trafficcontrol::LocalityRouting_LocalityLevel>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // .trafficcontrol.DegradeConfig degrade = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_degrade(), ptr);
-          CHK_(ptr);
+          _internal_set_max_locality_level(static_cast<::trafficcontrol::LocalityRoutingConfig_LocalityLevel>(val));
         } else
           goto handle_unusual;
         continue;
@@ -3520,125 +3789,108 @@ failure:
 #undef CHK_
 }
 
-uint8_t* LocalityRouting::_InternalSerialize(
+uint8_t* LocalityRoutingConfig::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.LocalityRouting)
+  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.LocalityRoutingConfig)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .trafficcontrol.LocalityRouting.LocalityLevel startingLevel = 1;
-  if (this->_internal_startinglevel() != 0) {
+  // .trafficcontrol.LocalityRoutingConfig.LocalityLevel locality_level = 1;
+  if (this->_internal_locality_level() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_startinglevel(), target);
+      1, this->_internal_locality_level(), target);
   }
 
-  // .trafficcontrol.LocalityRouting.LocalityLevel maxDegradeLevel = 2;
-  if (this->_internal_maxdegradelevel() != 0) {
+  // .trafficcontrol.LocalityRoutingConfig.LocalityLevel max_locality_level = 2;
+  if (this->_internal_max_locality_level() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      2, this->_internal_maxdegradelevel(), target);
-  }
-
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  if (this->_internal_has_degrade()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::degrade(this),
-        _Internal::degrade(this).GetCachedSize(), target, stream);
+      2, this->_internal_max_locality_level(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.LocalityRouting)
+  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.LocalityRoutingConfig)
   return target;
 }
 
-size_t LocalityRouting::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.LocalityRouting)
+size_t LocalityRoutingConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.LocalityRoutingConfig)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  if (this->_internal_has_degrade()) {
+  // .trafficcontrol.LocalityRoutingConfig.LocalityLevel locality_level = 1;
+  if (this->_internal_locality_level() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *degrade_);
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_locality_level());
   }
 
-  // .trafficcontrol.LocalityRouting.LocalityLevel startingLevel = 1;
-  if (this->_internal_startinglevel() != 0) {
+  // .trafficcontrol.LocalityRoutingConfig.LocalityLevel max_locality_level = 2;
+  if (this->_internal_max_locality_level() != 0) {
     total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_startinglevel());
-  }
-
-  // .trafficcontrol.LocalityRouting.LocalityLevel maxDegradeLevel = 2;
-  if (this->_internal_maxdegradelevel() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_maxdegradelevel());
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_max_locality_level());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LocalityRouting::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LocalityRoutingConfig::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    LocalityRouting::MergeImpl
+    LocalityRoutingConfig::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LocalityRouting::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LocalityRoutingConfig::GetClassData() const { return &_class_data_; }
 
-void LocalityRouting::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void LocalityRoutingConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<LocalityRouting *>(to)->MergeFrom(
-      static_cast<const LocalityRouting &>(from));
+  static_cast<LocalityRoutingConfig *>(to)->MergeFrom(
+      static_cast<const LocalityRoutingConfig &>(from));
 }
 
 
-void LocalityRouting::MergeFrom(const LocalityRouting& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.LocalityRouting)
+void LocalityRoutingConfig::MergeFrom(const LocalityRoutingConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.LocalityRoutingConfig)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_degrade()) {
-    _internal_mutable_degrade()->::trafficcontrol::DegradeConfig::MergeFrom(from._internal_degrade());
+  if (from._internal_locality_level() != 0) {
+    _internal_set_locality_level(from._internal_locality_level());
   }
-  if (from._internal_startinglevel() != 0) {
-    _internal_set_startinglevel(from._internal_startinglevel());
-  }
-  if (from._internal_maxdegradelevel() != 0) {
-    _internal_set_maxdegradelevel(from._internal_maxdegradelevel());
+  if (from._internal_max_locality_level() != 0) {
+    _internal_set_max_locality_level(from._internal_max_locality_level());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void LocalityRouting::CopyFrom(const LocalityRouting& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.LocalityRouting)
+void LocalityRoutingConfig::CopyFrom(const LocalityRoutingConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.LocalityRoutingConfig)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool LocalityRouting::IsInitialized() const {
+bool LocalityRoutingConfig::IsInitialized() const {
   return true;
 }
 
-void LocalityRouting::InternalSwap(LocalityRouting* other) {
+void LocalityRoutingConfig::InternalSwap(LocalityRoutingConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(LocalityRouting, maxdegradelevel_)
-      + sizeof(LocalityRouting::maxdegradelevel_)
-      - PROTOBUF_FIELD_OFFSET(LocalityRouting, degrade_)>(
-          reinterpret_cast<char*>(&degrade_),
-          reinterpret_cast<char*>(&other->degrade_));
+      PROTOBUF_FIELD_OFFSET(LocalityRoutingConfig, max_locality_level_)
+      + sizeof(LocalityRoutingConfig::max_locality_level_)
+      - PROTOBUF_FIELD_OFFSET(LocalityRoutingConfig, locality_level_)>(
+          reinterpret_cast<char*>(&locality_level_),
+          reinterpret_cast<char*>(&other->locality_level_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata LocalityRouting::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata LocalityRoutingConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
       file_level_metadata_router_2eproto[11]);
@@ -3646,42 +3898,29 @@ void LocalityRouting::InternalSwap(LocalityRouting* other) {
 
 // ===================================================================
 
-class MetadataRouting::_Internal {
+class MetadataRoutingConfig::_Internal {
  public:
-  static const ::trafficcontrol::DegradeConfig& degrade(const MetadataRouting* msg);
 };
 
-const ::trafficcontrol::DegradeConfig&
-MetadataRouting::_Internal::degrade(const MetadataRouting* msg) {
-  return *msg->degrade_;
-}
-MetadataRouting::MetadataRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+MetadataRoutingConfig::MetadataRoutingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.MetadataRouting)
+  // @@protoc_insertion_point(arena_constructor:trafficcontrol.MetadataRoutingConfig)
 }
-MetadataRouting::MetadataRouting(const MetadataRouting& from)
+MetadataRoutingConfig::MetadataRoutingConfig(const MetadataRoutingConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_degrade()) {
-    degrade_ = new ::trafficcontrol::DegradeConfig(*from.degrade_);
-  } else {
-    degrade_ = nullptr;
-  }
-  degrade_level_ = from.degrade_level_;
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.MetadataRouting)
+  failover_range_ = from.failover_range_;
+  // @@protoc_insertion_point(copy_constructor:trafficcontrol.MetadataRoutingConfig)
 }
 
-inline void MetadataRouting::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&degrade_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&degrade_level_) -
-    reinterpret_cast<char*>(&degrade_)) + sizeof(degrade_level_));
+inline void MetadataRoutingConfig::SharedCtor() {
+failover_range_ = 0;
 }
 
-MetadataRouting::~MetadataRouting() {
-  // @@protoc_insertion_point(destructor:trafficcontrol.MetadataRouting)
+MetadataRoutingConfig::~MetadataRoutingConfig() {
+  // @@protoc_insertion_point(destructor:trafficcontrol.MetadataRoutingConfig)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -3689,49 +3928,36 @@ MetadataRouting::~MetadataRouting() {
   SharedDtor();
 }
 
-inline void MetadataRouting::SharedDtor() {
+inline void MetadataRoutingConfig::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete degrade_;
 }
 
-void MetadataRouting::SetCachedSize(int size) const {
+void MetadataRoutingConfig::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void MetadataRouting::Clear() {
-// @@protoc_insertion_point(message_clear_start:trafficcontrol.MetadataRouting)
+void MetadataRoutingConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:trafficcontrol.MetadataRoutingConfig)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
-  degrade_level_ = 0;
+  failover_range_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* MetadataRouting::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* MetadataRoutingConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .trafficcontrol.MetadataRouting.DegradeLevel degrade_level = 1;
+      // .trafficcontrol.MetadataRoutingConfig.FailoverRange failover_range = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-          _internal_set_degrade_level(static_cast<::trafficcontrol::MetadataRouting_DegradeLevel>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // .trafficcontrol.DegradeConfig degrade = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_degrade(), ptr);
-          CHK_(ptr);
+          _internal_set_failover_range(static_cast<::trafficcontrol::MetadataRoutingConfig_FailoverRange>(val));
         } else
           goto handle_unusual;
         continue;
@@ -3758,381 +3984,98 @@ failure:
 #undef CHK_
 }
 
-uint8_t* MetadataRouting::_InternalSerialize(
+uint8_t* MetadataRoutingConfig::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.MetadataRouting)
+  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.MetadataRoutingConfig)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .trafficcontrol.MetadataRouting.DegradeLevel degrade_level = 1;
-  if (this->_internal_degrade_level() != 0) {
+  // .trafficcontrol.MetadataRoutingConfig.FailoverRange failover_range = 1;
+  if (this->_internal_failover_range() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_degrade_level(), target);
-  }
-
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  if (this->_internal_has_degrade()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::degrade(this),
-        _Internal::degrade(this).GetCachedSize(), target, stream);
+      1, this->_internal_failover_range(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.MetadataRouting)
+  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.MetadataRoutingConfig)
   return target;
 }
 
-size_t MetadataRouting::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.MetadataRouting)
+size_t MetadataRoutingConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.MetadataRoutingConfig)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  if (this->_internal_has_degrade()) {
+  // .trafficcontrol.MetadataRoutingConfig.FailoverRange failover_range = 1;
+  if (this->_internal_failover_range() != 0) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *degrade_);
-  }
-
-  // .trafficcontrol.MetadataRouting.DegradeLevel degrade_level = 1;
-  if (this->_internal_degrade_level() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_degrade_level());
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_failover_range());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MetadataRouting::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MetadataRoutingConfig::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    MetadataRouting::MergeImpl
+    MetadataRoutingConfig::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MetadataRouting::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MetadataRoutingConfig::GetClassData() const { return &_class_data_; }
 
-void MetadataRouting::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void MetadataRoutingConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<MetadataRouting *>(to)->MergeFrom(
-      static_cast<const MetadataRouting &>(from));
+  static_cast<MetadataRoutingConfig *>(to)->MergeFrom(
+      static_cast<const MetadataRoutingConfig &>(from));
 }
 
 
-void MetadataRouting::MergeFrom(const MetadataRouting& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.MetadataRouting)
+void MetadataRoutingConfig::MergeFrom(const MetadataRoutingConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.MetadataRoutingConfig)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_degrade()) {
-    _internal_mutable_degrade()->::trafficcontrol::DegradeConfig::MergeFrom(from._internal_degrade());
-  }
-  if (from._internal_degrade_level() != 0) {
-    _internal_set_degrade_level(from._internal_degrade_level());
+  if (from._internal_failover_range() != 0) {
+    _internal_set_failover_range(from._internal_failover_range());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void MetadataRouting::CopyFrom(const MetadataRouting& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.MetadataRouting)
+void MetadataRoutingConfig::CopyFrom(const MetadataRoutingConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.MetadataRoutingConfig)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool MetadataRouting::IsInitialized() const {
+bool MetadataRoutingConfig::IsInitialized() const {
   return true;
 }
 
-void MetadataRouting::InternalSwap(MetadataRouting* other) {
+void MetadataRoutingConfig::InternalSwap(MetadataRoutingConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MetadataRouting, degrade_level_)
-      + sizeof(MetadataRouting::degrade_level_)
-      - PROTOBUF_FIELD_OFFSET(MetadataRouting, degrade_)>(
-          reinterpret_cast<char*>(&degrade_),
-          reinterpret_cast<char*>(&other->degrade_));
+  swap(failover_range_, other->failover_range_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata MetadataRouting::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata MetadataRoutingConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
       file_level_metadata_router_2eproto[12]);
 }
 
-// ===================================================================
-
-class CanaryRouting::_Internal {
- public:
-  static const ::trafficcontrol::DegradeConfig& degrade(const CanaryRouting* msg);
-};
-
-const ::trafficcontrol::DegradeConfig&
-CanaryRouting::_Internal::degrade(const CanaryRouting* msg) {
-  return *msg->degrade_;
-}
-CanaryRouting::CanaryRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.CanaryRouting)
-}
-CanaryRouting::CanaryRouting(const CanaryRouting& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_degrade()) {
-    degrade_ = new ::trafficcontrol::DegradeConfig(*from.degrade_);
-  } else {
-    degrade_ = nullptr;
-  }
-  degrade_level_ = from.degrade_level_;
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.CanaryRouting)
-}
-
-inline void CanaryRouting::SharedCtor() {
-::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&degrade_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&degrade_level_) -
-    reinterpret_cast<char*>(&degrade_)) + sizeof(degrade_level_));
-}
-
-CanaryRouting::~CanaryRouting() {
-  // @@protoc_insertion_point(destructor:trafficcontrol.CanaryRouting)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void CanaryRouting::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete degrade_;
-}
-
-void CanaryRouting::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void CanaryRouting::Clear() {
-// @@protoc_insertion_point(message_clear_start:trafficcontrol.CanaryRouting)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  if (GetArenaForAllocation() == nullptr && degrade_ != nullptr) {
-    delete degrade_;
-  }
-  degrade_ = nullptr;
-  degrade_level_ = 0;
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* CanaryRouting::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // .trafficcontrol.CanaryRouting.DegradeLevel degrade_level = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_degrade_level(static_cast<::trafficcontrol::CanaryRouting_DegradeLevel>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // .trafficcontrol.DegradeConfig degrade = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_degrade(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* CanaryRouting::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:trafficcontrol.CanaryRouting)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // .trafficcontrol.CanaryRouting.DegradeLevel degrade_level = 1;
-  if (this->_internal_degrade_level() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      1, this->_internal_degrade_level(), target);
-  }
-
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  if (this->_internal_has_degrade()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(3, _Internal::degrade(this),
-        _Internal::degrade(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:trafficcontrol.CanaryRouting)
-  return target;
-}
-
-size_t CanaryRouting::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:trafficcontrol.CanaryRouting)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .trafficcontrol.DegradeConfig degrade = 3;
-  if (this->_internal_has_degrade()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *degrade_);
-  }
-
-  // .trafficcontrol.CanaryRouting.DegradeLevel degrade_level = 1;
-  if (this->_internal_degrade_level() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_degrade_level());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CanaryRouting::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    CanaryRouting::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CanaryRouting::GetClassData() const { return &_class_data_; }
-
-void CanaryRouting::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<CanaryRouting *>(to)->MergeFrom(
-      static_cast<const CanaryRouting &>(from));
-}
-
-
-void CanaryRouting::MergeFrom(const CanaryRouting& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:trafficcontrol.CanaryRouting)
-  GOOGLE_DCHECK_NE(&from, this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_has_degrade()) {
-    _internal_mutable_degrade()->::trafficcontrol::DegradeConfig::MergeFrom(from._internal_degrade());
-  }
-  if (from._internal_degrade_level() != 0) {
-    _internal_set_degrade_level(from._internal_degrade_level());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void CanaryRouting::CopyFrom(const CanaryRouting& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:trafficcontrol.CanaryRouting)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool CanaryRouting::IsInitialized() const {
-  return true;
-}
-
-void CanaryRouting::InternalSwap(CanaryRouting* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CanaryRouting, degrade_level_)
-      + sizeof(CanaryRouting::degrade_level_)
-      - PROTOBUF_FIELD_OFFSET(CanaryRouting, degrade_)>(
-          reinterpret_cast<char*>(&degrade_),
-          reinterpret_cast<char*>(&other->degrade_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata CanaryRouting::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
-      file_level_metadata_router_2eproto[13]);
-}
-
-// ===================================================================
-
-class SetRouting::_Internal {
- public:
-};
-
-SetRouting::SetRouting(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
-  // @@protoc_insertion_point(arena_constructor:trafficcontrol.SetRouting)
-}
-SetRouting::SetRouting(const SetRouting& from)
-  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:trafficcontrol.SetRouting)
-}
-
-
-
-
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData SetRouting::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*SetRouting::GetClassData() const { return &_class_data_; }
-
-
-
-
-
-
-
-::PROTOBUF_NAMESPACE_ID::Metadata SetRouting::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_router_2eproto_getter, &descriptor_table_router_2eproto_once,
-      file_level_metadata_router_2eproto[14]);
-}
-
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace trafficcontrol
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::trafficcontrol::RouteConfiguration*
-Arena::CreateMaybeMessage< ::trafficcontrol::RouteConfiguration >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::RouteConfiguration >(arena);
+template<> PROTOBUF_NOINLINE ::trafficcontrol::Routing*
+Arena::CreateMaybeMessage< ::trafficcontrol::Routing >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::trafficcontrol::Routing >(arena);
 }
 template<> PROTOBUF_NOINLINE ::trafficcontrol::Router*
 Arena::CreateMaybeMessage< ::trafficcontrol::Router >(Arena* arena) {
@@ -4146,13 +4089,13 @@ template<> PROTOBUF_NOINLINE ::trafficcontrol::Locality*
 Arena::CreateMaybeMessage< ::trafficcontrol::Locality >(Arena* arena) {
   return Arena::CreateMessageInternal< ::trafficcontrol::Locality >(arena);
 }
-template<> PROTOBUF_NOINLINE ::trafficcontrol::DegradeConfig*
-Arena::CreateMaybeMessage< ::trafficcontrol::DegradeConfig >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::DegradeConfig >(arena);
+template<> PROTOBUF_NOINLINE ::trafficcontrol::FailoverConfig*
+Arena::CreateMaybeMessage< ::trafficcontrol::FailoverConfig >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::trafficcontrol::FailoverConfig >(arena);
 }
-template<> PROTOBUF_NOINLINE ::trafficcontrol::RuleRouting*
-Arena::CreateMaybeMessage< ::trafficcontrol::RuleRouting >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::RuleRouting >(arena);
+template<> PROTOBUF_NOINLINE ::trafficcontrol::RuleRoutingConfig*
+Arena::CreateMaybeMessage< ::trafficcontrol::RuleRoutingConfig >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::trafficcontrol::RuleRoutingConfig >(arena);
 }
 template<> PROTOBUF_NOINLINE ::trafficcontrol::Route*
 Arena::CreateMaybeMessage< ::trafficcontrol::Route >(Arena* arena) {
@@ -4174,21 +4117,13 @@ template<> PROTOBUF_NOINLINE ::trafficcontrol::Destination*
 Arena::CreateMaybeMessage< ::trafficcontrol::Destination >(Arena* arena) {
   return Arena::CreateMessageInternal< ::trafficcontrol::Destination >(arena);
 }
-template<> PROTOBUF_NOINLINE ::trafficcontrol::LocalityRouting*
-Arena::CreateMaybeMessage< ::trafficcontrol::LocalityRouting >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::LocalityRouting >(arena);
+template<> PROTOBUF_NOINLINE ::trafficcontrol::LocalityRoutingConfig*
+Arena::CreateMaybeMessage< ::trafficcontrol::LocalityRoutingConfig >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::trafficcontrol::LocalityRoutingConfig >(arena);
 }
-template<> PROTOBUF_NOINLINE ::trafficcontrol::MetadataRouting*
-Arena::CreateMaybeMessage< ::trafficcontrol::MetadataRouting >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::MetadataRouting >(arena);
-}
-template<> PROTOBUF_NOINLINE ::trafficcontrol::CanaryRouting*
-Arena::CreateMaybeMessage< ::trafficcontrol::CanaryRouting >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::CanaryRouting >(arena);
-}
-template<> PROTOBUF_NOINLINE ::trafficcontrol::SetRouting*
-Arena::CreateMaybeMessage< ::trafficcontrol::SetRouting >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::trafficcontrol::SetRouting >(arena);
+template<> PROTOBUF_NOINLINE ::trafficcontrol::MetadataRoutingConfig*
+Arena::CreateMaybeMessage< ::trafficcontrol::MetadataRoutingConfig >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::trafficcontrol::MetadataRoutingConfig >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -29,12 +29,13 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_faultdetector_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\023faultdetector.proto\022\016faulttoleranceB\027Z"
-  "\025api/v1/faulttoleranceb\006proto3"
+  "\n\023faultdetector.proto\022\016faulttoleranceB>\n"
+  "%cn.polarismesh.polaris.faulttoleranceZ\025"
+  "api/v1/faulttoleranceb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_faultdetector_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_faultdetector_2eproto = {
-    false, false, 70, descriptor_table_protodef_faultdetector_2eproto,
+    false, false, 109, descriptor_table_protodef_faultdetector_2eproto,
     "faultdetector.proto",
     &descriptor_table_faultdetector_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_faultdetector_2eproto::offsets,

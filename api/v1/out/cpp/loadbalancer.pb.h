@@ -29,12 +29,10 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/map.h>  // IWYU pragma: export
-#include <google/protobuf/map_entry.h>
-#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 #include <google/protobuf/wrappers.pb.h>
+#include <google/protobuf/any.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_loadbalancer_2eproto
@@ -53,13 +51,17 @@ namespace trafficcontrol {
 class Loadbalancer;
 struct LoadbalancerDefaultTypeInternal;
 extern LoadbalancerDefaultTypeInternal _Loadbalancer_default_instance_;
-class Loadbalancer_OptionsEntry_DoNotUse;
-struct Loadbalancer_OptionsEntry_DoNotUseDefaultTypeInternal;
-extern Loadbalancer_OptionsEntry_DoNotUseDefaultTypeInternal _Loadbalancer_OptionsEntry_DoNotUse_default_instance_;
+class MaglevLbConfig;
+struct MaglevLbConfigDefaultTypeInternal;
+extern MaglevLbConfigDefaultTypeInternal _MaglevLbConfig_default_instance_;
+class RingHashLbConfig;
+struct RingHashLbConfigDefaultTypeInternal;
+extern RingHashLbConfigDefaultTypeInternal _RingHashLbConfig_default_instance_;
 }  // namespace trafficcontrol
 PROTOBUF_NAMESPACE_OPEN
 template<> ::trafficcontrol::Loadbalancer* Arena::CreateMaybeMessage<::trafficcontrol::Loadbalancer>(Arena*);
-template<> ::trafficcontrol::Loadbalancer_OptionsEntry_DoNotUse* Arena::CreateMaybeMessage<::trafficcontrol::Loadbalancer_OptionsEntry_DoNotUse>(Arena*);
+template<> ::trafficcontrol::MaglevLbConfig* Arena::CreateMaybeMessage<::trafficcontrol::MaglevLbConfig>(Arena*);
+template<> ::trafficcontrol::RingHashLbConfig* Arena::CreateMaybeMessage<::trafficcontrol::RingHashLbConfig>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace trafficcontrol {
 
@@ -94,34 +96,6 @@ inline bool LbPolicy_Parse(
     LbPolicy_descriptor(), name, value);
 }
 // ===================================================================
-
-class Loadbalancer_OptionsEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Loadbalancer_OptionsEntry_DoNotUse, 
-    std::string, std::string,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> {
-public:
-  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<Loadbalancer_OptionsEntry_DoNotUse, 
-    std::string, std::string,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> SuperType;
-  Loadbalancer_OptionsEntry_DoNotUse();
-  explicit PROTOBUF_CONSTEXPR Loadbalancer_OptionsEntry_DoNotUse(
-      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-  explicit Loadbalancer_OptionsEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  void MergeFrom(const Loadbalancer_OptionsEntry_DoNotUse& other);
-  static const Loadbalancer_OptionsEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const Loadbalancer_OptionsEntry_DoNotUse*>(&_Loadbalancer_OptionsEntry_DoNotUse_default_instance_); }
-  static bool ValidateKey(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "trafficcontrol.Loadbalancer.OptionsEntry.key");
- }
-  static bool ValidateValue(std::string* s) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "trafficcontrol.Loadbalancer.OptionsEntry.value");
- }
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  friend struct ::TableStruct_loadbalancer_2eproto;
-};
-
-// -------------------------------------------------------------------
 
 class Loadbalancer final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.Loadbalancer) */ {
@@ -171,7 +145,7 @@ class Loadbalancer final :
                &_Loadbalancer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    0;
 
   friend void swap(Loadbalancer& a, Loadbalancer& b) {
     a.Swap(&b);
@@ -230,8 +204,6 @@ class Loadbalancer final :
   protected:
   explicit Loadbalancer(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
   public:
 
   static const ClassData _class_data_;
@@ -241,32 +213,14 @@ class Loadbalancer final :
 
   // nested types ----------------------------------------------------
 
-
   // accessors -------------------------------------------------------
 
   enum : int {
-    kOptionsFieldNumber = 4,
     kNamespaceFieldNumber = 1,
     kServiceFieldNumber = 2,
-    kPolicyFieldNumber = 3,
+    kLbConfigFieldNumber = 4,
+    kLbPolicyFieldNumber = 3,
   };
-  // map<string, string> options = 4;
-  int options_size() const;
-  private:
-  int _internal_options_size() const;
-  public:
-  void clear_options();
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-      _internal_options() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-      _internal_mutable_options();
-  public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-      options() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-      mutable_options();
-
   // .google.protobuf.StringValue namespace = 1;
   bool has_namespace_() const;
   private:
@@ -303,13 +257,31 @@ class Loadbalancer final :
       ::PROTOBUF_NAMESPACE_ID::StringValue* service);
   ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_service();
 
-  // .trafficcontrol.LbPolicy policy = 3;
-  void clear_policy();
-  ::trafficcontrol::LbPolicy policy() const;
-  void set_policy(::trafficcontrol::LbPolicy value);
+  // .google.protobuf.Any lb_config = 4;
+  bool has_lb_config() const;
   private:
-  ::trafficcontrol::LbPolicy _internal_policy() const;
-  void _internal_set_policy(::trafficcontrol::LbPolicy value);
+  bool _internal_has_lb_config() const;
+  public:
+  void clear_lb_config();
+  const ::PROTOBUF_NAMESPACE_ID::Any& lb_config() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Any* release_lb_config();
+  ::PROTOBUF_NAMESPACE_ID::Any* mutable_lb_config();
+  void set_allocated_lb_config(::PROTOBUF_NAMESPACE_ID::Any* lb_config);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Any& _internal_lb_config() const;
+  ::PROTOBUF_NAMESPACE_ID::Any* _internal_mutable_lb_config();
+  public:
+  void unsafe_arena_set_allocated_lb_config(
+      ::PROTOBUF_NAMESPACE_ID::Any* lb_config);
+  ::PROTOBUF_NAMESPACE_ID::Any* unsafe_arena_release_lb_config();
+
+  // .trafficcontrol.LbPolicy lb_policy = 3;
+  void clear_lb_policy();
+  ::trafficcontrol::LbPolicy lb_policy() const;
+  void set_lb_policy(::trafficcontrol::LbPolicy value);
+  private:
+  ::trafficcontrol::LbPolicy _internal_lb_policy() const;
+  void _internal_set_lb_policy(::trafficcontrol::LbPolicy value);
   public:
 
   // @@protoc_insertion_point(class_scope:trafficcontrol.Loadbalancer)
@@ -319,14 +291,374 @@ class Loadbalancer final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
-      Loadbalancer_OptionsEntry_DoNotUse,
-      std::string, std::string,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING> options_;
   ::PROTOBUF_NAMESPACE_ID::StringValue* namespace__;
   ::PROTOBUF_NAMESPACE_ID::StringValue* service_;
-  int policy_;
+  ::PROTOBUF_NAMESPACE_ID::Any* lb_config_;
+  int lb_policy_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_loadbalancer_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RingHashLbConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.RingHashLbConfig) */ {
+ public:
+  inline RingHashLbConfig() : RingHashLbConfig(nullptr) {}
+  ~RingHashLbConfig() override;
+  explicit PROTOBUF_CONSTEXPR RingHashLbConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  RingHashLbConfig(const RingHashLbConfig& from);
+  RingHashLbConfig(RingHashLbConfig&& from) noexcept
+    : RingHashLbConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline RingHashLbConfig& operator=(const RingHashLbConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RingHashLbConfig& operator=(RingHashLbConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const RingHashLbConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const RingHashLbConfig* internal_default_instance() {
+    return reinterpret_cast<const RingHashLbConfig*>(
+               &_RingHashLbConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(RingHashLbConfig& a, RingHashLbConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RingHashLbConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(RingHashLbConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  RingHashLbConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<RingHashLbConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const RingHashLbConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const RingHashLbConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RingHashLbConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "trafficcontrol.RingHashLbConfig";
+  }
+  protected:
+  explicit RingHashLbConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHashFunctionFieldNumber = 1,
+    kMinRingSizeFieldNumber = 2,
+    kMaxRingSizeFieldNumber = 3,
+  };
+  // .google.protobuf.StringValue hash_function = 1;
+  bool has_hash_function() const;
+  private:
+  bool _internal_has_hash_function() const;
+  public:
+  void clear_hash_function();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& hash_function() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_hash_function();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_hash_function();
+  void set_allocated_hash_function(::PROTOBUF_NAMESPACE_ID::StringValue* hash_function);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_hash_function() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_hash_function();
+  public:
+  void unsafe_arena_set_allocated_hash_function(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* hash_function);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_hash_function();
+
+  // .google.protobuf.UInt64Value min_ring_size = 2;
+  bool has_min_ring_size() const;
+  private:
+  bool _internal_has_min_ring_size() const;
+  public:
+  void clear_min_ring_size();
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value& min_ring_size() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt64Value* release_min_ring_size();
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* mutable_min_ring_size();
+  void set_allocated_min_ring_size(::PROTOBUF_NAMESPACE_ID::UInt64Value* min_ring_size);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value& _internal_min_ring_size() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* _internal_mutable_min_ring_size();
+  public:
+  void unsafe_arena_set_allocated_min_ring_size(
+      ::PROTOBUF_NAMESPACE_ID::UInt64Value* min_ring_size);
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* unsafe_arena_release_min_ring_size();
+
+  // .google.protobuf.UInt64Value max_ring_size = 3;
+  bool has_max_ring_size() const;
+  private:
+  bool _internal_has_max_ring_size() const;
+  public:
+  void clear_max_ring_size();
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value& max_ring_size() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt64Value* release_max_ring_size();
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* mutable_max_ring_size();
+  void set_allocated_max_ring_size(::PROTOBUF_NAMESPACE_ID::UInt64Value* max_ring_size);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value& _internal_max_ring_size() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* _internal_mutable_max_ring_size();
+  public:
+  void unsafe_arena_set_allocated_max_ring_size(
+      ::PROTOBUF_NAMESPACE_ID::UInt64Value* max_ring_size);
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* unsafe_arena_release_max_ring_size();
+
+  // @@protoc_insertion_point(class_scope:trafficcontrol.RingHashLbConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* hash_function_;
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* min_ring_size_;
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* max_ring_size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_loadbalancer_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MaglevLbConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:trafficcontrol.MaglevLbConfig) */ {
+ public:
+  inline MaglevLbConfig() : MaglevLbConfig(nullptr) {}
+  ~MaglevLbConfig() override;
+  explicit PROTOBUF_CONSTEXPR MaglevLbConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MaglevLbConfig(const MaglevLbConfig& from);
+  MaglevLbConfig(MaglevLbConfig&& from) noexcept
+    : MaglevLbConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline MaglevLbConfig& operator=(const MaglevLbConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MaglevLbConfig& operator=(MaglevLbConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MaglevLbConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MaglevLbConfig* internal_default_instance() {
+    return reinterpret_cast<const MaglevLbConfig*>(
+               &_MaglevLbConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(MaglevLbConfig& a, MaglevLbConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MaglevLbConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MaglevLbConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MaglevLbConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MaglevLbConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MaglevLbConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MaglevLbConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MaglevLbConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "trafficcontrol.MaglevLbConfig";
+  }
+  protected:
+  explicit MaglevLbConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kHashFunctionFieldNumber = 1,
+    kTableSizeFieldNumber = 2,
+  };
+  // .google.protobuf.StringValue hash_function = 1;
+  bool has_hash_function() const;
+  private:
+  bool _internal_has_hash_function() const;
+  public:
+  void clear_hash_function();
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& hash_function() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::StringValue* release_hash_function();
+  ::PROTOBUF_NAMESPACE_ID::StringValue* mutable_hash_function();
+  void set_allocated_hash_function(::PROTOBUF_NAMESPACE_ID::StringValue* hash_function);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::StringValue& _internal_hash_function() const;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _internal_mutable_hash_function();
+  public:
+  void unsafe_arena_set_allocated_hash_function(
+      ::PROTOBUF_NAMESPACE_ID::StringValue* hash_function);
+  ::PROTOBUF_NAMESPACE_ID::StringValue* unsafe_arena_release_hash_function();
+
+  // .google.protobuf.UInt64Value table_size = 2;
+  bool has_table_size() const;
+  private:
+  bool _internal_has_table_size() const;
+  public:
+  void clear_table_size();
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value& table_size() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::UInt64Value* release_table_size();
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* mutable_table_size();
+  void set_allocated_table_size(::PROTOBUF_NAMESPACE_ID::UInt64Value* table_size);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value& _internal_table_size() const;
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* _internal_mutable_table_size();
+  public:
+  void unsafe_arena_set_allocated_table_size(
+      ::PROTOBUF_NAMESPACE_ID::UInt64Value* table_size);
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* unsafe_arena_release_table_size();
+
+  // @@protoc_insertion_point(class_scope:trafficcontrol.MaglevLbConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::StringValue* hash_function_;
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* table_size_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_loadbalancer_2eproto;
 };
@@ -339,8 +671,6 @@ class Loadbalancer final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // Loadbalancer
 
 // .google.protobuf.StringValue namespace = 1;
@@ -513,58 +843,549 @@ inline void Loadbalancer::set_allocated_service(::PROTOBUF_NAMESPACE_ID::StringV
   // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Loadbalancer.service)
 }
 
-// .trafficcontrol.LbPolicy policy = 3;
-inline void Loadbalancer::clear_policy() {
-  policy_ = 0;
+// .trafficcontrol.LbPolicy lb_policy = 3;
+inline void Loadbalancer::clear_lb_policy() {
+  lb_policy_ = 0;
 }
-inline ::trafficcontrol::LbPolicy Loadbalancer::_internal_policy() const {
-  return static_cast< ::trafficcontrol::LbPolicy >(policy_);
+inline ::trafficcontrol::LbPolicy Loadbalancer::_internal_lb_policy() const {
+  return static_cast< ::trafficcontrol::LbPolicy >(lb_policy_);
 }
-inline ::trafficcontrol::LbPolicy Loadbalancer::policy() const {
-  // @@protoc_insertion_point(field_get:trafficcontrol.Loadbalancer.policy)
-  return _internal_policy();
+inline ::trafficcontrol::LbPolicy Loadbalancer::lb_policy() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Loadbalancer.lb_policy)
+  return _internal_lb_policy();
 }
-inline void Loadbalancer::_internal_set_policy(::trafficcontrol::LbPolicy value) {
+inline void Loadbalancer::_internal_set_lb_policy(::trafficcontrol::LbPolicy value) {
   
-  policy_ = value;
+  lb_policy_ = value;
 }
-inline void Loadbalancer::set_policy(::trafficcontrol::LbPolicy value) {
-  _internal_set_policy(value);
-  // @@protoc_insertion_point(field_set:trafficcontrol.Loadbalancer.policy)
+inline void Loadbalancer::set_lb_policy(::trafficcontrol::LbPolicy value) {
+  _internal_set_lb_policy(value);
+  // @@protoc_insertion_point(field_set:trafficcontrol.Loadbalancer.lb_policy)
 }
 
-// map<string, string> options = 4;
-inline int Loadbalancer::_internal_options_size() const {
-  return options_.size();
+// .google.protobuf.Any lb_config = 4;
+inline bool Loadbalancer::_internal_has_lb_config() const {
+  return this != internal_default_instance() && lb_config_ != nullptr;
 }
-inline int Loadbalancer::options_size() const {
-  return _internal_options_size();
+inline bool Loadbalancer::has_lb_config() const {
+  return _internal_has_lb_config();
 }
-inline void Loadbalancer::clear_options() {
-  options_.Clear();
+inline const ::PROTOBUF_NAMESPACE_ID::Any& Loadbalancer::_internal_lb_config() const {
+  const ::PROTOBUF_NAMESPACE_ID::Any* p = lb_config_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Any&>(
+      ::PROTOBUF_NAMESPACE_ID::_Any_default_instance_);
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-Loadbalancer::_internal_options() const {
-  return options_.GetMap();
+inline const ::PROTOBUF_NAMESPACE_ID::Any& Loadbalancer::lb_config() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.Loadbalancer.lb_config)
+  return _internal_lb_config();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >&
-Loadbalancer::options() const {
-  // @@protoc_insertion_point(field_map:trafficcontrol.Loadbalancer.options)
-  return _internal_options();
+inline void Loadbalancer::unsafe_arena_set_allocated_lb_config(
+    ::PROTOBUF_NAMESPACE_ID::Any* lb_config) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(lb_config_);
+  }
+  lb_config_ = lb_config;
+  if (lb_config) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.Loadbalancer.lb_config)
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-Loadbalancer::_internal_mutable_options() {
-  return options_.MutableMap();
+inline ::PROTOBUF_NAMESPACE_ID::Any* Loadbalancer::release_lb_config() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Any* temp = lb_config_;
+  lb_config_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, std::string >*
-Loadbalancer::mutable_options() {
-  // @@protoc_insertion_point(field_mutable_map:trafficcontrol.Loadbalancer.options)
-  return _internal_mutable_options();
+inline ::PROTOBUF_NAMESPACE_ID::Any* Loadbalancer::unsafe_arena_release_lb_config() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.Loadbalancer.lb_config)
+  
+  ::PROTOBUF_NAMESPACE_ID::Any* temp = lb_config_;
+  lb_config_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Any* Loadbalancer::_internal_mutable_lb_config() {
+  
+  if (lb_config_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Any>(GetArenaForAllocation());
+    lb_config_ = p;
+  }
+  return lb_config_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Any* Loadbalancer::mutable_lb_config() {
+  ::PROTOBUF_NAMESPACE_ID::Any* _msg = _internal_mutable_lb_config();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.Loadbalancer.lb_config)
+  return _msg;
+}
+inline void Loadbalancer::set_allocated_lb_config(::PROTOBUF_NAMESPACE_ID::Any* lb_config) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(lb_config_);
+  }
+  if (lb_config) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(lb_config));
+    if (message_arena != submessage_arena) {
+      lb_config = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, lb_config, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  lb_config_ = lb_config;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.Loadbalancer.lb_config)
+}
+
+// -------------------------------------------------------------------
+
+// RingHashLbConfig
+
+// .google.protobuf.StringValue hash_function = 1;
+inline bool RingHashLbConfig::_internal_has_hash_function() const {
+  return this != internal_default_instance() && hash_function_ != nullptr;
+}
+inline bool RingHashLbConfig::has_hash_function() const {
+  return _internal_has_hash_function();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& RingHashLbConfig::_internal_hash_function() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = hash_function_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& RingHashLbConfig::hash_function() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.RingHashLbConfig.hash_function)
+  return _internal_hash_function();
+}
+inline void RingHashLbConfig::unsafe_arena_set_allocated_hash_function(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* hash_function) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(hash_function_);
+  }
+  hash_function_ = hash_function;
+  if (hash_function) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.RingHashLbConfig.hash_function)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* RingHashLbConfig::release_hash_function() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = hash_function_;
+  hash_function_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* RingHashLbConfig::unsafe_arena_release_hash_function() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.RingHashLbConfig.hash_function)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = hash_function_;
+  hash_function_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* RingHashLbConfig::_internal_mutable_hash_function() {
+  
+  if (hash_function_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    hash_function_ = p;
+  }
+  return hash_function_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* RingHashLbConfig::mutable_hash_function() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_hash_function();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.RingHashLbConfig.hash_function)
+  return _msg;
+}
+inline void RingHashLbConfig::set_allocated_hash_function(::PROTOBUF_NAMESPACE_ID::StringValue* hash_function) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(hash_function_);
+  }
+  if (hash_function) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(hash_function));
+    if (message_arena != submessage_arena) {
+      hash_function = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, hash_function, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  hash_function_ = hash_function;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.RingHashLbConfig.hash_function)
+}
+
+// .google.protobuf.UInt64Value min_ring_size = 2;
+inline bool RingHashLbConfig::_internal_has_min_ring_size() const {
+  return this != internal_default_instance() && min_ring_size_ != nullptr;
+}
+inline bool RingHashLbConfig::has_min_ring_size() const {
+  return _internal_has_min_ring_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt64Value& RingHashLbConfig::_internal_min_ring_size() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value* p = min_ring_size_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt64Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt64Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt64Value& RingHashLbConfig::min_ring_size() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.RingHashLbConfig.min_ring_size)
+  return _internal_min_ring_size();
+}
+inline void RingHashLbConfig::unsafe_arena_set_allocated_min_ring_size(
+    ::PROTOBUF_NAMESPACE_ID::UInt64Value* min_ring_size) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(min_ring_size_);
+  }
+  min_ring_size_ = min_ring_size;
+  if (min_ring_size) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.RingHashLbConfig.min_ring_size)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::release_min_ring_size() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* temp = min_ring_size_;
+  min_ring_size_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::unsafe_arena_release_min_ring_size() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.RingHashLbConfig.min_ring_size)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* temp = min_ring_size_;
+  min_ring_size_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::_internal_mutable_min_ring_size() {
+  
+  if (min_ring_size_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt64Value>(GetArenaForAllocation());
+    min_ring_size_ = p;
+  }
+  return min_ring_size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::mutable_min_ring_size() {
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* _msg = _internal_mutable_min_ring_size();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.RingHashLbConfig.min_ring_size)
+  return _msg;
+}
+inline void RingHashLbConfig::set_allocated_min_ring_size(::PROTOBUF_NAMESPACE_ID::UInt64Value* min_ring_size) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(min_ring_size_);
+  }
+  if (min_ring_size) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(min_ring_size));
+    if (message_arena != submessage_arena) {
+      min_ring_size = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, min_ring_size, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  min_ring_size_ = min_ring_size;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.RingHashLbConfig.min_ring_size)
+}
+
+// .google.protobuf.UInt64Value max_ring_size = 3;
+inline bool RingHashLbConfig::_internal_has_max_ring_size() const {
+  return this != internal_default_instance() && max_ring_size_ != nullptr;
+}
+inline bool RingHashLbConfig::has_max_ring_size() const {
+  return _internal_has_max_ring_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt64Value& RingHashLbConfig::_internal_max_ring_size() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value* p = max_ring_size_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt64Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt64Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt64Value& RingHashLbConfig::max_ring_size() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.RingHashLbConfig.max_ring_size)
+  return _internal_max_ring_size();
+}
+inline void RingHashLbConfig::unsafe_arena_set_allocated_max_ring_size(
+    ::PROTOBUF_NAMESPACE_ID::UInt64Value* max_ring_size) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(max_ring_size_);
+  }
+  max_ring_size_ = max_ring_size;
+  if (max_ring_size) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.RingHashLbConfig.max_ring_size)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::release_max_ring_size() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* temp = max_ring_size_;
+  max_ring_size_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::unsafe_arena_release_max_ring_size() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.RingHashLbConfig.max_ring_size)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* temp = max_ring_size_;
+  max_ring_size_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::_internal_mutable_max_ring_size() {
+  
+  if (max_ring_size_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt64Value>(GetArenaForAllocation());
+    max_ring_size_ = p;
+  }
+  return max_ring_size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* RingHashLbConfig::mutable_max_ring_size() {
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* _msg = _internal_mutable_max_ring_size();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.RingHashLbConfig.max_ring_size)
+  return _msg;
+}
+inline void RingHashLbConfig::set_allocated_max_ring_size(::PROTOBUF_NAMESPACE_ID::UInt64Value* max_ring_size) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(max_ring_size_);
+  }
+  if (max_ring_size) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(max_ring_size));
+    if (message_arena != submessage_arena) {
+      max_ring_size = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, max_ring_size, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  max_ring_size_ = max_ring_size;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.RingHashLbConfig.max_ring_size)
+}
+
+// -------------------------------------------------------------------
+
+// MaglevLbConfig
+
+// .google.protobuf.StringValue hash_function = 1;
+inline bool MaglevLbConfig::_internal_has_hash_function() const {
+  return this != internal_default_instance() && hash_function_ != nullptr;
+}
+inline bool MaglevLbConfig::has_hash_function() const {
+  return _internal_has_hash_function();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& MaglevLbConfig::_internal_hash_function() const {
+  const ::PROTOBUF_NAMESPACE_ID::StringValue* p = hash_function_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::StringValue&>(
+      ::PROTOBUF_NAMESPACE_ID::_StringValue_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::StringValue& MaglevLbConfig::hash_function() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.MaglevLbConfig.hash_function)
+  return _internal_hash_function();
+}
+inline void MaglevLbConfig::unsafe_arena_set_allocated_hash_function(
+    ::PROTOBUF_NAMESPACE_ID::StringValue* hash_function) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(hash_function_);
+  }
+  hash_function_ = hash_function;
+  if (hash_function) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.MaglevLbConfig.hash_function)
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MaglevLbConfig::release_hash_function() {
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = hash_function_;
+  hash_function_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MaglevLbConfig::unsafe_arena_release_hash_function() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.MaglevLbConfig.hash_function)
+  
+  ::PROTOBUF_NAMESPACE_ID::StringValue* temp = hash_function_;
+  hash_function_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MaglevLbConfig::_internal_mutable_hash_function() {
+  
+  if (hash_function_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::StringValue>(GetArenaForAllocation());
+    hash_function_ = p;
+  }
+  return hash_function_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::StringValue* MaglevLbConfig::mutable_hash_function() {
+  ::PROTOBUF_NAMESPACE_ID::StringValue* _msg = _internal_mutable_hash_function();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.MaglevLbConfig.hash_function)
+  return _msg;
+}
+inline void MaglevLbConfig::set_allocated_hash_function(::PROTOBUF_NAMESPACE_ID::StringValue* hash_function) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(hash_function_);
+  }
+  if (hash_function) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(hash_function));
+    if (message_arena != submessage_arena) {
+      hash_function = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, hash_function, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  hash_function_ = hash_function;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.MaglevLbConfig.hash_function)
+}
+
+// .google.protobuf.UInt64Value table_size = 2;
+inline bool MaglevLbConfig::_internal_has_table_size() const {
+  return this != internal_default_instance() && table_size_ != nullptr;
+}
+inline bool MaglevLbConfig::has_table_size() const {
+  return _internal_has_table_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt64Value& MaglevLbConfig::_internal_table_size() const {
+  const ::PROTOBUF_NAMESPACE_ID::UInt64Value* p = table_size_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::UInt64Value&>(
+      ::PROTOBUF_NAMESPACE_ID::_UInt64Value_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::UInt64Value& MaglevLbConfig::table_size() const {
+  // @@protoc_insertion_point(field_get:trafficcontrol.MaglevLbConfig.table_size)
+  return _internal_table_size();
+}
+inline void MaglevLbConfig::unsafe_arena_set_allocated_table_size(
+    ::PROTOBUF_NAMESPACE_ID::UInt64Value* table_size) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(table_size_);
+  }
+  table_size_ = table_size;
+  if (table_size) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:trafficcontrol.MaglevLbConfig.table_size)
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* MaglevLbConfig::release_table_size() {
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* temp = table_size_;
+  table_size_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* MaglevLbConfig::unsafe_arena_release_table_size() {
+  // @@protoc_insertion_point(field_release:trafficcontrol.MaglevLbConfig.table_size)
+  
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* temp = table_size_;
+  table_size_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* MaglevLbConfig::_internal_mutable_table_size() {
+  
+  if (table_size_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::UInt64Value>(GetArenaForAllocation());
+    table_size_ = p;
+  }
+  return table_size_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::UInt64Value* MaglevLbConfig::mutable_table_size() {
+  ::PROTOBUF_NAMESPACE_ID::UInt64Value* _msg = _internal_mutable_table_size();
+  // @@protoc_insertion_point(field_mutable:trafficcontrol.MaglevLbConfig.table_size)
+  return _msg;
+}
+inline void MaglevLbConfig::set_allocated_table_size(::PROTOBUF_NAMESPACE_ID::UInt64Value* table_size) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(table_size_);
+  }
+  if (table_size) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(table_size));
+    if (message_arena != submessage_arena) {
+      table_size = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, table_size, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  table_size_ = table_size;
+  // @@protoc_insertion_point(field_set_allocated:trafficcontrol.MaglevLbConfig.table_size)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

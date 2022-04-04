@@ -29,12 +29,13 @@ static constexpr ::_pbi::MigrationSchema* schemas = nullptr;
 static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_healthcheck_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\021healthcheck.proto\022\007serviceB\021Z\017/api/v1/"
-  "serviceb\006proto3"
+  "\n\021healthcheck.proto\022\007serviceB1\n\036cn.polar"
+  "ismesh.polaris.serviceZ\017/api/v1/serviceb"
+  "\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_healthcheck_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_healthcheck_2eproto = {
-    false, false, 55, descriptor_table_protodef_healthcheck_2eproto,
+    false, false, 87, descriptor_table_protodef_healthcheck_2eproto,
     "healthcheck.proto",
     &descriptor_table_healthcheck_2eproto_once, nullptr, 0, 0,
     schemas, file_default_instances, TableStruct_healthcheck_2eproto::offsets,

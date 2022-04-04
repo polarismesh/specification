@@ -92,15 +92,16 @@ const char descriptor_table_protodef_service_2eproto[] PROTOBUF_SECTION_VARIABLE
   "e\0220\n\010metadata\030\003 \003(\0132\036.service.Service.Me"
   "tadataEntry\022+\n\005ports\030\004 \001(\0132\034.google.prot"
   "obuf.StringValue\032/\n\rMetadataEntry\022\013\n\003key"
-  "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B\020Z\016api/v1/serv"
-  "iceb\006proto3"
+  "\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B0\n\036cn.polarism"
+  "esh.polaris.serviceZ\016api/v1/serviceb\006pro"
+  "to3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_service_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fwrappers_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_service_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_service_2eproto = {
-    false, false, 331, descriptor_table_protodef_service_2eproto,
+    false, false, 363, descriptor_table_protodef_service_2eproto,
     "service.proto",
     &descriptor_table_service_2eproto_once, descriptor_table_service_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_service_2eproto::offsets,
