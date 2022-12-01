@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/wrappers.proto";
+import "namespace.proto";
+import "service.proto";
+import "routing.proto";
+import "ratelimit.proto";
+import "circuitbreaker.proto";
+import "model.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/service_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
+option java_outer_classname = "ResponseProto";
+
+message Response {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  reserved 3 to 5;
+  Instance instance = 6;
+}
+
+message DiscoverResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+
+  enum DiscoverResponseType {
+    UNKNOWN = 0;
+    INSTANCE = 1;
+    CLUSTER = 2;
+    ROUTING = 3;
+    RATE_LIMIT = 4;
+    CIRCUIT_BREAKER = 5;
+    SERVICES = 6;
+    reserved 7 to 11;
+    reserved "MESH", "MESH_CONFIG", "FLUX_DBREFRESH", "FLUX_SDK", "FLUX_SERVER";
+    NAMESPACES = 12;
+  }
+
+  DiscoverResponseType type = 3;
+  Service service = 4;
+  repeated Instance instances = 5;
+  Routing routing = 6;
+  RateLimit rateLimit = 7;
+  CircuitBreaker circuitBreaker = 8;
+  repeated Service services = 9;
+  repeated Namespace namespaces = 10;
+  reserved 11 to 13;
+}
+
+
+message OptionSwitch {
+  map<string, string> options = 1;
+}
+
+message InstanceLabels {
+  map<string, StringList> labels = 1;
+}
+
