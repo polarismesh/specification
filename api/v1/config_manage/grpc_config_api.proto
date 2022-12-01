@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package v1;
+
+import "config_file.proto";
+import "config_file_response.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/config_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.config.manage";
+option java_outer_classname = "PolarisConfigGRPCService";
+
+service PolarisConfigGRPC {
+
+  // 拉取配置
+  rpc GetConfigFile(ClientConfigFileInfo) returns (ConfigClientResponse) {}
+
+  // 订阅配置变更
+  rpc WatchConfigFiles(ClientWatchConfigFileRequest) returns (ConfigClientResponse) {}
+}
