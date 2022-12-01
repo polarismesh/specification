@@ -38,4 +38,4 @@ Push-Location ${java_root_dir}
 mvn clean install
 Pop-Location
 
-Remove-Item "${java_source_dir}/proto/*.proto"
+#Remove-Item "${java_source_dir}/proto/*.proto"
