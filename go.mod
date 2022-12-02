@@ -1,4 +1,4 @@
-module github.com/polarismesh/specification/source/go
+module github.com/polarismesh/specification
 
 go 1.19
 
