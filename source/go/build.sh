@@ -31,7 +31,7 @@ out_dir=${workdir}/source/go
 
 protoc_dir=${workdir}/source/protoc/protoc-${CURRENT_OS}-${CURRENT_ARCH}
 
-proto_files_model="model.proto namespace.proto"
+proto_files_model="model.proto namespace.proto code.proto"
 proto_files_service_manage="client.proto service.proto  request.proto response.proto grpcapi.proto"
 proto_files_traffic_manage="routing.proto ratelimit.proto"
 proto_files_fault_tolerance="circuitbreaker.proto"
