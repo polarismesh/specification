@@ -36,6 +36,8 @@ message DiscoverResponse {
     reserved 7 to 11;
     reserved "MESH", "MESH_CONFIG", "FLUX_DBREFRESH", "FLUX_SDK", "FLUX_SERVER";
     NAMESPACES = 12;
+    reserved 13 to 20;
+    ROUTER = 21;
   }
 
   DiscoverResponseType type = 3;
@@ -46,7 +48,9 @@ message DiscoverResponse {
   CircuitBreaker circuitBreaker = 8;
   repeated Service services = 9;
   repeated Namespace namespaces = 10;
-  reserved 11 to 13;
+  reserved 11 to 20;
+
+  repeated Router routers = 21;
 }
 
 
