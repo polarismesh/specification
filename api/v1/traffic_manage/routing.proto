@@ -89,7 +89,7 @@ enum RoutingPolicy {
 }
 
 // configuration root for route
-message RouteRule {
+message Router {
   string id = 1;
   // route rule name
   string name = 2;
