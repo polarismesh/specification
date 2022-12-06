@@ -26,6 +26,10 @@ message Response {
   ServiceAlias alias = 8;
   Rule rateLimit = 9;
   CircuitBreaker circuitBreaker = 10;
+  reserved 11 to 27;
+  InstanceLabels instanceLabels = 28;
+
+  Router router = 29;
 }
 
 message BatchWriteResponse {
@@ -48,6 +52,8 @@ message BatchQueryResponse {
   repeated Rule rateLimits = 10;
   reserved 12 to 20;
   repeated Client clients = 21;
+  
+  repeated Router routers = 22;
 }
 
 message DiscoverResponse {
