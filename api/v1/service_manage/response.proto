@@ -3,6 +3,7 @@ syntax = "proto3";
 package v1;
 
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/any.proto";
 import "namespace.proto";
 import "service.proto";
 import "routing.proto";
@@ -31,7 +32,7 @@ message Response {
   reserved 12 to 27;
   InstanceLabels instanceLabels = 28;
 
-  Router router = 29;
+  google.protobuf.Any data = 29;
 }
 
 message BatchWriteResponse {
@@ -56,7 +57,7 @@ message BatchQueryResponse {
   reserved 12 to 20;
   repeated Client clients = 21;
   
-  repeated Router routers = 22;
+  repeated google.protobuf.Any data = 22;
 }
 
 message DiscoverResponse {
