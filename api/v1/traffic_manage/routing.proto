@@ -10,9 +10,9 @@ option go_package = "github.com/polarismesh/specification/source/go/api/v1/traff
 option java_package = "com.tencent.polaris.specification.api.v1.traffic.manage";
 option java_outer_classname = "RoutingProto";
 
-// deprecated: only for compatible to the old version server
 message Routing {
   // 规则所属服务以及命名空间
+
   google.protobuf.StringValue service = 1;
   google.protobuf.StringValue namespace = 2;
 
@@ -26,6 +26,12 @@ message Routing {
   google.protobuf.StringValue revision = 7;
 
   google.protobuf.StringValue service_token = 8 [ json_name = "service_token" ];
+
+  reserved 9 to 20;
+  // route rules for current service
+  repeated RouteRule rules = 21;
+  // total revision for the  circuitbreaker rules
+  string rules_revision = 22;
 }
 
 // deprecated: only for compatible to the old version server
@@ -89,7 +95,7 @@ enum RoutingPolicy {
 }
 
 // configuration root for route
-message Router {
+message RouteRule {
   string id = 1;
   // route rule name
   string name = 2;
