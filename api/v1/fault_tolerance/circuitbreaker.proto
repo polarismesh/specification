@@ -12,38 +12,62 @@ option java_outer_classname = "CircuitBreakerProto";
 
 //单个熔断规则定义
 message CircuitBreaker {
+  // deprecated
   google.protobuf.StringValue id = 1;
+
   // 规则版本
+  // deprecated
   google.protobuf.StringValue version = 2;
+
   // 规则名
+  // deprecated
   google.protobuf.StringValue name = 3;
+
   // 规则命名空间
+  // deprecated
   google.protobuf.StringValue namespace = 4;
 
   // 规则所属服务
+  // deprecated
   google.protobuf.StringValue service = 5;
+  // deprecated
   google.protobuf.StringValue service_namespace = 6;
 
   //熔断规则可以分为被调规则和主调规则
   //被调规则针对所有的指定主调生效，假如不指定则对所有的主调生效
   //主调规则为当前主调方的规则，假如不指定则针对所有被调生效
+  // deprecated
   repeated CbRule inbounds = 7;
+  // deprecated
   repeated CbRule outbounds = 8;
 
+  // deprecated
   google.protobuf.StringValue token = 9;
+  // deprecated
   google.protobuf.StringValue owners = 10;
+
   // 业务
+  // deprecated
   google.protobuf.StringValue business = 11;
   // 部门
+  // deprecated
   google.protobuf.StringValue department = 12;
 
   // 规则描述
+  // deprecated
   google.protobuf.StringValue comment = 13;
+  // deprecated
   google.protobuf.StringValue ctime = 14;
+  // deprecated
   google.protobuf.StringValue mtime = 15;
+  // deprecated
   google.protobuf.StringValue revision = 16;
 
-
+  reserved 17 to 20;
+  // circuitbreaker rules for current service
+  repeated CircuitBreakerRule rules = 21;
+  // total revision for the  circuitbreaker rules
+  string rules_revision = 22;
 }
 
 // 主调匹配规则
@@ -195,3 +219,122 @@ message CbRule {
   repeated DestinationSet destinations = 2;
 }
 
+message RuleMatcher {
+  message SourceService {
+    string service = 1;
+    string namespace = 2;
+  }
+
+  message DestinationService {
+    string service = 1;
+    string namespace = 2;
+    MatchString method = 3;
+  }
+  SourceService source = 1;
+  DestinationService destination = 2;
+}
+
+// circuitbreaking level
+enum Level {
+  UNKNOWN = 0;
+  // service level circuitbreaking
+  SERVICE = 1;
+  // method level circuitbreaking
+  METHOD = 2;
+  // group level circuitbreaking
+  GROUP = 3;
+  // instance level circuitbreaking
+  INSTANCE = 4;
+}
+
+// new specific rule for circuitbreaker config
+message CircuitBreakerRule {
+  string id = 1;
+  // rule name
+  string name = 2;
+  // namespace of rule
+  string namespace = 3;
+  // enable this router
+  bool enable = 4;
+  // revision routing version
+  string revision = 5;
+  // ctime create time of the rules
+  string ctime = 6;
+  // mtime modify time of the rules
+  string mtime = 7;
+  // etime enable time of the rules
+  string etime = 8;
+  // priority rules priority
+  uint32 priority = 9;
+  // description simple description rules
+  string description = 10;
+  // reserve for metadata
+  reserved 11 to 20;
+  // the circuitbreaking level
+  Level level = 21;
+  // match condition for this rule
+  RuleMatcher rule_matcher = 22;
+  // error conditions to judge an invocation as an error
+  repeated ErrorCondition error_conditions = 23;
+  // trigger condition to trigger circuitbreaking
+  repeated TriggerCondition trigger_condition = 24;
+  // the maximum % of an upstream cluster that can be ejected
+  uint32 max_ejection_percent = 25;
+  // recover condition to make resource open to close
+  RecoverCondition recoverCondition = 26;
+  // fault detection enable config
+  FaultDetectConfig faultDetectConfig = 27;
+  // fall back configuration
+  FallbackConfig fallbackConfig = 28;
+}
+
+// the condition to judge an input invocation as an error
+message ErrorCondition {
+  enum InputType {
+    UNKNOWN = 0;
+    RET_CODE = 1;
+    DELAY = 2;
+  }
+  InputType input_type = 1;
+  MatchString condition = 2;
+}
+
+// the error condition to trigger circuitbreaking
+message TriggerCondition {
+  enum TriggerType {
+    UNKNOWN = 0;
+    ERROR_RATE = 1;
+    CONSECUTIVE_ERROR = 2;
+  }
+  TriggerType trigger_type = 1;
+  uint32 error_count = 2;
+  uint32 error_percent = 3;
+  uint32 interval = 4;
+  uint32 minimum_request = 5;
+}
+
+message RecoverCondition {
+  // seconds from open to half-open
+  uint32 sleep_window = 1;
+  // consecutive success request to recover
+  uint32 consecutiveSuccess = 2;
+}
+
+message FaultDetectConfig {
+  bool enable = 1;
+}
+
+message FallbackConfig {
+  bool enable = 1;
+  FallbackResponse response = 2;
+}
+
+message FallbackResponse {
+  int32 code = 1;
+  message MessageHeader {
+    string key = 1;
+    string value = 2;
+  }
+  repeated MessageHeader headers = 2;
+  string body = 3;
+}
