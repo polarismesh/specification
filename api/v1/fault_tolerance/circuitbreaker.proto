@@ -28,9 +28,7 @@ message CircuitBreaker {
   google.protobuf.StringValue namespace = 4;
 
   // 规则所属服务
-  // deprecated
   google.protobuf.StringValue service = 5;
-  // deprecated
   google.protobuf.StringValue service_namespace = 6;
 
   //熔断规则可以分为被调规则和主调规则
@@ -60,14 +58,12 @@ message CircuitBreaker {
   google.protobuf.StringValue ctime = 14;
   // deprecated
   google.protobuf.StringValue mtime = 15;
-  // deprecated
+
   google.protobuf.StringValue revision = 16;
 
   reserved 17 to 20;
   // circuitbreaker rules for current service
   repeated CircuitBreakerRule rules = 21;
-  // total revision for the  circuitbreaker rules
-  string rules_revision = 22;
 }
 
 // 主调匹配规则
@@ -264,12 +260,10 @@ message CircuitBreakerRule {
   string mtime = 7;
   // etime enable time of the rules
   string etime = 8;
-  // priority rules priority
-  uint32 priority = 9;
   // description simple description rules
-  string description = 10;
+  string description = 9;
   // reserve for metadata
-  reserved 11 to 20;
+  reserved 10 to 20;
   // the circuitbreaking level
   Level level = 21;
   // match condition for this rule
