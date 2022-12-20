@@ -30,8 +30,6 @@ message Routing {
   reserved 9 to 20;
   // route rules for current service
   repeated RouteRule rules = 21;
-  // total revision for the  circuitbreaker rules
-  string rules_revision = 22;
 }
 
 // deprecated: only for compatible to the old version server

@@ -65,10 +65,15 @@ enum Code {
     InvalidCircuitBreakerBusiness    = 400166;
     InvalidCircuitBreakerDepartment  = 400167;
     InvalidCircuitBreakerComment     = 400168;
+    CircuitBreakerRuleExisted        = 400169;
     InvalidRoutingID                 = 400700;
     InvalidRoutingPolicy             = 400701;
     InvalidRoutingName               = 400702;
     InvalidRoutingPriority           = 400703;
+    InvalidFaultDetectID             = 400900;
+    InvalidFaultDetectName           = 400901;
+    InvalidFaultDetectNamespace      = 400902;
+    FaultDetectRuleExisted           = 400903;
 
     // network relative codes
     ServicesExistedMesh   = 400170;
