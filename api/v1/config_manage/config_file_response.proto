@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package v1;
+package polaris.v1;
 
 import "google/protobuf/wrappers.proto";
 import "config_file.proto";
