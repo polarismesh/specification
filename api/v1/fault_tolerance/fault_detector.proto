@@ -12,7 +12,7 @@ message FaultDetector {
   // fault detect rules for current service
   repeated FaultDetectRule rules = 1;
   // total revision for the fault detect rules
-  string rules_revision = 2;
+  string revision = 2;
 }
 
 message FaultDetectRule {
