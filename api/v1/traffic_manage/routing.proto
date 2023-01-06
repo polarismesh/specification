@@ -83,6 +83,9 @@ message Destination {
 
   //是否对该set执行隔离，隔离后，不会再分配流量
   google.protobuf.BoolValue isolate = 7;
+
+  // 实例分组名
+  google.protobuf.StringValue name = 8;
 }
 
 enum RoutingPolicy {
