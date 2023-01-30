@@ -50,3 +50,17 @@ message ConfigClientResponse {
 
   ClientConfigFileInfo configFile = 3;
 }
+
+message ConfigImportResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  repeated ConfigFile createConfigFiles = 3;
+  repeated ConfigFile skipConfigFiles = 4;
+  repeated ConfigFile overwriteConfigFiles = 5;
+}
+
+message ConfigExportResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  google.protobuf.BytesValue data = 3;
+}
