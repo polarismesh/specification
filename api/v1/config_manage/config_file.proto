@@ -113,3 +113,9 @@ message ClientWatchConfigFileRequest {
   google.protobuf.StringValue service_name = 2;
   repeated ClientConfigFileInfo watch_files = 3;
 }
+
+message ConfigFileExportRequest {
+  google.protobuf.StringValue namespace = 1;
+  repeated google.protobuf.StringValue groups = 2;
+  repeated google.protobuf.StringValue names = 3;
+}

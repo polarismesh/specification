@@ -44,6 +44,7 @@ chmod +x *
 popd
 
 if [ "$CURRENT_OS" == "linux" ]; then
+    rm -rf "${out_dir}/api/v1"
     mkdir -p "${out_dir}/api/v1"
     # generate model
     pushd "${model_dir}"
