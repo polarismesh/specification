@@ -154,9 +154,23 @@ message MetadataRoutingConfig {
 // RuleRoutingConfig routing configuration
 message RuleRoutingConfig {
   // source source info
+  // deprecated: only for compatible to the old version server
   repeated SourceService sources = 1;
   // destination destinations info
+  // deprecated: only for compatible to the old version server
   repeated DestinationGroup destinations = 2;
+  // rule route chain
+  repeated SubRuleRouting rules = 3;
+}
+
+// SubRuleRouting sub routing configuration
+message SubRuleRouting {
+    // sub routing rule name
+    string name = 1;
+    // source source info
+    repeated SourceService sources = 2;
+    // destination destinations info
+    repeated DestinationGroup destinations = 3;
 }
 
 message SourceService {
