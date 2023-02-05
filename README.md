@@ -1,48 +1,96 @@
-# Specification
+# 服务治理标准
 
-English | [简体中文](./README-zh.md) 
+[English](./README.md) | 简体中文
 
 ---
 
 README：
 
-- [Introduction](#introduction)
-- [Specification](#specification)
-- [API](#api)
+- [介绍](#介绍)
+- [服务治理标准](#服务治理标准)
+- [服务治理接口](#服务治理接口)
 
-## Introduction
+## 介绍
 
+## 服务治理标准
 
-## Specification
+北极星服务治理标准遵循下一代架构基金会所制定的[服务治理标准](https://github.com/nextarch/SIG-Microservice)，在此之上进行了扩展：
 
-|                                   |         Latest Release             |  
+|                                   |         Latest Release             |
 | :-------------------------------- | :--------------------------------: |
-| **Serivce Specification**         |
-| namespace       | [v1alpha1](/specification/v1/service-spec/namespace.md) |
-| service         | [v1alpha1](/specification/v1/service-spec/service.md) |
-| instance        | [v1alpha1](/specification/v1/service-spec/instance.md) |
-| health check    | [v1alpha1](/specification/v1/service-spec/healthcheck.md) |
-| **Traffic Control Specification** |
-| router          | [v1alpha1](/specification/v1/traffic-control-spec/router.md) |
-| load balancer   | [v1alpha1](/specification/v1/traffic-control-spec/loadbalancer.md) |
+| **Serivce Management Specification**         |
+| namespace       | [v1](/specification/v1/service_manage_spec/namespace_zh.md) |
+| service         | [v1](/specification/v1/service_manage_spec/service.md) |
+| instance        | [v1](/specification/v1/service_manage_spec/instance.md) |
+| health check    | [v1](/specification/v1/service_manage_spec/healthcheck.md) |
+| **Traffic Mangement Specification** |
+| router          | [v1](/specification/v1/traffic_manage_spec/router.md) |
+| load balancer   | [v1](/specification/v1/traffic_manage_spec/loadbalancer.md) |
+| limiter         | [v1](/specification/v1/traffic_manage_spec/limiter.md) |
 | **Fault Tolerance Specification** |
-| circuit breaker | [v1alpha1](/specification/v1/fault-tolerance-spec/circuitbreaker.md) |
-| fault detector  | [v1alpha1](/specification/v1/fault-tolerance-spec/faultdetector.md) |
+| circuit breaker | [v1](/specification/v1/fault_tolerance_spec/circuitbreaker.md) |
+| fault detector  | [v1](/specification/v1/fault_tolerance_spec/faultdetector.md) |
+| retry  | [v1](/specification/v1/fault_tolerance_spec/retry.md) |
 | **Access Control Specification**  |
-| limiter         | [v1alpha1](/specification/v1/access-control-spec/limiter.md) |
-| authentication  | [v1alpha1](/specification/v1/access-control-spec/authentication.md) |
+| authentication  | [v1](/specification/v1/access_control_spec/authentication.md) |
+| anthorization | [v1](/specification/v1/access_control_spec/authorization.md) |
 
-## API
+## 服务治理接口
 
-```shell
-cd api/v1
+|                                   |         Latest Release             |
+| :-------------------------------- | :--------------------------------: |
+| **Serivce Management Specification**         |
+| namespace       | [v1](/api/v1/model/namespace.proto) |
+| service         | [v1](/api/v1/service_manage/service.proto) |
+| instance        | [v1](/api/v1/service_manage/service.proto) |
+| health check    | [v1](/api/v1/service_manage/service.proto) |
+| **Traffic Mangement Specification** |
+| router          | [v1](/api/v1/traffic_manage/routing.proto) |
+| load balancer   | [v1](/api/v1/traffic_manage/routing.proto) |
+| limiter         | [v1](/api/v1/traffic_manage/ratelimit.proto) |
+| **Fault Tolerance Specification** |
+| circuit breaker | [v1](/api/v1/fault_tolerance/circuitbreaker.proto) |
+| fault detector  | [v1](/api/v1/fault_tolerance/fault_detector.proto) |
+| **Access Control Specification**  |
+| authentication  | [v1](/api/v1/access-control/auth.proto) |
 
-ls
-  service                # service proto
-  traffic-control        # traffic control proto
-  fault-tolerance        # fault tolerance proto
-  access-control         # access control proto
-  out                    # output of build shell, including Java, Go and C++ code
-  build.linux-x86_64.sh  # build shell for Linux
-  build.osx-aarch_64.sh  # build shell for macOS
+## 如何构建
+
+- Java语言
+
+Java的编译相关的工程在/source/java/polaris-specification下，通过以下命令可以构建：
+
+```
+cd source/java
+bash build.sh
+```
+
+- Go语言
+
+Go的编译相关工程在/source/go下，通过以下命令可以构建
+
+```
+cd source/go
+rm -rf api
+bash build.sh
+```
+
+### 如何使用
+
+- Java语言，只需要添加polaris-specification的依赖即可完成。
+
+```
+<dependency>
+      <groupId>com.tencent.polaris</groupId>
+      <artifactId>polaris-specification</artifactId>
+      <!-- 版本号可换成最新版本号-->
+      <version>v1.1.0</version>
+</dependency>
+```
+
+
+- Go语言，修改go.mod，添加```github.com/polarismesh/specification```的依赖。
+
+```
+require github.com/polarismesh/specification v1.1.0
 ```
