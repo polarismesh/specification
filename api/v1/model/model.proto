@@ -27,6 +27,8 @@ message MatchString {
     IN = 3;
     // Not include match
     NOT_IN = 4;
+    // Range match
+    RANGE = 5;
   }
 
   enum ValueType {
