@@ -39,7 +39,7 @@ message MatchString {
 
   MatchStringType type = 1;
   google.protobuf.StringValue value = 2;
-  ValueType value_type = 3;
+  ValueType value_type = 3  [json_name = "value_type"];
 }
 
 
