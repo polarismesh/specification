@@ -31,6 +31,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Test with Maven
-        run:  |
+        run: |
           cd source/java
+          bash build.sh
+      - name: Test with python
+        run: |
+          cd source/python
           bash build.sh
