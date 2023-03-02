@@ -7,7 +7,6 @@ name = "polarismesh-specification"
 description = ''
 readme = "README.md"
 requires-python = ">=3.7"
-license = "MIT"
 keywords = []
 authors = [{ name = "{authemail@qq.com}", email = "authemail@qq.com" },
 ]
@@ -23,11 +22,12 @@ classifiers = ["Development Status :: 4 - Beta",
 ]
 dependencies = ["grpcio"]
 dynamic = ["version"]
+license-files = { paths = ["LICENSE.txt"] }
 
 [project.urls]
-Documentation = "https://github.com/unknown/polarismesh-specification#readme"
-Issues = "https://github.com/unknown/polarismesh-specification/issues"
-Source = "https://github.com/unknown/polarismesh-specification"
+Documentation = "https://github.com/polarismesh/specification#readme"
+Issues = "https://github.com/polarismesh/specification/issues"
+Source = "https://github.com/polarismesh/specification"
 
 [tool.hatch.version]
 path = "src/polarismesh_specification/__about__.py"
