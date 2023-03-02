@@ -9,21 +9,19 @@ readme = "README.md"
 requires-python = ">=3.7"
 license = "MIT"
 keywords = []
-authors = [
-  { name = "{authemail@qq.com}", email = "authemail@qq.com" },
+authors = [{ name = "{authemail@qq.com}", email = "authemail@qq.com" },
 ]
-classifiers = [
-  "Development Status :: 4 - Beta",
-  "Programming Language :: Python",
-  "Programming Language :: Python :: 3.7",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
-  "Programming Language :: Python :: Implementation :: CPython",
-  "Programming Language :: Python :: Implementation :: PyPy",
+classifiers = ["Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = ["grpcio"]
 dynamic = ["version"]
 
 [project.urls]
@@ -35,16 +33,15 @@ Source = "https://github.com/unknown/polarismesh-specification"
 path = "src/polarismesh_specification/__about__.py"
 
 [tool.hatch.envs.default]
-dependencies = [
-  "pytest",
-  "pytest-cov",
+dependencies = ["pytest",
+    "pytest-cov",
 ]
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=src/polarismesh_specification --cov=tests {args}"
 no-cov = "cov --no-cov {args}"
 
 [tool.hatch.build.targets.sdist]
-exclude = ["/tests", "/build.sh"]
+exclude = ["/tests", "/build.sh", "build.py"]
 
 [[tool.hatch.envs.test.matrix]]
 python = ["37", "38", "39", "310", "311"]
@@ -52,13 +49,11 @@ python = ["37", "38", "39", "310", "311"]
 [tool.coverage.run]
 branch = true
 parallel = true
-omit = [
-  "src/polarismesh_specification/__about__.py",
+omit = ["src/polarismesh_specification/__about__.py",
 ]
 
 [tool.coverage.report]
-exclude_lines = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
+exclude_lines = ["no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
 ]

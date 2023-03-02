@@ -32,8 +32,9 @@ jobs:
         with:
           python-version: 3.9
         run: |
-          cd source/python
-          bash build.sh
+          pip install grpc_tools
+          python source/python/build.py
+          pip install --upgrade hatch
           hatch build
           hatch publish --no-prompt
         env:
