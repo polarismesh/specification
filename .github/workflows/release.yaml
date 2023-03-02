@@ -32,7 +32,7 @@ jobs:
         with:
           python-version: 3.9
         run: |
-          pip install grpc_tools
+          pip install grpcio-tools
           python source/python/build.py
           pip install --upgrade hatch
           hatch build
