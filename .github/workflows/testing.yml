@@ -31,6 +31,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
       - name: Test with Maven
-        run:  |
+        run: |
           cd source/java
           bash build.sh
+      - name: Test with python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+        run: |
+          pip install grpcio-tools
+          python source/python/build.py
