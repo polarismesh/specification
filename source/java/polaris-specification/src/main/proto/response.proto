@@ -72,6 +72,7 @@ message BatchQueryResponse {
   repeated Client clients = 21;
   
   repeated google.protobuf.Any data = 22;
+  Summary summary = 23;
 }
 
 message DiscoverResponse {
