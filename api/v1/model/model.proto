@@ -46,3 +46,13 @@ message MatchString {
 message StringList {
   repeated string values = 1;
 }
+
+// 汇总查询数据
+message Summary {
+  // 服务总数
+  uint32 total_service_count = 1 [json_name = "total_service_count"];
+  // 健康实例总数
+  uint32 total_health_instance_count = 2 [json_name = "total_health_instance_count"];
+  // 实例总数
+  uint32 total_instance_count = 3 [json_name = "total_instance_count"];
+}
