@@ -30,10 +30,11 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
 
-      - name: Build and publish Python package
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
+      - name: Build and publish Python package
         run: |
           pip install grpcio-tools
           python source/python/build.py
