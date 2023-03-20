@@ -34,10 +34,11 @@ jobs:
         run: |
           cd source/java
           bash build.sh
-      - name: Test with python
+      - name: Set up python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
+      - name: Test with python
         run: |
           pip install grpcio-tools
           python source/python/build.py
