@@ -37,7 +37,7 @@ jobs:
       - name: Build and publish Python package
         run: |
           pip install grpcio-tools
-          python build.py
+          python source/python/build.py
           cd source/python/
           sed -i "s/#VERSION#/${VERSION}/g" src/polarismesh_specification/__about__.py
           cat src/polarismesh_specification/__about__.py
