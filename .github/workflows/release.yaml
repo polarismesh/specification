@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Get version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
       - name: Set up Maven Central Repository
         uses: actions/setup-java@v3
         with:
@@ -34,9 +37,11 @@ jobs:
         run: |
           pip install grpcio-tools
           python source/python/build.py
+          sed -i "s/#VERSION#/${VERSION}/g" source/python/src/polarismesh_specification/__about__.py
           pip install --upgrade hatch
           hatch build
           hatch publish --no-prompt
         env:
           HATCH_INDEX_USER: __token__
           HATCH_INDEX_AUTH: ${{ secrets.HATCH_INDEX_AUTH }}
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
