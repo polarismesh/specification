@@ -58,7 +58,7 @@ README：
 
 - Java语言
 
-Java的编译相关的工程在/source/java/polaris-specification下，通过以下命令可以构建：
+Java的编译相关的工程在`/source/java/polaris-specification`下，通过以下命令可以构建：
 
 ```
 cd source/java
@@ -67,7 +67,7 @@ bash build.sh
 
 - Go语言
 
-Go的编译相关工程在/source/go下，通过以下命令可以构建
+Go的编译相关工程在`/source/go`下，通过以下命令可以构建
 
 ```
 cd source/go
@@ -75,9 +75,18 @@ rm -rf api
 bash build.sh
 ```
 
+- Rust语言
+
+Rust的编译相关工程在`/source/rust/polaris-specification`，通过以下命令可以构建
+
+```
+cd source/rust
+bash build.sh
+```
+
 ### 如何使用
 
-- Java语言，只需要添加polaris-specification的依赖即可完成。
+- Java语言，只需要添加`polaris-specification`的依赖即可完成。
 
 ```
 <dependency>
@@ -93,4 +102,11 @@ bash build.sh
 
 ```
 require github.com/polarismesh/specification v1.1.0
+```
+
+- Rust语言，修改`cargo.toml`，添加```polaris-specification```的依赖。
+
+```
+[dependencies]
+polaris-specification = "0.1"
 ```
