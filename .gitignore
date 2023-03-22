@@ -5,4 +5,5 @@ target
 .idea
 *.iml
 source/python/dist
+source/rust/polaris-specification/target
 venv
