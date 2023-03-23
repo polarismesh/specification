@@ -1,6 +1,5 @@
 # polaris-rust
 
-[![Build](https://github.com/polarismesh/specification/workflows/Build/badge.svg)](https://github.com/polarismesh/specification/actions?query=workflow%3ABuild)
 [![crates.io](https://img.shields.io/crates/v/polaris-specification.svg)](https://crates.io/crates/polaris-specification)
 [![docs.rs](https://docs.rs/polaris-specification/badge.svg)](https://docs.rs/polaris-specification/)
 [![License](https://img.shields.io/crates/l/polaris-specification)](LICENSE-APACHE)
@@ -8,7 +7,7 @@
 [![Crates.io](https://img.shields.io/crates/d/polaris-specification)](https://crates.io/crates/polaris-specification)
 
 ## Introduction
-Lightweight Rust SDK used as Proxyless Service Governance
+Service Governance Specification for Polaris Rust SDK.
 
 ## Install
 Add the following to your `Cargo.toml`: 
