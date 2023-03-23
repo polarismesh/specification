@@ -3,7 +3,7 @@
 [![crates.io](https://img.shields.io/crates/v/polaris-specification.svg)](https://crates.io/crates/polaris-specification)
 [![docs.rs](https://docs.rs/polaris-specification/badge.svg)](https://docs.rs/polaris-specification/)
 [![License](https://img.shields.io/crates/l/polaris-specification)](LICENSE-APACHE)
-[![Crates.io](https://img.shields.io/crates/v/polaris-specification)](https://crates.io/crates/polaris-specification)
+[![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/polarismesh/specification?include_prereleases)](https://github.com/polarismesh/specification)
 [![Crates.io](https://img.shields.io/crates/d/polaris-specification)](https://crates.io/crates/polaris-specification)
 
 ## Introduction

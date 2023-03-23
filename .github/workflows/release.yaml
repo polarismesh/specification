@@ -48,3 +48,31 @@ jobs:
           HATCH_INDEX_USER: __token__
           HATCH_INDEX_AUTH: ${{ secrets.HATCH_INDEX_AUTH }}
           VERSION: ${{ steps.get_version.outputs.VERSION }}
+
+      - name: Checkout code for rust
+        # Reference your environment variables
+        uses: actions/checkout@v3.4.0
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+      - name: Build rust
+        run: |
+          cd source/rust
+          bash build.sh
+          cd polaris-specification
+          sed -i 's/(version\s*=\s*")(\d+\.\d+\.\d+)/\${VERSION}/' Cargo.toml
+          cat Cargo.toml
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+      - name: Run cargo login
+        uses: actions-rs/cargo@v1
+        with:
+          command: login
+          args: ${{ secrets.CRATES_IO_TOKEN }}
+      - name: Run cargo publish
+        uses: actions-rs/cargo@v1
+        with:
+          command: publish
