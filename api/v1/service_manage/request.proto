@@ -24,6 +24,8 @@ message DiscoverRequest {
 
   DiscoverRequestType type = 1;
   Service service = 2;
-  reserved 3 to 4;
+  reserved 3 to 10;
+  
+  map<string, string> params = 11;
 }
 
