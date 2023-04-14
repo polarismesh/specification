@@ -14,6 +14,7 @@ message HeartbeatRecord {
   string host = 4 [ json_name = "host" ];
   uint32 port = 5 [ json_name = "port" ];
   int64 lastHeartbeatSec = 6 [ json_name = "last_heartbeat_sec" ];
+  bool exist = 7 [ json_name = "exist" ];
 }
 
 message Heartbeats {
