@@ -102,6 +102,8 @@ message DiscoverResponse {
   repeated Service services = 9;
   repeated Namespace namespaces = 10;
   FaultDetector faultDetector = 11;
+  reserved 12 to 20;
+  Service aliasFor = 21;
 }
 
 
