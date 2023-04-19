@@ -9,16 +9,24 @@ option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
 
 message HeartbeatRecord {
   string instanceId = 1 [ json_name = "instance_id" ];
-  string service = 2 [ json_name = "service" ];
-  string namespace = 3 [ json_name = "namespace" ];
-  string host = 4 [ json_name = "host" ];
-  uint32 port = 5 [ json_name = "port" ];
+  reserved 2 to 5;
   int64 lastHeartbeatSec = 6 [ json_name = "last_heartbeat_sec" ];
   bool exist = 7 [ json_name = "exist" ];
 }
 
-message Heartbeats {
-  repeated Instance heartbeats = 1 [ json_name = "heartbeats" ];
+message InstanceHeartbeat {
+  string instanceId = 1 [ json_name = "instance_id" ];
+  string service = 2 [ json_name = "service" ];
+  string namespace = 3 [ json_name = "namespace" ];
+  string host = 4 [ json_name = "host" ];
+  uint32 port = 5 [ json_name = "port" ];
+}
+
+message HeartbeatsRequest {
+  repeated InstanceHeartbeat heartbeats = 1 [ json_name = "heartbeats" ];
+}
+
+message HeartbeatsResponse {
 }
 
 message GetHeartbeatsRequest {
