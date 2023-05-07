@@ -65,6 +65,9 @@ pub struct ConfigFile {
     pub release_time: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "15")]
     pub release_by: ::core::option::Option<::prost::alloc::string::String>,
+    /// 是否为加密配置文件
+    #[prost(message, optional, tag = "16")]
+    pub is_encrypted: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -177,6 +180,15 @@ pub struct ClientConfigFileInfo {
     pub version: ::core::option::Option<u64>,
     #[prost(message, optional, tag = "6")]
     pub md5: ::core::option::Option<::prost::alloc::string::String>,
+    /// 是否为加密配置文件
+    #[prost(message, optional, tag = "7")]
+    pub is_encrypted: ::core::option::Option<bool>,
+    /// 数据密钥，用于加密配置文件
+    #[prost(message, optional, tag = "8")]
+    pub data_key: ::core::option::Option<::prost::alloc::string::String>,
+    /// 公钥，用于加密数据密钥
+    #[prost(message, optional, tag = "9")]
+    pub public_key: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -865,6 +877,7 @@ pub enum Code {
     InvalidWatchConfigFileFormat = 400806,
     NotFoundResourceConfigFile = 400807,
     InvalidConfigFileTemplateName = 400808,
+    EncryptConfigFileException = 400809,
     /// auth codes
     InvalidUserOwners = 400410,
     InvalidUserId = 400411,
@@ -1040,6 +1053,7 @@ impl Code {
             Code::InvalidWatchConfigFileFormat => "InvalidWatchConfigFileFormat",
             Code::NotFoundResourceConfigFile => "NotFoundResourceConfigFile",
             Code::InvalidConfigFileTemplateName => "InvalidConfigFileTemplateName",
+            Code::EncryptConfigFileException => "EncryptConfigFileException",
             Code::InvalidUserOwners => "InvalidUserOwners",
             Code::InvalidUserId => "InvalidUserID",
             Code::InvalidUserPassword => "InvalidUserPassword",
@@ -1223,6 +1237,7 @@ impl Code {
             "InvalidWatchConfigFileFormat" => Some(Self::InvalidWatchConfigFileFormat),
             "NotFoundResourceConfigFile" => Some(Self::NotFoundResourceConfigFile),
             "InvalidConfigFileTemplateName" => Some(Self::InvalidConfigFileTemplateName),
+            "EncryptConfigFileException" => Some(Self::EncryptConfigFileException),
             "InvalidUserOwners" => Some(Self::InvalidUserOwners),
             "InvalidUserID" => Some(Self::InvalidUserId),
             "InvalidUserPassword" => Some(Self::InvalidUserPassword),
@@ -3490,7 +3505,7 @@ pub struct DiscoverResponse {
     pub namespaces: ::prost::alloc::vec::Vec<Namespace>,
     #[prost(message, optional, tag = "11")]
     pub fault_detector: ::core::option::Option<FaultDetector>,
-    #[prost(message, optional, tag = "12")]
+    #[prost(message, optional, tag = "21")]
     pub alias_for: ::core::option::Option<Service>,
 }
 /// Nested message and enum types in `DiscoverResponse`.
@@ -3567,4 +3582,63 @@ pub struct OptionSwitch {
 pub struct InstanceLabels {
     #[prost(map = "string, message", tag = "1")]
     pub labels: ::std::collections::HashMap<::prost::alloc::string::String, StringList>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HeartbeatRecord {
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(int64, tag = "6")]
+    pub last_heartbeat_sec: i64,
+    #[prost(bool, tag = "7")]
+    pub exist: bool,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InstanceHeartbeat {
+    #[prost(string, tag = "1")]
+    pub instance_id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub service: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub host: ::prost::alloc::string::String,
+    #[prost(uint32, tag = "5")]
+    pub port: u32,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HeartbeatsRequest {
+    #[prost(message, repeated, tag = "1")]
+    pub heartbeats: ::prost::alloc::vec::Vec<InstanceHeartbeat>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct HeartbeatsResponse {}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetHeartbeatsRequest {
+    #[prost(string, repeated, tag = "1")]
+    pub instance_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GetHeartbeatsResponse {
+    #[prost(message, repeated, tag = "1")]
+    pub records: ::prost::alloc::vec::Vec<HeartbeatRecord>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DelHeartbeatsRequest {
+    #[prost(string, repeated, tag = "1")]
+    pub instance_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DelHeartbeatsResponse {
+    #[prost(uint32, tag = "1")]
+    pub code: u32,
+    #[prost(string, tag = "2")]
+    pub info: ::prost::alloc::string::String,
 }
