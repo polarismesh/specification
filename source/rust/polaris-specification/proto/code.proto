@@ -157,6 +157,7 @@ enum Code {
     InvalidWatchConfigFileFormat    = 400806;
     NotFoundResourceConfigFile      = 400807;
     InvalidConfigFileTemplateName   = 400808;
+    EncryptConfigFileException      = 400809;
 
     // auth codes
     InvalidUserOwners          = 400410;
