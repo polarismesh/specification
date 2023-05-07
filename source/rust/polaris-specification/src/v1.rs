@@ -1,24 +1,24 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFileGroup {
+pub struct Namespace {
     #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "2")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag = "2")]
     pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub owners: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub token: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "5")]
-    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
+    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "6")]
-    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "7")]
-    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
+    pub total_service_count: ::core::option::Option<u32>,
     #[prost(message, optional, tag = "8")]
-    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    pub total_health_instance_count: ::core::option::Option<u32>,
     #[prost(message, optional, tag = "9")]
-    pub file_count: ::core::option::Option<u64>,
+    pub total_instance_count: ::core::option::Option<u32>,
     #[prost(message, repeated, tag = "10")]
     pub user_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "11")]
@@ -27,539 +27,10 @@ pub struct ConfigFileGroup {
     pub remove_user_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "14")]
     pub remove_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "12")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "15")]
     pub editable: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "16")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFile {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub group: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub content: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub format: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub status: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "9")]
-    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
-    #[prost(message, optional, tag = "10")]
-    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "11")]
-    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "12")]
-    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "13")]
-    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "14")]
-    pub release_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "15")]
-    pub release_by: ::core::option::Option<::prost::alloc::string::String>,
-    /// 是否为加密配置文件
-    #[prost(message, optional, tag = "16")]
-    pub is_encrypted: ::core::option::Option<bool>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFileTag {
-    #[prost(message, optional, tag = "1")]
-    pub key: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub value: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFileRelease {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub group: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub content: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub md5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub version: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "10")]
-    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "11")]
-    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "12")]
-    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "13")]
-    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFileReleaseHistory {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub group: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub content: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub format: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub md5: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "10")]
-    pub r#type: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "11")]
-    pub status: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "12")]
-    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
-    #[prost(message, optional, tag = "13")]
-    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "14")]
-    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "15")]
-    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "16")]
-    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFileTemplate {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub content: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub format: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClientConfigFileInfo {
-    #[prost(message, optional, tag = "1")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub group: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub content: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub version: ::core::option::Option<u64>,
-    #[prost(message, optional, tag = "6")]
-    pub md5: ::core::option::Option<::prost::alloc::string::String>,
-    /// 是否为加密配置文件
-    #[prost(message, optional, tag = "7")]
-    pub is_encrypted: ::core::option::Option<bool>,
-    /// 数据密钥，用于加密配置文件
-    #[prost(message, optional, tag = "8")]
-    pub data_key: ::core::option::Option<::prost::alloc::string::String>,
-    /// 公钥，用于加密数据密钥
-    #[prost(message, optional, tag = "9")]
-    pub public_key: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ClientWatchConfigFileRequest {
-    #[prost(message, optional, tag = "1")]
-    pub client_ip: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub service_name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "3")]
-    pub watch_files: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigFileExportRequest {
-    #[prost(message, optional, tag = "1")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "2")]
-    pub groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "3")]
-    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigSimpleResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub config_file_group: ::core::option::Option<ConfigFileGroup>,
-    #[prost(message, optional, tag = "4")]
-    pub config_file: ::core::option::Option<ConfigFile>,
-    #[prost(message, optional, tag = "5")]
-    pub config_file_release: ::core::option::Option<ConfigFileRelease>,
-    #[prost(message, optional, tag = "6")]
-    pub config_file_release_history: ::core::option::Option<ConfigFileReleaseHistory>,
-    #[prost(message, optional, tag = "7")]
-    pub config_file_template: ::core::option::Option<ConfigFileTemplate>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigBatchWriteResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub total: ::core::option::Option<u32>,
-    #[prost(message, repeated, tag = "4")]
-    pub responses: ::prost::alloc::vec::Vec<ConfigResponse>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigBatchQueryResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub total: ::core::option::Option<u32>,
-    #[prost(message, repeated, tag = "4")]
-    pub config_file_groups: ::prost::alloc::vec::Vec<ConfigFileGroup>,
-    #[prost(message, repeated, tag = "5")]
-    pub config_files: ::prost::alloc::vec::Vec<ConfigFile>,
-    #[prost(message, repeated, tag = "6")]
-    pub config_file_releases: ::prost::alloc::vec::Vec<ConfigFileRelease>,
-    #[prost(message, repeated, tag = "7")]
-    pub config_file_release_histories: ::prost::alloc::vec::Vec<
-        ConfigFileReleaseHistory,
-    >,
-    #[prost(message, repeated, tag = "8")]
-    pub config_file_templates: ::prost::alloc::vec::Vec<ConfigFileTemplate>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigClientResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub config_file: ::core::option::Option<ClientConfigFileInfo>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigImportResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "3")]
-    pub create_config_files: ::prost::alloc::vec::Vec<ConfigFile>,
-    #[prost(message, repeated, tag = "4")]
-    pub skip_config_files: ::prost::alloc::vec::Vec<ConfigFile>,
-    #[prost(message, repeated, tag = "5")]
-    pub overwrite_config_files: ::prost::alloc::vec::Vec<ConfigFile>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigExportResponse {
-    #[prost(message, optional, tag = "1")]
-    pub code: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "2")]
-    pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub data: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LoginRequest {
-    #[prost(message, optional, tag = "1")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub password: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct LoginResponse {
-    #[prost(message, optional, tag = "1")]
-    pub user_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub role: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub owner_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub token: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct User {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub password: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub source: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub token_enable: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "8")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "10")]
-    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "11")]
-    pub user_type: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "12")]
-    pub mobile: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "13")]
-    pub email: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ModifyUserPassword {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub old_password: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub new_password: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserGroupRelation {
-    #[prost(message, optional, tag = "1")]
-    pub group_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "2")]
-    pub users: ::prost::alloc::vec::Vec<User>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct UserGroup {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub token_enable: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "6")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub relation: ::core::option::Option<UserGroupRelation>,
-    #[prost(message, optional, tag = "10")]
-    pub user_count: ::core::option::Option<u32>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ModifyUserGroup {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub token_enable: ::core::option::Option<bool>,
-    #[prost(message, optional, tag = "6")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub add_relations: ::core::option::Option<UserGroupRelation>,
-    #[prost(message, optional, tag = "8")]
-    pub remove_relations: ::core::option::Option<UserGroupRelation>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Principal {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Principals {
-    #[prost(message, repeated, tag = "1")]
-    pub users: ::prost::alloc::vec::Vec<Principal>,
-    #[prost(message, repeated, tag = "2")]
-    pub groups: ::prost::alloc::vec::Vec<Principal>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StrategyResourceEntry {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StrategyResources {
-    #[prost(message, optional, tag = "1")]
-    pub strategy_id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "2")]
-    pub namespaces: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
-    #[prost(message, repeated, tag = "3")]
-    pub services: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
-    #[prost(message, repeated, tag = "4")]
-    pub config_groups: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct AuthStrategy {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub principals: ::core::option::Option<Principals>,
-    #[prost(message, optional, tag = "4")]
-    pub resources: ::core::option::Option<StrategyResources>,
-    #[prost(enumeration = "AuthAction", tag = "5")]
-    pub action: i32,
-    #[prost(message, optional, tag = "6")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "10")]
-    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "11")]
-    pub default_strategy: ::core::option::Option<bool>,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ModifyAuthStrategy {
-    #[prost(message, optional, tag = "1")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub add_principals: ::core::option::Option<Principals>,
-    #[prost(message, optional, tag = "4")]
-    pub remove_principals: ::core::option::Option<Principals>,
-    #[prost(message, optional, tag = "5")]
-    pub add_resources: ::core::option::Option<StrategyResources>,
-    #[prost(message, optional, tag = "6")]
-    pub remove_resources: ::core::option::Option<StrategyResources>,
-    #[prost(enumeration = "AuthAction", tag = "7")]
-    pub action: i32,
-    #[prost(message, optional, tag = "8")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "9")]
-    pub owner: ::core::option::Option<::prost::alloc::string::String>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum AuthAction {
-    OnlyRead = 0,
-    ReadWrite = 1,
-}
-impl AuthAction {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            AuthAction::OnlyRead => "ONLY_READ",
-            AuthAction::ReadWrite => "READ_WRITE",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "ONLY_READ" => Some(Self::OnlyRead),
-            "READ_WRITE" => Some(Self::ReadWrite),
-            _ => None,
-        }
-    }
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum ResourceType {
-    Namespaces = 0,
-    Services = 1,
-    ConfigGroups = 2,
-}
-impl ResourceType {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            ResourceType::Namespaces => "Namespaces",
-            ResourceType::Services => "Services",
-            ResourceType::ConfigGroups => "ConfigGroups",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "Namespaces" => Some(Self::Namespaces),
-            "Services" => Some(Self::Services),
-            "ConfigGroups" => Some(Self::ConfigGroups),
-            _ => None,
-        }
-    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -696,655 +167,6 @@ pub struct Summary {
     /// 实例总数
     #[prost(uint32, tag = "3")]
     pub total_instance_count: u32,
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Namespace {
-    #[prost(message, optional, tag = "1")]
-    pub name: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub comment: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "3")]
-    pub owners: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub token: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "5")]
-    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "6")]
-    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "7")]
-    pub total_service_count: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "8")]
-    pub total_health_instance_count: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "9")]
-    pub total_instance_count: ::core::option::Option<u32>,
-    #[prost(message, repeated, tag = "10")]
-    pub user_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "11")]
-    pub group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "13")]
-    pub remove_user_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "14")]
-    pub remove_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "12")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "15")]
-    pub editable: ::core::option::Option<bool>,
-}
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
-#[repr(i32)]
-pub enum Code {
-    /// base module status codes
-    Unknown = 0,
-    ExecuteSuccess = 200000,
-    DataNoChange = 200001,
-    NoNeedUpdate = 200002,
-    BadRequest = 400000,
-    ParseException = 400001,
-    EmptyRequest = 400002,
-    BatchSizeOverLimit = 400003,
-    InvalidDiscoverResource = 400004,
-    InvalidRequestId = 400100,
-    InvalidUserName = 400101,
-    InvalidUserToken = 400102,
-    InvalidParameter = 400103,
-    EmptyQueryParameter = 400104,
-    InvalidQueryInsParameter = 400105,
-    InvalidNamespaceName = 400110,
-    InvalidNamespaceOwners = 400111,
-    InvalidNamespaceToken = 400112,
-    InvalidServiceName = 400120,
-    InvalidServiceOwners = 400121,
-    InvalidServiceToken = 400122,
-    InvalidServiceMetadata = 400123,
-    InvalidServicePorts = 400124,
-    InvalidServiceBusiness = 400125,
-    InvalidServiceDepartment = 400126,
-    InvalidServiceCmdb = 400127,
-    InvalidServiceComment = 400128,
-    InvalidServiceAliasComment = 400129,
-    InvalidInstanceId = 400130,
-    InvalidInstanceHost = 400131,
-    InvalidInstancePort = 400132,
-    InvalidServiceAlias = 400133,
-    InvalidNamespaceWithAlias = 400134,
-    InvalidServiceAliasOwners = 400135,
-    InvalidInstanceProtocol = 400136,
-    InvalidInstanceVersion = 400137,
-    InvalidInstanceLogicSet = 400138,
-    InvalidInstanceIsolate = 400139,
-    HealthCheckNotOpen = 400140,
-    HeartbeatOnDisabledIns = 400141,
-    HeartbeatExceedLimit = 400142,
-    HeartbeatTypeNotFound = 400143,
-    InvalidMetadata = 400150,
-    InvalidRateLimitId = 400151,
-    InvalidRateLimitLabels = 400152,
-    InvalidRateLimitAmounts = 400153,
-    InvalidRateLimitName = 400154,
-    InvalidCircuitBreakerId = 400160,
-    InvalidCircuitBreakerVersion = 400161,
-    InvalidCircuitBreakerName = 400162,
-    InvalidCircuitBreakerNamespace = 400163,
-    InvalidCircuitBreakerOwners = 400164,
-    InvalidCircuitBreakerToken = 400165,
-    InvalidCircuitBreakerBusiness = 400166,
-    InvalidCircuitBreakerDepartment = 400167,
-    InvalidCircuitBreakerComment = 400168,
-    CircuitBreakerRuleExisted = 400169,
-    InvalidRoutingId = 400700,
-    InvalidRoutingPolicy = 400701,
-    InvalidRoutingName = 400702,
-    InvalidRoutingPriority = 400703,
-    InvalidFaultDetectId = 400900,
-    InvalidFaultDetectName = 400901,
-    InvalidFaultDetectNamespace = 400902,
-    FaultDetectRuleExisted = 400903,
-    /// network relative codes
-    ServicesExistedMesh = 400170,
-    ResourcesExistedMesh = 400171,
-    InvalidMeshParameter = 400172,
-    /// platform relative codes
-    InvalidPlatformId = 400180,
-    InvalidPlatformName = 400181,
-    InvalidPlatformDomain = 400182,
-    InvalidPlatformQps = 400183,
-    InvalidPlatformToken = 400184,
-    InvalidPlatformOwner = 400185,
-    InvalidPlatformDepartment = 400186,
-    InvalidPlatformComment = 400187,
-    NotFoundPlatform = 400188,
-    /// flux relative codes
-    InvalidFluxRateLimitId = 400190,
-    InvalidFluxRateLimitQps = 400191,
-    InvalidFluxRateLimitSetKey = 400192,
-    ExistedResource = 400201,
-    NotFoundResource = 400202,
-    NamespaceExistedServices = 400203,
-    ServiceExistedInstances = 400204,
-    ServiceExistedRoutings = 400205,
-    ServiceExistedRateLimits = 400206,
-    ExistReleasedConfig = 400207,
-    SameInstanceRequest = 400208,
-    ServiceExistedCircuitBreakers = 400209,
-    ServiceExistedAlias = 400210,
-    NamespaceExistedMeshResources = 400211,
-    NamespaceExistedCircuitBreakers = 400212,
-    ServiceSubscribedByMeshes = 400213,
-    ServiceExistedFluxRateLimits = 400214,
-    NamespaceExistedConfigGroups = 400219,
-    NotFoundService = 400301,
-    NotFoundRouting = 400302,
-    NotFoundInstance = 400303,
-    NotFoundServiceAlias = 400304,
-    NotFoundNamespace = 400305,
-    NotFoundSourceService = 400306,
-    NotFoundRateLimit = 400307,
-    NotFoundCircuitBreaker = 400308,
-    NotFoundMasterConfig = 400309,
-    NotFoundTagConfig = 400310,
-    NotFoundTagConfigOrService = 400311,
-    ClientApiNotOpen = 400401,
-    NotAllowBusinessService = 400402,
-    NotAllowAliasUpdate = 400501,
-    NotAllowAliasCreateInstance = 400502,
-    NotAllowAliasCreateRouting = 400503,
-    NotAllowCreateAliasForAlias = 400504,
-    NotAllowAliasCreateRateLimit = 400505,
-    NotAllowAliasBindRule = 400506,
-    NotAllowDifferentNamespaceBindRule = 400507,
-    Unauthorized = 401000,
-    NotAllowedAccess = 401001,
-    CmdbNotFindHost = 404001,
-    DataConflict = 409000,
-    InstanceTooManyRequests = 429001,
-    IpRateLimit = 429002,
-    ApiRateLimit = 403003,
-    ExecuteException = 500000,
-    StoreLayerException = 500001,
-    CmdbPluginException = 500002,
-    ParseRoutingException = 500004,
-    ParseRateLimitException = 500005,
-    ParseCircuitBreakerException = 500006,
-    HeartbeatException = 500007,
-    InstanceRegisTimeout = 500008,
-    /// config center status codes
-    InvalidConfigFileGroupName = 400801,
-    InvalidConfigFileName = 400802,
-    InvalidConfigFileContentLength = 400803,
-    InvalidConfigFileFormat = 400804,
-    InvalidConfigFileTags = 400805,
-    InvalidWatchConfigFileFormat = 400806,
-    NotFoundResourceConfigFile = 400807,
-    InvalidConfigFileTemplateName = 400808,
-    EncryptConfigFileException = 400809,
-    /// auth codes
-    InvalidUserOwners = 400410,
-    InvalidUserId = 400411,
-    InvalidUserPassword = 400412,
-    InvalidUserMobile = 400413,
-    InvalidUserEmail = 400414,
-    InvalidUserGroupOwners = 400420,
-    InvalidUserGroupId = 400421,
-    InvalidAuthStrategyOwners = 400430,
-    InvalidAuthStrategyName = 400431,
-    InvalidAuthStrategyId = 400432,
-    InvalidPrincipalType = 400440,
-    UserExisted = 400215,
-    UserGroupExisted = 400216,
-    AuthStrategyRuleExisted = 400217,
-    SubAccountExisted = 400218,
-    NotFoundUser = 400312,
-    NotFoundOwnerUser = 400313,
-    NotFoundUserGroup = 400314,
-    NotFoundAuthStrategyRule = 400315,
-    NotAllowModifyDefaultStrategyPrincipal = 400508,
-    NotAllowModifyOwnerDefaultStrategy = 400509,
-    EmptyAutToken = 401002,
-    TokenDisabled = 401003,
-    TokenNotExisted = 401004,
-    AuthTokenForbidden = 403001,
-    OperationRoleForbidden = 403002,
-}
-impl Code {
-    /// String value of the enum field names used in the ProtoBuf definition.
-    ///
-    /// The values are not transformed in any way and thus are considered stable
-    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-    pub fn as_str_name(&self) -> &'static str {
-        match self {
-            Code::Unknown => "Unknown",
-            Code::ExecuteSuccess => "ExecuteSuccess",
-            Code::DataNoChange => "DataNoChange",
-            Code::NoNeedUpdate => "NoNeedUpdate",
-            Code::BadRequest => "BadRequest",
-            Code::ParseException => "ParseException",
-            Code::EmptyRequest => "EmptyRequest",
-            Code::BatchSizeOverLimit => "BatchSizeOverLimit",
-            Code::InvalidDiscoverResource => "InvalidDiscoverResource",
-            Code::InvalidRequestId => "InvalidRequestID",
-            Code::InvalidUserName => "InvalidUserName",
-            Code::InvalidUserToken => "InvalidUserToken",
-            Code::InvalidParameter => "InvalidParameter",
-            Code::EmptyQueryParameter => "EmptyQueryParameter",
-            Code::InvalidQueryInsParameter => "InvalidQueryInsParameter",
-            Code::InvalidNamespaceName => "InvalidNamespaceName",
-            Code::InvalidNamespaceOwners => "InvalidNamespaceOwners",
-            Code::InvalidNamespaceToken => "InvalidNamespaceToken",
-            Code::InvalidServiceName => "InvalidServiceName",
-            Code::InvalidServiceOwners => "InvalidServiceOwners",
-            Code::InvalidServiceToken => "InvalidServiceToken",
-            Code::InvalidServiceMetadata => "InvalidServiceMetadata",
-            Code::InvalidServicePorts => "InvalidServicePorts",
-            Code::InvalidServiceBusiness => "InvalidServiceBusiness",
-            Code::InvalidServiceDepartment => "InvalidServiceDepartment",
-            Code::InvalidServiceCmdb => "InvalidServiceCMDB",
-            Code::InvalidServiceComment => "InvalidServiceComment",
-            Code::InvalidServiceAliasComment => "InvalidServiceAliasComment",
-            Code::InvalidInstanceId => "InvalidInstanceID",
-            Code::InvalidInstanceHost => "InvalidInstanceHost",
-            Code::InvalidInstancePort => "InvalidInstancePort",
-            Code::InvalidServiceAlias => "InvalidServiceAlias",
-            Code::InvalidNamespaceWithAlias => "InvalidNamespaceWithAlias",
-            Code::InvalidServiceAliasOwners => "InvalidServiceAliasOwners",
-            Code::InvalidInstanceProtocol => "InvalidInstanceProtocol",
-            Code::InvalidInstanceVersion => "InvalidInstanceVersion",
-            Code::InvalidInstanceLogicSet => "InvalidInstanceLogicSet",
-            Code::InvalidInstanceIsolate => "InvalidInstanceIsolate",
-            Code::HealthCheckNotOpen => "HealthCheckNotOpen",
-            Code::HeartbeatOnDisabledIns => "HeartbeatOnDisabledIns",
-            Code::HeartbeatExceedLimit => "HeartbeatExceedLimit",
-            Code::HeartbeatTypeNotFound => "HeartbeatTypeNotFound",
-            Code::InvalidMetadata => "InvalidMetadata",
-            Code::InvalidRateLimitId => "InvalidRateLimitID",
-            Code::InvalidRateLimitLabels => "InvalidRateLimitLabels",
-            Code::InvalidRateLimitAmounts => "InvalidRateLimitAmounts",
-            Code::InvalidRateLimitName => "InvalidRateLimitName",
-            Code::InvalidCircuitBreakerId => "InvalidCircuitBreakerID",
-            Code::InvalidCircuitBreakerVersion => "InvalidCircuitBreakerVersion",
-            Code::InvalidCircuitBreakerName => "InvalidCircuitBreakerName",
-            Code::InvalidCircuitBreakerNamespace => "InvalidCircuitBreakerNamespace",
-            Code::InvalidCircuitBreakerOwners => "InvalidCircuitBreakerOwners",
-            Code::InvalidCircuitBreakerToken => "InvalidCircuitBreakerToken",
-            Code::InvalidCircuitBreakerBusiness => "InvalidCircuitBreakerBusiness",
-            Code::InvalidCircuitBreakerDepartment => "InvalidCircuitBreakerDepartment",
-            Code::InvalidCircuitBreakerComment => "InvalidCircuitBreakerComment",
-            Code::CircuitBreakerRuleExisted => "CircuitBreakerRuleExisted",
-            Code::InvalidRoutingId => "InvalidRoutingID",
-            Code::InvalidRoutingPolicy => "InvalidRoutingPolicy",
-            Code::InvalidRoutingName => "InvalidRoutingName",
-            Code::InvalidRoutingPriority => "InvalidRoutingPriority",
-            Code::InvalidFaultDetectId => "InvalidFaultDetectID",
-            Code::InvalidFaultDetectName => "InvalidFaultDetectName",
-            Code::InvalidFaultDetectNamespace => "InvalidFaultDetectNamespace",
-            Code::FaultDetectRuleExisted => "FaultDetectRuleExisted",
-            Code::ServicesExistedMesh => "ServicesExistedMesh",
-            Code::ResourcesExistedMesh => "ResourcesExistedMesh",
-            Code::InvalidMeshParameter => "InvalidMeshParameter",
-            Code::InvalidPlatformId => "InvalidPlatformID",
-            Code::InvalidPlatformName => "InvalidPlatformName",
-            Code::InvalidPlatformDomain => "InvalidPlatformDomain",
-            Code::InvalidPlatformQps => "InvalidPlatformQPS",
-            Code::InvalidPlatformToken => "InvalidPlatformToken",
-            Code::InvalidPlatformOwner => "InvalidPlatformOwner",
-            Code::InvalidPlatformDepartment => "InvalidPlatformDepartment",
-            Code::InvalidPlatformComment => "InvalidPlatformComment",
-            Code::NotFoundPlatform => "NotFoundPlatform",
-            Code::InvalidFluxRateLimitId => "InvalidFluxRateLimitId",
-            Code::InvalidFluxRateLimitQps => "InvalidFluxRateLimitQps",
-            Code::InvalidFluxRateLimitSetKey => "InvalidFluxRateLimitSetKey",
-            Code::ExistedResource => "ExistedResource",
-            Code::NotFoundResource => "NotFoundResource",
-            Code::NamespaceExistedServices => "NamespaceExistedServices",
-            Code::ServiceExistedInstances => "ServiceExistedInstances",
-            Code::ServiceExistedRoutings => "ServiceExistedRoutings",
-            Code::ServiceExistedRateLimits => "ServiceExistedRateLimits",
-            Code::ExistReleasedConfig => "ExistReleasedConfig",
-            Code::SameInstanceRequest => "SameInstanceRequest",
-            Code::ServiceExistedCircuitBreakers => "ServiceExistedCircuitBreakers",
-            Code::ServiceExistedAlias => "ServiceExistedAlias",
-            Code::NamespaceExistedMeshResources => "NamespaceExistedMeshResources",
-            Code::NamespaceExistedCircuitBreakers => "NamespaceExistedCircuitBreakers",
-            Code::ServiceSubscribedByMeshes => "ServiceSubscribedByMeshes",
-            Code::ServiceExistedFluxRateLimits => "ServiceExistedFluxRateLimits",
-            Code::NamespaceExistedConfigGroups => "NamespaceExistedConfigGroups",
-            Code::NotFoundService => "NotFoundService",
-            Code::NotFoundRouting => "NotFoundRouting",
-            Code::NotFoundInstance => "NotFoundInstance",
-            Code::NotFoundServiceAlias => "NotFoundServiceAlias",
-            Code::NotFoundNamespace => "NotFoundNamespace",
-            Code::NotFoundSourceService => "NotFoundSourceService",
-            Code::NotFoundRateLimit => "NotFoundRateLimit",
-            Code::NotFoundCircuitBreaker => "NotFoundCircuitBreaker",
-            Code::NotFoundMasterConfig => "NotFoundMasterConfig",
-            Code::NotFoundTagConfig => "NotFoundTagConfig",
-            Code::NotFoundTagConfigOrService => "NotFoundTagConfigOrService",
-            Code::ClientApiNotOpen => "ClientAPINotOpen",
-            Code::NotAllowBusinessService => "NotAllowBusinessService",
-            Code::NotAllowAliasUpdate => "NotAllowAliasUpdate",
-            Code::NotAllowAliasCreateInstance => "NotAllowAliasCreateInstance",
-            Code::NotAllowAliasCreateRouting => "NotAllowAliasCreateRouting",
-            Code::NotAllowCreateAliasForAlias => "NotAllowCreateAliasForAlias",
-            Code::NotAllowAliasCreateRateLimit => "NotAllowAliasCreateRateLimit",
-            Code::NotAllowAliasBindRule => "NotAllowAliasBindRule",
-            Code::NotAllowDifferentNamespaceBindRule => {
-                "NotAllowDifferentNamespaceBindRule"
-            }
-            Code::Unauthorized => "Unauthorized",
-            Code::NotAllowedAccess => "NotAllowedAccess",
-            Code::CmdbNotFindHost => "CMDBNotFindHost",
-            Code::DataConflict => "DataConflict",
-            Code::InstanceTooManyRequests => "InstanceTooManyRequests",
-            Code::IpRateLimit => "IPRateLimit",
-            Code::ApiRateLimit => "APIRateLimit",
-            Code::ExecuteException => "ExecuteException",
-            Code::StoreLayerException => "StoreLayerException",
-            Code::CmdbPluginException => "CMDBPluginException",
-            Code::ParseRoutingException => "ParseRoutingException",
-            Code::ParseRateLimitException => "ParseRateLimitException",
-            Code::ParseCircuitBreakerException => "ParseCircuitBreakerException",
-            Code::HeartbeatException => "HeartbeatException",
-            Code::InstanceRegisTimeout => "InstanceRegisTimeout",
-            Code::InvalidConfigFileGroupName => "InvalidConfigFileGroupName",
-            Code::InvalidConfigFileName => "InvalidConfigFileName",
-            Code::InvalidConfigFileContentLength => "InvalidConfigFileContentLength",
-            Code::InvalidConfigFileFormat => "InvalidConfigFileFormat",
-            Code::InvalidConfigFileTags => "InvalidConfigFileTags",
-            Code::InvalidWatchConfigFileFormat => "InvalidWatchConfigFileFormat",
-            Code::NotFoundResourceConfigFile => "NotFoundResourceConfigFile",
-            Code::InvalidConfigFileTemplateName => "InvalidConfigFileTemplateName",
-            Code::EncryptConfigFileException => "EncryptConfigFileException",
-            Code::InvalidUserOwners => "InvalidUserOwners",
-            Code::InvalidUserId => "InvalidUserID",
-            Code::InvalidUserPassword => "InvalidUserPassword",
-            Code::InvalidUserMobile => "InvalidUserMobile",
-            Code::InvalidUserEmail => "InvalidUserEmail",
-            Code::InvalidUserGroupOwners => "InvalidUserGroupOwners",
-            Code::InvalidUserGroupId => "InvalidUserGroupID",
-            Code::InvalidAuthStrategyOwners => "InvalidAuthStrategyOwners",
-            Code::InvalidAuthStrategyName => "InvalidAuthStrategyName",
-            Code::InvalidAuthStrategyId => "InvalidAuthStrategyID",
-            Code::InvalidPrincipalType => "InvalidPrincipalType",
-            Code::UserExisted => "UserExisted",
-            Code::UserGroupExisted => "UserGroupExisted",
-            Code::AuthStrategyRuleExisted => "AuthStrategyRuleExisted",
-            Code::SubAccountExisted => "SubAccountExisted",
-            Code::NotFoundUser => "NotFoundUser",
-            Code::NotFoundOwnerUser => "NotFoundOwnerUser",
-            Code::NotFoundUserGroup => "NotFoundUserGroup",
-            Code::NotFoundAuthStrategyRule => "NotFoundAuthStrategyRule",
-            Code::NotAllowModifyDefaultStrategyPrincipal => {
-                "NotAllowModifyDefaultStrategyPrincipal"
-            }
-            Code::NotAllowModifyOwnerDefaultStrategy => {
-                "NotAllowModifyOwnerDefaultStrategy"
-            }
-            Code::EmptyAutToken => "EmptyAutToken",
-            Code::TokenDisabled => "TokenDisabled",
-            Code::TokenNotExisted => "TokenNotExisted",
-            Code::AuthTokenForbidden => "AuthTokenForbidden",
-            Code::OperationRoleForbidden => "OperationRoleForbidden",
-        }
-    }
-    /// Creates an enum from field names used in the ProtoBuf definition.
-    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-        match value {
-            "Unknown" => Some(Self::Unknown),
-            "ExecuteSuccess" => Some(Self::ExecuteSuccess),
-            "DataNoChange" => Some(Self::DataNoChange),
-            "NoNeedUpdate" => Some(Self::NoNeedUpdate),
-            "BadRequest" => Some(Self::BadRequest),
-            "ParseException" => Some(Self::ParseException),
-            "EmptyRequest" => Some(Self::EmptyRequest),
-            "BatchSizeOverLimit" => Some(Self::BatchSizeOverLimit),
-            "InvalidDiscoverResource" => Some(Self::InvalidDiscoverResource),
-            "InvalidRequestID" => Some(Self::InvalidRequestId),
-            "InvalidUserName" => Some(Self::InvalidUserName),
-            "InvalidUserToken" => Some(Self::InvalidUserToken),
-            "InvalidParameter" => Some(Self::InvalidParameter),
-            "EmptyQueryParameter" => Some(Self::EmptyQueryParameter),
-            "InvalidQueryInsParameter" => Some(Self::InvalidQueryInsParameter),
-            "InvalidNamespaceName" => Some(Self::InvalidNamespaceName),
-            "InvalidNamespaceOwners" => Some(Self::InvalidNamespaceOwners),
-            "InvalidNamespaceToken" => Some(Self::InvalidNamespaceToken),
-            "InvalidServiceName" => Some(Self::InvalidServiceName),
-            "InvalidServiceOwners" => Some(Self::InvalidServiceOwners),
-            "InvalidServiceToken" => Some(Self::InvalidServiceToken),
-            "InvalidServiceMetadata" => Some(Self::InvalidServiceMetadata),
-            "InvalidServicePorts" => Some(Self::InvalidServicePorts),
-            "InvalidServiceBusiness" => Some(Self::InvalidServiceBusiness),
-            "InvalidServiceDepartment" => Some(Self::InvalidServiceDepartment),
-            "InvalidServiceCMDB" => Some(Self::InvalidServiceCmdb),
-            "InvalidServiceComment" => Some(Self::InvalidServiceComment),
-            "InvalidServiceAliasComment" => Some(Self::InvalidServiceAliasComment),
-            "InvalidInstanceID" => Some(Self::InvalidInstanceId),
-            "InvalidInstanceHost" => Some(Self::InvalidInstanceHost),
-            "InvalidInstancePort" => Some(Self::InvalidInstancePort),
-            "InvalidServiceAlias" => Some(Self::InvalidServiceAlias),
-            "InvalidNamespaceWithAlias" => Some(Self::InvalidNamespaceWithAlias),
-            "InvalidServiceAliasOwners" => Some(Self::InvalidServiceAliasOwners),
-            "InvalidInstanceProtocol" => Some(Self::InvalidInstanceProtocol),
-            "InvalidInstanceVersion" => Some(Self::InvalidInstanceVersion),
-            "InvalidInstanceLogicSet" => Some(Self::InvalidInstanceLogicSet),
-            "InvalidInstanceIsolate" => Some(Self::InvalidInstanceIsolate),
-            "HealthCheckNotOpen" => Some(Self::HealthCheckNotOpen),
-            "HeartbeatOnDisabledIns" => Some(Self::HeartbeatOnDisabledIns),
-            "HeartbeatExceedLimit" => Some(Self::HeartbeatExceedLimit),
-            "HeartbeatTypeNotFound" => Some(Self::HeartbeatTypeNotFound),
-            "InvalidMetadata" => Some(Self::InvalidMetadata),
-            "InvalidRateLimitID" => Some(Self::InvalidRateLimitId),
-            "InvalidRateLimitLabels" => Some(Self::InvalidRateLimitLabels),
-            "InvalidRateLimitAmounts" => Some(Self::InvalidRateLimitAmounts),
-            "InvalidRateLimitName" => Some(Self::InvalidRateLimitName),
-            "InvalidCircuitBreakerID" => Some(Self::InvalidCircuitBreakerId),
-            "InvalidCircuitBreakerVersion" => Some(Self::InvalidCircuitBreakerVersion),
-            "InvalidCircuitBreakerName" => Some(Self::InvalidCircuitBreakerName),
-            "InvalidCircuitBreakerNamespace" => {
-                Some(Self::InvalidCircuitBreakerNamespace)
-            }
-            "InvalidCircuitBreakerOwners" => Some(Self::InvalidCircuitBreakerOwners),
-            "InvalidCircuitBreakerToken" => Some(Self::InvalidCircuitBreakerToken),
-            "InvalidCircuitBreakerBusiness" => Some(Self::InvalidCircuitBreakerBusiness),
-            "InvalidCircuitBreakerDepartment" => {
-                Some(Self::InvalidCircuitBreakerDepartment)
-            }
-            "InvalidCircuitBreakerComment" => Some(Self::InvalidCircuitBreakerComment),
-            "CircuitBreakerRuleExisted" => Some(Self::CircuitBreakerRuleExisted),
-            "InvalidRoutingID" => Some(Self::InvalidRoutingId),
-            "InvalidRoutingPolicy" => Some(Self::InvalidRoutingPolicy),
-            "InvalidRoutingName" => Some(Self::InvalidRoutingName),
-            "InvalidRoutingPriority" => Some(Self::InvalidRoutingPriority),
-            "InvalidFaultDetectID" => Some(Self::InvalidFaultDetectId),
-            "InvalidFaultDetectName" => Some(Self::InvalidFaultDetectName),
-            "InvalidFaultDetectNamespace" => Some(Self::InvalidFaultDetectNamespace),
-            "FaultDetectRuleExisted" => Some(Self::FaultDetectRuleExisted),
-            "ServicesExistedMesh" => Some(Self::ServicesExistedMesh),
-            "ResourcesExistedMesh" => Some(Self::ResourcesExistedMesh),
-            "InvalidMeshParameter" => Some(Self::InvalidMeshParameter),
-            "InvalidPlatformID" => Some(Self::InvalidPlatformId),
-            "InvalidPlatformName" => Some(Self::InvalidPlatformName),
-            "InvalidPlatformDomain" => Some(Self::InvalidPlatformDomain),
-            "InvalidPlatformQPS" => Some(Self::InvalidPlatformQps),
-            "InvalidPlatformToken" => Some(Self::InvalidPlatformToken),
-            "InvalidPlatformOwner" => Some(Self::InvalidPlatformOwner),
-            "InvalidPlatformDepartment" => Some(Self::InvalidPlatformDepartment),
-            "InvalidPlatformComment" => Some(Self::InvalidPlatformComment),
-            "NotFoundPlatform" => Some(Self::NotFoundPlatform),
-            "InvalidFluxRateLimitId" => Some(Self::InvalidFluxRateLimitId),
-            "InvalidFluxRateLimitQps" => Some(Self::InvalidFluxRateLimitQps),
-            "InvalidFluxRateLimitSetKey" => Some(Self::InvalidFluxRateLimitSetKey),
-            "ExistedResource" => Some(Self::ExistedResource),
-            "NotFoundResource" => Some(Self::NotFoundResource),
-            "NamespaceExistedServices" => Some(Self::NamespaceExistedServices),
-            "ServiceExistedInstances" => Some(Self::ServiceExistedInstances),
-            "ServiceExistedRoutings" => Some(Self::ServiceExistedRoutings),
-            "ServiceExistedRateLimits" => Some(Self::ServiceExistedRateLimits),
-            "ExistReleasedConfig" => Some(Self::ExistReleasedConfig),
-            "SameInstanceRequest" => Some(Self::SameInstanceRequest),
-            "ServiceExistedCircuitBreakers" => Some(Self::ServiceExistedCircuitBreakers),
-            "ServiceExistedAlias" => Some(Self::ServiceExistedAlias),
-            "NamespaceExistedMeshResources" => Some(Self::NamespaceExistedMeshResources),
-            "NamespaceExistedCircuitBreakers" => {
-                Some(Self::NamespaceExistedCircuitBreakers)
-            }
-            "ServiceSubscribedByMeshes" => Some(Self::ServiceSubscribedByMeshes),
-            "ServiceExistedFluxRateLimits" => Some(Self::ServiceExistedFluxRateLimits),
-            "NamespaceExistedConfigGroups" => Some(Self::NamespaceExistedConfigGroups),
-            "NotFoundService" => Some(Self::NotFoundService),
-            "NotFoundRouting" => Some(Self::NotFoundRouting),
-            "NotFoundInstance" => Some(Self::NotFoundInstance),
-            "NotFoundServiceAlias" => Some(Self::NotFoundServiceAlias),
-            "NotFoundNamespace" => Some(Self::NotFoundNamespace),
-            "NotFoundSourceService" => Some(Self::NotFoundSourceService),
-            "NotFoundRateLimit" => Some(Self::NotFoundRateLimit),
-            "NotFoundCircuitBreaker" => Some(Self::NotFoundCircuitBreaker),
-            "NotFoundMasterConfig" => Some(Self::NotFoundMasterConfig),
-            "NotFoundTagConfig" => Some(Self::NotFoundTagConfig),
-            "NotFoundTagConfigOrService" => Some(Self::NotFoundTagConfigOrService),
-            "ClientAPINotOpen" => Some(Self::ClientApiNotOpen),
-            "NotAllowBusinessService" => Some(Self::NotAllowBusinessService),
-            "NotAllowAliasUpdate" => Some(Self::NotAllowAliasUpdate),
-            "NotAllowAliasCreateInstance" => Some(Self::NotAllowAliasCreateInstance),
-            "NotAllowAliasCreateRouting" => Some(Self::NotAllowAliasCreateRouting),
-            "NotAllowCreateAliasForAlias" => Some(Self::NotAllowCreateAliasForAlias),
-            "NotAllowAliasCreateRateLimit" => Some(Self::NotAllowAliasCreateRateLimit),
-            "NotAllowAliasBindRule" => Some(Self::NotAllowAliasBindRule),
-            "NotAllowDifferentNamespaceBindRule" => {
-                Some(Self::NotAllowDifferentNamespaceBindRule)
-            }
-            "Unauthorized" => Some(Self::Unauthorized),
-            "NotAllowedAccess" => Some(Self::NotAllowedAccess),
-            "CMDBNotFindHost" => Some(Self::CmdbNotFindHost),
-            "DataConflict" => Some(Self::DataConflict),
-            "InstanceTooManyRequests" => Some(Self::InstanceTooManyRequests),
-            "IPRateLimit" => Some(Self::IpRateLimit),
-            "APIRateLimit" => Some(Self::ApiRateLimit),
-            "ExecuteException" => Some(Self::ExecuteException),
-            "StoreLayerException" => Some(Self::StoreLayerException),
-            "CMDBPluginException" => Some(Self::CmdbPluginException),
-            "ParseRoutingException" => Some(Self::ParseRoutingException),
-            "ParseRateLimitException" => Some(Self::ParseRateLimitException),
-            "ParseCircuitBreakerException" => Some(Self::ParseCircuitBreakerException),
-            "HeartbeatException" => Some(Self::HeartbeatException),
-            "InstanceRegisTimeout" => Some(Self::InstanceRegisTimeout),
-            "InvalidConfigFileGroupName" => Some(Self::InvalidConfigFileGroupName),
-            "InvalidConfigFileName" => Some(Self::InvalidConfigFileName),
-            "InvalidConfigFileContentLength" => {
-                Some(Self::InvalidConfigFileContentLength)
-            }
-            "InvalidConfigFileFormat" => Some(Self::InvalidConfigFileFormat),
-            "InvalidConfigFileTags" => Some(Self::InvalidConfigFileTags),
-            "InvalidWatchConfigFileFormat" => Some(Self::InvalidWatchConfigFileFormat),
-            "NotFoundResourceConfigFile" => Some(Self::NotFoundResourceConfigFile),
-            "InvalidConfigFileTemplateName" => Some(Self::InvalidConfigFileTemplateName),
-            "EncryptConfigFileException" => Some(Self::EncryptConfigFileException),
-            "InvalidUserOwners" => Some(Self::InvalidUserOwners),
-            "InvalidUserID" => Some(Self::InvalidUserId),
-            "InvalidUserPassword" => Some(Self::InvalidUserPassword),
-            "InvalidUserMobile" => Some(Self::InvalidUserMobile),
-            "InvalidUserEmail" => Some(Self::InvalidUserEmail),
-            "InvalidUserGroupOwners" => Some(Self::InvalidUserGroupOwners),
-            "InvalidUserGroupID" => Some(Self::InvalidUserGroupId),
-            "InvalidAuthStrategyOwners" => Some(Self::InvalidAuthStrategyOwners),
-            "InvalidAuthStrategyName" => Some(Self::InvalidAuthStrategyName),
-            "InvalidAuthStrategyID" => Some(Self::InvalidAuthStrategyId),
-            "InvalidPrincipalType" => Some(Self::InvalidPrincipalType),
-            "UserExisted" => Some(Self::UserExisted),
-            "UserGroupExisted" => Some(Self::UserGroupExisted),
-            "AuthStrategyRuleExisted" => Some(Self::AuthStrategyRuleExisted),
-            "SubAccountExisted" => Some(Self::SubAccountExisted),
-            "NotFoundUser" => Some(Self::NotFoundUser),
-            "NotFoundOwnerUser" => Some(Self::NotFoundOwnerUser),
-            "NotFoundUserGroup" => Some(Self::NotFoundUserGroup),
-            "NotFoundAuthStrategyRule" => Some(Self::NotFoundAuthStrategyRule),
-            "NotAllowModifyDefaultStrategyPrincipal" => {
-                Some(Self::NotAllowModifyDefaultStrategyPrincipal)
-            }
-            "NotAllowModifyOwnerDefaultStrategy" => {
-                Some(Self::NotAllowModifyOwnerDefaultStrategy)
-            }
-            "EmptyAutToken" => Some(Self::EmptyAutToken),
-            "TokenDisabled" => Some(Self::TokenDisabled),
-            "TokenNotExisted" => Some(Self::TokenNotExisted),
-            "AuthTokenForbidden" => Some(Self::AuthTokenForbidden),
-            "OperationRoleForbidden" => Some(Self::OperationRoleForbidden),
-            _ => None,
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct Client {
-    #[prost(message, optional, tag = "1")]
-    pub host: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(enumeration = "client::ClientType", tag = "2")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "3")]
-    pub version: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub location: ::core::option::Option<Location>,
-    #[prost(message, optional, tag = "5")]
-    pub id: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, repeated, tag = "6")]
-    pub stat: ::prost::alloc::vec::Vec<StatInfo>,
-    #[prost(message, optional, tag = "7")]
-    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "8")]
-    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
-}
-/// Nested message and enum types in `Client`.
-pub mod client {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ClientType {
-        Unknown = 0,
-        Sdk = 1,
-        Agent = 2,
-    }
-    impl ClientType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ClientType::Unknown => "UNKNOWN",
-                ClientType::Sdk => "SDK",
-                ClientType::Agent => "AGENT",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN" => Some(Self::Unknown),
-                "SDK" => Some(Self::Sdk),
-                "AGENT" => Some(Self::Agent),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct StatInfo {
-    #[prost(message, optional, tag = "1")]
-    pub target: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "2")]
-    pub port: ::core::option::Option<u32>,
-    #[prost(message, optional, tag = "3")]
-    pub path: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(message, optional, tag = "4")]
-    pub protocol: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1554,74 +376,6 @@ impl AliasType {
             "DEFAULT" => Some(Self::Default),
             "CL5SID" => Some(Self::Cl5sid),
             _ => None,
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct DiscoverRequest {
-    #[prost(enumeration = "discover_request::DiscoverRequestType", tag = "1")]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "2")]
-    pub service: ::core::option::Option<Service>,
-}
-/// Nested message and enum types in `DiscoverRequest`.
-pub mod discover_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum DiscoverRequestType {
-        Unknown = 0,
-        Instance = 1,
-        Cluster = 2,
-        Routing = 3,
-        RateLimit = 4,
-        CircuitBreaker = 5,
-        Services = 6,
-        Namespaces = 12,
-        FaultDetector = 13,
-    }
-    impl DiscoverRequestType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                DiscoverRequestType::Unknown => "UNKNOWN",
-                DiscoverRequestType::Instance => "INSTANCE",
-                DiscoverRequestType::Cluster => "CLUSTER",
-                DiscoverRequestType::Routing => "ROUTING",
-                DiscoverRequestType::RateLimit => "RATE_LIMIT",
-                DiscoverRequestType::CircuitBreaker => "CIRCUIT_BREAKER",
-                DiscoverRequestType::Services => "SERVICES",
-                DiscoverRequestType::Namespaces => "NAMESPACES",
-                DiscoverRequestType::FaultDetector => "FAULT_DETECTOR",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN" => Some(Self::Unknown),
-                "INSTANCE" => Some(Self::Instance),
-                "CLUSTER" => Some(Self::Cluster),
-                "ROUTING" => Some(Self::Routing),
-                "RATE_LIMIT" => Some(Self::RateLimit),
-                "CIRCUIT_BREAKER" => Some(Self::CircuitBreaker),
-                "SERVICES" => Some(Self::Services),
-                "NAMESPACES" => Some(Self::Namespaces),
-                "FAULT_DETECTOR" => Some(Self::FaultDetector),
-                _ => None,
-            }
         }
     }
 }
@@ -3212,6 +1966,80 @@ impl Level {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Client {
+    #[prost(message, optional, tag = "1")]
+    pub host: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(enumeration = "client::ClientType", tag = "2")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "3")]
+    pub version: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub location: ::core::option::Option<Location>,
+    #[prost(message, optional, tag = "5")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "6")]
+    pub stat: ::prost::alloc::vec::Vec<StatInfo>,
+    #[prost(message, optional, tag = "7")]
+    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
+}
+/// Nested message and enum types in `Client`.
+pub mod client {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ClientType {
+        Unknown = 0,
+        Sdk = 1,
+        Agent = 2,
+    }
+    impl ClientType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ClientType::Unknown => "UNKNOWN",
+                ClientType::Sdk => "SDK",
+                ClientType::Agent => "AGENT",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "SDK" => Some(Self::Sdk),
+                "AGENT" => Some(Self::Agent),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StatInfo {
+    #[prost(message, optional, tag = "1")]
+    pub target: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub port: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "3")]
+    pub path: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub protocol: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigRelease {
     #[prost(message, optional, tag = "1")]
     pub service: ::core::option::Option<Service>,
@@ -3381,6 +2209,263 @@ pub struct UdpProtocolConfig {
     pub send: ::prost::alloc::string::String,
     #[prost(string, repeated, tag = "2")]
     pub receive: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LoginRequest {
+    #[prost(message, optional, tag = "1")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub password: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct LoginResponse {
+    #[prost(message, optional, tag = "1")]
+    pub user_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub role: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub owner_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub token: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct User {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub password: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub token_enable: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "8")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "10")]
+    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub user_type: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "12")]
+    pub mobile: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "13")]
+    pub email: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModifyUserPassword {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub old_password: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub new_password: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserGroupRelation {
+    #[prost(message, optional, tag = "1")]
+    pub group_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "2")]
+    pub users: ::prost::alloc::vec::Vec<User>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct UserGroup {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub token_enable: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "6")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub relation: ::core::option::Option<UserGroupRelation>,
+    #[prost(message, optional, tag = "10")]
+    pub user_count: ::core::option::Option<u32>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModifyUserGroup {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub token_enable: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "6")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub add_relations: ::core::option::Option<UserGroupRelation>,
+    #[prost(message, optional, tag = "8")]
+    pub remove_relations: ::core::option::Option<UserGroupRelation>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Principal {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Principals {
+    #[prost(message, repeated, tag = "1")]
+    pub users: ::prost::alloc::vec::Vec<Principal>,
+    #[prost(message, repeated, tag = "2")]
+    pub groups: ::prost::alloc::vec::Vec<Principal>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StrategyResourceEntry {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StrategyResources {
+    #[prost(message, optional, tag = "1")]
+    pub strategy_id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "2")]
+    pub namespaces: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "3")]
+    pub services: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "4")]
+    pub config_groups: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct AuthStrategy {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub principals: ::core::option::Option<Principals>,
+    #[prost(message, optional, tag = "4")]
+    pub resources: ::core::option::Option<StrategyResources>,
+    #[prost(enumeration = "AuthAction", tag = "5")]
+    pub action: i32,
+    #[prost(message, optional, tag = "6")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub ctime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub mtime: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "10")]
+    pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub default_strategy: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ModifyAuthStrategy {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub add_principals: ::core::option::Option<Principals>,
+    #[prost(message, optional, tag = "4")]
+    pub remove_principals: ::core::option::Option<Principals>,
+    #[prost(message, optional, tag = "5")]
+    pub add_resources: ::core::option::Option<StrategyResources>,
+    #[prost(message, optional, tag = "6")]
+    pub remove_resources: ::core::option::Option<StrategyResources>,
+    #[prost(enumeration = "AuthAction", tag = "7")]
+    pub action: i32,
+    #[prost(message, optional, tag = "8")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum AuthAction {
+    OnlyRead = 0,
+    ReadWrite = 1,
+}
+impl AuthAction {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            AuthAction::OnlyRead => "ONLY_READ",
+            AuthAction::ReadWrite => "READ_WRITE",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "ONLY_READ" => Some(Self::OnlyRead),
+            "READ_WRITE" => Some(Self::ReadWrite),
+            _ => None,
+        }
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum ResourceType {
+    Namespaces = 0,
+    Services = 1,
+    ConfigGroups = 2,
+}
+impl ResourceType {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            ResourceType::Namespaces => "Namespaces",
+            ResourceType::Services => "Services",
+            ResourceType::ConfigGroups => "ConfigGroups",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "Namespaces" => Some(Self::Namespaces),
+            "Services" => Some(Self::Services),
+            "ConfigGroups" => Some(Self::ConfigGroups),
+            _ => None,
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3582,6 +2667,921 @@ pub struct OptionSwitch {
 pub struct InstanceLabels {
     #[prost(map = "string, message", tag = "1")]
     pub labels: ::std::collections::HashMap<::prost::alloc::string::String, StringList>,
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
+#[repr(i32)]
+pub enum Code {
+    /// base module status codes
+    Unknown = 0,
+    ExecuteSuccess = 200000,
+    DataNoChange = 200001,
+    NoNeedUpdate = 200002,
+    BadRequest = 400000,
+    ParseException = 400001,
+    EmptyRequest = 400002,
+    BatchSizeOverLimit = 400003,
+    InvalidDiscoverResource = 400004,
+    InvalidRequestId = 400100,
+    InvalidUserName = 400101,
+    InvalidUserToken = 400102,
+    InvalidParameter = 400103,
+    EmptyQueryParameter = 400104,
+    InvalidQueryInsParameter = 400105,
+    InvalidNamespaceName = 400110,
+    InvalidNamespaceOwners = 400111,
+    InvalidNamespaceToken = 400112,
+    InvalidServiceName = 400120,
+    InvalidServiceOwners = 400121,
+    InvalidServiceToken = 400122,
+    InvalidServiceMetadata = 400123,
+    InvalidServicePorts = 400124,
+    InvalidServiceBusiness = 400125,
+    InvalidServiceDepartment = 400126,
+    InvalidServiceCmdb = 400127,
+    InvalidServiceComment = 400128,
+    InvalidServiceAliasComment = 400129,
+    InvalidInstanceId = 400130,
+    InvalidInstanceHost = 400131,
+    InvalidInstancePort = 400132,
+    InvalidServiceAlias = 400133,
+    InvalidNamespaceWithAlias = 400134,
+    InvalidServiceAliasOwners = 400135,
+    InvalidInstanceProtocol = 400136,
+    InvalidInstanceVersion = 400137,
+    InvalidInstanceLogicSet = 400138,
+    InvalidInstanceIsolate = 400139,
+    HealthCheckNotOpen = 400140,
+    HeartbeatOnDisabledIns = 400141,
+    HeartbeatExceedLimit = 400142,
+    HeartbeatTypeNotFound = 400143,
+    InvalidMetadata = 400150,
+    InvalidRateLimitId = 400151,
+    InvalidRateLimitLabels = 400152,
+    InvalidRateLimitAmounts = 400153,
+    InvalidRateLimitName = 400154,
+    InvalidCircuitBreakerId = 400160,
+    InvalidCircuitBreakerVersion = 400161,
+    InvalidCircuitBreakerName = 400162,
+    InvalidCircuitBreakerNamespace = 400163,
+    InvalidCircuitBreakerOwners = 400164,
+    InvalidCircuitBreakerToken = 400165,
+    InvalidCircuitBreakerBusiness = 400166,
+    InvalidCircuitBreakerDepartment = 400167,
+    InvalidCircuitBreakerComment = 400168,
+    CircuitBreakerRuleExisted = 400169,
+    InvalidRoutingId = 400700,
+    InvalidRoutingPolicy = 400701,
+    InvalidRoutingName = 400702,
+    InvalidRoutingPriority = 400703,
+    InvalidFaultDetectId = 400900,
+    InvalidFaultDetectName = 400901,
+    InvalidFaultDetectNamespace = 400902,
+    FaultDetectRuleExisted = 400903,
+    /// network relative codes
+    ServicesExistedMesh = 400170,
+    ResourcesExistedMesh = 400171,
+    InvalidMeshParameter = 400172,
+    /// platform relative codes
+    InvalidPlatformId = 400180,
+    InvalidPlatformName = 400181,
+    InvalidPlatformDomain = 400182,
+    InvalidPlatformQps = 400183,
+    InvalidPlatformToken = 400184,
+    InvalidPlatformOwner = 400185,
+    InvalidPlatformDepartment = 400186,
+    InvalidPlatformComment = 400187,
+    NotFoundPlatform = 400188,
+    /// flux relative codes
+    InvalidFluxRateLimitId = 400190,
+    InvalidFluxRateLimitQps = 400191,
+    InvalidFluxRateLimitSetKey = 400192,
+    ExistedResource = 400201,
+    NotFoundResource = 400202,
+    NamespaceExistedServices = 400203,
+    ServiceExistedInstances = 400204,
+    ServiceExistedRoutings = 400205,
+    ServiceExistedRateLimits = 400206,
+    ExistReleasedConfig = 400207,
+    SameInstanceRequest = 400208,
+    ServiceExistedCircuitBreakers = 400209,
+    ServiceExistedAlias = 400210,
+    NamespaceExistedMeshResources = 400211,
+    NamespaceExistedCircuitBreakers = 400212,
+    ServiceSubscribedByMeshes = 400213,
+    ServiceExistedFluxRateLimits = 400214,
+    NamespaceExistedConfigGroups = 400219,
+    NotFoundService = 400301,
+    NotFoundRouting = 400302,
+    NotFoundInstance = 400303,
+    NotFoundServiceAlias = 400304,
+    NotFoundNamespace = 400305,
+    NotFoundSourceService = 400306,
+    NotFoundRateLimit = 400307,
+    NotFoundCircuitBreaker = 400308,
+    NotFoundMasterConfig = 400309,
+    NotFoundTagConfig = 400310,
+    NotFoundTagConfigOrService = 400311,
+    ClientApiNotOpen = 400401,
+    NotAllowBusinessService = 400402,
+    NotAllowAliasUpdate = 400501,
+    NotAllowAliasCreateInstance = 400502,
+    NotAllowAliasCreateRouting = 400503,
+    NotAllowCreateAliasForAlias = 400504,
+    NotAllowAliasCreateRateLimit = 400505,
+    NotAllowAliasBindRule = 400506,
+    NotAllowDifferentNamespaceBindRule = 400507,
+    Unauthorized = 401000,
+    NotAllowedAccess = 401001,
+    CmdbNotFindHost = 404001,
+    DataConflict = 409000,
+    InstanceTooManyRequests = 429001,
+    IpRateLimit = 429002,
+    ApiRateLimit = 403003,
+    ExecuteException = 500000,
+    StoreLayerException = 500001,
+    CmdbPluginException = 500002,
+    ParseRoutingException = 500004,
+    ParseRateLimitException = 500005,
+    ParseCircuitBreakerException = 500006,
+    HeartbeatException = 500007,
+    InstanceRegisTimeout = 500008,
+    /// config center status codes
+    InvalidConfigFileGroupName = 400801,
+    InvalidConfigFileName = 400802,
+    InvalidConfigFileContentLength = 400803,
+    InvalidConfigFileFormat = 400804,
+    InvalidConfigFileTags = 400805,
+    InvalidWatchConfigFileFormat = 400806,
+    NotFoundResourceConfigFile = 400807,
+    InvalidConfigFileTemplateName = 400808,
+    EncryptConfigFileException = 400809,
+    /// auth codes
+    InvalidUserOwners = 400410,
+    InvalidUserId = 400411,
+    InvalidUserPassword = 400412,
+    InvalidUserMobile = 400413,
+    InvalidUserEmail = 400414,
+    InvalidUserGroupOwners = 400420,
+    InvalidUserGroupId = 400421,
+    InvalidAuthStrategyOwners = 400430,
+    InvalidAuthStrategyName = 400431,
+    InvalidAuthStrategyId = 400432,
+    InvalidPrincipalType = 400440,
+    UserExisted = 400215,
+    UserGroupExisted = 400216,
+    AuthStrategyRuleExisted = 400217,
+    SubAccountExisted = 400218,
+    NotFoundUser = 400312,
+    NotFoundOwnerUser = 400313,
+    NotFoundUserGroup = 400314,
+    NotFoundAuthStrategyRule = 400315,
+    NotAllowModifyDefaultStrategyPrincipal = 400508,
+    NotAllowModifyOwnerDefaultStrategy = 400509,
+    EmptyAutToken = 401002,
+    TokenDisabled = 401003,
+    TokenNotExisted = 401004,
+    AuthTokenForbidden = 403001,
+    OperationRoleForbidden = 403002,
+}
+impl Code {
+    /// String value of the enum field names used in the ProtoBuf definition.
+    ///
+    /// The values are not transformed in any way and thus are considered stable
+    /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+    pub fn as_str_name(&self) -> &'static str {
+        match self {
+            Code::Unknown => "Unknown",
+            Code::ExecuteSuccess => "ExecuteSuccess",
+            Code::DataNoChange => "DataNoChange",
+            Code::NoNeedUpdate => "NoNeedUpdate",
+            Code::BadRequest => "BadRequest",
+            Code::ParseException => "ParseException",
+            Code::EmptyRequest => "EmptyRequest",
+            Code::BatchSizeOverLimit => "BatchSizeOverLimit",
+            Code::InvalidDiscoverResource => "InvalidDiscoverResource",
+            Code::InvalidRequestId => "InvalidRequestID",
+            Code::InvalidUserName => "InvalidUserName",
+            Code::InvalidUserToken => "InvalidUserToken",
+            Code::InvalidParameter => "InvalidParameter",
+            Code::EmptyQueryParameter => "EmptyQueryParameter",
+            Code::InvalidQueryInsParameter => "InvalidQueryInsParameter",
+            Code::InvalidNamespaceName => "InvalidNamespaceName",
+            Code::InvalidNamespaceOwners => "InvalidNamespaceOwners",
+            Code::InvalidNamespaceToken => "InvalidNamespaceToken",
+            Code::InvalidServiceName => "InvalidServiceName",
+            Code::InvalidServiceOwners => "InvalidServiceOwners",
+            Code::InvalidServiceToken => "InvalidServiceToken",
+            Code::InvalidServiceMetadata => "InvalidServiceMetadata",
+            Code::InvalidServicePorts => "InvalidServicePorts",
+            Code::InvalidServiceBusiness => "InvalidServiceBusiness",
+            Code::InvalidServiceDepartment => "InvalidServiceDepartment",
+            Code::InvalidServiceCmdb => "InvalidServiceCMDB",
+            Code::InvalidServiceComment => "InvalidServiceComment",
+            Code::InvalidServiceAliasComment => "InvalidServiceAliasComment",
+            Code::InvalidInstanceId => "InvalidInstanceID",
+            Code::InvalidInstanceHost => "InvalidInstanceHost",
+            Code::InvalidInstancePort => "InvalidInstancePort",
+            Code::InvalidServiceAlias => "InvalidServiceAlias",
+            Code::InvalidNamespaceWithAlias => "InvalidNamespaceWithAlias",
+            Code::InvalidServiceAliasOwners => "InvalidServiceAliasOwners",
+            Code::InvalidInstanceProtocol => "InvalidInstanceProtocol",
+            Code::InvalidInstanceVersion => "InvalidInstanceVersion",
+            Code::InvalidInstanceLogicSet => "InvalidInstanceLogicSet",
+            Code::InvalidInstanceIsolate => "InvalidInstanceIsolate",
+            Code::HealthCheckNotOpen => "HealthCheckNotOpen",
+            Code::HeartbeatOnDisabledIns => "HeartbeatOnDisabledIns",
+            Code::HeartbeatExceedLimit => "HeartbeatExceedLimit",
+            Code::HeartbeatTypeNotFound => "HeartbeatTypeNotFound",
+            Code::InvalidMetadata => "InvalidMetadata",
+            Code::InvalidRateLimitId => "InvalidRateLimitID",
+            Code::InvalidRateLimitLabels => "InvalidRateLimitLabels",
+            Code::InvalidRateLimitAmounts => "InvalidRateLimitAmounts",
+            Code::InvalidRateLimitName => "InvalidRateLimitName",
+            Code::InvalidCircuitBreakerId => "InvalidCircuitBreakerID",
+            Code::InvalidCircuitBreakerVersion => "InvalidCircuitBreakerVersion",
+            Code::InvalidCircuitBreakerName => "InvalidCircuitBreakerName",
+            Code::InvalidCircuitBreakerNamespace => "InvalidCircuitBreakerNamespace",
+            Code::InvalidCircuitBreakerOwners => "InvalidCircuitBreakerOwners",
+            Code::InvalidCircuitBreakerToken => "InvalidCircuitBreakerToken",
+            Code::InvalidCircuitBreakerBusiness => "InvalidCircuitBreakerBusiness",
+            Code::InvalidCircuitBreakerDepartment => "InvalidCircuitBreakerDepartment",
+            Code::InvalidCircuitBreakerComment => "InvalidCircuitBreakerComment",
+            Code::CircuitBreakerRuleExisted => "CircuitBreakerRuleExisted",
+            Code::InvalidRoutingId => "InvalidRoutingID",
+            Code::InvalidRoutingPolicy => "InvalidRoutingPolicy",
+            Code::InvalidRoutingName => "InvalidRoutingName",
+            Code::InvalidRoutingPriority => "InvalidRoutingPriority",
+            Code::InvalidFaultDetectId => "InvalidFaultDetectID",
+            Code::InvalidFaultDetectName => "InvalidFaultDetectName",
+            Code::InvalidFaultDetectNamespace => "InvalidFaultDetectNamespace",
+            Code::FaultDetectRuleExisted => "FaultDetectRuleExisted",
+            Code::ServicesExistedMesh => "ServicesExistedMesh",
+            Code::ResourcesExistedMesh => "ResourcesExistedMesh",
+            Code::InvalidMeshParameter => "InvalidMeshParameter",
+            Code::InvalidPlatformId => "InvalidPlatformID",
+            Code::InvalidPlatformName => "InvalidPlatformName",
+            Code::InvalidPlatformDomain => "InvalidPlatformDomain",
+            Code::InvalidPlatformQps => "InvalidPlatformQPS",
+            Code::InvalidPlatformToken => "InvalidPlatformToken",
+            Code::InvalidPlatformOwner => "InvalidPlatformOwner",
+            Code::InvalidPlatformDepartment => "InvalidPlatformDepartment",
+            Code::InvalidPlatformComment => "InvalidPlatformComment",
+            Code::NotFoundPlatform => "NotFoundPlatform",
+            Code::InvalidFluxRateLimitId => "InvalidFluxRateLimitId",
+            Code::InvalidFluxRateLimitQps => "InvalidFluxRateLimitQps",
+            Code::InvalidFluxRateLimitSetKey => "InvalidFluxRateLimitSetKey",
+            Code::ExistedResource => "ExistedResource",
+            Code::NotFoundResource => "NotFoundResource",
+            Code::NamespaceExistedServices => "NamespaceExistedServices",
+            Code::ServiceExistedInstances => "ServiceExistedInstances",
+            Code::ServiceExistedRoutings => "ServiceExistedRoutings",
+            Code::ServiceExistedRateLimits => "ServiceExistedRateLimits",
+            Code::ExistReleasedConfig => "ExistReleasedConfig",
+            Code::SameInstanceRequest => "SameInstanceRequest",
+            Code::ServiceExistedCircuitBreakers => "ServiceExistedCircuitBreakers",
+            Code::ServiceExistedAlias => "ServiceExistedAlias",
+            Code::NamespaceExistedMeshResources => "NamespaceExistedMeshResources",
+            Code::NamespaceExistedCircuitBreakers => "NamespaceExistedCircuitBreakers",
+            Code::ServiceSubscribedByMeshes => "ServiceSubscribedByMeshes",
+            Code::ServiceExistedFluxRateLimits => "ServiceExistedFluxRateLimits",
+            Code::NamespaceExistedConfigGroups => "NamespaceExistedConfigGroups",
+            Code::NotFoundService => "NotFoundService",
+            Code::NotFoundRouting => "NotFoundRouting",
+            Code::NotFoundInstance => "NotFoundInstance",
+            Code::NotFoundServiceAlias => "NotFoundServiceAlias",
+            Code::NotFoundNamespace => "NotFoundNamespace",
+            Code::NotFoundSourceService => "NotFoundSourceService",
+            Code::NotFoundRateLimit => "NotFoundRateLimit",
+            Code::NotFoundCircuitBreaker => "NotFoundCircuitBreaker",
+            Code::NotFoundMasterConfig => "NotFoundMasterConfig",
+            Code::NotFoundTagConfig => "NotFoundTagConfig",
+            Code::NotFoundTagConfigOrService => "NotFoundTagConfigOrService",
+            Code::ClientApiNotOpen => "ClientAPINotOpen",
+            Code::NotAllowBusinessService => "NotAllowBusinessService",
+            Code::NotAllowAliasUpdate => "NotAllowAliasUpdate",
+            Code::NotAllowAliasCreateInstance => "NotAllowAliasCreateInstance",
+            Code::NotAllowAliasCreateRouting => "NotAllowAliasCreateRouting",
+            Code::NotAllowCreateAliasForAlias => "NotAllowCreateAliasForAlias",
+            Code::NotAllowAliasCreateRateLimit => "NotAllowAliasCreateRateLimit",
+            Code::NotAllowAliasBindRule => "NotAllowAliasBindRule",
+            Code::NotAllowDifferentNamespaceBindRule => {
+                "NotAllowDifferentNamespaceBindRule"
+            }
+            Code::Unauthorized => "Unauthorized",
+            Code::NotAllowedAccess => "NotAllowedAccess",
+            Code::CmdbNotFindHost => "CMDBNotFindHost",
+            Code::DataConflict => "DataConflict",
+            Code::InstanceTooManyRequests => "InstanceTooManyRequests",
+            Code::IpRateLimit => "IPRateLimit",
+            Code::ApiRateLimit => "APIRateLimit",
+            Code::ExecuteException => "ExecuteException",
+            Code::StoreLayerException => "StoreLayerException",
+            Code::CmdbPluginException => "CMDBPluginException",
+            Code::ParseRoutingException => "ParseRoutingException",
+            Code::ParseRateLimitException => "ParseRateLimitException",
+            Code::ParseCircuitBreakerException => "ParseCircuitBreakerException",
+            Code::HeartbeatException => "HeartbeatException",
+            Code::InstanceRegisTimeout => "InstanceRegisTimeout",
+            Code::InvalidConfigFileGroupName => "InvalidConfigFileGroupName",
+            Code::InvalidConfigFileName => "InvalidConfigFileName",
+            Code::InvalidConfigFileContentLength => "InvalidConfigFileContentLength",
+            Code::InvalidConfigFileFormat => "InvalidConfigFileFormat",
+            Code::InvalidConfigFileTags => "InvalidConfigFileTags",
+            Code::InvalidWatchConfigFileFormat => "InvalidWatchConfigFileFormat",
+            Code::NotFoundResourceConfigFile => "NotFoundResourceConfigFile",
+            Code::InvalidConfigFileTemplateName => "InvalidConfigFileTemplateName",
+            Code::EncryptConfigFileException => "EncryptConfigFileException",
+            Code::InvalidUserOwners => "InvalidUserOwners",
+            Code::InvalidUserId => "InvalidUserID",
+            Code::InvalidUserPassword => "InvalidUserPassword",
+            Code::InvalidUserMobile => "InvalidUserMobile",
+            Code::InvalidUserEmail => "InvalidUserEmail",
+            Code::InvalidUserGroupOwners => "InvalidUserGroupOwners",
+            Code::InvalidUserGroupId => "InvalidUserGroupID",
+            Code::InvalidAuthStrategyOwners => "InvalidAuthStrategyOwners",
+            Code::InvalidAuthStrategyName => "InvalidAuthStrategyName",
+            Code::InvalidAuthStrategyId => "InvalidAuthStrategyID",
+            Code::InvalidPrincipalType => "InvalidPrincipalType",
+            Code::UserExisted => "UserExisted",
+            Code::UserGroupExisted => "UserGroupExisted",
+            Code::AuthStrategyRuleExisted => "AuthStrategyRuleExisted",
+            Code::SubAccountExisted => "SubAccountExisted",
+            Code::NotFoundUser => "NotFoundUser",
+            Code::NotFoundOwnerUser => "NotFoundOwnerUser",
+            Code::NotFoundUserGroup => "NotFoundUserGroup",
+            Code::NotFoundAuthStrategyRule => "NotFoundAuthStrategyRule",
+            Code::NotAllowModifyDefaultStrategyPrincipal => {
+                "NotAllowModifyDefaultStrategyPrincipal"
+            }
+            Code::NotAllowModifyOwnerDefaultStrategy => {
+                "NotAllowModifyOwnerDefaultStrategy"
+            }
+            Code::EmptyAutToken => "EmptyAutToken",
+            Code::TokenDisabled => "TokenDisabled",
+            Code::TokenNotExisted => "TokenNotExisted",
+            Code::AuthTokenForbidden => "AuthTokenForbidden",
+            Code::OperationRoleForbidden => "OperationRoleForbidden",
+        }
+    }
+    /// Creates an enum from field names used in the ProtoBuf definition.
+    pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+        match value {
+            "Unknown" => Some(Self::Unknown),
+            "ExecuteSuccess" => Some(Self::ExecuteSuccess),
+            "DataNoChange" => Some(Self::DataNoChange),
+            "NoNeedUpdate" => Some(Self::NoNeedUpdate),
+            "BadRequest" => Some(Self::BadRequest),
+            "ParseException" => Some(Self::ParseException),
+            "EmptyRequest" => Some(Self::EmptyRequest),
+            "BatchSizeOverLimit" => Some(Self::BatchSizeOverLimit),
+            "InvalidDiscoverResource" => Some(Self::InvalidDiscoverResource),
+            "InvalidRequestID" => Some(Self::InvalidRequestId),
+            "InvalidUserName" => Some(Self::InvalidUserName),
+            "InvalidUserToken" => Some(Self::InvalidUserToken),
+            "InvalidParameter" => Some(Self::InvalidParameter),
+            "EmptyQueryParameter" => Some(Self::EmptyQueryParameter),
+            "InvalidQueryInsParameter" => Some(Self::InvalidQueryInsParameter),
+            "InvalidNamespaceName" => Some(Self::InvalidNamespaceName),
+            "InvalidNamespaceOwners" => Some(Self::InvalidNamespaceOwners),
+            "InvalidNamespaceToken" => Some(Self::InvalidNamespaceToken),
+            "InvalidServiceName" => Some(Self::InvalidServiceName),
+            "InvalidServiceOwners" => Some(Self::InvalidServiceOwners),
+            "InvalidServiceToken" => Some(Self::InvalidServiceToken),
+            "InvalidServiceMetadata" => Some(Self::InvalidServiceMetadata),
+            "InvalidServicePorts" => Some(Self::InvalidServicePorts),
+            "InvalidServiceBusiness" => Some(Self::InvalidServiceBusiness),
+            "InvalidServiceDepartment" => Some(Self::InvalidServiceDepartment),
+            "InvalidServiceCMDB" => Some(Self::InvalidServiceCmdb),
+            "InvalidServiceComment" => Some(Self::InvalidServiceComment),
+            "InvalidServiceAliasComment" => Some(Self::InvalidServiceAliasComment),
+            "InvalidInstanceID" => Some(Self::InvalidInstanceId),
+            "InvalidInstanceHost" => Some(Self::InvalidInstanceHost),
+            "InvalidInstancePort" => Some(Self::InvalidInstancePort),
+            "InvalidServiceAlias" => Some(Self::InvalidServiceAlias),
+            "InvalidNamespaceWithAlias" => Some(Self::InvalidNamespaceWithAlias),
+            "InvalidServiceAliasOwners" => Some(Self::InvalidServiceAliasOwners),
+            "InvalidInstanceProtocol" => Some(Self::InvalidInstanceProtocol),
+            "InvalidInstanceVersion" => Some(Self::InvalidInstanceVersion),
+            "InvalidInstanceLogicSet" => Some(Self::InvalidInstanceLogicSet),
+            "InvalidInstanceIsolate" => Some(Self::InvalidInstanceIsolate),
+            "HealthCheckNotOpen" => Some(Self::HealthCheckNotOpen),
+            "HeartbeatOnDisabledIns" => Some(Self::HeartbeatOnDisabledIns),
+            "HeartbeatExceedLimit" => Some(Self::HeartbeatExceedLimit),
+            "HeartbeatTypeNotFound" => Some(Self::HeartbeatTypeNotFound),
+            "InvalidMetadata" => Some(Self::InvalidMetadata),
+            "InvalidRateLimitID" => Some(Self::InvalidRateLimitId),
+            "InvalidRateLimitLabels" => Some(Self::InvalidRateLimitLabels),
+            "InvalidRateLimitAmounts" => Some(Self::InvalidRateLimitAmounts),
+            "InvalidRateLimitName" => Some(Self::InvalidRateLimitName),
+            "InvalidCircuitBreakerID" => Some(Self::InvalidCircuitBreakerId),
+            "InvalidCircuitBreakerVersion" => Some(Self::InvalidCircuitBreakerVersion),
+            "InvalidCircuitBreakerName" => Some(Self::InvalidCircuitBreakerName),
+            "InvalidCircuitBreakerNamespace" => {
+                Some(Self::InvalidCircuitBreakerNamespace)
+            }
+            "InvalidCircuitBreakerOwners" => Some(Self::InvalidCircuitBreakerOwners),
+            "InvalidCircuitBreakerToken" => Some(Self::InvalidCircuitBreakerToken),
+            "InvalidCircuitBreakerBusiness" => Some(Self::InvalidCircuitBreakerBusiness),
+            "InvalidCircuitBreakerDepartment" => {
+                Some(Self::InvalidCircuitBreakerDepartment)
+            }
+            "InvalidCircuitBreakerComment" => Some(Self::InvalidCircuitBreakerComment),
+            "CircuitBreakerRuleExisted" => Some(Self::CircuitBreakerRuleExisted),
+            "InvalidRoutingID" => Some(Self::InvalidRoutingId),
+            "InvalidRoutingPolicy" => Some(Self::InvalidRoutingPolicy),
+            "InvalidRoutingName" => Some(Self::InvalidRoutingName),
+            "InvalidRoutingPriority" => Some(Self::InvalidRoutingPriority),
+            "InvalidFaultDetectID" => Some(Self::InvalidFaultDetectId),
+            "InvalidFaultDetectName" => Some(Self::InvalidFaultDetectName),
+            "InvalidFaultDetectNamespace" => Some(Self::InvalidFaultDetectNamespace),
+            "FaultDetectRuleExisted" => Some(Self::FaultDetectRuleExisted),
+            "ServicesExistedMesh" => Some(Self::ServicesExistedMesh),
+            "ResourcesExistedMesh" => Some(Self::ResourcesExistedMesh),
+            "InvalidMeshParameter" => Some(Self::InvalidMeshParameter),
+            "InvalidPlatformID" => Some(Self::InvalidPlatformId),
+            "InvalidPlatformName" => Some(Self::InvalidPlatformName),
+            "InvalidPlatformDomain" => Some(Self::InvalidPlatformDomain),
+            "InvalidPlatformQPS" => Some(Self::InvalidPlatformQps),
+            "InvalidPlatformToken" => Some(Self::InvalidPlatformToken),
+            "InvalidPlatformOwner" => Some(Self::InvalidPlatformOwner),
+            "InvalidPlatformDepartment" => Some(Self::InvalidPlatformDepartment),
+            "InvalidPlatformComment" => Some(Self::InvalidPlatformComment),
+            "NotFoundPlatform" => Some(Self::NotFoundPlatform),
+            "InvalidFluxRateLimitId" => Some(Self::InvalidFluxRateLimitId),
+            "InvalidFluxRateLimitQps" => Some(Self::InvalidFluxRateLimitQps),
+            "InvalidFluxRateLimitSetKey" => Some(Self::InvalidFluxRateLimitSetKey),
+            "ExistedResource" => Some(Self::ExistedResource),
+            "NotFoundResource" => Some(Self::NotFoundResource),
+            "NamespaceExistedServices" => Some(Self::NamespaceExistedServices),
+            "ServiceExistedInstances" => Some(Self::ServiceExistedInstances),
+            "ServiceExistedRoutings" => Some(Self::ServiceExistedRoutings),
+            "ServiceExistedRateLimits" => Some(Self::ServiceExistedRateLimits),
+            "ExistReleasedConfig" => Some(Self::ExistReleasedConfig),
+            "SameInstanceRequest" => Some(Self::SameInstanceRequest),
+            "ServiceExistedCircuitBreakers" => Some(Self::ServiceExistedCircuitBreakers),
+            "ServiceExistedAlias" => Some(Self::ServiceExistedAlias),
+            "NamespaceExistedMeshResources" => Some(Self::NamespaceExistedMeshResources),
+            "NamespaceExistedCircuitBreakers" => {
+                Some(Self::NamespaceExistedCircuitBreakers)
+            }
+            "ServiceSubscribedByMeshes" => Some(Self::ServiceSubscribedByMeshes),
+            "ServiceExistedFluxRateLimits" => Some(Self::ServiceExistedFluxRateLimits),
+            "NamespaceExistedConfigGroups" => Some(Self::NamespaceExistedConfigGroups),
+            "NotFoundService" => Some(Self::NotFoundService),
+            "NotFoundRouting" => Some(Self::NotFoundRouting),
+            "NotFoundInstance" => Some(Self::NotFoundInstance),
+            "NotFoundServiceAlias" => Some(Self::NotFoundServiceAlias),
+            "NotFoundNamespace" => Some(Self::NotFoundNamespace),
+            "NotFoundSourceService" => Some(Self::NotFoundSourceService),
+            "NotFoundRateLimit" => Some(Self::NotFoundRateLimit),
+            "NotFoundCircuitBreaker" => Some(Self::NotFoundCircuitBreaker),
+            "NotFoundMasterConfig" => Some(Self::NotFoundMasterConfig),
+            "NotFoundTagConfig" => Some(Self::NotFoundTagConfig),
+            "NotFoundTagConfigOrService" => Some(Self::NotFoundTagConfigOrService),
+            "ClientAPINotOpen" => Some(Self::ClientApiNotOpen),
+            "NotAllowBusinessService" => Some(Self::NotAllowBusinessService),
+            "NotAllowAliasUpdate" => Some(Self::NotAllowAliasUpdate),
+            "NotAllowAliasCreateInstance" => Some(Self::NotAllowAliasCreateInstance),
+            "NotAllowAliasCreateRouting" => Some(Self::NotAllowAliasCreateRouting),
+            "NotAllowCreateAliasForAlias" => Some(Self::NotAllowCreateAliasForAlias),
+            "NotAllowAliasCreateRateLimit" => Some(Self::NotAllowAliasCreateRateLimit),
+            "NotAllowAliasBindRule" => Some(Self::NotAllowAliasBindRule),
+            "NotAllowDifferentNamespaceBindRule" => {
+                Some(Self::NotAllowDifferentNamespaceBindRule)
+            }
+            "Unauthorized" => Some(Self::Unauthorized),
+            "NotAllowedAccess" => Some(Self::NotAllowedAccess),
+            "CMDBNotFindHost" => Some(Self::CmdbNotFindHost),
+            "DataConflict" => Some(Self::DataConflict),
+            "InstanceTooManyRequests" => Some(Self::InstanceTooManyRequests),
+            "IPRateLimit" => Some(Self::IpRateLimit),
+            "APIRateLimit" => Some(Self::ApiRateLimit),
+            "ExecuteException" => Some(Self::ExecuteException),
+            "StoreLayerException" => Some(Self::StoreLayerException),
+            "CMDBPluginException" => Some(Self::CmdbPluginException),
+            "ParseRoutingException" => Some(Self::ParseRoutingException),
+            "ParseRateLimitException" => Some(Self::ParseRateLimitException),
+            "ParseCircuitBreakerException" => Some(Self::ParseCircuitBreakerException),
+            "HeartbeatException" => Some(Self::HeartbeatException),
+            "InstanceRegisTimeout" => Some(Self::InstanceRegisTimeout),
+            "InvalidConfigFileGroupName" => Some(Self::InvalidConfigFileGroupName),
+            "InvalidConfigFileName" => Some(Self::InvalidConfigFileName),
+            "InvalidConfigFileContentLength" => {
+                Some(Self::InvalidConfigFileContentLength)
+            }
+            "InvalidConfigFileFormat" => Some(Self::InvalidConfigFileFormat),
+            "InvalidConfigFileTags" => Some(Self::InvalidConfigFileTags),
+            "InvalidWatchConfigFileFormat" => Some(Self::InvalidWatchConfigFileFormat),
+            "NotFoundResourceConfigFile" => Some(Self::NotFoundResourceConfigFile),
+            "InvalidConfigFileTemplateName" => Some(Self::InvalidConfigFileTemplateName),
+            "EncryptConfigFileException" => Some(Self::EncryptConfigFileException),
+            "InvalidUserOwners" => Some(Self::InvalidUserOwners),
+            "InvalidUserID" => Some(Self::InvalidUserId),
+            "InvalidUserPassword" => Some(Self::InvalidUserPassword),
+            "InvalidUserMobile" => Some(Self::InvalidUserMobile),
+            "InvalidUserEmail" => Some(Self::InvalidUserEmail),
+            "InvalidUserGroupOwners" => Some(Self::InvalidUserGroupOwners),
+            "InvalidUserGroupID" => Some(Self::InvalidUserGroupId),
+            "InvalidAuthStrategyOwners" => Some(Self::InvalidAuthStrategyOwners),
+            "InvalidAuthStrategyName" => Some(Self::InvalidAuthStrategyName),
+            "InvalidAuthStrategyID" => Some(Self::InvalidAuthStrategyId),
+            "InvalidPrincipalType" => Some(Self::InvalidPrincipalType),
+            "UserExisted" => Some(Self::UserExisted),
+            "UserGroupExisted" => Some(Self::UserGroupExisted),
+            "AuthStrategyRuleExisted" => Some(Self::AuthStrategyRuleExisted),
+            "SubAccountExisted" => Some(Self::SubAccountExisted),
+            "NotFoundUser" => Some(Self::NotFoundUser),
+            "NotFoundOwnerUser" => Some(Self::NotFoundOwnerUser),
+            "NotFoundUserGroup" => Some(Self::NotFoundUserGroup),
+            "NotFoundAuthStrategyRule" => Some(Self::NotFoundAuthStrategyRule),
+            "NotAllowModifyDefaultStrategyPrincipal" => {
+                Some(Self::NotAllowModifyDefaultStrategyPrincipal)
+            }
+            "NotAllowModifyOwnerDefaultStrategy" => {
+                Some(Self::NotAllowModifyOwnerDefaultStrategy)
+            }
+            "EmptyAutToken" => Some(Self::EmptyAutToken),
+            "TokenDisabled" => Some(Self::TokenDisabled),
+            "TokenNotExisted" => Some(Self::TokenNotExisted),
+            "AuthTokenForbidden" => Some(Self::AuthTokenForbidden),
+            "OperationRoleForbidden" => Some(Self::OperationRoleForbidden),
+            _ => None,
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileGroup {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub file_count: ::core::option::Option<u64>,
+    #[prost(message, repeated, tag = "10")]
+    pub user_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "11")]
+    pub group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "13")]
+    pub remove_user_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "14")]
+    pub remove_group_ids: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "15")]
+    pub editable: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "16")]
+    pub owner: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFile {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub content: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub format: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub status: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "9")]
+    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
+    #[prost(message, optional, tag = "10")]
+    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "12")]
+    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "13")]
+    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "14")]
+    pub release_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "15")]
+    pub release_by: ::core::option::Option<::prost::alloc::string::String>,
+    /// 是否为加密配置文件
+    #[prost(message, optional, tag = "16")]
+    pub is_encrypted: ::core::option::Option<bool>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileTag {
+    #[prost(message, optional, tag = "1")]
+    pub key: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub value: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileRelease {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub content: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub md5: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub version: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "10")]
+    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "12")]
+    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "13")]
+    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileReleaseHistory {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub content: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub format: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub md5: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "10")]
+    pub r#type: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub status: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "12")]
+    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
+    #[prost(message, optional, tag = "13")]
+    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "14")]
+    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "15")]
+    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "16")]
+    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileTemplate {
+    #[prost(message, optional, tag = "1")]
+    pub id: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "2")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub content: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub format: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub create_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "9")]
+    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClientConfigFileInfo {
+    #[prost(message, optional, tag = "1")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub content: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub version: ::core::option::Option<u64>,
+    #[prost(message, optional, tag = "6")]
+    pub md5: ::core::option::Option<::prost::alloc::string::String>,
+    /// 是否为加密配置文件
+    #[prost(message, optional, tag = "7")]
+    pub is_encrypted: ::core::option::Option<bool>,
+    /// 数据密钥，用于加密配置文件
+    #[prost(message, optional, tag = "8")]
+    pub data_key: ::core::option::Option<::prost::alloc::string::String>,
+    /// 公钥，用于加密数据密钥
+    #[prost(message, optional, tag = "9")]
+    pub public_key: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ClientWatchConfigFileRequest {
+    #[prost(message, optional, tag = "1")]
+    pub client_ip: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub service_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "3")]
+    pub watch_files: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileExportRequest {
+    #[prost(message, optional, tag = "1")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "2")]
+    pub groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "3")]
+    pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigSimpleResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub config_file_group: ::core::option::Option<ConfigFileGroup>,
+    #[prost(message, optional, tag = "4")]
+    pub config_file: ::core::option::Option<ConfigFile>,
+    #[prost(message, optional, tag = "5")]
+    pub config_file_release: ::core::option::Option<ConfigFileRelease>,
+    #[prost(message, optional, tag = "6")]
+    pub config_file_release_history: ::core::option::Option<ConfigFileReleaseHistory>,
+    #[prost(message, optional, tag = "7")]
+    pub config_file_template: ::core::option::Option<ConfigFileTemplate>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigBatchWriteResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub total: ::core::option::Option<u32>,
+    #[prost(message, repeated, tag = "4")]
+    pub responses: ::prost::alloc::vec::Vec<ConfigResponse>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigBatchQueryResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub total: ::core::option::Option<u32>,
+    #[prost(message, repeated, tag = "4")]
+    pub config_file_groups: ::prost::alloc::vec::Vec<ConfigFileGroup>,
+    #[prost(message, repeated, tag = "5")]
+    pub config_files: ::prost::alloc::vec::Vec<ConfigFile>,
+    #[prost(message, repeated, tag = "6")]
+    pub config_file_releases: ::prost::alloc::vec::Vec<ConfigFileRelease>,
+    #[prost(message, repeated, tag = "7")]
+    pub config_file_release_histories: ::prost::alloc::vec::Vec<
+        ConfigFileReleaseHistory,
+    >,
+    #[prost(message, repeated, tag = "8")]
+    pub config_file_templates: ::prost::alloc::vec::Vec<ConfigFileTemplate>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigClientResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub config_file: ::core::option::Option<ClientConfigFileInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigImportResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "3")]
+    pub create_config_files: ::prost::alloc::vec::Vec<ConfigFile>,
+    #[prost(message, repeated, tag = "4")]
+    pub skip_config_files: ::prost::alloc::vec::Vec<ConfigFile>,
+    #[prost(message, repeated, tag = "5")]
+    pub overwrite_config_files: ::prost::alloc::vec::Vec<ConfigFile>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigExportResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub data: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiscoverRequest {
+    #[prost(enumeration = "discover_request::DiscoverRequestType", tag = "1")]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "2")]
+    pub service: ::core::option::Option<Service>,
+}
+/// Nested message and enum types in `DiscoverRequest`.
+pub mod discover_request {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum DiscoverRequestType {
+        Unknown = 0,
+        Instance = 1,
+        Cluster = 2,
+        Routing = 3,
+        RateLimit = 4,
+        CircuitBreaker = 5,
+        Services = 6,
+        Namespaces = 12,
+        FaultDetector = 13,
+    }
+    impl DiscoverRequestType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                DiscoverRequestType::Unknown => "UNKNOWN",
+                DiscoverRequestType::Instance => "INSTANCE",
+                DiscoverRequestType::Cluster => "CLUSTER",
+                DiscoverRequestType::Routing => "ROUTING",
+                DiscoverRequestType::RateLimit => "RATE_LIMIT",
+                DiscoverRequestType::CircuitBreaker => "CIRCUIT_BREAKER",
+                DiscoverRequestType::Services => "SERVICES",
+                DiscoverRequestType::Namespaces => "NAMESPACES",
+                DiscoverRequestType::FaultDetector => "FAULT_DETECTOR",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "INSTANCE" => Some(Self::Instance),
+                "CLUSTER" => Some(Self::Cluster),
+                "ROUTING" => Some(Self::Routing),
+                "RATE_LIMIT" => Some(Self::RateLimit),
+                "CIRCUIT_BREAKER" => Some(Self::CircuitBreaker),
+                "SERVICES" => Some(Self::Services),
+                "NAMESPACES" => Some(Self::Namespaces),
+                "FAULT_DETECTOR" => Some(Self::FaultDetector),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
