@@ -47,6 +47,8 @@ message ConfigFile {
   google.protobuf.StringValue release_by = 15;
   // 是否为加密配置文件
   google.protobuf.BoolValue is_encrypted = 16;
+  // 加密算法
+  google.protobuf.StringValue encrypt_algo = 17;
 }
 
 message ConfigFileTag {
@@ -127,3 +129,4 @@ message ConfigFileExportRequest {
   repeated google.protobuf.StringValue groups = 2;
   repeated google.protobuf.StringValue names = 3;
 }
+
