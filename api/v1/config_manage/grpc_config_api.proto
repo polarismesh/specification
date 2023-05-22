@@ -14,6 +14,12 @@ service PolarisConfigGRPC {
   // 拉取配置
   rpc GetConfigFile(ClientConfigFileInfo) returns (ConfigClientResponse) {}
 
+  // 创建或更新配置
+  rpc UpsertConfigFiles(ClientConfigFileInfo) returns (ConfigSimpleResponse) {}
+
+  // 发布配置
+  rpc PublishConfigFiles(ClientConfigFileInfo) returns (ConfigSimpleResponse) {}
+
   // 订阅配置变更
   rpc WatchConfigFiles(ClientWatchConfigFileRequest) returns (ConfigClientResponse) {}
 }
