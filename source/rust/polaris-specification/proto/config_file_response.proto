@@ -64,3 +64,9 @@ message ConfigExportResponse {
   google.protobuf.StringValue info = 2;
   google.protobuf.BytesValue data = 3;
 }
+
+message ConfigEncryptAlgorithmResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  repeated google.protobuf.StringValue algorithms = 3;
+}

@@ -158,6 +158,7 @@ enum Code {
     NotFoundResourceConfigFile      = 400807;
     InvalidConfigFileTemplateName   = 400808;
     EncryptConfigFileException      = 400809;
+    DecryptConfigFileException      = 400810;
 
     // auth codes
     InvalidUserOwners          = 400410;
