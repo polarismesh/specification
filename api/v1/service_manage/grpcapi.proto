@@ -23,6 +23,9 @@ service PolarisGRPC {
   rpc Discover(stream DiscoverRequest) returns (stream DiscoverResponse) {}
   // 被调方上报心跳
   rpc Heartbeat(Instance) returns (Response) {}
+}
+
+service PolarisHeartbeatGRPC {
   // 被调方批量上报心跳
   rpc BatchHeartbeat(stream HeartbeatsRequest) returns (stream HeartbeatsResponse) {}
   // 批量获取心跳记录
