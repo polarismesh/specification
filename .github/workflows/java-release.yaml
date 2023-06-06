@@ -1,0 +1,42 @@
+# 相当于脚本用途的一个声明
+name: Release
+# 触发脚本的事件  这里为发布release之后触发
+on:
+  release:
+    types: [published]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Maven Central Repository
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+          server-id: ossrh
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      - name: "Publish package"
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+        run: |
+          cd source/java
+          bash build.sh
+          cd polaris-specification
+          
+          pre_release=`echo ${VERSION}|egrep "(alpha|beta|rc|[T|t]est)"|wc -l`
+          if [ ${pre_release} == 0 ]; then
+            echo "pubilsh snapshot"
+            SNAPSHOT_VERSION=${VERSION%%-*}
+            sed -i "s/##VERSION##/${SNAPSHOT_VERSION}-SNAPSHOT" pom.xml
+            mvn --batch-mode deploy
+          else
+            echo "publish release"
+            sed -i "s/##VERSION##/${VERSION}" pom.xml
+            cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import;
+            mvn clean --batch-mode deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests
+          fi
