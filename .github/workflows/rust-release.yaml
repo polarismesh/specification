@@ -1,0 +1,42 @@
+# 相当于脚本用途的一个声明
+name: Release
+# 触发脚本的事件  这里为发布release之后触发
+on:
+  release:
+    types: [ published ]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
+      - name: Checkout code for rust
+        # Reference your environment variables
+        uses: actions/checkout@v3.4.0
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+      - name: Build rust
+        run: |
+          cd source/rust
+          bash build.sh
+          cd polaris-specification
+          sed -i 's/(version\s*=\s*")(\d+\.\d+\.\d+)/\${VERSION}/' Cargo.toml
+          cat Cargo.toml
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+      - name: Run cargo login
+        uses: actions-rs/cargo@v1
+        with:
+          command: login
+          args: ${{ secrets.CRATES_IO_TOKEN }}
+      - name: Run cargo publish
+        uses: actions-rs/cargo@v1
+        with:
+          command: publish
