@@ -30,7 +30,7 @@ jobs:
         run: |
           cd source/rust/polaris-specification
           echo "run sed start"
-          sed -i 's/^version = ".*"/version = "${VERSION}"/g' Cargo.toml
+          sed -i 's/^version = ".*"/version = "'${VERSION}'"/g' Cargo.toml
           echo "run sed end"
           cat Cargo.toml
           cd ../
