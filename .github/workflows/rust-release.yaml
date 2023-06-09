@@ -33,10 +33,13 @@ jobs:
           sed -i 's/^version = ".*"/version = "'${VERSION:1}'"/g' Cargo.toml
           echo "run sed end"
           cat Cargo.toml
+#          git add -A .
+#          git commit -m 'feat: update version'
+#          git push -u origin ${{ github.ref }}
+          pwd
           cd ../
           bash build.sh
           cd polaris-specification
-          pwd
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
       - name: Run cargo login
@@ -48,4 +51,4 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: publish
-          args: -p polaris-specification --no-verify
+          args: --package polaris-specification --allow-dirty
