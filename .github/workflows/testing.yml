@@ -4,9 +4,15 @@
 name: Testing
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main,
+      - feature/**
+      - fix/**
   pull_request:
-    branches: [ main ]
+    branches:
+      - main,
+      - feature/**
+      - fix/**
 
 jobs:
   build:
@@ -42,3 +48,27 @@ jobs:
         run: |
           pip install grpcio-tools
           python source/python/build.py
+      - name: Install Protoc for Rust
+        uses: arduino/setup-protoc@v2
+        with:
+          version: "23.x"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout code for Rust
+        uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+      - name: Run cargo test
+        uses: actions-rs/cargo@v1
+        with:
+          command: test

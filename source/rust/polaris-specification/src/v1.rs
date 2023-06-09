@@ -2815,6 +2815,7 @@ pub enum Code {
     NotFoundResourceConfigFile = 400807,
     InvalidConfigFileTemplateName = 400808,
     EncryptConfigFileException = 400809,
+    DecryptConfigFileException = 400810,
     /// auth codes
     InvalidUserOwners = 400410,
     InvalidUserId = 400411,
@@ -2991,6 +2992,7 @@ impl Code {
             Code::NotFoundResourceConfigFile => "NotFoundResourceConfigFile",
             Code::InvalidConfigFileTemplateName => "InvalidConfigFileTemplateName",
             Code::EncryptConfigFileException => "EncryptConfigFileException",
+            Code::DecryptConfigFileException => "DecryptConfigFileException",
             Code::InvalidUserOwners => "InvalidUserOwners",
             Code::InvalidUserId => "InvalidUserID",
             Code::InvalidUserPassword => "InvalidUserPassword",
@@ -3175,6 +3177,7 @@ impl Code {
             "NotFoundResourceConfigFile" => Some(Self::NotFoundResourceConfigFile),
             "InvalidConfigFileTemplateName" => Some(Self::InvalidConfigFileTemplateName),
             "EncryptConfigFileException" => Some(Self::EncryptConfigFileException),
+            "DecryptConfigFileException" => Some(Self::DecryptConfigFileException),
             "InvalidUserOwners" => Some(Self::InvalidUserOwners),
             "InvalidUserID" => Some(Self::InvalidUserId),
             "InvalidUserPassword" => Some(Self::InvalidUserPassword),
@@ -3278,7 +3281,10 @@ pub struct ConfigFile {
     pub release_by: ::core::option::Option<::prost::alloc::string::String>,
     /// 是否为加密配置文件
     #[prost(message, optional, tag = "16")]
-    pub is_encrypted: ::core::option::Option<bool>,
+    pub encrypted: ::core::option::Option<bool>,
+    /// 加密算法
+    #[prost(message, optional, tag = "17")]
+    pub encrypt_algo: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3391,12 +3397,11 @@ pub struct ClientConfigFileInfo {
     pub version: ::core::option::Option<u64>,
     #[prost(message, optional, tag = "6")]
     pub md5: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "7")]
+    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
     /// 是否为加密配置文件
-    #[prost(message, optional, tag = "7")]
-    pub is_encrypted: ::core::option::Option<bool>,
-    /// 数据密钥，用于加密配置文件
     #[prost(message, optional, tag = "8")]
-    pub data_key: ::core::option::Option<::prost::alloc::string::String>,
+    pub encrypted: ::core::option::Option<bool>,
     /// 公钥，用于加密数据密钥
     #[prost(message, optional, tag = "9")]
     pub public_key: ::core::option::Option<::prost::alloc::string::String>,
@@ -3514,6 +3519,16 @@ pub struct ConfigExportResponse {
     pub info: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "3")]
     pub data: ::core::option::Option<::prost::alloc::vec::Vec<u8>>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigEncryptAlgorithmResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "3")]
+    pub algorithms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

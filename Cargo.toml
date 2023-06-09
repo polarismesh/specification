@@ -1,0 +1,18 @@
+[workspace]
+members = [
+    "source/rust/polaris-specification",
+]
+resolver = "2"
+
+[profile.release]
+opt-level = 3
+
+[workspace.package]
+edition = "2021"
+authors = ["https://github.com/polarismesh"]
+
+[workspace.dependencies]
+bytes = "1.4.0"
+prost = "0.11.9"
+# Only necessary if using Protobuf well-known types:
+prost-types = "0.11.9"

@@ -7,3 +7,5 @@ target
 source/python/dist
 source/rust/polaris-specification/target
 venv
+debug/
+target/
