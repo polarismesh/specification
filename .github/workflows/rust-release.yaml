@@ -28,11 +28,18 @@ jobs:
           override: true
       - name: Build rust
         run: |
-          cd source/rust
+          cd source/rust/polaris-specification
+          echo "run sed start"
+          sed -i 's/^version = ".*"/version = "${VERSION}"/g' Cargo.toml
+          echo "run sed end"
+          cat Cargo.toml
+          cd ../
           bash build.sh
           cd polaris-specification
-          sed -i 's/(version\s*=\s*")(\d+\.\d+\.\d+)/\${VERSION}/' Cargo.toml
-          cat Cargo.toml
+          git add -A .
+          git commit -m 'feat: update version'
+          git push -u origin ${{ github.ref }}
+          pwd
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
       - name: Run cargo login
@@ -44,3 +51,4 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: publish
+          args: -p polaris-specification --no-verify
