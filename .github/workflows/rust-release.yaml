@@ -30,15 +30,12 @@ jobs:
         run: |
           cd source/rust/polaris-specification
           echo "run sed start"
-          sed -i 's/^version = ".*"/version = "'${VERSION}'"/g' Cargo.toml
+          sed -i 's/^version = ".*"/version = "'${VERSION:1}'"/g' Cargo.toml
           echo "run sed end"
           cat Cargo.toml
           cd ../
           bash build.sh
           cd polaris-specification
-          git add -A .
-          git commit -m 'feat: update version'
-          git push -u origin ${{ github.ref }}
           pwd
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
