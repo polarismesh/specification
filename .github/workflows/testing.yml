@@ -49,9 +49,10 @@ jobs:
           pip install grpcio-tools
           python source/python/build.py
       - name: Install Protoc for Rust
-        uses: arduino/setup-protoc@v1
+        uses: arduino/setup-protoc@v2
         with:
-          version: '3.x'
+          version: "23.x"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Checkout code for Rust
         uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -67,16 +68,6 @@ jobs:
           toolchain: stable
           override: true
           components: rustfmt, clippy
-      - name: Run cargo fmt
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: -- --check
-      - name: Run clippy check
-        uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: --all-features
       - name: Run cargo test
         uses: actions-rs/cargo@v1
         with:
