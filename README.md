@@ -108,5 +108,5 @@ require github.com/polarismesh/specification v1.1.0
 
 ```
 [dependencies]
-polaris-specification = "0.1"
+polaris-specification = "1.3.0"
 ```
