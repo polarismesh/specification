@@ -1,4 +1,4 @@
-# polaris-rust
+# Polaris-rust
 
 [![crates.io](https://img.shields.io/crates/v/polaris-specification.svg)](https://crates.io/crates/polaris-specification)
 [![docs.rs](https://docs.rs/polaris-specification/badge.svg)](https://docs.rs/polaris-specification/)
@@ -13,7 +13,7 @@ Service Governance Specification for Polaris Rust SDK.
 Add the following to your `Cargo.toml`: 
 ```toml 
 [dependencies]
-polaris-specification = "0.1"
+polaris-specification = "1.3.1"
 ```
 
 ## License
