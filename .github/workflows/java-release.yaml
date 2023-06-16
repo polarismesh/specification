@@ -39,8 +39,9 @@ jobs:
             sed -i "s/##VERSION##/${SNAPSHOT_VERSION}-SNAPSHOT/g" pom.xml
             mvn --batch-mode deploy
           else
-            echo "publish release ${VERSION}"
-            sed -i "s/##VERSION##/${VERSION}/g" pom.xml
+            RELEASE_VERSION=${${VERSION%%-*}:1}
+            echo "publish release ${RELEASE_VERSION}"
+            sed -i "s/##VERSION##/${RELEASE_VERSION}/g" pom.xml
             cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import;
             mvn clean --batch-mode deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests
           fi
