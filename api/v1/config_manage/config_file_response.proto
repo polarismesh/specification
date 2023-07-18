@@ -78,8 +78,8 @@ message ConfigDiscoverResponse {
 
   ConfigDiscoverType type = 4;
   
-  ClientConfigFileInfo config_file = 5;
+  ClientConfigFileInfo config_file = 5 [json_name = "config_file"];
   
-  repeated ClientConfigFileInfo config_file_names = 6;
+  repeated ClientConfigFileInfo config_file_names = 6 [json_name = "config_file_names"];
   
 }

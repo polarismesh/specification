@@ -126,7 +126,7 @@ message ClientConfigFileInfo {
   // 配置文件版本名称
   google.protobuf.StringValue name = 10;
   // 配置文件的发布时间
-  google.protobuf.StringValue release_time = 11;
+  google.protobuf.StringValue release_time = 11 [json_name = "release_time"];
 }
 
 message ClientWatchConfigFileRequest {
