@@ -76,7 +76,12 @@ message ConfigDiscoverResponse {
   string info = 2;
   string revision = 3;
 
-  ConfigDiscoverType type = 4;
+  enum ConfigDiscoverResponseType {
+    UNKNOWN = 0;
+    CONFIG_FILE = 1;
+    CONFIG_FILE_Names = 2;
+  }
+  ConfigDiscoverResponseType type = 4;
   
   ClientConfigFileInfo config_file = 5 [json_name = "config_file"];
   

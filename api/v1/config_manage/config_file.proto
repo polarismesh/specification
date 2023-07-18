@@ -141,14 +141,13 @@ message ConfigFileExportRequest {
   repeated google.protobuf.StringValue names = 3;
 }
 
-enum ConfigDiscoverType {
+message ConfigDiscoverRequest {
+  enum ConfigDiscoverRequestType {
     UNKNOWN = 0;
     CONFIG_FILE = 1;
     CONFIG_FILE_Names = 2;
-}
-
-message ConfigDiscoverRequest {
-  ConfigDiscoverType type = 1;
+  }
+  ConfigDiscoverRequestType type = 1;
   string namespace = 2;
   string group = 3;
   string revision = 4;
