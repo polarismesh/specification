@@ -83,8 +83,12 @@ message ConfigDiscoverResponse {
   }
   ConfigDiscoverResponseType type = 4;
   
-  ClientConfigFileInfo config_file = 5 [json_name = "config_file"];
+  string namespace = 5;
+  string group = 6;
+  string file_name = 7 [json_name = "file_name"];
   
-  repeated ClientConfigFileInfo config_file_names = 6 [json_name = "config_file_names"];
+  ClientConfigFileInfo config_file = 8 [json_name = "config_file"];
+  
+  repeated ClientConfigFileInfo config_file_names = 9 [json_name = "config_file_names"];
   
 }
