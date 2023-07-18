@@ -70,3 +70,21 @@ message ConfigEncryptAlgorithmResponse {
   google.protobuf.StringValue info = 2;
   repeated google.protobuf.StringValue algorithms = 3;
 }
+
+message ConfigDiscoverResponse {
+  uint32 code = 1;
+  string info = 2;
+  string revision = 3;
+
+  enum ConfigDiscoverResponseType {
+    UNKNOWN = 0;
+    CONFIG_FILE = 1;
+    CONFIG_FILE_Names = 2;
+  }
+  ConfigDiscoverResponseType type = 4;
+  
+  ClientConfigFileInfo config_file = 5 [json_name = "config_file"];
+  
+  repeated ClientConfigFileInfo config_file_names = 6 [json_name = "config_file_names"];
+  
+}

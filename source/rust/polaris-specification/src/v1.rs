@@ -3245,6 +3245,15 @@ pub struct ConfigFileGroup {
     pub editable: ::core::option::Option<bool>,
     #[prost(message, optional, tag = "16")]
     pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "17")]
+    pub business: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "18")]
+    pub department: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "19")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3323,6 +3332,11 @@ pub struct ConfigFileRelease {
     pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "13")]
     pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "14")]
+    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
+    /// 当前生效配置
+    #[prost(message, optional, tag = "15")]
+    pub active: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3359,6 +3373,9 @@ pub struct ConfigFileReleaseHistory {
     pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "16")]
     pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    /// 配置发布失败的原因
+    #[prost(message, optional, tag = "17")]
+    pub reason: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3405,6 +3422,12 @@ pub struct ClientConfigFileInfo {
     /// 公钥，用于加密数据密钥
     #[prost(message, optional, tag = "9")]
     pub public_key: ::core::option::Option<::prost::alloc::string::String>,
+    /// 配置文件版本名称
+    #[prost(message, optional, tag = "10")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    /// 配置文件的发布时间
+    #[prost(message, optional, tag = "11")]
+    pub release_time: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3425,6 +3448,63 @@ pub struct ConfigFileExportRequest {
     pub groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "3")]
     pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigDiscoverRequest {
+    #[prost(
+        enumeration = "config_discover_request::ConfigDiscoverRequestType",
+        tag = "1"
+    )]
+    pub r#type: i32,
+    #[prost(string, tag = "2")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub group: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub revision: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `ConfigDiscoverRequest`.
+pub mod config_discover_request {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ConfigDiscoverRequestType {
+        Unknown = 0,
+        ConfigFile = 1,
+        ConfigFileNames = 2,
+    }
+    impl ConfigDiscoverRequestType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ConfigDiscoverRequestType::Unknown => "UNKNOWN",
+                ConfigDiscoverRequestType::ConfigFile => "CONFIG_FILE",
+                ConfigDiscoverRequestType::ConfigFileNames => "CONFIG_FILE_Names",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "CONFIG_FILE" => Some(Self::ConfigFile),
+                "CONFIG_FILE_Names" => Some(Self::ConfigFileNames),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3529,6 +3609,67 @@ pub struct ConfigEncryptAlgorithmResponse {
     pub info: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "3")]
     pub algorithms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigDiscoverResponse {
+    #[prost(uint32, tag = "1")]
+    pub code: u32,
+    #[prost(string, tag = "2")]
+    pub info: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub revision: ::prost::alloc::string::String,
+    #[prost(
+        enumeration = "config_discover_response::ConfigDiscoverResponseType",
+        tag = "4"
+    )]
+    pub r#type: i32,
+    #[prost(message, optional, tag = "5")]
+    pub config_file: ::core::option::Option<ClientConfigFileInfo>,
+    #[prost(message, repeated, tag = "6")]
+    pub config_file_names: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
+}
+/// Nested message and enum types in `ConfigDiscoverResponse`.
+pub mod config_discover_response {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum ConfigDiscoverResponseType {
+        Unknown = 0,
+        ConfigFile = 1,
+        ConfigFileNames = 2,
+    }
+    impl ConfigDiscoverResponseType {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                ConfigDiscoverResponseType::Unknown => "UNKNOWN",
+                ConfigDiscoverResponseType::ConfigFile => "CONFIG_FILE",
+                ConfigDiscoverResponseType::ConfigFileNames => "CONFIG_FILE_Names",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "CONFIG_FILE" => Some(Self::ConfigFile),
+                "CONFIG_FILE_Names" => Some(Self::ConfigFileNames),
+                _ => None,
+            }
+        }
+    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
