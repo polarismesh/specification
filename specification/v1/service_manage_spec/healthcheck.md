@@ -1,6 +1,5 @@
 # Health check
 
-
 ## HTTP detection form of health check
 
 ```yaml
@@ -29,7 +28,6 @@ spec:
         }
 ```
 
-
 ## TCP detection form of health check
 
 ```yaml
@@ -45,7 +43,6 @@ spec:
       port: 
       timeout:
 ```
-
 
 ## Actively report a health check in the form of heartbeat
 
