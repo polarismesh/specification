@@ -150,6 +150,7 @@ message ConfigDiscoverRequest {
   ConfigDiscoverRequestType type = 1;
   string namespace = 2;
   string group = 3;
-  string revision = 4;
+  string file_name = 4 [json_name = "file_name"];
+  string revision = 5;
 }
 
