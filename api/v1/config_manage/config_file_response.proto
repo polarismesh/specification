@@ -77,5 +77,5 @@ message ConfigClientListResponse {
 
   string namespace = 3;
   string group = 4;
-  repeated ClientConfigFileInfo config_file_names = 5 [json_name = "config_file_names"];
+  repeated ClientConfigFileInfo config_file_infos = 5 [json_name = "config_file_infos"];
 }
