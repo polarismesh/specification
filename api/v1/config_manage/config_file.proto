@@ -140,17 +140,3 @@ message ConfigFileExportRequest {
   repeated google.protobuf.StringValue groups = 2;
   repeated google.protobuf.StringValue names = 3;
 }
-
-message ConfigDiscoverRequest {
-  enum ConfigDiscoverRequestType {
-    UNKNOWN = 0;
-    CONFIG_FILE = 1;
-    CONFIG_FILE_Names = 2;
-  }
-  ConfigDiscoverRequestType type = 1;
-  string namespace = 2;
-  string group = 3;
-  string file_name = 4 [json_name = "file_name"];
-  string revision = 5;
-}
-
