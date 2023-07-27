@@ -109,5 +109,5 @@ require github.com/polarismesh/specification v1.3.0
 
 ```toml
 [dependencies]
-polaris-specification = "1.3.0"
+polaris-specification = "1.3"
 ```

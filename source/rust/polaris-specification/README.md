@@ -13,7 +13,7 @@ Service Governance Specification for Polaris Rust SDK.
 Add the following to your `Cargo.toml`: 
 ```toml 
 [dependencies]
-polaris-specification = "1.3.1"
+polaris-specification = "1.3.2"
 ```
 
 ## License
