@@ -28,13 +28,13 @@
 
 ```go
 DiscoveryClient.RegisterInstance({
-    Host: "",
-    Port: 80,
-    Namespace: "",
-    Service: "",
-    Labels: {
-        "{LABEL_KEY}": "{LABEL_VALUE}"
-    }
+  Host: "",
+  Port: 80,
+  Namespace: "",
+  Service: "",
+  Labels: {
+      "{LABEL_KEY}": "{LABEL_VALUE}"
+  }
 })
 ```
 
@@ -153,7 +153,7 @@ spec:
 
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/333972/1660879677396-6b1c1ebe-204f-4196-9277-4107752ae9f8.png#clientId=ub7c4a5af-3374-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=1054&id=u95d8b337&margin=%5Bobject%20Object%5D&name=image.png&originHeight=1054&originWidth=1088&originalType=binary&ratio=1&rotation=0&showTitle=false&size=387057&status=done&style=none&taskId=u256d2b3d-d339-4809-b79f-91b5c38e9ce&title=&width=1088)
 
-### 标签透传 
+### 标签透传
 
 #### 跨进程间标签传递
 
@@ -228,7 +228,7 @@ spec:
 - **X-Metadata-Transitive-{标签 KEY} = {标签 VALUE}**
   - 默认会在整个服务链路中进行传递。
 - **X-Metadata-Disposable-{标签 KEY} = {标签 VALUE}**
-  - ** **默认只会从A服务传递到B服务，仅进过一跳的流量链路。
+  - ****默认只会从A服务传递到B服务，仅进过一跳的流量链路。
 
 ### 路由
 
@@ -256,8 +256,8 @@ spec:
 
 #### 标签透传
 
-**X-Metadata-Transitive-  **开头的流量标签默认会在整个服务链路中进行传递。
-**X-Metadata-Disposable-   **开头的流量标签默认只会从A服务传递到B服务，仅进过一跳的流量链路。
+**X-Metadata-Transitive-**开头的流量标签默认会在整个服务链路中进行传递。
+**X-Metadata-Disposable-**开头的流量标签默认只会从A服务传递到B服务，仅进过一跳的流量链路。
 
 ### 路由
 
@@ -303,4 +303,3 @@ spec:
 **结合CMDB系统打标**
 
 1. 治理中心从CMDB中将IP的地域信息同步至实例当中
-

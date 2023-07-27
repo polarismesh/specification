@@ -3245,6 +3245,15 @@ pub struct ConfigFileGroup {
     pub editable: ::core::option::Option<bool>,
     #[prost(message, optional, tag = "16")]
     pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "17")]
+    pub business: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "18")]
+    pub department: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "19")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3323,6 +3332,11 @@ pub struct ConfigFileRelease {
     pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "13")]
     pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "14")]
+    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
+    /// 当前生效配置
+    #[prost(message, optional, tag = "15")]
+    pub active: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3359,6 +3373,9 @@ pub struct ConfigFileReleaseHistory {
     pub modify_time: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "16")]
     pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    /// 配置发布失败的原因
+    #[prost(message, optional, tag = "17")]
+    pub reason: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3405,6 +3422,12 @@ pub struct ClientConfigFileInfo {
     /// 公钥，用于加密数据密钥
     #[prost(message, optional, tag = "9")]
     pub public_key: ::core::option::Option<::prost::alloc::string::String>,
+    /// 配置文件版本名称
+    #[prost(message, optional, tag = "10")]
+    pub name: ::core::option::Option<::prost::alloc::string::String>,
+    /// 配置文件的发布时间
+    #[prost(message, optional, tag = "11")]
+    pub release_time: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3529,6 +3552,20 @@ pub struct ConfigEncryptAlgorithmResponse {
     pub info: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "3")]
     pub algorithms: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigClientListResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, tag = "3")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub group: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
+    pub config_file_names: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
