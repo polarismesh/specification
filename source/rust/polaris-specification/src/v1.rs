@@ -3451,63 +3451,6 @@ pub struct ConfigFileExportRequest {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigDiscoverRequest {
-    #[prost(
-        enumeration = "config_discover_request::ConfigDiscoverRequestType",
-        tag = "1"
-    )]
-    pub r#type: i32,
-    #[prost(string, tag = "2")]
-    pub namespace: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
-    pub group: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
-    pub revision: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `ConfigDiscoverRequest`.
-pub mod config_discover_request {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConfigDiscoverRequestType {
-        Unknown = 0,
-        ConfigFile = 1,
-        ConfigFileNames = 2,
-    }
-    impl ConfigDiscoverRequestType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConfigDiscoverRequestType::Unknown => "UNKNOWN",
-                ConfigDiscoverRequestType::ConfigFile => "CONFIG_FILE",
-                ConfigDiscoverRequestType::ConfigFileNames => "CONFIG_FILE_Names",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN" => Some(Self::Unknown),
-                "CONFIG_FILE" => Some(Self::ConfigFile),
-                "CONFIG_FILE_Names" => Some(Self::ConfigFileNames),
-                _ => None,
-            }
-        }
-    }
-}
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ConfigSimpleResponse {
     #[prost(message, optional, tag = "1")]
     pub code: ::core::option::Option<u32>,
@@ -3612,64 +3555,17 @@ pub struct ConfigEncryptAlgorithmResponse {
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct ConfigDiscoverResponse {
-    #[prost(uint32, tag = "1")]
-    pub code: u32,
-    #[prost(string, tag = "2")]
-    pub info: ::prost::alloc::string::String,
+pub struct ConfigClientListResponse {
+    #[prost(message, optional, tag = "1")]
+    pub code: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "2")]
+    pub info: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, tag = "3")]
-    pub revision: ::prost::alloc::string::String,
-    #[prost(
-        enumeration = "config_discover_response::ConfigDiscoverResponseType",
-        tag = "4"
-    )]
-    pub r#type: i32,
-    #[prost(message, optional, tag = "5")]
-    pub config_file: ::core::option::Option<ClientConfigFileInfo>,
-    #[prost(message, repeated, tag = "6")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub group: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "5")]
     pub config_file_names: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
-}
-/// Nested message and enum types in `ConfigDiscoverResponse`.
-pub mod config_discover_response {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
-    #[repr(i32)]
-    pub enum ConfigDiscoverResponseType {
-        Unknown = 0,
-        ConfigFile = 1,
-        ConfigFileNames = 2,
-    }
-    impl ConfigDiscoverResponseType {
-        /// String value of the enum field names used in the ProtoBuf definition.
-        ///
-        /// The values are not transformed in any way and thus are considered stable
-        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
-        pub fn as_str_name(&self) -> &'static str {
-            match self {
-                ConfigDiscoverResponseType::Unknown => "UNKNOWN",
-                ConfigDiscoverResponseType::ConfigFile => "CONFIG_FILE",
-                ConfigDiscoverResponseType::ConfigFileNames => "CONFIG_FILE_Names",
-            }
-        }
-        /// Creates an enum from field names used in the ProtoBuf definition.
-        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
-            match value {
-                "UNKNOWN" => Some(Self::Unknown),
-                "CONFIG_FILE" => Some(Self::ConfigFile),
-                "CONFIG_FILE_Names" => Some(Self::ConfigFileNames),
-                _ => None,
-            }
-        }
-    }
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
