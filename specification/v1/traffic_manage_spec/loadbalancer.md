@@ -42,7 +42,7 @@
 
 #### 权重一致性hash（maglev）
 
-该负载均衡策略基于maglev算法（https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf）进行节点分配。
+该负载均衡策略基于maglev算法（<https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44824.pdf）进行节点分配。>
 
 首先为实例集创建一个长度为质数65537的向量表，算法根据节点的权重，将向量表进行填充，直到向量表全部被节点所占满。取节点时则根据用户传值的hashValue取摸的方式，返回对应下标的节点。
 
@@ -67,7 +67,3 @@
 | service   | string | 规则所属的服务                         | 是       |
 | lb_policy | enum   | 负载均衡策略                           | 是       |
 | lb_config | any    | 负载均衡的配置，如果不填则使用默认配置 | 否       |
-
-
-
-

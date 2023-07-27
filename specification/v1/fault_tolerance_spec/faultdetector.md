@@ -122,7 +122,7 @@ spec:
     - 0xCD
 ```
 
- ### HTTP探测
+### HTTP探测
 
  通过往目标发送HTTP报文，通过回包结果来决定目标健康状态。
 
@@ -156,7 +156,7 @@ spec:
       token: 123456
 ```
 
- ### gRPC探测
+### gRPC探测
 
  通过往目标发送gRPC报文，通过回包结果来决定目标健康状态。目标服务需要实现[HealthCheckService](https://github.com/grpc/grpc/blob/master/doc/health-checking.md)
 

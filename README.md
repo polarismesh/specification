@@ -7,8 +7,10 @@
 README：
 
 - [介绍](#介绍)
-- [服务治理标准](#服务治理标准)
-- [服务治理接口](#服务治理接口)
+  - [服务治理标准](#服务治理标准)
+  - [服务治理接口](#服务治理接口)
+- [如何构建](#如何构建)
+  - [如何使用](#如何使用)
 
 ## 介绍
 
@@ -19,7 +21,7 @@ README：
 |                                      |                         Latest Release                         |
 |:-------------------------------------|:--------------------------------------------------------------:|
 | **Serivce Management Specification** |
-| namespace                            |  [v1](/specification/v1/service_manage_spec/namespace_zh.md)   |
+| namespace                            |  [v1](/specification/v1/service_manage_spec/namespace.md)   |
 | service                              |     [v1](/specification/v1/service_manage_spec/service.md)     |
 | instance                             |    [v1](/specification/v1/service_manage_spec/instance.md)     |
 | health check                         |   [v1](/specification/v1/service_manage_spec/healthcheck.md)   |
