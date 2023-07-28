@@ -140,3 +140,8 @@ message ConfigFileExportRequest {
   repeated google.protobuf.StringValue groups = 2;
   repeated google.protobuf.StringValue names = 3;
 }
+
+message ConfigFileGroupRequest {
+  google.protobuf.StringValue revision = 1;
+  ConfigFileGroup config_file_group = 2;
+}
