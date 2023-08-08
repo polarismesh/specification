@@ -28,6 +28,7 @@ traffic_manage_dir=${workdir}/api/v1/traffic_manage
 fault_tolerance_dir=${workdir}/api/v1/fault_tolerance
 config_manage_dir=${workdir}/api/v1/config_manage
 security_dir=${workdir}/api/v1/security
+ratelimiter_dir=${workdir}/api/v1/traffic_manage/ratelimiter
 out_dir=${workdir}/source/go
 
 protoc_dir=${workdir}/source/protoc/protoc-${CURRENT_OS}-${CURRENT_ARCH}
@@ -38,6 +39,7 @@ proto_files_traffic_manage="routing.proto ratelimit.proto"
 proto_files_fault_tolerance="circuitbreaker.proto fault_detector.proto"
 proto_files_config_manage="config_file.proto config_file_response.proto grpc_config_api.proto"
 proto_files_security="auth.proto"
+proto_files_ratelimiter="ratelimiter.proto grpcapi_ratelimiter.proto"
 
 pushd "${protoc_dir}"/bin
 chmod +x *
@@ -122,6 +124,18 @@ if [ "$CURRENT_OS" == "linux" ]; then
         --proto_path=. ${proto_files_service_manage}
     mv "${out_dir}/github.com/polarismesh/specification/source/go/api/v1/service_manage" "${out_dir}/api/v1"
     pushd "${out_dir}/api/v1/service_manage"
+    "${protoc_dir}"/bin/protoc-go-inject-tag -input="*.pb.go"
+    popd
+    popd
+	
+	pushd "${ratelimiter_dir}"
+    "${protoc_dir}"/bin/protoc \
+        --plugin=protoc-gen-go="${protoc_dir}"/bin/protoc-gen-go \
+        --go_out=plugins=grpc:"${out_dir}" \
+        --proto_path="${protoc_dir}"/include \
+        --proto_path=. ${proto_files_ratelimiter}
+    mv "${out_dir}/github.com/polarismesh/specification/source/go/api/v1/traffic_manage/ratelimiter" "${out_dir}/api/v1/traffic_manage"
+    pushd "${out_dir}/api/v1/traffic_manage/ratelimiter"
     "${protoc_dir}"/bin/protoc-go-inject-tag -input="*.pb.go"
     popd
     popd
