@@ -36,6 +36,7 @@ cp ${traffic_manage_dir}/*.proto ${java_source_dir}/proto/
 cp ${fault_tolerance_dir}/*.proto ${java_source_dir}/proto/
 cp ${config_manage_dir}/*.proto ${java_source_dir}/proto/
 cp ${security_dir}/*.proto ${java_source_dir}/proto/
+cp ${traffic_manage_dir}/ratelimiter/*.proto ${java_source_dir}/proto/
 
 pushd ${java_root_dir}
 mvn clean install

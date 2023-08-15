@@ -35,6 +35,7 @@ Copy-Item "${traffic_manage_dir}/*.proto" -Destination "${java_source_dir}/proto
 Copy-Item "${fault_tolerance_dir}/*.proto" -Destination "${java_source_dir}/proto/"
 Copy-Item "${config_manage_dir}/*.proto" -Destination "${java_source_dir}/proto/"
 Copy-Item "${security_dir}/*.proto" -Destination "${java_source_dir}/proto/"
+Copy-Item "${traffic_manage_dir}/ratelimiter/*.proto" -Destination "${java_source_dir}/proto/"
 
 Push-Location ${java_root_dir}
 mvn clean install
