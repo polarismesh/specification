@@ -25,4 +25,8 @@ service PolarisConfigGRPC {
 
   // 订阅配置变更
   rpc WatchConfigFiles(ClientWatchConfigFileRequest) returns (ConfigClientResponse) {}
+  
+  // 拉取指定配置分组下的配置文件列表
+  rpc GetConfigFileMetadataList(ConfigFileGroupRequest) returns (ConfigClientListResponse) {}
+
 }

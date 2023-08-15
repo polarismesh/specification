@@ -76,6 +76,7 @@ message ConfigFileRelease {
   repeated ConfigFileTag tags = 14;
   // 当前生效配置
   google.protobuf.BoolValue active = 15;
+  google.protobuf.BoolValue release_description = 16 [json_name = "release_description"];
 }
 
 message ConfigFileReleaseHistory {

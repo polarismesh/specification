@@ -70,3 +70,13 @@ message ConfigEncryptAlgorithmResponse {
   google.protobuf.StringValue info = 2;
   repeated google.protobuf.StringValue algorithms = 3;
 }
+
+message ConfigClientListResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  google.protobuf.StringValue revision = 3;
+
+  string namespace = 4;
+  string group = 5;
+  repeated ClientConfigFileInfo config_file_infos = 6 [json_name = "config_file_infos"];
+}

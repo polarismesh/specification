@@ -37,11 +37,13 @@ jobs:
             echo "pubilsh snapshot"
             SNAPSHOT_VERSION=${VERSION%%-*}
             sed -i "s/##VERSION##/${SNAPSHOT_VERSION}-SNAPSHOT/g" pom.xml
-            mvn --batch-mode deploy
+            cat pom.xml
+            mvn --batch-mode -U -Psonatype clean deploy -DskipTests
           else
             RELEASE_VERSION=${${VERSION%%-*}:1}
             echo "publish release ${RELEASE_VERSION}"
             sed -i "s/##VERSION##/${RELEASE_VERSION}/g" pom.xml
+            cat pom.xml
             cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import;
-            mvn clean --batch-mode deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests
+            mvn clean deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests -B -U
           fi
