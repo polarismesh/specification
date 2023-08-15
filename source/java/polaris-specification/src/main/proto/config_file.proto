@@ -19,7 +19,7 @@ message ConfigFileGroup {
   google.protobuf.UInt64Value fileCount = 9;
 
   repeated google.protobuf.StringValue user_ids = 10 [json_name = "user_ids"];
-    repeated google.protobuf.StringValue group_ids = 11 [json_name = "group_ids"];
+  repeated google.protobuf.StringValue group_ids = 11 [json_name = "group_ids"];
 
   repeated google.protobuf.StringValue remove_user_ids = 13 [json_name = "remove_user_ids"];
   repeated google.protobuf.StringValue remove_group_ids = 14 [json_name = "remove_group_ids"];
@@ -27,6 +27,9 @@ message ConfigFileGroup {
   google.protobuf.BoolValue editable = 15;
   google.protobuf.StringValue owner = 16;
 
+  google.protobuf.StringValue business = 17;
+  google.protobuf.StringValue department = 18;
+  map<string, string> metadata = 19;
 }
 
 message ConfigFile {
@@ -70,6 +73,10 @@ message ConfigFileRelease {
   google.protobuf.StringValue create_by = 11;
   google.protobuf.StringValue modify_time = 12;
   google.protobuf.StringValue modify_by = 13;
+  repeated ConfigFileTag tags = 14;
+  // 当前生效配置
+  google.protobuf.BoolValue active = 15;
+  google.protobuf.BoolValue release_description = 16 [json_name = "release_description"];
 }
 
 message ConfigFileReleaseHistory {
@@ -89,6 +96,8 @@ message ConfigFileReleaseHistory {
   google.protobuf.StringValue create_by = 14;
   google.protobuf.StringValue modify_time = 15;
   google.protobuf.StringValue modify_by = 16;
+  // 配置发布失败的原因
+  google.protobuf.StringValue reason = 17;
 }
 
 message ConfigFileTemplate {
@@ -115,6 +124,10 @@ message ClientConfigFileInfo {
   google.protobuf.BoolValue encrypted = 8;
   // 公钥，用于加密数据密钥
   google.protobuf.StringValue public_key = 9;
+  // 配置文件版本名称
+  google.protobuf.StringValue name = 10;
+  // 配置文件的发布时间
+  google.protobuf.StringValue release_time = 11 [json_name = "release_time"];
 }
 
 message ClientWatchConfigFileRequest {
@@ -129,3 +142,7 @@ message ConfigFileExportRequest {
   repeated google.protobuf.StringValue names = 3;
 }
 
+message ConfigFileGroupRequest {
+  google.protobuf.StringValue revision = 1;
+  ConfigFileGroup config_file_group = 2;
+}
