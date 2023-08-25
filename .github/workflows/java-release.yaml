@@ -40,7 +40,7 @@ jobs:
             cat pom.xml
             mvn --batch-mode -U -Psonatype clean deploy -DskipTests
           else
-            RELEASE_VERSION=${${VERSION%%-*}:1}
+            RELEASE_VERSION=${VERSION%%-*}
             echo "publish release ${RELEASE_VERSION}"
             sed -i "s/##VERSION##/${RELEASE_VERSION}/g" pom.xml
             cat pom.xml
