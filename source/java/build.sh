@@ -38,6 +38,8 @@ cp ${config_manage_dir}/*.proto ${java_source_dir}/proto/
 cp ${security_dir}/*.proto ${java_source_dir}/proto/
 cp ${traffic_manage_dir}/ratelimiter/*.proto ${java_source_dir}/proto/
 
+version=`cat ${workdir}/VERSION`
+echo $version
 pushd ${java_root_dir}
-mvn clean install
+sed -i "s/##VERSION##/${version}/g" pom.xml
 popd
