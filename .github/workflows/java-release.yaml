@@ -1,6 +1,4 @@
-# 相当于脚本用途的一个声明
 name: Release-Java
-# 触发脚本的事件  这里为发布release之后触发
 on:
   release:
     types: [published]
@@ -17,33 +15,13 @@ jobs:
           server-id: ossrh
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
-
-      - name: Get version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
       - name: "Publish package"
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
         run: |
           cd source/java
           bash build.sh
           cd polaris-specification
-          
-          pre_release=`echo ${VERSION}|egrep "(alpha|beta|rc|[T|t]est)"|wc -l`
-          if [ ${pre_release} -gt 0 ]; then
-            echo "pubilsh snapshot"
-            SNAPSHOT_VERSION=${VERSION%%-*}
-            sed -i "s/##VERSION##/${SNAPSHOT_VERSION}-SNAPSHOT/g" pom.xml
-            cat pom.xml
-            mvn --batch-mode -U -Psonatype clean deploy -DskipTests
-          else
-            RELEASE_VERSION=${VERSION%%-*}
-            echo "publish release ${RELEASE_VERSION}"
-            sed -i "s/##VERSION##/${RELEASE_VERSION}/g" pom.xml
-            cat pom.xml
-            cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import;
-            mvn clean deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests -B -U
-          fi
+          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import;
+          mvn clean deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests -B -U
