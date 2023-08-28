@@ -7,39 +7,53 @@ option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
 option java_outer_classname = "ServiceContractProto";
 
 message ServiceContract {
+  // 契约ID
+  string id = 1;
   // 契约名称
-  string name = 1;
+  string name = 2;
   // 所属命名空间
-  string namespace = 2;
+  string namespace = 3;
   // 所属服务名称
-  string service = 3;
+  string service = 4;
   // 协议，http/grpc/dubbo/thrift
-  string protocol = 4;
+  string protocol = 5;
   // 契约版本
-  string version = 5;
+  string version = 6;
   // 信息摘要
-  string revision = 6;
+  string revision = 7;
   // 额外描述
-  string content = 7;
+  string content = 8;
   // 接口描述信息
-  repeated InterfaceDescriptor interfaces = 8;
+  repeated InterfaceDescriptor interfaces = 9;
   // 创建时间
-  string ctime = 9;
+  string ctime = 10;
   // 更新时间
-  string mtime = 10;
+  string mtime = 11;
 }
 
 message InterfaceDescriptor {
+  enum Source {
+    UNKNOWN = 0;
+    Manual = 1;
+    Client = 2;
+  }
+
+  // 接口ID
+  string id = 1;
   // 方法名称，对应 http method/ dubbo interface func/grpc service func
-  string method = 1;
+  string method = 2;
   // 接口名称，http path/dubbo interface/grpc service
-  string path = 2;
+  string path = 3;
   // 接口描述信息
-  string content = 3;
+  string content = 4;
+  // 创建来源
+  Source source = 5;
   // 接口信息摘要
-  string revision = 4;
+  string revision = 6;
   // 创建时间
-  string ctime = 9;
+  string ctime = 7;
   // 更新时间
-  string mtime = 10;
+  string mtime = 8;
+  // 接口状态，Offline/Online
+  string status = 9;
 }
