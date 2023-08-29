@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package polaris.metric.v2;
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/traffic_manage/ratelimiter";
+option java_package = "com.tencent.polaris.specification.api.v1.traffic.manage.ratelimiter";
+option java_outer_classname = "RateLimiterService";
+
+import "ratelimiter.proto";
+
+service RateLimitGRPCV2 {
+  // 限流接口
+  rpc Service(stream RateLimitRequest) returns(stream RateLimitResponse) {}
+
+  //时间对齐接口
+  rpc TimeAdjust(TimeAdjustRequest) returns(TimeAdjustResponse) {}
+}
