@@ -36,6 +36,8 @@ message Rule {
     QPS = 0;
     // 针对并发数进行限流
     CONCURRENCY = 1;
+    // 针对CPU使用率进行限流
+    CPU_BBR = 2;
   }
   Resource resource = 6;
   // 限流类型
@@ -211,4 +213,14 @@ message ClimbConfig {
   }
 
   ClimbThrottling throttling = 4;  // 限流调整相关参数
+}
+
+// 自适应限流配额
+message SystemAmount {
+  // 采样窗口大小
+  google.protobuf.Duration window = 1;
+  // 数据统计精度，决定滑动窗口的最小周期，滑窗的步长=window/precision
+  google.protobuf.UInt32Value precision = 2;
+  // 触发阈值
+  google.protobuf.FloatValue threshold = 3;
 }
