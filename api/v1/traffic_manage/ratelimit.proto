@@ -96,6 +96,8 @@ message Rule {
   google.protobuf.StringValue etime = 25;
   // 最大排队时长，单位秒
   google.protobuf.UInt32Value max_queue_delay = 26 [json_name = "max_queue_delay"];
+  // 系统资源限流配额
+  SystemResourceAmount systemResourceAmount = 27;
 }
 
 message MatchArgument {
@@ -215,8 +217,8 @@ message ClimbConfig {
   ClimbThrottling throttling = 4;  // 限流调整相关参数
 }
 
-// 自适应限流配额
-message SystemAmount {
+// 自适应限流阈值
+message SystemResourceAmount {
   // 采样窗口大小
   google.protobuf.Duration window = 1;
   // 数据统计精度，决定滑动窗口的最小周期，滑窗的步长=window/precision
