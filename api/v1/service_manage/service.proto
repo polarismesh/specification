@@ -41,7 +41,7 @@ message Service {
 
   google.protobuf.StringValue id = 21;
   google.protobuf.BoolValue editable = 24;
-  google.protobuf.FloatValue protection_threshold = 25 [json_name = "protection_threshold"];
+  repeated google.protobuf.StringValue export_to = 25 [ json_name = "export_to" ];
 }
 
 enum AliasType {
