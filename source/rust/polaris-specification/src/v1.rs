@@ -1,5 +1,115 @@
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ServiceContract {
+    /// 契约ID
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    /// 契约名称
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    /// 所属命名空间
+    #[prost(string, tag = "3")]
+    pub namespace: ::prost::alloc::string::String,
+    /// 所属服务名称
+    #[prost(string, tag = "4")]
+    pub service: ::prost::alloc::string::String,
+    /// 协议，http/grpc/dubbo/thrift
+    #[prost(string, tag = "5")]
+    pub protocol: ::prost::alloc::string::String,
+    /// 契约版本
+    #[prost(string, tag = "6")]
+    pub version: ::prost::alloc::string::String,
+    /// 信息摘要
+    #[prost(string, tag = "7")]
+    pub revision: ::prost::alloc::string::String,
+    /// 额外描述
+    #[prost(string, tag = "8")]
+    pub content: ::prost::alloc::string::String,
+    /// 接口描述信息
+    #[prost(message, repeated, tag = "9")]
+    pub interfaces: ::prost::alloc::vec::Vec<InterfaceDescriptor>,
+    /// 创建时间
+    #[prost(string, tag = "10")]
+    pub ctime: ::prost::alloc::string::String,
+    /// 更新时间
+    #[prost(string, tag = "11")]
+    pub mtime: ::prost::alloc::string::String,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct InterfaceDescriptor {
+    /// 接口ID
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    /// 方法名称，对应 http method/ dubbo interface func/grpc service func
+    #[prost(string, tag = "2")]
+    pub method: ::prost::alloc::string::String,
+    /// 接口名称，http path/dubbo interface/grpc service
+    #[prost(string, tag = "3")]
+    pub path: ::prost::alloc::string::String,
+    /// 接口描述信息
+    #[prost(string, tag = "4")]
+    pub content: ::prost::alloc::string::String,
+    /// 创建来源
+    #[prost(enumeration = "interface_descriptor::Source", tag = "5")]
+    pub source: i32,
+    /// 接口信息摘要
+    #[prost(string, tag = "6")]
+    pub revision: ::prost::alloc::string::String,
+    /// 创建时间
+    #[prost(string, tag = "7")]
+    pub ctime: ::prost::alloc::string::String,
+    /// 更新时间
+    #[prost(string, tag = "8")]
+    pub mtime: ::prost::alloc::string::String,
+    /// 接口状态，Offline/Online
+    #[prost(string, tag = "9")]
+    pub status: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `InterfaceDescriptor`.
+pub mod interface_descriptor {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum Source {
+        Unknown = 0,
+        Manual = 1,
+        Client = 2,
+    }
+    impl Source {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                Source::Unknown => "UNKNOWN",
+                Source::Manual => "Manual",
+                Source::Client => "Client",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "Manual" => Some(Self::Manual),
+                "Client" => Some(Self::Client),
+                _ => None,
+            }
+        }
+    }
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Namespace {
     #[prost(message, optional, tag = "1")]
     pub name: ::core::option::Option<::prost::alloc::string::String>,
@@ -31,6 +141,8 @@ pub struct Namespace {
     pub id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "15")]
     pub editable: ::core::option::Option<bool>,
+    #[prost(message, repeated, tag = "16")]
+    pub service_export_to: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -222,6 +334,8 @@ pub struct Service {
     pub id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "24")]
     pub editable: ::core::option::Option<bool>,
+    #[prost(message, repeated, tag = "25")]
+    pub export_to: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2592,6 +2706,8 @@ pub struct DiscoverResponse {
     pub fault_detector: ::core::option::Option<FaultDetector>,
     #[prost(message, optional, tag = "21")]
     pub alias_for: ::core::option::Option<Service>,
+    #[prost(message, optional, tag = "22")]
+    pub service_contract: ::core::option::Option<ServiceContract>,
 }
 /// Nested message and enum types in `DiscoverResponse`.
 pub mod discover_response {
@@ -2617,6 +2733,7 @@ pub mod discover_response {
         Services = 6,
         Namespaces = 12,
         FaultDetector = 13,
+        ServiceContract = 14,
     }
     impl DiscoverResponseType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -2634,6 +2751,7 @@ pub mod discover_response {
                 DiscoverResponseType::Services => "SERVICES",
                 DiscoverResponseType::Namespaces => "NAMESPACES",
                 DiscoverResponseType::FaultDetector => "FAULT_DETECTOR",
+                DiscoverResponseType::ServiceContract => "SERVICE_CONTRACT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2648,6 +2766,7 @@ pub mod discover_response {
                 "SERVICES" => Some(Self::Services),
                 "NAMESPACES" => Some(Self::Namespaces),
                 "FAULT_DETECTOR" => Some(Self::FaultDetector),
+                "SERVICE_CONTRACT" => Some(Self::ServiceContract),
                 _ => None,
             }
         }
@@ -3337,6 +3456,10 @@ pub struct ConfigFileRelease {
     /// 当前生效配置
     #[prost(message, optional, tag = "15")]
     pub active: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "16")]
+    pub format: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "17")]
+    pub release_description: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3376,6 +3499,8 @@ pub struct ConfigFileReleaseHistory {
     /// 配置发布失败的原因
     #[prost(message, optional, tag = "17")]
     pub reason: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "18")]
+    pub release_description: ::core::option::Option<::prost::alloc::string::String>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3448,6 +3573,40 @@ pub struct ConfigFileExportRequest {
     pub groups: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     #[prost(message, repeated, tag = "3")]
     pub names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFilePublishInfo {
+    #[prost(message, optional, tag = "1")]
+    pub release_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub namespace: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "3")]
+    pub group: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "4")]
+    pub file_name: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "5")]
+    pub content: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "6")]
+    pub comment: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "7")]
+    pub format: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "8")]
+    pub release_description: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "11")]
+    pub create_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "13")]
+    pub modify_by: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "14")]
+    pub tags: ::prost::alloc::vec::Vec<ConfigFileTag>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct ConfigFileGroupRequest {
+    #[prost(message, optional, tag = "1")]
+    pub revision: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "2")]
+    pub config_file_group: ::core::option::Option<ConfigFileGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3560,12 +3719,20 @@ pub struct ConfigClientListResponse {
     pub code: ::core::option::Option<u32>,
     #[prost(message, optional, tag = "2")]
     pub info: ::core::option::Option<::prost::alloc::string::String>,
-    #[prost(string, tag = "3")]
-    pub namespace: ::prost::alloc::string::String,
+    #[prost(message, optional, tag = "3")]
+    pub revision: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(string, tag = "4")]
+    pub namespace: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
     pub group: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "5")]
-    pub config_file_names: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
+    #[prost(message, repeated, tag = "6")]
+    pub config_file_infos: ::prost::alloc::vec::Vec<ClientConfigFileInfo>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct DiscoverFilter {
+    #[prost(bool, tag = "1")]
+    pub only_healthy_instance: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -3574,6 +3741,8 @@ pub struct DiscoverRequest {
     pub r#type: i32,
     #[prost(message, optional, tag = "2")]
     pub service: ::core::option::Option<Service>,
+    #[prost(message, optional, tag = "30")]
+    pub filter: ::core::option::Option<DiscoverFilter>,
 }
 /// Nested message and enum types in `DiscoverRequest`.
 pub mod discover_request {
@@ -3599,6 +3768,7 @@ pub mod discover_request {
         Services = 6,
         Namespaces = 12,
         FaultDetector = 13,
+        ServiceContract = 14,
     }
     impl DiscoverRequestType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -3616,6 +3786,7 @@ pub mod discover_request {
                 DiscoverRequestType::Services => "SERVICES",
                 DiscoverRequestType::Namespaces => "NAMESPACES",
                 DiscoverRequestType::FaultDetector => "FAULT_DETECTOR",
+                DiscoverRequestType::ServiceContract => "SERVICE_CONTRACT",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3630,6 +3801,7 @@ pub mod discover_request {
                 "SERVICES" => Some(Self::Services),
                 "NAMESPACES" => Some(Self::Namespaces),
                 "FAULT_DETECTOR" => Some(Self::FaultDetector),
+                "SERVICE_CONTRACT" => Some(Self::ServiceContract),
                 _ => None,
             }
         }

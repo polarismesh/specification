@@ -33,7 +33,6 @@ message Service {
   google.protobuf.UInt32Value total_instance_count = 17 [json_name = "total_instance_count"];
   google.protobuf.UInt32Value healthy_instance_count = 18 [json_name = "healthy_instance_count"];
 
-
   repeated google.protobuf.StringValue user_ids = 19 [json_name = "user_ids"];
   repeated google.protobuf.StringValue group_ids = 20 [json_name = "group_ids"];
 
@@ -42,6 +41,7 @@ message Service {
 
   google.protobuf.StringValue id = 21;
   google.protobuf.BoolValue editable = 24;
+  repeated google.protobuf.StringValue export_to = 25 [ json_name = "export_to" ];
 }
 
 enum AliasType {

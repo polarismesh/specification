@@ -8,6 +8,10 @@ option go_package = "github.com/polarismesh/specification/source/go/api/v1/servi
 option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
 option java_outer_classname = "RequestProto";
 
+message DiscoverFilter {
+  bool OnlyHealthyInstance = 1;
+}
+
 message DiscoverRequest {
   enum DiscoverRequestType {
     UNKNOWN = 0;
@@ -20,10 +24,12 @@ message DiscoverRequest {
     reserved 7 to 11;
     NAMESPACES = 12;
     FAULT_DETECTOR = 13;
+    SERVICE_CONTRACT = 14;
   }
 
   DiscoverRequestType type = 1;
   Service service = 2;
   reserved 3 to 4;
+  DiscoverFilter Filter = 30; 
 }
 
