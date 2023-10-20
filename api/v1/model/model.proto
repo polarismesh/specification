@@ -56,3 +56,14 @@ message Summary {
   // 实例总数
   uint32 total_instance_count = 3 [json_name = "total_instance_count"];
 }
+
+// 匹配规则
+message MatchTerm {
+  google.protobuf.StringValue key = 1;
+  MatchString value = 2;
+}
+
+message Tag {
+  google.protobuf.StringValue key = 1;
+  google.protobuf.StringValue value = 2;
+}

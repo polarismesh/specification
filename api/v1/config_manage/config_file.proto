@@ -3,6 +3,7 @@ syntax = "proto3";
 package v1;
 
 import "google/protobuf/wrappers.proto";
+import "model.proto";
 option go_package = "github.com/polarismesh/specification/source/go/api/v1/config_manage";
 option java_package = "com.tencent.polaris.specification.api.v1.config.manage";
 option java_outer_classname = "ConfigFileProto";
@@ -63,6 +64,7 @@ message ConfigFileTag {
   google.protobuf.StringValue value = 2;
 }
 
+
 message ConfigFileRelease {
   google.protobuf.UInt64Value id = 1;
   google.protobuf.StringValue name = 2;
@@ -82,6 +84,8 @@ message ConfigFileRelease {
   google.protobuf.BoolValue active = 15;
   google.protobuf.StringValue format = 16;
   google.protobuf.StringValue release_description = 17;
+  google.protobuf.UInt32Value type = 18;
+  MatchTerm gray_rule = 19;
 }
 
 message ConfigFileReleaseHistory {
