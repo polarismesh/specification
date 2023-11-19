@@ -85,7 +85,8 @@ message ConfigFileRelease {
   google.protobuf.StringValue format = 16;
   google.protobuf.StringValue release_description = 17;
   google.protobuf.UInt32Value type = 18;
-  MatchTerm gray_rule = 19;
+  // 配置灰度发布时需要匹配的客户端标签信息
+  repeated ClientLabel beta_labels = 19;
 }
 
 message ConfigFileReleaseHistory {
