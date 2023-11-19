@@ -29,6 +29,8 @@ message ServiceContract {
   string ctime = 10;
   // 更新时间
   string mtime = 11;
+  // 接口状态，Offline/Online
+  string status = 12;
 }
 
 message InterfaceDescriptor {
@@ -54,6 +56,4 @@ message InterfaceDescriptor {
   string ctime = 7;
   // 更新时间
   string mtime = 8;
-  // 接口状态，Offline/Online
-  string status = 9;
 }
