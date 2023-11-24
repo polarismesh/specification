@@ -47,6 +47,7 @@ type PolarisConfigGRPCClient interface {
 	WatchConfigFiles(ctx context.Context, in *ClientWatchConfigFileRequest, opts ...grpc.CallOption) (*ConfigClientResponse, error)
 	// 拉取指定配置分组下的配置文件列表
 	GetConfigFileMetadataList(ctx context.Context, in *ConfigFileGroupRequest, opts ...grpc.CallOption) (*ConfigClientListResponse, error)
+	// 统一发现接口
 	Discover(ctx context.Context, opts ...grpc.CallOption) (PolarisConfigGRPC_DiscoverClient, error)
 }
 
@@ -157,6 +158,7 @@ type PolarisConfigGRPCServer interface {
 	WatchConfigFiles(context.Context, *ClientWatchConfigFileRequest) (*ConfigClientResponse, error)
 	// 拉取指定配置分组下的配置文件列表
 	GetConfigFileMetadataList(context.Context, *ConfigFileGroupRequest) (*ConfigClientListResponse, error)
+	// 统一发现接口
 	Discover(PolarisConfigGRPC_DiscoverServer) error
 }
 
@@ -339,10 +341,10 @@ var _PolarisConfigGRPC_serviceDesc = grpc.ServiceDesc{
 }
 
 func init() {
-	proto.RegisterFile("grpc_config_api.proto", fileDescriptor_grpc_config_api_9421965db044b24f)
+	proto.RegisterFile("grpc_config_api.proto", fileDescriptor_grpc_config_api_095e88a30555fcfa)
 }
 
-var fileDescriptor_grpc_config_api_9421965db044b24f = []byte{
+var fileDescriptor_grpc_config_api_095e88a30555fcfa = []byte{
 	// 353 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x92, 0x41, 0x4b, 0xc3, 0x30,
 	0x14, 0xc7, 0x9d, 0x88, 0x48, 0x40, 0xd9, 0x0a, 0x83, 0xad, 0x78, 0x10, 0x4f, 0x9e, 0x52, 0xab,
