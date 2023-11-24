@@ -82,7 +82,7 @@ message ConfigFileRelease {
   google.protobuf.BoolValue active = 15;
   google.protobuf.StringValue format = 16;
   google.protobuf.StringValue release_description = 17;
-  google.protobuf.UInt32Value type = 18;
+  google.protobuf.StringValue type = 18;
   // 配置灰度发布时需要匹配的客户端标签信息
   repeated ClientLabel beta_labels = 19;
 }
