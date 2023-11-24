@@ -92,6 +92,7 @@ if [ "$CURRENT_OS" == "linux" ]; then
         --plugin=protoc-gen-go="${protoc_dir}"/bin/protoc-gen-go \
         --go_out=plugins=grpc:"${out_dir}" \
         --proto_path="${protoc_dir}"/include \
+        --proto_path="${model_dir}" \
         --proto_path=. ${proto_files_config_manage}
     mv "${out_dir}/github.com/polarismesh/specification/source/go/api/v1/config_manage" "${out_dir}/api/v1"
     pushd "${out_dir}/api/v1/config_manage"
