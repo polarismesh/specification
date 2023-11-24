@@ -173,26 +173,30 @@ message ConfigFileGroupRequest {
   map<string, string> client_labels = 12  [ json_name = "client_labels" ];
 }
 
-enum ConfigDiscoverType {
-  UNKNOWN = 0;
-  CONFIG_FILE = 1;
-  CONFIG_FILE_LIST = 2;
-  CONFIG_GROUPS = 3;
-}
-
 message ConfigDiscoverRequest {
-  ConfigDiscoverType type = 1;
+  enum ConfigDiscoverRequestType {
+    UNKNOWN = 0;
+    CONFIG_FILE = 1;
+    CONFIG_FILE_Names = 2;
+  }
+  ConfigDiscoverRequestType type = 1;
   string namespace = 2;
   string group = 3;
   string revision = 4;
 }
 
 message ConfigDiscoverResponse {
+  enum ConfigDiscoverResponseType {
+    UNKNOWN = 0;
+    CONFIG_FILE = 1;
+    CONFIG_FILE_Names = 2;
+  }
+
   uint32 code = 1;
   string info = 2;
   string revision = 3;
 
-  ConfigDiscoverType type = 4;
+  ConfigDiscoverResponseType type = 4;
 
   ClientConfigFileInfo config_file = 5 [ json_name = "config_file" ];
 
