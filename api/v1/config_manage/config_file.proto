@@ -82,7 +82,7 @@ message ConfigFileRelease {
   google.protobuf.BoolValue active = 15;
   google.protobuf.StringValue format = 16;
   google.protobuf.StringValue release_description = 17;
-  google.protobuf.StringValue type = 18;
+  google.protobuf.StringValue release_type = 18;
   // 配置灰度发布时需要匹配的客户端标签信息
   repeated ClientLabel beta_labels = 19;
 }
@@ -164,13 +164,18 @@ message ConfigFilePublishInfo {
   google.protobuf.StringValue create_by = 11 [ json_name = "create_by" ];
   google.protobuf.StringValue modify_by = 13 [ json_name = "modify_by" ];
   repeated ConfigFileTag tags = 14;
+  google.protobuf.StringValue md5 = 15;
+  // 是否为加密配置文件
+  google.protobuf.BoolValue encrypted = 16;
+  // 加密算法
+  google.protobuf.StringValue encrypt_algo = 17;
 }
 
 message ConfigFileGroupRequest {
   google.protobuf.StringValue revision = 1;
   ConfigFileGroup config_file_group = 2 [ json_name = "config_file_group" ];
   // 配置标签
-  map<string, string> client_labels = 12  [ json_name = "client_labels" ];
+  map<string, string> client_labels = 12 [ json_name = "client_labels" ];
 }
 
 message ConfigDiscoverRequest {
@@ -200,6 +205,8 @@ message ConfigDiscoverResponse {
 
   ClientConfigFileInfo config_file = 5 [ json_name = "config_file" ];
 
-  repeated ClientConfigFileInfo config_file_names = 6 [ json_name = "config_file_names" ];
-  repeated ConfigFileGroup config_file_groups = 7 [ json_name = "config_file_groups" ];
+  repeated ClientConfigFileInfo config_file_names = 6
+      [ json_name = "config_file_names" ];
+  repeated ConfigFileGroup config_file_groups = 7
+      [ json_name = "config_file_groups" ];
 }
