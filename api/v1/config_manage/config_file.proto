@@ -185,9 +185,8 @@ message ConfigDiscoverRequest {
     CONFIG_FILE_Names = 2;
   }
   ConfigDiscoverRequestType type = 1;
-  string namespace = 2;
-  string group = 3;
-  string revision = 4;
+  ClientConfigFileInfo config_file = 2 [ json_name = "config_file" ];
+  string revision = 3;
 }
 
 message ConfigDiscoverResponse {
