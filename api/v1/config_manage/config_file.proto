@@ -183,6 +183,7 @@ message ConfigDiscoverRequest {
     UNKNOWN = 0;
     CONFIG_FILE = 1;
     CONFIG_FILE_Names = 2;
+    CONFIG_FILE_GROUPS = 3;
   }
   ConfigDiscoverRequestType type = 1;
   ClientConfigFileInfo config_file = 2 [ json_name = "config_file" ];
@@ -194,6 +195,7 @@ message ConfigDiscoverResponse {
     UNKNOWN = 0;
     CONFIG_FILE = 1;
     CONFIG_FILE_Names = 2;
+    CONFIG_FILE_GROUPS = 3;
   }
 
   uint32 code = 1;
