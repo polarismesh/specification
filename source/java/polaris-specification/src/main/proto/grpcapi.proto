@@ -24,15 +24,19 @@ service PolarisGRPC {
   rpc Discover(stream DiscoverRequest) returns (stream DiscoverResponse) {}
   // 被调方上报心跳
   rpc Heartbeat(Instance) returns (Response) {}
-  // 上报服务契约
-  rpc ReportServiceContract(ServiceContract) returns (Response) {}
 }
 
 service PolarisHeartbeatGRPC {
   // 被调方批量上报心跳
-  rpc BatchHeartbeat(stream HeartbeatsRequest) returns (stream HeartbeatsResponse) {}
+  rpc BatchHeartbeat(stream HeartbeatsRequest)
+      returns (stream HeartbeatsResponse) {}
   // 批量获取心跳记录
   rpc BatchGetHeartbeat(GetHeartbeatsRequest) returns (GetHeartbeatsResponse) {}
   // 批量删除心跳记录
   rpc BatchDelHeartbeat(DelHeartbeatsRequest) returns (DelHeartbeatsResponse) {}
+}
+
+service PolarisServiceContractGRPC {
+  // 上报服务契约
+  rpc ReportServiceContract(ServiceContract) returns (Response) {}
 }

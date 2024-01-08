@@ -29,4 +29,6 @@ service PolarisConfigGRPC {
   // 拉取指定配置分组下的配置文件列表
   rpc GetConfigFileMetadataList(ConfigFileGroupRequest) returns (ConfigClientListResponse) {}
 
+  // 统一发现接口
+  rpc Discover(stream ConfigDiscoverRequest) returns (stream ConfigDiscoverResponse) {}
 }

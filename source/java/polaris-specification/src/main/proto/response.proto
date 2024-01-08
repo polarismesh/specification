@@ -14,6 +14,7 @@ import "client.proto";
 import "configrelease.proto";
 import "fault_detector.proto";
 import "auth.proto";
+import "contract.proto";
 
 option go_package = "github.com/polarismesh/specification/source/go/api/v1/service_manage";
 option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
@@ -91,6 +92,7 @@ message DiscoverResponse {
     reserved "MESH", "MESH_CONFIG", "FLUX_DBREFRESH", "FLUX_SDK", "FLUX_SERVER";
     NAMESPACES = 12;
     FAULT_DETECTOR = 13;
+    SERVICE_CONTRACT = 14;
   }
 
   DiscoverResponseType type = 3;
@@ -104,6 +106,7 @@ message DiscoverResponse {
   FaultDetector faultDetector = 11;
   reserved 12 to 20;
   Service aliasFor = 21;
+  ServiceContract serviceContract = 22;
 }
 
 

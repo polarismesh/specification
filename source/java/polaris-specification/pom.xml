@@ -6,7 +6,7 @@
 
     <groupId>com.tencent.polaris</groupId>
     <artifactId>polaris-specification</artifactId>
-    <version>##VERSION##</version>
+    <version>1.4.0</version>
 
     <properties>
         <grpc.version>1.50.0</grpc.version>
