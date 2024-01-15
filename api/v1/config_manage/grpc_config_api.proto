@@ -23,6 +23,9 @@ service PolarisConfigGRPC {
   // 发布配置
   rpc PublishConfigFile(ConfigFileRelease) returns (ConfigClientResponse) {}
 
+  // 发布配置
+  rpc UpsertAndPublishConfigFile(ConfigFilePublishInfo) returns (ConfigClientResponse) {}
+
   // 订阅配置变更
   rpc WatchConfigFiles(ClientWatchConfigFileRequest) returns (ConfigClientResponse) {}
   
