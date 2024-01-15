@@ -56,4 +56,6 @@ message InterfaceDescriptor {
   string ctime = 7;
   // 更新时间
   string mtime = 8;
+  // 接口名称描述信息
+  string name = 9;
 }
