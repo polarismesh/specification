@@ -25,13 +25,11 @@ message DiscoverRequest {
     reserved 7 to 11;
     NAMESPACES = 12;
     FAULT_DETECTOR = 13;
-    SERVICE_CONTRACT = 14;
   }
 
   DiscoverRequestType type = 1;
   Service service = 2;
   reserved 3 to 4;
   DiscoverFilter Filter = 30;
-  ServiceContract service_contract = 31;
 }
 

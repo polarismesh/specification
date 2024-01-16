@@ -45,6 +45,8 @@ message Response {
   InstanceLabels instanceLabels = 28;
 
   google.protobuf.Any data = 29;
+
+  ServiceContract serviceContract = 30;
 }
 
 message BatchWriteResponse {

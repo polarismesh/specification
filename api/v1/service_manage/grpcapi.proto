@@ -39,4 +39,6 @@ service PolarisHeartbeatGRPC {
 service PolarisServiceContractGRPC {
   // 上报服务契约
   rpc ReportServiceContract(ServiceContract) returns (Response) {}
+  // 查询服务契约
+  rpc GetServiceContract(ServiceContract) returns (Response) {}
 }
