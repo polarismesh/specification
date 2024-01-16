@@ -94,7 +94,6 @@ message DiscoverResponse {
     reserved "MESH", "MESH_CONFIG", "FLUX_DBREFRESH", "FLUX_SDK", "FLUX_SERVER";
     NAMESPACES = 12;
     FAULT_DETECTOR = 13;
-    SERVICE_CONTRACT = 14;
   }
 
   DiscoverResponseType type = 3;
@@ -108,7 +107,6 @@ message DiscoverResponse {
   FaultDetector faultDetector = 11;
   reserved 12 to 20;
   Service aliasFor = 21;
-  ServiceContract serviceContract = 22;
 }
 
 
