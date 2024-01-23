@@ -36,6 +36,8 @@ message Rule {
     QPS = 0;
     // 针对并发数进行限流
     CONCURRENCY = 1;
+    // 针对CPU使用率进行限流
+    CPU = 2;
   }
   Resource resource = 6;
   // 限流类型
