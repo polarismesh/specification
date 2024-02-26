@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/any.proto";
+import "model.proto";
+import "routing.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/traffic_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.traffic.manage";
+option java_outer_classname = "LaneProto";
+
+// 流量入口
+message TrafficEntry {
+  // 标记流量入口类型
+  // type == "polarismesh.cn/gateway/tse-gateway, 则 selector 为
+  // TSEGatewaySelector type == "polarismesh.cn/gateway/spring-cloud-gateway",
+  // 则 selector 为 ServiceGatewaySelector type == "polarismesh.cn/service, 则
+  // selector 为 ServiceSelector
+  string type = 1;
+  google.protobuf.Any selector = 2;
+}
+
+// 网关入口定义
+message TSEGatewaySelector {
+  string instance_id = 1;
+  repeated string services = 2;
+}
+
+// 微服务网关入口定义
+message ServiceGatewaySelector {
+  string namespace = 1;
+  string service = 2;
+  // 决定要不要部份
+  map<string, MatchString> labels = 3;
+}
+
+// 普通服务入口定义
+message ServiceSelector {
+  string namespace = 1;
+  string service = 2;
+  // 决定要不要部份
+  map<string, MatchString> labels = 3;
+}
+
+// 泳道组实体定义
+message LaneGroup {
+  // 泳道组 ID
+  string id = 1;
+  // 泳道组名称
+  string name = 2;
+  // 泳道组内的流量入口信息
+  repeated TrafficEntry entries = 3;
+  // 在泳道组内的服务列表信息
+  repeated DestinationGroup destinations = 4;
+  // 泳道组描述信息
+  string description = 8;
+  // 泳道组的创建时间
+  string ctime = 9;
+  // 泳道组的更新时间
+  string mtime = 10;
+}
+
+// TrafficMatchRule 流量匹配规则
+message TrafficMatchRule {
+  // 流量匹配规则，判断哪些流量需要进入泳道
+  repeated SourceMatch arguments = 4;
+  // 多个 SourceMatch 之间的判断关系
+  enum TrafficMatchMode {
+    // 与模式
+    AND = 0;
+    // 或模式
+    OR = 1;
+  }
+  TrafficMatchMode matchMode = 14;
+}
+
+// 泳道规则
+message LaneRule {
+  string id = 1;
+  string name = 2;
+  // 所属泳道组的名称
+  string group_name = 3;
+  // 泳道入口
+  repeated TrafficEntry traffic_entries = 4;
+  // 流量匹配规则
+  TrafficMatchRule traffic_match_rule = 5;
+  // 保存这个泳道的默认实例标签
+  string default_label_value = 6;
+  // 在泳道内的服务
+  repeated DestinationGroup destinations = 7;
+  // 泳道规则是否启用
+  bool enable = 8;
+  enum LaneMatchMode {
+    // 严格匹配模式
+    STRICT = 0;
+    // 宽松匹配模式
+    PERMISSIVE = 1;
+  }
+  LaneMatchMode match_mode = 9;
+  // revision routing version
+  string revision = 10;
+  // ctime create time of the rules
+  string ctime = 11;
+  // mtime modify time of the rules
+  string mtime = 12;
+  // etime enable time of the rules
+  string etime = 13;
+  // priority rules priority
+  uint32 priority = 14;
+  // description simple description rules
+  string description = 15;
+}
