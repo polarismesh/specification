@@ -25,6 +25,8 @@ message DiscoverRequest {
     reserved 7 to 11;
     NAMESPACES = 12;
     FAULT_DETECTOR = 13;
+    reserved 14 to 99;
+    LANE = 100;
   }
 
   DiscoverRequestType type = 1;

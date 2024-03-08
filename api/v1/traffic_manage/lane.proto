@@ -13,18 +13,10 @@ option java_outer_classname = "LaneProto";
 // 流量入口
 message TrafficEntry {
   // 标记流量入口类型
-  // type == "polarismesh.cn/gateway/tse-gateway, 则 selector 为
-  // TSEGatewaySelector type == "polarismesh.cn/gateway/spring-cloud-gateway",
-  // 则 selector 为 ServiceGatewaySelector type == "polarismesh.cn/service, 则
-  // selector 为 ServiceSelector
+  // type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为 ServiceGatewaySelector 
+  // type == "polarismesh.cn/service, 则 selector 为 ServiceSelector
   string type = 1;
   google.protobuf.Any selector = 2;
-}
-
-// 网关入口定义
-message TSEGatewaySelector {
-  string instance_id = 1;
-  repeated string services = 2;
 }
 
 // 微服务网关入口定义
@@ -54,11 +46,15 @@ message LaneGroup {
   // 在泳道组内的服务列表信息
   repeated DestinationGroup destinations = 4;
   // 泳道组描述信息
+  string revision = 7;
+  // 泳道组描述信息
   string description = 8;
   // 泳道组的创建时间
   string ctime = 9;
   // 泳道组的更新时间
   string mtime = 10;
+  // 泳道组内的流量入口信息
+  repeated LaneRule rules = 11;
 }
 
 // TrafficMatchRule 流量匹配规则
@@ -81,33 +77,29 @@ message LaneRule {
   string name = 2;
   // 所属泳道组的名称
   string group_name = 3;
-  // 泳道入口
-  repeated TrafficEntry traffic_entries = 4;
   // 流量匹配规则
-  TrafficMatchRule traffic_match_rule = 5;
+  TrafficMatchRule traffic_match_rule = 4;
   // 保存这个泳道的默认实例标签
-  string default_label_value = 6;
-  // 在泳道内的服务
-  repeated DestinationGroup destinations = 7;
+  string default_label_value = 5;
   // 泳道规则是否启用
-  bool enable = 8;
+  bool enable = 6;
   enum LaneMatchMode {
     // 严格匹配模式
     STRICT = 0;
     // 宽松匹配模式
     PERMISSIVE = 1;
   }
-  LaneMatchMode match_mode = 9;
+  LaneMatchMode match_mode = 7;
   // revision routing version
-  string revision = 10;
+  string revision = 8;
   // ctime create time of the rules
-  string ctime = 11;
+  string ctime = 9;
   // mtime modify time of the rules
-  string mtime = 12;
+  string mtime = 10;
   // etime enable time of the rules
-  string etime = 13;
+  string etime = 11;
   // priority rules priority
-  uint32 priority = 14;
+  uint32 priority = 12;
   // description simple description rules
-  string description = 15;
+  string description = 13;
 }
