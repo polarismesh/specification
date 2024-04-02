@@ -10,6 +10,7 @@ message ServiceContract {
   // 契约ID
   string id = 1;
   // 契约名称
+  // deprecated, use type field
   string name = 2;
   // 所属命名空间
   string namespace = 3;
@@ -31,6 +32,8 @@ message ServiceContract {
   string mtime = 11;
   // 接口状态，Offline/Online
   string status = 12;
+  // 类型
+  string type = 14;
 }
 
 message InterfaceDescriptor {
@@ -57,5 +60,16 @@ message InterfaceDescriptor {
   // 更新时间
   string mtime = 8;
   // 接口名称描述信息
+  // deprecated, use type field
   string name = 9;
+  // 所属命名空间
+  string namespace = 10;
+  // 所属服务名称
+  string service = 11;
+  // 协议，http/grpc/dubbo/thrift
+  string protocol = 12;
+  // 契约版本
+  string version = 13;
+  // 类型
+  string type = 14;
 }
