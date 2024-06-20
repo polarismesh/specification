@@ -35,6 +35,7 @@ cp ${traffic_manage_dir}/*.proto ${rust_root_dir}/proto/
 cp ${fault_tolerance_dir}/*.proto ${rust_root_dir}/proto/
 cp ${config_manage_dir}/*.proto ${rust_root_dir}/proto/
 cp ${security_dir}/*.proto ${rust_root_dir}/proto/
+cp ${traffic_manage_dir}/ratelimiter/*.proto ${rust_root_dir}/proto/
 
 pushd ${rust_root_dir}
 cargo build --release

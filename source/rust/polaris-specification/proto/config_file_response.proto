@@ -74,8 +74,9 @@ message ConfigEncryptAlgorithmResponse {
 message ConfigClientListResponse {
   google.protobuf.UInt32Value code = 1;
   google.protobuf.StringValue info = 2;
+  google.protobuf.StringValue revision = 3;
 
-  string namespace = 3;
-  string group = 4;
-  repeated ClientConfigFileInfo config_file_names = 5 [json_name = "config_file_names"];
+  string namespace = 4;
+  string group = 5;
+  repeated ClientConfigFileInfo config_file_infos = 6 [json_name = "config_file_infos"];
 }
