@@ -154,7 +154,7 @@ message MetadataRoutingConfig {
 // NearbyRoutingConfig routing configuration
 message NearbyRoutingConfig {
   enum LocationLevel {
-    // 未知就近级别，等同于未定义就近级别
+    // 未知就近级别，等同于未定义级别
     UNKNOWN = 0;
     // 机房就近级别
     CAMPUS = 1;
@@ -169,9 +169,9 @@ message NearbyRoutingConfig {
   string service = 1 [ json_name = "service" ];
   // 被调命名空间
   string namespace = 2 [ json_name = "namespace" ];
-  // 默认就近级别，为空时默认为zone
+  // 默认就近级别
   LocationLevel match_level = 3 [ json_name = "match_level" ];
-  // 最大就近级别，为空值默认为none
+  // 最大就近级别
   LocationLevel max_match_level = 4 [ json_name = "max_match_level" ];
   // 是否强制就近
   bool strict_nearby = 5 [ json_name = "strict_nearby" ];
