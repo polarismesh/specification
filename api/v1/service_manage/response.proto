@@ -97,6 +97,10 @@ message DiscoverResponse {
     FAULT_DETECTOR = 13;
     reserved 14 to 99;
     LANE = 100;
+    // 自定义路由规则
+    CUSTOM_ROUTE_RULE = 101;
+    // 就近路由规则
+    NEARBY_ROUTE_RULE = 102;
   }
 
   DiscoverResponseType type = 3;
@@ -111,6 +115,10 @@ message DiscoverResponse {
   reserved 12 to 20;
   Service aliasFor = 21;
   repeated LaneGroup lanes = 22;
+  // 自定义路由规则内容
+  repeated RouteRule customRouteRules = 23;
+  // 就近路由规则内容
+  repeated RouteRule nearbyRouteRules = 24;
 }
 
 message OptionSwitch { map<string, string> options = 1; }

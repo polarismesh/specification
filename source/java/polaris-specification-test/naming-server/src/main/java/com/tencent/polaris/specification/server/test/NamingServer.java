@@ -15,13 +15,13 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.tencent.polaris.specification.test;
+package com.tencent.polaris.specification.server.test;
 
 import java.util.concurrent.TimeUnit;
 
 import com.tencent.polaris.specification.api.v1.service.manage.RequestProto;
-import com.tencent.polaris.specification.test.builder.CircuitBreakerBuilder;
-import com.tencent.polaris.specification.test.naming.NamingService;
+import com.tencent.polaris.specification.server.test.builder.CircuitBreakerBuilder;
+import com.tencent.polaris.specification.server.test.naming.NamingService;
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
 import io.grpc.Server;

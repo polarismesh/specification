@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>com.tencent.polaris</groupId>
 			<artifactId>polaris-specification</artifactId>
-			<version>1.5.1</version>
+			<version>1.5.2-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

@@ -15,7 +15,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package com.tencent.polaris.specification.test.builder;
+package com.tencent.polaris.specification.server.test.builder;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

@@ -151,6 +151,20 @@ message MetadataRoutingConfig {
   MetadataFailover failover = 4;
 }
 
+// NearbyRoutingConfig routing configuration
+message NearbyRoutingConfig {
+  // 被调服务名，支持*，代表全部服务
+  string service = 1;
+  // 被调命名空间
+  string namespace = 2;
+  // 默认就近级别，为空时默认为zone
+  string match_level = 3;
+  // 最大就近级别，为空值默认为none
+  string max_match_level = 4;
+  // 是否强制就近
+  bool strictNearby = 5;
+}
+
 // RuleRoutingConfig routing configuration
 message RuleRoutingConfig {
   // source source info

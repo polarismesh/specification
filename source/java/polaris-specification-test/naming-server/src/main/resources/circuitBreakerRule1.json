@@ -58,5 +58,57 @@
       "headers": [],
       "body": ""
     }
-  }
+  },
+  "conditionGroup": [
+    {
+      "method": {
+        "type": "EXACT",
+        "value": "foo"
+      },
+      "errorConditions": [
+        {
+          "inputType": "RET_CODE",
+          "condition": {
+            "type": "NOT_EQUALS",
+            "value": "200",
+            "valueType": "TEXT"
+          }
+        }
+      ],
+      "triggerCondition": [
+        {
+          "triggerType": "CONSECUTIVE_ERROR",
+          "errorCount": 1,
+          "errorPercent": 1,
+          "interval": 5,
+          "minimumRequest": 5
+        }
+      ]
+    },
+    {
+      "method": {
+        "type": "EXACT",
+        "value": "foo1"
+      },
+      "errorConditions": [
+        {
+          "inputType": "RET_CODE",
+          "condition": {
+            "type": "NOT_EQUALS",
+            "value": "0",
+            "valueType": "TEXT"
+          }
+        }
+      ],
+      "triggerCondition": [
+        {
+          "triggerType": "CONSECUTIVE_ERROR",
+          "errorCount": 1,
+          "errorPercent": 1,
+          "interval": 5,
+          "minimumRequest": 5
+        }
+      ]
+    }
+  ]
 }
