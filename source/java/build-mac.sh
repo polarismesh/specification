@@ -42,8 +42,8 @@ cp ${traffic_manage_dir}/ratelimiter/*.proto ${java_source_dir}/proto/
 version=`cat ${workdir}/VERSION`
 echo $version
 pushd ${java_root_dir}
-sed -i "s/##VERSION##/${version}/g" pom.xml
+sed -i "" "s/##VERSION##/${version}/g" pom.xml
 popd
 pushd ${java_test_root_dir}
-sed -i "s/##VERSION##/${version}/g" pom.xml
+sed -i "" "s/##VERSION##/${version}/g" pom.xml
 popd

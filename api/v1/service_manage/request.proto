@@ -27,6 +27,10 @@ message DiscoverRequest {
     FAULT_DETECTOR = 13;
     reserved 14 to 99;
     LANE = 100;
+    // 自定义路由规则
+    CUSTOM_ROUTE_RULE = 101;
+    // 就近路由规则
+    NEARBY_ROUTE_RULE = 102;
   }
 
   DiscoverRequestType type = 1;
