@@ -116,9 +116,9 @@ message DiscoverResponse {
   Service aliasFor = 21;
   repeated LaneGroup lanes = 22;
   // 自定义路由规则内容
-  repeated RouteRule customRouteRules = 23;
+  repeated RouteRule custom_route_rules = 23;
   // 就近路由规则内容
-  repeated RouteRule nearbyRouteRules = 24;
+  repeated RouteRule nearby_route_rules = 24;
 }
 
 message OptionSwitch { map<string, string> options = 1; }
