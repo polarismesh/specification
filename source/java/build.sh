@@ -31,6 +31,9 @@ java_root_dir=${workdir}/source/java/polaris-specification
 java_test_root_dir=${workdir}/source/java/polaris-specification-test
 java_source_dir=${java_root_dir}/src/main
 
+if [ ! -d "${java_source_dir}/proto" ]; then
+  mkdir -p ${java_source_dir}/proto
+fi
 cp ${model_dir}/*.proto ${java_source_dir}/proto/
 cp ${service_manage_dir}/*.proto ${java_source_dir}/proto/
 cp ${traffic_manage_dir}/*.proto ${java_source_dir}/proto/
