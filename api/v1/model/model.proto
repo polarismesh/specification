@@ -59,3 +59,13 @@ message ClientLabel {
   string key = 1;
   MatchString value = 2;
 }
+
+// API统一数据结构
+message API {
+  // API的协议，*或者为空代表全部
+  string protocol = 1 [ json_name = "protocol" ];
+  // API的方法，*或者为空代表全部
+  string method = 2 [ json_name = "method" ];
+  // API的路径，支持多种匹配方式
+  MatchString path = 3 [ json_name = "path" ];
+}
