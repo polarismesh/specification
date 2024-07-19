@@ -37,7 +37,7 @@ message FaultDetectRule {
     string service = 1;
     string namespace = 2;
     // deprecated_filed  use api.path instead
-    MatchString method = 3;
+    MatchString method = 3 [deprecated = true];
     API api = 4;
   }
   // detect target

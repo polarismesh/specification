@@ -225,7 +225,7 @@ message RuleMatcher {
     string service = 1;
     string namespace = 2;
     // deprecated_filed  using api.path in blockConfig instead
-    MatchString method = 3;
+    MatchString method = 3 [deprecated = true];
   }
   SourceService source = 1;
   DestinationService destination = 2;
@@ -270,9 +270,9 @@ message CircuitBreakerRule {
   // match condition for this rule
   RuleMatcher rule_matcher = 22;
   // deprecated_filed error conditions to judge an invocation as an error
-  repeated ErrorCondition error_conditions = 23;
+  repeated ErrorCondition error_conditions = 23 [deprecated = true];
   // deprecated_filed trigger condition to trigger circuitbreaking
-  repeated TriggerCondition trigger_condition = 24;
+  repeated TriggerCondition trigger_condition = 24 [deprecated = true];
   // the maximum % of an upstream cluster that can be ejected
   uint32 max_ejection_percent = 25;
   // recover condition to make resource open to close
