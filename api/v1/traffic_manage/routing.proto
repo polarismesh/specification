@@ -180,10 +180,10 @@ message NearbyRoutingConfig {
 // RuleRoutingConfig routing configuration
 message RuleRoutingConfig {
   // source source info
-  // deprecated: only for compatible to the old version server
+  // deprecated_filed  only for compatible to the old version server
   repeated SourceService sources = 1 [deprecated = true];
   // destination destinations info
-  // deprecated: only for compatible to the old version server
+  // deprecated_filed  only for compatible to the old version server
   repeated DestinationGroup destinations = 2 [deprecated = true];
   // rule route chain
   repeated SubRuleRouting rules = 3;
