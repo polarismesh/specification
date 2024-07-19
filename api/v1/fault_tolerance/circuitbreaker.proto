@@ -224,7 +224,8 @@ message RuleMatcher {
   message DestinationService {
     string service = 1;
     string namespace = 2;
-    MatchString method = 3;
+    // deprecated_filed  using api.path in blockConfig instead
+    MatchString method = 3 [deprecated = true];
   }
   SourceService source = 1;
   DestinationService destination = 2;
@@ -268,10 +269,10 @@ message CircuitBreakerRule {
   Level level = 21;
   // match condition for this rule
   RuleMatcher rule_matcher = 22;
-  // error conditions to judge an invocation as an error
-  repeated ErrorCondition error_conditions = 23;
-  // trigger condition to trigger circuitbreaking
-  repeated TriggerCondition trigger_condition = 24;
+  // deprecated_filed error conditions to judge an invocation as an error
+  repeated ErrorCondition error_conditions = 23 [deprecated = true];
+  // deprecated_filed trigger condition to trigger circuitbreaking
+  repeated TriggerCondition trigger_condition = 24 [deprecated = true];
   // the maximum % of an upstream cluster that can be ejected
   uint32 max_ejection_percent = 25;
   // recover condition to make resource open to close
@@ -280,6 +281,10 @@ message CircuitBreakerRule {
   FaultDetectConfig faultDetectConfig = 27;
   // fall back configuration
   FallbackConfig fallbackConfig = 28;
+  // list for block configuration
+  repeated BlockConfig block_configs = 29 [ json_name = "block_configs" ];
+  // priority rules priority
+  uint32 priority = 30 [ json_name = "priority" ];
 }
 
 // the condition to judge an input invocation as an error
@@ -307,6 +312,7 @@ message TriggerCondition {
   uint32 minimum_request = 5;
 }
 
+// circuitbreaking OPEN status recover
 message RecoverCondition {
   // seconds from open to half-open
   uint32 sleep_window = 1;
@@ -314,15 +320,18 @@ message RecoverCondition {
   uint32 consecutiveSuccess = 2;
 }
 
+// fault detect config within circuitbreaking
 message FaultDetectConfig {
   bool enable = 1;
 }
 
+// fallback config
 message FallbackConfig {
   bool enable = 1;
   FallbackResponse response = 2;
 }
 
+// fallback response
 message FallbackResponse {
   int32 code = 1;
   message MessageHeader {
@@ -331,4 +340,15 @@ message FallbackResponse {
   }
   repeated MessageHeader headers = 2;
   string body = 3;
+}
+
+// blocking strategy
+message BlockConfig {
+  string name = 1 [ json_name = "name" ];
+  // blocking target api
+  API api = 2 [ json_name = "api" ];
+  // conditions to judge an invocation as an error
+  repeated ErrorCondition error_conditions = 3 [ json_name = "error_conditions" ];
+  // trigger condition to trigger circuitbreaking
+  repeated TriggerCondition trigger_conditions = 4 [ json_name = "trigger_conditions" ];
 }

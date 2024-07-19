@@ -180,11 +180,11 @@ message NearbyRoutingConfig {
 // RuleRoutingConfig routing configuration
 message RuleRoutingConfig {
   // source source info
-  // deprecated: only for compatible to the old version server
-  repeated SourceService sources = 1;
+  // deprecated_filed  only for compatible to the old version server
+  repeated SourceService sources = 1 [deprecated = true];
   // destination destinations info
-  // deprecated: only for compatible to the old version server
-  repeated DestinationGroup destinations = 2;
+  // deprecated_filed  only for compatible to the old version server
+  repeated DestinationGroup destinations = 2 [deprecated = true];
   // rule route chain
   repeated SubRuleRouting rules = 3;
 }
@@ -260,6 +260,8 @@ message SourceMatch {
     PATH = 5;
     // cookie match http cookie
     COOKIE = 6;
+    // indicate the caller instance metadata
+    CALLER_METADATA = 7;
   }
   Type type = 1;
   // header key or query key

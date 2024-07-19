@@ -36,7 +36,9 @@ message FaultDetectRule {
   message DestinationService {
     string service = 1;
     string namespace = 2;
-    MatchString method = 3;
+    // deprecated_filed  use api.path instead
+    MatchString method = 3 [deprecated = true];
+    API api = 4;
   }
   // detect target
   DestinationService target_service = 21;
@@ -60,6 +62,8 @@ message FaultDetectRule {
   TcpProtocolConfig tcp_config = 27;
   // udp detect config
   UdpProtocolConfig udp_config = 28;
+  // priority rules priority
+  uint32 priority = 29 [ json_name = "priority" ];
 }
 
 message HttpProtocolConfig {
