@@ -260,6 +260,8 @@ message SourceMatch {
     PATH = 5;
     // cookie match http cookie
     COOKIE = 6;
+    // indicate the caller instance metadata
+    CALLER_METADATA = 7;
   }
   Type type = 1;
   // header key or query key
