@@ -143,6 +143,20 @@ pub struct ClientLabel {
     #[prost(message, optional, tag = "2")]
     pub value: ::core::option::Option<MatchString>,
 }
+/// API统一数据结构
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Api {
+    /// API的协议，*或者为空代表全部
+    #[prost(string, tag = "1")]
+    pub protocol: ::prost::alloc::string::String,
+    /// API的方法，*或者为空代表全部
+    #[prost(string, tag = "2")]
+    pub method: ::prost::alloc::string::String,
+    /// API的路径，支持多种匹配方式
+    #[prost(message, optional, tag = "3")]
+    pub path: ::core::option::Option<MatchString>,
+}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
@@ -604,6 +618,10 @@ pub mod discover_request {
         Namespaces = 12,
         FaultDetector = 13,
         Lane = 100,
+        /// 自定义路由规则
+        CustomRouteRule = 101,
+        /// 就近路由规则
+        NearbyRouteRule = 102,
     }
     impl DiscoverRequestType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -622,6 +640,8 @@ pub mod discover_request {
                 DiscoverRequestType::Namespaces => "NAMESPACES",
                 DiscoverRequestType::FaultDetector => "FAULT_DETECTOR",
                 DiscoverRequestType::Lane => "LANE",
+                DiscoverRequestType::CustomRouteRule => "CUSTOM_ROUTE_RULE",
+                DiscoverRequestType::NearbyRouteRule => "NEARBY_ROUTE_RULE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -637,6 +657,8 @@ pub mod discover_request {
                 "NAMESPACES" => Some(Self::Namespaces),
                 "FAULT_DETECTOR" => Some(Self::FaultDetector),
                 "LANE" => Some(Self::Lane),
+                "CUSTOM_ROUTE_RULE" => Some(Self::CustomRouteRule),
+                "NEARBY_ROUTE_RULE" => Some(Self::NearbyRouteRule),
                 _ => None,
             }
         }
@@ -820,8 +842,15 @@ pub struct RouteRule {
     pub description: ::prost::alloc::string::String,
     /// extendInfo 用于承载一些额外信息
     /// case 1: 升级到 v2 版本时，记录对应到 v1 版本的 id 信息
+    /// deprecated_filed only for compatible to the old version server
     #[prost(map = "string, string", tag = "20")]
     pub extend_info: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// 路由规则标签数据
+    #[prost(map = "string, string", tag = "50")]
+    pub metadata: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
@@ -903,16 +932,91 @@ pub struct MetadataRoutingConfig {
     #[prost(message, optional, tag = "4")]
     pub failover: ::core::option::Option<MetadataFailover>,
 }
+/// NearbyRoutingConfig routing configuration
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct NearbyRoutingConfig {
+    /// 被调服务名，支持*，代表全部服务
+    #[prost(string, tag = "1")]
+    pub service: ::prost::alloc::string::String,
+    /// 被调命名空间
+    #[prost(string, tag = "2")]
+    pub namespace: ::prost::alloc::string::String,
+    /// 默认就近级别
+    #[prost(enumeration = "nearby_routing_config::LocationLevel", tag = "3")]
+    pub match_level: i32,
+    /// 最大就近级别
+    #[prost(enumeration = "nearby_routing_config::LocationLevel", tag = "4")]
+    pub max_match_level: i32,
+    /// 是否强制就近
+    #[prost(bool, tag = "5")]
+    pub strict_nearby: bool,
+}
+/// Nested message and enum types in `NearbyRoutingConfig`.
+pub mod nearby_routing_config {
+    #[derive(
+        Clone,
+        Copy,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash,
+        PartialOrd,
+        Ord,
+        ::prost::Enumeration
+    )]
+    #[repr(i32)]
+    pub enum LocationLevel {
+        /// 未知就近级别，等同于未定义级别
+        Unknown = 0,
+        /// 机房就近级别
+        Campus = 1,
+        /// 可用区就近级别
+        Zone = 2,
+        /// 地域就近级别
+        Region = 3,
+        /// 全局就近级别
+        All = 4,
+    }
+    impl LocationLevel {
+        /// String value of the enum field names used in the ProtoBuf definition.
+        ///
+        /// The values are not transformed in any way and thus are considered stable
+        /// (if the ProtoBuf definition does not change) and safe for programmatic use.
+        pub fn as_str_name(&self) -> &'static str {
+            match self {
+                LocationLevel::Unknown => "UNKNOWN",
+                LocationLevel::Campus => "CAMPUS",
+                LocationLevel::Zone => "ZONE",
+                LocationLevel::Region => "REGION",
+                LocationLevel::All => "ALL",
+            }
+        }
+        /// Creates an enum from field names used in the ProtoBuf definition.
+        pub fn from_str_name(value: &str) -> ::core::option::Option<Self> {
+            match value {
+                "UNKNOWN" => Some(Self::Unknown),
+                "CAMPUS" => Some(Self::Campus),
+                "ZONE" => Some(Self::Zone),
+                "REGION" => Some(Self::Region),
+                "ALL" => Some(Self::All),
+                _ => None,
+            }
+        }
+    }
+}
 /// RuleRoutingConfig routing configuration
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RuleRoutingConfig {
     /// source source info
-    /// deprecated: only for compatible to the old version server
+    /// deprecated_filed  only for compatible to the old version server
+    #[deprecated]
     #[prost(message, repeated, tag = "1")]
     pub sources: ::prost::alloc::vec::Vec<SourceService>,
     /// destination destinations info
-    /// deprecated: only for compatible to the old version server
+    /// deprecated_filed  only for compatible to the old version server
+    #[deprecated]
     #[prost(message, repeated, tag = "2")]
     pub destinations: ::prost::alloc::vec::Vec<DestinationGroup>,
     /// rule route chain
@@ -1026,6 +1130,8 @@ pub mod source_match {
         Path = 5,
         /// cookie match http cookie
         Cookie = 6,
+        /// indicate the caller instance metadata
+        CallerMetadata = 7,
     }
     impl Type {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -1041,6 +1147,7 @@ pub mod source_match {
                 Type::CallerIp => "CALLER_IP",
                 Type::Path => "PATH",
                 Type::Cookie => "COOKIE",
+                Type::CallerMetadata => "CALLER_METADATA",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1053,6 +1160,7 @@ pub mod source_match {
                 "CALLER_IP" => Some(Self::CallerIp),
                 "PATH" => Some(Self::Path),
                 "COOKIE" => Some(Self::Cookie),
+                "CALLER_METADATA" => Some(Self::CallerMetadata),
                 _ => None,
             }
         }
@@ -1177,6 +1285,12 @@ pub struct Rule {
     /// 最大排队时长，单位秒
     #[prost(message, optional, tag = "26")]
     pub max_queue_delay: ::core::option::Option<u32>,
+    /// 限流规则标签数据
+    #[prost(map = "string, string", tag = "50")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `Rule`.
 pub mod rule {
@@ -2011,6 +2125,8 @@ pub mod rule_matcher {
         pub service: ::prost::alloc::string::String,
         #[prost(string, tag = "2")]
         pub namespace: ::prost::alloc::string::String,
+        /// deprecated_filed  using api.path in blockConfig instead
+        #[deprecated]
         #[prost(message, optional, tag = "3")]
         pub method: ::core::option::Option<super::MatchString>,
     }
@@ -2051,10 +2167,12 @@ pub struct CircuitBreakerRule {
     /// match condition for this rule
     #[prost(message, optional, tag = "22")]
     pub rule_matcher: ::core::option::Option<RuleMatcher>,
-    /// error conditions to judge an invocation as an error
+    /// deprecated_filed error conditions to judge an invocation as an error
+    #[deprecated]
     #[prost(message, repeated, tag = "23")]
     pub error_conditions: ::prost::alloc::vec::Vec<ErrorCondition>,
-    /// trigger condition to trigger circuitbreaking
+    /// deprecated_filed trigger condition to trigger circuitbreaking
+    #[deprecated]
     #[prost(message, repeated, tag = "24")]
     pub trigger_condition: ::prost::alloc::vec::Vec<TriggerCondition>,
     /// the maximum % of an upstream cluster that can be ejected
@@ -2069,6 +2187,18 @@ pub struct CircuitBreakerRule {
     /// fall back configuration
     #[prost(message, optional, tag = "28")]
     pub fallback_config: ::core::option::Option<FallbackConfig>,
+    /// list for block configuration
+    #[prost(message, repeated, tag = "29")]
+    pub block_configs: ::prost::alloc::vec::Vec<BlockConfig>,
+    /// priority rules priority
+    #[prost(uint32, tag = "30")]
+    pub priority: u32,
+    /// 熔断规则标签数据
+    #[prost(map = "string, string", tag = "50")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// the condition to judge an input invocation as an error
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2178,6 +2308,7 @@ pub mod trigger_condition {
         }
     }
 }
+/// circuitbreaking OPEN status recover
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct RecoverCondition {
@@ -2188,12 +2319,14 @@ pub struct RecoverCondition {
     #[prost(uint32, tag = "2")]
     pub consecutive_success: u32,
 }
+/// fault detect config within circuitbreaking
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FaultDetectConfig {
     #[prost(bool, tag = "1")]
     pub enable: bool,
 }
+/// fallback config
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FallbackConfig {
@@ -2202,6 +2335,7 @@ pub struct FallbackConfig {
     #[prost(message, optional, tag = "2")]
     pub response: ::core::option::Option<FallbackResponse>,
 }
+/// fallback response
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct FallbackResponse {
@@ -2222,6 +2356,22 @@ pub mod fallback_response {
         #[prost(string, tag = "2")]
         pub value: ::prost::alloc::string::String,
     }
+}
+/// blocking strategy
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct BlockConfig {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// blocking target api
+    #[prost(message, optional, tag = "2")]
+    pub api: ::core::option::Option<Api>,
+    /// conditions to judge an invocation as an error
+    #[prost(message, repeated, tag = "3")]
+    pub error_conditions: ::prost::alloc::vec::Vec<ErrorCondition>,
+    /// trigger condition to trigger circuitbreaking
+    #[prost(message, repeated, tag = "4")]
+    pub trigger_conditions: ::prost::alloc::vec::Vec<TriggerCondition>,
 }
 /// circuitbreaking level
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -2339,6 +2489,15 @@ pub struct FaultDetectRule {
     /// udp detect config
     #[prost(message, optional, tag = "28")]
     pub udp_config: ::core::option::Option<UdpProtocolConfig>,
+    /// priority rules priority
+    #[prost(uint32, tag = "29")]
+    pub priority: u32,
+    /// 探测规则标签数据
+    #[prost(map = "string, string", tag = "50")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// Nested message and enum types in `FaultDetectRule`.
 pub mod fault_detect_rule {
@@ -2349,8 +2508,12 @@ pub mod fault_detect_rule {
         pub service: ::prost::alloc::string::String,
         #[prost(string, tag = "2")]
         pub namespace: ::prost::alloc::string::String,
+        /// deprecated_filed  use api.path instead
+        #[deprecated]
         #[prost(message, optional, tag = "3")]
         pub method: ::core::option::Option<super::MatchString>,
+        #[prost(message, optional, tag = "4")]
+        pub api: ::core::option::Option<super::Api>,
     }
     /// detect protocol
     #[derive(
@@ -2444,6 +2607,11 @@ pub struct LoginRequest {
     pub name: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "3")]
     pub password: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "4")]
+    pub options: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2458,6 +2626,11 @@ pub struct LoginResponse {
     pub owner_id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "5")]
     pub token: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "6")]
+    pub options: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2488,6 +2661,11 @@ pub struct User {
     pub mobile: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "13")]
     pub email: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "14")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2530,6 +2708,13 @@ pub struct UserGroup {
     pub relation: ::core::option::Option<UserGroupRelation>,
     #[prost(message, optional, tag = "10")]
     pub user_count: ::core::option::Option<u32>,
+    #[prost(message, optional, tag = "11")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "12")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2550,6 +2735,42 @@ pub struct ModifyUserGroup {
     pub add_relations: ::core::option::Option<UserGroupRelation>,
     #[prost(message, optional, tag = "8")]
     pub remove_relations: ::core::option::Option<UserGroupRelation>,
+    #[prost(map = "string, string", tag = "9")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "10")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Role {
+    #[prost(string, tag = "1")]
+    pub id: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "4")]
+    pub owner: ::prost::alloc::string::String,
+    #[prost(string, tag = "5")]
+    pub source: ::prost::alloc::string::String,
+    #[prost(bool, tag = "6")]
+    pub default_role: bool,
+    #[prost(map = "string, string", tag = "7")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(string, tag = "8")]
+    pub comment: ::prost::alloc::string::String,
+    #[prost(string, tag = "9")]
+    pub ctime: ::prost::alloc::string::String,
+    #[prost(string, tag = "10")]
+    pub mtime: ::prost::alloc::string::String,
+    #[prost(message, repeated, tag = "20")]
+    pub users: ::prost::alloc::vec::Vec<User>,
+    #[prost(message, repeated, tag = "21")]
+    pub user_groups: ::prost::alloc::vec::Vec<UserGroup>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2566,6 +2787,8 @@ pub struct Principals {
     pub users: ::prost::alloc::vec::Vec<Principal>,
     #[prost(message, repeated, tag = "2")]
     pub groups: ::prost::alloc::vec::Vec<Principal>,
+    #[prost(message, repeated, tag = "3")]
+    pub roles: ::prost::alloc::vec::Vec<Principal>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2588,6 +2811,34 @@ pub struct StrategyResources {
     pub services: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
     #[prost(message, repeated, tag = "4")]
     pub config_groups: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "5")]
+    pub route_rules: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "6")]
+    pub ratelimit_rules: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "7")]
+    pub circuitbreaker_rules: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "8")]
+    pub faultdetect_rules: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "9")]
+    pub lane_rules: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "21")]
+    pub users: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "22")]
+    pub user_groups: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "23")]
+    pub roles: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+    #[prost(message, repeated, tag = "24")]
+    pub auth_policies: ::prost::alloc::vec::Vec<StrategyResourceEntry>,
+}
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct StrategyResourceLabel {
+    #[prost(string, tag = "1")]
+    pub key: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub value: ::prost::alloc::string::String,
+    #[prost(string, tag = "3")]
+    pub compare_type: ::prost::alloc::string::String,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2614,6 +2865,17 @@ pub struct AuthStrategy {
     pub auth_token: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "11")]
     pub default_strategy: ::core::option::Option<bool>,
+    #[prost(map = "string, string", tag = "12")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "13")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "14")]
+    pub functions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "15")]
+    pub resource_labels: ::prost::alloc::vec::Vec<StrategyResourceLabel>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -2636,12 +2898,25 @@ pub struct ModifyAuthStrategy {
     pub comment: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "9")]
     pub owner: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "12")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "13")]
+    pub source: ::core::option::Option<::prost::alloc::string::String>,
+    #[prost(string, repeated, tag = "14")]
+    pub functions: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, repeated, tag = "15")]
+    pub resource_labels: ::prost::alloc::vec::Vec<StrategyResourceLabel>,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AuthAction {
     OnlyRead = 0,
     ReadWrite = 1,
+    Allow = 10,
+    Deny = 11,
 }
 impl AuthAction {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -2652,6 +2927,8 @@ impl AuthAction {
         match self {
             AuthAction::OnlyRead => "ONLY_READ",
             AuthAction::ReadWrite => "READ_WRITE",
+            AuthAction::Allow => "ALLOW",
+            AuthAction::Deny => "DENY",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2659,6 +2936,8 @@ impl AuthAction {
         match value {
             "ONLY_READ" => Some(Self::OnlyRead),
             "READ_WRITE" => Some(Self::ReadWrite),
+            "ALLOW" => Some(Self::Allow),
+            "DENY" => Some(Self::Deny),
             _ => None,
         }
     }
@@ -2669,6 +2948,15 @@ pub enum ResourceType {
     Namespaces = 0,
     Services = 1,
     ConfigGroups = 2,
+    RouteRules = 3,
+    RateLimitRules = 4,
+    CircuitBreakerRules = 5,
+    FaultDetectRules = 6,
+    LaneRules = 7,
+    Users = 20,
+    UserGroups = 21,
+    Roles = 22,
+    PolicyRules = 23,
 }
 impl ResourceType {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -2680,6 +2968,15 @@ impl ResourceType {
             ResourceType::Namespaces => "Namespaces",
             ResourceType::Services => "Services",
             ResourceType::ConfigGroups => "ConfigGroups",
+            ResourceType::RouteRules => "RouteRules",
+            ResourceType::RateLimitRules => "RateLimitRules",
+            ResourceType::CircuitBreakerRules => "CircuitBreakerRules",
+            ResourceType::FaultDetectRules => "FaultDetectRules",
+            ResourceType::LaneRules => "LaneRules",
+            ResourceType::Users => "Users",
+            ResourceType::UserGroups => "UserGroups",
+            ResourceType::Roles => "Roles",
+            ResourceType::PolicyRules => "PolicyRules",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -2688,6 +2985,15 @@ impl ResourceType {
             "Namespaces" => Some(Self::Namespaces),
             "Services" => Some(Self::Services),
             "ConfigGroups" => Some(Self::ConfigGroups),
+            "RouteRules" => Some(Self::RouteRules),
+            "RateLimitRules" => Some(Self::RateLimitRules),
+            "CircuitBreakerRules" => Some(Self::CircuitBreakerRules),
+            "FaultDetectRules" => Some(Self::FaultDetectRules),
+            "LaneRules" => Some(Self::LaneRules),
+            "Users" => Some(Self::Users),
+            "UserGroups" => Some(Self::UserGroups),
+            "Roles" => Some(Self::Roles),
+            "PolicyRules" => Some(Self::PolicyRules),
             _ => None,
         }
     }
@@ -2697,8 +3003,9 @@ impl ResourceType {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct TrafficEntry {
     /// 标记流量入口类型
-    /// type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为 ServiceGatewaySelector
-    /// type == "polarismesh.cn/service, 则 selector 为 ServiceSelector
+    /// type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为
+    /// ServiceGatewaySelector type == "polarismesh.cn/service, 则 selector 为
+    /// ServiceSelector
     #[prost(string, tag = "1")]
     pub r#type: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "2")]
@@ -2759,6 +3066,12 @@ pub struct LaneGroup {
     /// 泳道组内的流量入口信息
     #[prost(message, repeated, tag = "11")]
     pub rules: ::prost::alloc::vec::Vec<LaneRule>,
+    /// 泳道组标签信息
+    #[prost(map = "string, string", tag = "20")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
 }
 /// TrafficMatchRule 流量匹配规则
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3023,6 +3336,12 @@ pub struct DiscoverResponse {
     pub alias_for: ::core::option::Option<Service>,
     #[prost(message, repeated, tag = "22")]
     pub lanes: ::prost::alloc::vec::Vec<LaneGroup>,
+    /// 自定义路由规则内容
+    #[prost(message, repeated, tag = "23")]
+    pub custom_route_rules: ::prost::alloc::vec::Vec<RouteRule>,
+    /// 就近路由规则内容
+    #[prost(message, repeated, tag = "24")]
+    pub nearby_route_rules: ::prost::alloc::vec::Vec<RouteRule>,
 }
 /// Nested message and enum types in `DiscoverResponse`.
 pub mod discover_response {
@@ -3049,6 +3368,10 @@ pub mod discover_response {
         Namespaces = 12,
         FaultDetector = 13,
         Lane = 100,
+        /// 自定义路由规则
+        CustomRouteRule = 101,
+        /// 就近路由规则
+        NearbyRouteRule = 102,
     }
     impl DiscoverResponseType {
         /// String value of the enum field names used in the ProtoBuf definition.
@@ -3067,6 +3390,8 @@ pub mod discover_response {
                 DiscoverResponseType::Namespaces => "NAMESPACES",
                 DiscoverResponseType::FaultDetector => "FAULT_DETECTOR",
                 DiscoverResponseType::Lane => "LANE",
+                DiscoverResponseType::CustomRouteRule => "CUSTOM_ROUTE_RULE",
+                DiscoverResponseType::NearbyRouteRule => "NEARBY_ROUTE_RULE",
             }
         }
         /// Creates an enum from field names used in the ProtoBuf definition.
@@ -3082,6 +3407,8 @@ pub mod discover_response {
                 "NAMESPACES" => Some(Self::Namespaces),
                 "FAULT_DETECTOR" => Some(Self::FaultDetector),
                 "LANE" => Some(Self::Lane),
+                "CUSTOM_ROUTE_RULE" => Some(Self::CustomRouteRule),
+                "NEARBY_ROUTE_RULE" => Some(Self::NearbyRouteRule),
                 _ => None,
             }
         }

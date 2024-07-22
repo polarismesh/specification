@@ -13,8 +13,9 @@ option java_outer_classname = "LaneProto";
 // 流量入口
 message TrafficEntry {
   // 标记流量入口类型
-  // type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为 ServiceGatewaySelector 
-  // type == "polarismesh.cn/service, 则 selector 为 ServiceSelector
+  // type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为
+  // ServiceGatewaySelector type == "polarismesh.cn/service, 则 selector 为
+  // ServiceSelector
   string type = 1;
   google.protobuf.Any selector = 2;
 }
@@ -55,6 +56,8 @@ message LaneGroup {
   string mtime = 10;
   // 泳道组内的流量入口信息
   repeated LaneRule rules = 11;
+  // 泳道组标签信息
+  map<string, string> metadata = 20;
 }
 
 // TrafficMatchRule 流量匹配规则
