@@ -37,6 +37,7 @@ jobs:
           cd ../
           bash build.sh
           cd polaris-specification
+          rm build.rs
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
       - name: Run cargo login

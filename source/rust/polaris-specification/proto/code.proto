@@ -74,6 +74,7 @@ enum Code {
     InvalidFaultDetectName           = 400901;
     InvalidFaultDetectNamespace      = 400902;
     FaultDetectRuleExisted           = 400903;
+    InvalidMatchRule                 = 400904;
 
     // network relative codes
     ServicesExistedMesh   = 400170;
