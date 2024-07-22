@@ -2913,7 +2913,9 @@ pub struct ModifyAuthStrategy {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum AuthAction {
+    /// deprecated_filed 该字段从未使用过
     OnlyRead = 0,
+    /// deprecated_filed 使用 ALLOW 进行替代
     ReadWrite = 1,
     Allow = 10,
     Deny = 11,
