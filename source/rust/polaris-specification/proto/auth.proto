@@ -9,28 +9,43 @@ option java_package = "com.tencent.polaris.specification.api.v1.security";
 option java_outer_classname = "SecurityProto";
 
 enum AuthAction {
+  // deprecated_filed 该字段从未使用过
   ONLY_READ = 0;
+  // deprecated_filed 使用 ALLOW 进行替代
   READ_WRITE = 1;
+  ALLOW = 10;
+  DENY = 11;
 }
 
 enum ResourceType {
   Namespaces = 0;
   Services = 1;
   ConfigGroups = 2;
+  RouteRules = 3;
+  RateLimitRules = 4;
+  CircuitBreakerRules = 5;
+  FaultDetectRules = 6;
+  LaneRules = 7;
+  Users = 20;
+  UserGroups = 21;
+  Roles = 22;
+  PolicyRules = 23;
 }
 
 message LoginRequest {
   google.protobuf.StringValue owner = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue password = 3;
+  map<string, string> options = 4;
 }
 
 message LoginResponse {
-  google.protobuf.StringValue user_id = 1 [json_name = "user_id"];
+  google.protobuf.StringValue user_id = 1 [ json_name = "user_id" ];
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue role = 3;
-  google.protobuf.StringValue owner_id = 4 [json_name = "owner_id"];
+  google.protobuf.StringValue owner_id = 4 [ json_name = "owner_id" ];
   google.protobuf.StringValue token = 5;
+  map<string, string> options = 6;
 }
 
 message User {
@@ -39,24 +54,25 @@ message User {
   google.protobuf.StringValue password = 3;
   google.protobuf.StringValue owner = 4;
   google.protobuf.StringValue source = 5;
-  google.protobuf.StringValue auth_token = 6 [json_name = "auth_token"];
-  google.protobuf.BoolValue token_enable = 7 [json_name = "token_enable"];
+  google.protobuf.StringValue auth_token = 6 [ json_name = "auth_token" ];
+  google.protobuf.BoolValue token_enable = 7 [ json_name = "token_enable" ];
   google.protobuf.StringValue comment = 8;
   google.protobuf.StringValue ctime = 9;
   google.protobuf.StringValue mtime = 10;
-  google.protobuf.StringValue user_type = 11 [json_name = "user_type"];
+  google.protobuf.StringValue user_type = 11 [ json_name = "user_type" ];
   google.protobuf.StringValue mobile = 12;
   google.protobuf.StringValue email = 13;
+  map<string, string> metadata = 14;
 }
 
 message ModifyUserPassword {
   google.protobuf.StringValue id = 1;
-  google.protobuf.StringValue old_password = 2 [json_name = "old_password"];
-  google.protobuf.StringValue new_password = 3 [json_name = "new_password"];
+  google.protobuf.StringValue old_password = 2 [ json_name = "old_password" ];
+  google.protobuf.StringValue new_password = 3 [ json_name = "new_password" ];
 }
 
 message UserGroupRelation {
-  google.protobuf.StringValue group_id = 1 [json_name = "group_id"];
+  google.protobuf.StringValue group_id = 1 [ json_name = "group_id" ];
   repeated User users = 2;
 }
 
@@ -64,24 +80,42 @@ message UserGroup {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
   google.protobuf.StringValue owner = 3;
-  google.protobuf.StringValue auth_token = 4 [json_name = "auth_token"];
-  google.protobuf.BoolValue token_enable = 5 [json_name = "token_enable"];
+  google.protobuf.StringValue auth_token = 4 [ json_name = "auth_token" ];
+  google.protobuf.BoolValue token_enable = 5 [ json_name = "token_enable" ];
   google.protobuf.StringValue comment = 6;
   google.protobuf.StringValue ctime = 7;
   google.protobuf.StringValue mtime = 8;
   UserGroupRelation relation = 9;
-  google.protobuf.UInt32Value user_count = 10 [json_name = "user_count"];
+  google.protobuf.UInt32Value user_count = 10 [ json_name = "user_count" ];
+  google.protobuf.StringValue source = 11;
+  map<string, string> metadata = 12;
 }
 
 message ModifyUserGroup {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue owner = 2;
   google.protobuf.StringValue name = 3;
-  google.protobuf.StringValue auth_token = 4 [json_name = "auth_token"];
-  google.protobuf.BoolValue token_enable = 5 [json_name = "token_enable"];
+  google.protobuf.StringValue auth_token = 4 [ json_name = "auth_token" ];
+  google.protobuf.BoolValue token_enable = 5 [ json_name = "token_enable" ];
   google.protobuf.StringValue comment = 6;
-  UserGroupRelation add_relations = 7 [json_name = "add_relations"];
-  UserGroupRelation remove_relations = 8 [json_name = "remove_relations"];
+  UserGroupRelation add_relations = 7 [ json_name = "add_relations" ];
+  UserGroupRelation remove_relations = 8 [ json_name = "remove_relations" ];
+  map<string, string> metadata = 9;
+  google.protobuf.StringValue source = 10;
+}
+
+message Role {
+  string id = 1;
+  string name = 2;
+  string owner = 4;
+  string source = 5;
+  bool default_role = 6 [ json_name = "default_role" ];
+  map<string, string> metadata = 7;
+  string comment = 8;
+  string ctime = 9;
+  string mtime = 10;
+  repeated User users = 20;
+  repeated UserGroup user_groups = 21 [ json_name = "user_groups" ];
 }
 
 message Principal {
@@ -92,6 +126,7 @@ message Principal {
 message Principals {
   repeated Principal users = 1;
   repeated Principal groups = 2;
+  repeated Principal roles = 3;
 }
 
 message StrategyResourceEntry {
@@ -101,10 +136,27 @@ message StrategyResourceEntry {
 }
 
 message StrategyResources {
-  google.protobuf.StringValue strategy_id = 1 [json_name = "strategy_id"];
+  google.protobuf.StringValue strategy_id = 1 [ json_name = "strategy_id" ];
   repeated StrategyResourceEntry namespaces = 2;
   repeated StrategyResourceEntry services = 3;
-  repeated StrategyResourceEntry config_groups = 4 [json_name = "config_groups"];
+  repeated StrategyResourceEntry config_groups = 4
+      [ json_name = "config_groups" ];
+  repeated StrategyResourceEntry route_rules = 5 [ json_name = "route_rules" ];
+  repeated StrategyResourceEntry ratelimit_rules = 6 [ json_name = "ratelimit_rules" ];
+  repeated StrategyResourceEntry circuitbreaker_rules = 7 [ json_name = "circuitbreaker_rules" ];
+  repeated StrategyResourceEntry faultdetect_rules = 8 [ json_name = "faultdetect_rules" ];
+  repeated StrategyResourceEntry lane_rules = 9 [ json_name = "lane_rules" ];
+
+  repeated StrategyResourceEntry users = 21 [ json_name = "users" ];
+  repeated StrategyResourceEntry user_groups = 22 [ json_name = "user_groups" ];
+  repeated StrategyResourceEntry roles = 23 [ json_name = "roles" ];
+  repeated StrategyResourceEntry auth_policies = 24 [ json_name = "auth_policies" ];
+}
+
+message StrategyResourceLabel {
+  string key = 1;
+  string value = 2;
+  string compare_type = 3 [ json_name = "compare_type" ];
 }
 
 message AuthStrategy {
@@ -117,18 +169,29 @@ message AuthStrategy {
   google.protobuf.StringValue owner = 7;
   google.protobuf.StringValue ctime = 8;
   google.protobuf.StringValue mtime = 9;
-  google.protobuf.StringValue auth_token = 10 [json_name = "auth_token"];
-  google.protobuf.BoolValue default_strategy = 11 [json_name = "default_strategy"];
+  google.protobuf.StringValue auth_token = 10 [ json_name = "auth_token" ];
+  google.protobuf.BoolValue default_strategy = 11
+      [ json_name = "default_strategy" ];
+  map<string, string> metadata = 12;
+  google.protobuf.StringValue source = 13;
+  repeated string functions = 14;
+  repeated StrategyResourceLabel resource_labels = 15
+      [ json_name = "resource_labels" ];
 }
 
 message ModifyAuthStrategy {
   google.protobuf.StringValue id = 1;
   google.protobuf.StringValue name = 2;
-  Principals add_principals = 3 [json_name = "add_principals"];
-  Principals remove_principals = 4 [json_name = "remove_principals"];
-  StrategyResources add_resources = 5 [json_name = "add_resources"];
-  StrategyResources remove_resources = 6 [json_name = "remove_resources"];
+  Principals add_principals = 3 [ json_name = "add_principals" ];
+  Principals remove_principals = 4 [ json_name = "remove_principals" ];
+  StrategyResources add_resources = 5 [ json_name = "add_resources" ];
+  StrategyResources remove_resources = 6 [ json_name = "remove_resources" ];
   AuthAction action = 7;
   google.protobuf.StringValue comment = 8;
   google.protobuf.StringValue owner = 9;
+  map<string, string> metadata = 12;
+  google.protobuf.StringValue source = 13;
+  repeated string functions = 14;
+  repeated StrategyResourceLabel resource_labels = 15
+      [ json_name = "resource_labels" ];
 }
