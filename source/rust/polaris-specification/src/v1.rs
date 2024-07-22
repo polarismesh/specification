@@ -1173,6 +1173,8 @@ pub enum RoutingPolicy {
     RulePolicy = 0,
     /// Route by destination metadata ==> MetadataRoutingConfig
     MetadataPolicy = 1,
+    /// Route by Nearby rule => NearByRoutingConfig
+    NearbyPolicy = 2,
 }
 impl RoutingPolicy {
     /// String value of the enum field names used in the ProtoBuf definition.
@@ -1183,6 +1185,7 @@ impl RoutingPolicy {
         match self {
             RoutingPolicy::RulePolicy => "RulePolicy",
             RoutingPolicy::MetadataPolicy => "MetadataPolicy",
+            RoutingPolicy::NearbyPolicy => "NearbyPolicy",
         }
     }
     /// Creates an enum from field names used in the ProtoBuf definition.
@@ -1190,6 +1193,7 @@ impl RoutingPolicy {
         match value {
             "RulePolicy" => Some(Self::RulePolicy),
             "MetadataPolicy" => Some(Self::MetadataPolicy),
+            "NearbyPolicy" => Some(Self::NearbyPolicy),
             _ => None,
         }
     }
