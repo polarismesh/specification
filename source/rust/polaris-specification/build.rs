@@ -1,4 +1,3 @@
-use prost_build;
 use std::io::Result;
 use std::path::PathBuf;
 
@@ -18,6 +17,12 @@ fn main() -> Result<()> {
     config
         .out_dir("src")
         .compile_protos(&proto_list, &["proto/"])
+        .unwrap();
+
+    tonic_build::configure()
+        .build_server(true)
+        .out_dir("src")
+        .compile(&proto_list, &["proto/"])
         .unwrap();
     Ok(())
 }

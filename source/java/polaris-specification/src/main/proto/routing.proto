@@ -93,8 +93,6 @@ enum RoutingPolicy {
   RulePolicy = 0;
   // Route by destination metadata ==> MetadataRoutingConfig
   MetadataPolicy = 1;
-  // Route by Nearby rule => NearByRoutingConfig
-  NearbyPolicy = 2;
 }
 
 // configuration root for route

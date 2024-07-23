@@ -94,6 +94,8 @@ message Rule {
   google.protobuf.StringValue etime = 25;
   // 最大排队时长，单位秒
   google.protobuf.UInt32Value max_queue_delay = 26 [json_name = "max_queue_delay"];
+  // 限流规则标签数据
+  map<string, string> metadata = 50;
 }
 
 message MatchArgument {

@@ -13,6 +13,6 @@ authors = ["https://github.com/polarismesh"]
 
 [workspace.dependencies]
 bytes = "1.4.0"
-prost = "0.11.9"
+prost = "0.12"
 # Only necessary if using Protobuf well-known types:
-prost-types = "0.11.9"
+prost-types = "0.12"
