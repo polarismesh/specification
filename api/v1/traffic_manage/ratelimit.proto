@@ -96,6 +96,10 @@ message Rule {
   google.protobuf.UInt32Value max_queue_delay = 26 [json_name = "max_queue_delay"];
   // 限流规则标签数据
   map<string, string> metadata = 50;
+  // amount for concurrency rate-limit
+  ConcurrencyAmount concurrencyAmount = 27 [ json_name = "concurrency_amount" ];
+  // fallback configuration
+  FallbackConfig fallbackConfig = 28 [ json_name = "fallback_config" ];
 }
 
 message MatchArgument {
@@ -113,12 +117,19 @@ message MatchArgument {
     CALLER_SERVICE = 4;
     // caller host ip
     CALLER_IP =5;
+    // caller instance metadata
+    CALLER_METADATA = 6;
   }
   Type type = 1;
   // header key or query key
   string key = 2;
   // header value or query value
   MatchString value = 3;
+}
+
+// concurrency rate-limit amount config
+message ConcurrencyAmount {
+  uint32 maxAmount = 1 [ json_name = "maxAmount" ];
 }
 
 // 分布式限流服务集群

@@ -327,23 +327,6 @@ message FaultDetectConfig {
   bool enable = 1;
 }
 
-// fallback config
-message FallbackConfig {
-  bool enable = 1;
-  FallbackResponse response = 2;
-}
-
-// fallback response
-message FallbackResponse {
-  int32 code = 1;
-  message MessageHeader {
-    string key = 1;
-    string value = 2;
-  }
-  repeated MessageHeader headers = 2;
-  string body = 3;
-}
-
 // blocking strategy
 message BlockConfig {
   string name = 1 [ json_name = "name" ];
