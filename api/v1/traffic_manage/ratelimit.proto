@@ -129,7 +129,7 @@ message MatchArgument {
 
 // concurrency rate-limit amount config
 message ConcurrencyAmount {
-  uint32 maxAmount = 1 [ json_name = "maxAmount" ];
+  uint32 maxAmount = 1 [ json_name = "max_amount" ];
 }
 
 // 分布式限流服务集群
