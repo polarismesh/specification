@@ -123,7 +123,7 @@ message DiscoverResponse {
   // 就近路由规则内容
   repeated RouteRule nearbyRouteRules = 24;
   // 无损上下线规则内容
-  LosslessRule losslessRule = 25;
+  repeated LosslessRule losslessRules = 25;
 }
 
 message OptionSwitch { map<string, string> options = 1; }
