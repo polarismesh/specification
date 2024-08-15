@@ -134,7 +134,7 @@ message ConcurrencyAmount {
 
 // custom response text when limited
 message CustomResponse {
-  string body = 3;
+  string body = 3 [ json_name = "body" ];
 }
 
 // 分布式限流服务集群
