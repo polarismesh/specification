@@ -1132,7 +1132,7 @@ type CircuitBreakerRule struct {
 	// fault detection enable config
 	FaultDetectConfig *FaultDetectConfig `protobuf:"bytes,27,opt,name=faultDetectConfig,proto3" json:"faultDetectConfig,omitempty"`
 	// fall back configuration
-	FallbackConfig *model.FallbackConfig `protobuf:"bytes,28,opt,name=fallbackConfig,proto3" json:"fallbackConfig,omitempty"`
+	FallbackConfig *FallbackConfig `protobuf:"bytes,28,opt,name=fallbackConfig,proto3" json:"fallbackConfig,omitempty"`
 	// list for block configuration
 	BlockConfigs []*BlockConfig `protobuf:"bytes,29,rep,name=block_configs,proto3" json:"block_configs,omitempty"`
 	// priority rules priority
@@ -1287,7 +1287,7 @@ func (x *CircuitBreakerRule) GetFaultDetectConfig() *FaultDetectConfig {
 	return nil
 }
 
-func (x *CircuitBreakerRule) GetFallbackConfig() *model.FallbackConfig {
+func (x *CircuitBreakerRule) GetFallbackConfig() *FallbackConfig {
 	if x != nil {
 		return x.FallbackConfig
 	}
@@ -1632,6 +1632,126 @@ func (x *BlockConfig) GetTriggerConditions() []*TriggerCondition {
 	return nil
 }
 
+// fallback config
+type FallbackConfig struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Enable   bool              `protobuf:"varint,1,opt,name=enable,proto3" json:"enable,omitempty"`
+	Response *FallbackResponse `protobuf:"bytes,2,opt,name=response,proto3" json:"response,omitempty"`
+}
+
+func (x *FallbackConfig) Reset() {
+	*x = FallbackConfig{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_circuitbreaker_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FallbackConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FallbackConfig) ProtoMessage() {}
+
+func (x *FallbackConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_circuitbreaker_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FallbackConfig.ProtoReflect.Descriptor instead.
+func (*FallbackConfig) Descriptor() ([]byte, []int) {
+	return file_circuitbreaker_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *FallbackConfig) GetEnable() bool {
+	if x != nil {
+		return x.Enable
+	}
+	return false
+}
+
+func (x *FallbackConfig) GetResponse() *FallbackResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
+// fallback response
+type FallbackResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code    int32                             `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
+	Headers []*FallbackResponse_MessageHeader `protobuf:"bytes,2,rep,name=headers,proto3" json:"headers,omitempty"`
+	Body    string                            `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+}
+
+func (x *FallbackResponse) Reset() {
+	*x = FallbackResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_circuitbreaker_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FallbackResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FallbackResponse) ProtoMessage() {}
+
+func (x *FallbackResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_circuitbreaker_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FallbackResponse.ProtoReflect.Descriptor instead.
+func (*FallbackResponse) Descriptor() ([]byte, []int) {
+	return file_circuitbreaker_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *FallbackResponse) GetCode() int32 {
+	if x != nil {
+		return x.Code
+	}
+	return 0
+}
+
+func (x *FallbackResponse) GetHeaders() []*FallbackResponse_MessageHeader {
+	if x != nil {
+		return x.Headers
+	}
+	return nil
+}
+
+func (x *FallbackResponse) GetBody() string {
+	if x != nil {
+		return x.Body
+	}
+	return ""
+}
+
 // 错误率熔断配置
 type CbPolicy_ErrRateConfig struct {
 	state         protoimpl.MessageState
@@ -1652,7 +1772,7 @@ type CbPolicy_ErrRateConfig struct {
 func (x *CbPolicy_ErrRateConfig) Reset() {
 	*x = CbPolicy_ErrRateConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_circuitbreaker_proto_msgTypes[14]
+		mi := &file_circuitbreaker_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1665,7 +1785,7 @@ func (x *CbPolicy_ErrRateConfig) String() string {
 func (*CbPolicy_ErrRateConfig) ProtoMessage() {}
 
 func (x *CbPolicy_ErrRateConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_circuitbreaker_proto_msgTypes[14]
+	mi := &file_circuitbreaker_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1735,7 +1855,7 @@ type CbPolicy_SlowRateConfig struct {
 func (x *CbPolicy_SlowRateConfig) Reset() {
 	*x = CbPolicy_SlowRateConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_circuitbreaker_proto_msgTypes[15]
+		mi := &file_circuitbreaker_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1748,7 +1868,7 @@ func (x *CbPolicy_SlowRateConfig) String() string {
 func (*CbPolicy_SlowRateConfig) ProtoMessage() {}
 
 func (x *CbPolicy_SlowRateConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_circuitbreaker_proto_msgTypes[15]
+	mi := &file_circuitbreaker_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1809,7 +1929,7 @@ type CbPolicy_ConsecutiveErrConfig struct {
 func (x *CbPolicy_ConsecutiveErrConfig) Reset() {
 	*x = CbPolicy_ConsecutiveErrConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_circuitbreaker_proto_msgTypes[16]
+		mi := &file_circuitbreaker_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1822,7 +1942,7 @@ func (x *CbPolicy_ConsecutiveErrConfig) String() string {
 func (*CbPolicy_ConsecutiveErrConfig) ProtoMessage() {}
 
 func (x *CbPolicy_ConsecutiveErrConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_circuitbreaker_proto_msgTypes[16]
+	mi := &file_circuitbreaker_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1875,7 +1995,7 @@ type CbPolicy_ErrRateConfig_SpecialConfig struct {
 func (x *CbPolicy_ErrRateConfig_SpecialConfig) Reset() {
 	*x = CbPolicy_ErrRateConfig_SpecialConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_circuitbreaker_proto_msgTypes[17]
+		mi := &file_circuitbreaker_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1888,7 +2008,7 @@ func (x *CbPolicy_ErrRateConfig_SpecialConfig) String() string {
 func (*CbPolicy_ErrRateConfig_SpecialConfig) ProtoMessage() {}
 
 func (x *CbPolicy_ErrRateConfig_SpecialConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_circuitbreaker_proto_msgTypes[17]
+	mi := &file_circuitbreaker_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1944,7 +2064,7 @@ type RuleMatcher_SourceService struct {
 func (x *RuleMatcher_SourceService) Reset() {
 	*x = RuleMatcher_SourceService{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_circuitbreaker_proto_msgTypes[19]
+		mi := &file_circuitbreaker_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1957,7 +2077,7 @@ func (x *RuleMatcher_SourceService) String() string {
 func (*RuleMatcher_SourceService) ProtoMessage() {}
 
 func (x *RuleMatcher_SourceService) ProtoReflect() protoreflect.Message {
-	mi := &file_circuitbreaker_proto_msgTypes[19]
+	mi := &file_circuitbreaker_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2003,7 +2123,7 @@ type RuleMatcher_DestinationService struct {
 func (x *RuleMatcher_DestinationService) Reset() {
 	*x = RuleMatcher_DestinationService{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_circuitbreaker_proto_msgTypes[20]
+		mi := &file_circuitbreaker_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2016,7 +2136,7 @@ func (x *RuleMatcher_DestinationService) String() string {
 func (*RuleMatcher_DestinationService) ProtoMessage() {}
 
 func (x *RuleMatcher_DestinationService) ProtoReflect() protoreflect.Message {
-	mi := &file_circuitbreaker_proto_msgTypes[20]
+	mi := &file_circuitbreaker_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2052,6 +2172,61 @@ func (x *RuleMatcher_DestinationService) GetMethod() *model.MatchString {
 		return x.Method
 	}
 	return nil
+}
+
+type FallbackResponse_MessageHeader struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+}
+
+func (x *FallbackResponse_MessageHeader) Reset() {
+	*x = FallbackResponse_MessageHeader{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_circuitbreaker_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *FallbackResponse_MessageHeader) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FallbackResponse_MessageHeader) ProtoMessage() {}
+
+func (x *FallbackResponse_MessageHeader) ProtoReflect() protoreflect.Message {
+	mi := &file_circuitbreaker_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FallbackResponse_MessageHeader.ProtoReflect.Descriptor instead.
+func (*FallbackResponse_MessageHeader) Descriptor() ([]byte, []int) {
+	return file_circuitbreaker_proto_rawDescGZIP(), []int{14, 0}
+}
+
+func (x *FallbackResponse_MessageHeader) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *FallbackResponse_MessageHeader) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
 }
 
 var File_circuitbreaker_proto protoreflect.FileDescriptor
@@ -2463,7 +2638,24 @@ var file_circuitbreaker_proto_rawDesc = []byte{
 	0x67, 0x65, 0x72, 0x5f, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04,
 	0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x72, 0x69, 0x67, 0x67, 0x65,
 	0x72, 0x43, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x12, 0x74, 0x72, 0x69, 0x67,
-	0x67, 0x65, 0x72, 0x5f, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2a, 0x46,
+	0x67, 0x65, 0x72, 0x5f, 0x63, 0x6f, 0x6e, 0x64, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0x5a,
+	0x0a, 0x0e, 0x46, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
+	0x12, 0x16, 0x0a, 0x06, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
+	0x52, 0x06, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x30, 0x0a, 0x08, 0x72, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x76, 0x31, 0x2e,
+	0x46, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x52, 0x08, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xb1, 0x01, 0x0a, 0x10, 0x46,
+	0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63,
+	0x6f, 0x64, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x73, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x61, 0x6c, 0x6c, 0x62, 0x61,
+	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x52, 0x07, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72,
+	0x73, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x04, 0x62, 0x6f, 0x64, 0x79, 0x1a, 0x37, 0x0a, 0x0d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x2a, 0x46,
 	0x0a, 0x05, 0x4c, 0x65, 0x76, 0x65, 0x6c, 0x12, 0x0b, 0x0a, 0x07, 0x55, 0x4e, 0x4b, 0x4e, 0x4f,
 	0x57, 0x4e, 0x10, 0x00, 0x12, 0x0b, 0x0a, 0x07, 0x53, 0x45, 0x52, 0x56, 0x49, 0x43, 0x45, 0x10,
 	0x01, 0x12, 0x0a, 0x0a, 0x06, 0x4d, 0x45, 0x54, 0x48, 0x4f, 0x44, 0x10, 0x02, 0x12, 0x09, 0x0a,
@@ -2494,7 +2686,7 @@ func file_circuitbreaker_proto_rawDescGZIP() []byte {
 }
 
 var file_circuitbreaker_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
-var file_circuitbreaker_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_circuitbreaker_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_circuitbreaker_proto_goTypes = []interface{}{
 	(Level)(0),                                   // 0: v1.Level
 	(RecoverConfig_OutlierDetectWhen)(0),         // 1: v1.RecoverConfig.OutlierDetectWhen
@@ -2516,112 +2708,116 @@ var file_circuitbreaker_proto_goTypes = []interface{}{
 	(*RecoverCondition)(nil),                     // 17: v1.RecoverCondition
 	(*FaultDetectConfig)(nil),                    // 18: v1.FaultDetectConfig
 	(*BlockConfig)(nil),                          // 19: v1.BlockConfig
-	nil,                                          // 20: v1.SourceMatcher.LabelsEntry
-	(*CbPolicy_ErrRateConfig)(nil),               // 21: v1.CbPolicy.ErrRateConfig
-	(*CbPolicy_SlowRateConfig)(nil),              // 22: v1.CbPolicy.SlowRateConfig
-	(*CbPolicy_ConsecutiveErrConfig)(nil),        // 23: v1.CbPolicy.ConsecutiveErrConfig
-	(*CbPolicy_ErrRateConfig_SpecialConfig)(nil), // 24: v1.CbPolicy.ErrRateConfig.SpecialConfig
-	nil,                                    // 25: v1.DestinationSet.MetadataEntry
-	(*RuleMatcher_SourceService)(nil),      // 26: v1.RuleMatcher.SourceService
-	(*RuleMatcher_DestinationService)(nil), // 27: v1.RuleMatcher.DestinationService
-	nil,                                    // 28: v1.CircuitBreakerRule.MetadataEntry
-	(*wrapperspb.StringValue)(nil),         // 29: google.protobuf.StringValue
-	(*durationpb.Duration)(nil),            // 30: google.protobuf.Duration
-	(*wrapperspb.UInt32Value)(nil),         // 31: google.protobuf.UInt32Value
-	(*model.MatchString)(nil),              // 32: v1.MatchString
-	(*wrapperspb.Int64Value)(nil),          // 33: google.protobuf.Int64Value
-	(*model.FallbackConfig)(nil),           // 34: v1.FallbackConfig
-	(*model.API)(nil),                      // 35: v1.API
-	(*wrapperspb.BoolValue)(nil),           // 36: google.protobuf.BoolValue
+	(*FallbackConfig)(nil),                       // 20: v1.FallbackConfig
+	(*FallbackResponse)(nil),                     // 21: v1.FallbackResponse
+	nil,                                          // 22: v1.SourceMatcher.LabelsEntry
+	(*CbPolicy_ErrRateConfig)(nil),               // 23: v1.CbPolicy.ErrRateConfig
+	(*CbPolicy_SlowRateConfig)(nil),              // 24: v1.CbPolicy.SlowRateConfig
+	(*CbPolicy_ConsecutiveErrConfig)(nil),        // 25: v1.CbPolicy.ConsecutiveErrConfig
+	(*CbPolicy_ErrRateConfig_SpecialConfig)(nil), // 26: v1.CbPolicy.ErrRateConfig.SpecialConfig
+	nil,                                    // 27: v1.DestinationSet.MetadataEntry
+	(*RuleMatcher_SourceService)(nil),      // 28: v1.RuleMatcher.SourceService
+	(*RuleMatcher_DestinationService)(nil), // 29: v1.RuleMatcher.DestinationService
+	nil,                                    // 30: v1.CircuitBreakerRule.MetadataEntry
+	(*FallbackResponse_MessageHeader)(nil), // 31: v1.FallbackResponse.MessageHeader
+	(*wrapperspb.StringValue)(nil),         // 32: google.protobuf.StringValue
+	(*durationpb.Duration)(nil),            // 33: google.protobuf.Duration
+	(*wrapperspb.UInt32Value)(nil),         // 34: google.protobuf.UInt32Value
+	(*model.MatchString)(nil),              // 35: v1.MatchString
+	(*wrapperspb.Int64Value)(nil),          // 36: google.protobuf.Int64Value
+	(*model.API)(nil),                      // 37: v1.API
+	(*wrapperspb.BoolValue)(nil),           // 38: google.protobuf.BoolValue
 }
 var file_circuitbreaker_proto_depIdxs = []int32{
-	29, // 0: v1.CircuitBreaker.id:type_name -> google.protobuf.StringValue
-	29, // 1: v1.CircuitBreaker.version:type_name -> google.protobuf.StringValue
-	29, // 2: v1.CircuitBreaker.name:type_name -> google.protobuf.StringValue
-	29, // 3: v1.CircuitBreaker.namespace:type_name -> google.protobuf.StringValue
-	29, // 4: v1.CircuitBreaker.service:type_name -> google.protobuf.StringValue
-	29, // 5: v1.CircuitBreaker.service_namespace:type_name -> google.protobuf.StringValue
+	32, // 0: v1.CircuitBreaker.id:type_name -> google.protobuf.StringValue
+	32, // 1: v1.CircuitBreaker.version:type_name -> google.protobuf.StringValue
+	32, // 2: v1.CircuitBreaker.name:type_name -> google.protobuf.StringValue
+	32, // 3: v1.CircuitBreaker.namespace:type_name -> google.protobuf.StringValue
+	32, // 4: v1.CircuitBreaker.service:type_name -> google.protobuf.StringValue
+	32, // 5: v1.CircuitBreaker.service_namespace:type_name -> google.protobuf.StringValue
 	12, // 6: v1.CircuitBreaker.inbounds:type_name -> v1.CbRule
 	12, // 7: v1.CircuitBreaker.outbounds:type_name -> v1.CbRule
-	29, // 8: v1.CircuitBreaker.token:type_name -> google.protobuf.StringValue
-	29, // 9: v1.CircuitBreaker.owners:type_name -> google.protobuf.StringValue
-	29, // 10: v1.CircuitBreaker.business:type_name -> google.protobuf.StringValue
-	29, // 11: v1.CircuitBreaker.department:type_name -> google.protobuf.StringValue
-	29, // 12: v1.CircuitBreaker.comment:type_name -> google.protobuf.StringValue
-	29, // 13: v1.CircuitBreaker.ctime:type_name -> google.protobuf.StringValue
-	29, // 14: v1.CircuitBreaker.mtime:type_name -> google.protobuf.StringValue
-	29, // 15: v1.CircuitBreaker.revision:type_name -> google.protobuf.StringValue
+	32, // 8: v1.CircuitBreaker.token:type_name -> google.protobuf.StringValue
+	32, // 9: v1.CircuitBreaker.owners:type_name -> google.protobuf.StringValue
+	32, // 10: v1.CircuitBreaker.business:type_name -> google.protobuf.StringValue
+	32, // 11: v1.CircuitBreaker.department:type_name -> google.protobuf.StringValue
+	32, // 12: v1.CircuitBreaker.comment:type_name -> google.protobuf.StringValue
+	32, // 13: v1.CircuitBreaker.ctime:type_name -> google.protobuf.StringValue
+	32, // 14: v1.CircuitBreaker.mtime:type_name -> google.protobuf.StringValue
+	32, // 15: v1.CircuitBreaker.revision:type_name -> google.protobuf.StringValue
 	14, // 16: v1.CircuitBreaker.rules:type_name -> v1.CircuitBreakerRule
-	29, // 17: v1.SourceMatcher.service:type_name -> google.protobuf.StringValue
-	29, // 18: v1.SourceMatcher.namespace:type_name -> google.protobuf.StringValue
-	20, // 19: v1.SourceMatcher.labels:type_name -> v1.SourceMatcher.LabelsEntry
-	30, // 20: v1.RecoverConfig.sleepWindow:type_name -> google.protobuf.Duration
-	31, // 21: v1.RecoverConfig.maxRetryAfterHalfOpen:type_name -> google.protobuf.UInt32Value
-	31, // 22: v1.RecoverConfig.requestRateAfterHalfOpen:type_name -> google.protobuf.UInt32Value
-	31, // 23: v1.RecoverConfig.successRateToClose:type_name -> google.protobuf.UInt32Value
-	31, // 24: v1.RecoverConfig.requestCountAfterHalfOpen:type_name -> google.protobuf.UInt32Value
+	32, // 17: v1.SourceMatcher.service:type_name -> google.protobuf.StringValue
+	32, // 18: v1.SourceMatcher.namespace:type_name -> google.protobuf.StringValue
+	22, // 19: v1.SourceMatcher.labels:type_name -> v1.SourceMatcher.LabelsEntry
+	33, // 20: v1.RecoverConfig.sleepWindow:type_name -> google.protobuf.Duration
+	34, // 21: v1.RecoverConfig.maxRetryAfterHalfOpen:type_name -> google.protobuf.UInt32Value
+	34, // 22: v1.RecoverConfig.requestRateAfterHalfOpen:type_name -> google.protobuf.UInt32Value
+	34, // 23: v1.RecoverConfig.successRateToClose:type_name -> google.protobuf.UInt32Value
+	34, // 24: v1.RecoverConfig.requestCountAfterHalfOpen:type_name -> google.protobuf.UInt32Value
 	1,  // 25: v1.RecoverConfig.outlierDetectWhen:type_name -> v1.RecoverConfig.OutlierDetectWhen
-	21, // 26: v1.CbPolicy.errorRate:type_name -> v1.CbPolicy.ErrRateConfig
-	22, // 27: v1.CbPolicy.slowRate:type_name -> v1.CbPolicy.SlowRateConfig
-	30, // 28: v1.CbPolicy.judgeDuration:type_name -> google.protobuf.Duration
-	31, // 29: v1.CbPolicy.maxEjectionPercent:type_name -> google.protobuf.UInt32Value
-	23, // 30: v1.CbPolicy.consecutive:type_name -> v1.CbPolicy.ConsecutiveErrConfig
-	29, // 31: v1.DestinationSet.service:type_name -> google.protobuf.StringValue
-	29, // 32: v1.DestinationSet.namespace:type_name -> google.protobuf.StringValue
-	25, // 33: v1.DestinationSet.metadata:type_name -> v1.DestinationSet.MetadataEntry
+	23, // 26: v1.CbPolicy.errorRate:type_name -> v1.CbPolicy.ErrRateConfig
+	24, // 27: v1.CbPolicy.slowRate:type_name -> v1.CbPolicy.SlowRateConfig
+	33, // 28: v1.CbPolicy.judgeDuration:type_name -> google.protobuf.Duration
+	34, // 29: v1.CbPolicy.maxEjectionPercent:type_name -> google.protobuf.UInt32Value
+	25, // 30: v1.CbPolicy.consecutive:type_name -> v1.CbPolicy.ConsecutiveErrConfig
+	32, // 31: v1.DestinationSet.service:type_name -> google.protobuf.StringValue
+	32, // 32: v1.DestinationSet.namespace:type_name -> google.protobuf.StringValue
+	27, // 33: v1.DestinationSet.metadata:type_name -> v1.DestinationSet.MetadataEntry
 	2,  // 34: v1.DestinationSet.resource:type_name -> v1.DestinationSet.Resource
 	3,  // 35: v1.DestinationSet.type:type_name -> v1.DestinationSet.Type
 	4,  // 36: v1.DestinationSet.scope:type_name -> v1.DestinationSet.Scope
-	30, // 37: v1.DestinationSet.metricWindow:type_name -> google.protobuf.Duration
-	31, // 38: v1.DestinationSet.metricPrecision:type_name -> google.protobuf.UInt32Value
-	30, // 39: v1.DestinationSet.updateInterval:type_name -> google.protobuf.Duration
+	33, // 37: v1.DestinationSet.metricWindow:type_name -> google.protobuf.Duration
+	34, // 38: v1.DestinationSet.metricPrecision:type_name -> google.protobuf.UInt32Value
+	33, // 39: v1.DestinationSet.updateInterval:type_name -> google.protobuf.Duration
 	9,  // 40: v1.DestinationSet.recover:type_name -> v1.RecoverConfig
 	10, // 41: v1.DestinationSet.policy:type_name -> v1.CbPolicy
-	32, // 42: v1.DestinationSet.method:type_name -> v1.MatchString
-	33, // 43: v1.DestinationSet.errorCodes:type_name -> google.protobuf.Int64Value
+	35, // 42: v1.DestinationSet.method:type_name -> v1.MatchString
+	36, // 43: v1.DestinationSet.errorCodes:type_name -> google.protobuf.Int64Value
 	8,  // 44: v1.CbRule.sources:type_name -> v1.SourceMatcher
 	11, // 45: v1.CbRule.destinations:type_name -> v1.DestinationSet
-	26, // 46: v1.RuleMatcher.source:type_name -> v1.RuleMatcher.SourceService
-	27, // 47: v1.RuleMatcher.destination:type_name -> v1.RuleMatcher.DestinationService
+	28, // 46: v1.RuleMatcher.source:type_name -> v1.RuleMatcher.SourceService
+	29, // 47: v1.RuleMatcher.destination:type_name -> v1.RuleMatcher.DestinationService
 	0,  // 48: v1.CircuitBreakerRule.level:type_name -> v1.Level
 	13, // 49: v1.CircuitBreakerRule.rule_matcher:type_name -> v1.RuleMatcher
 	15, // 50: v1.CircuitBreakerRule.error_conditions:type_name -> v1.ErrorCondition
 	16, // 51: v1.CircuitBreakerRule.trigger_condition:type_name -> v1.TriggerCondition
 	17, // 52: v1.CircuitBreakerRule.recoverCondition:type_name -> v1.RecoverCondition
 	18, // 53: v1.CircuitBreakerRule.faultDetectConfig:type_name -> v1.FaultDetectConfig
-	34, // 54: v1.CircuitBreakerRule.fallbackConfig:type_name -> v1.FallbackConfig
+	20, // 54: v1.CircuitBreakerRule.fallbackConfig:type_name -> v1.FallbackConfig
 	19, // 55: v1.CircuitBreakerRule.block_configs:type_name -> v1.BlockConfig
-	28, // 56: v1.CircuitBreakerRule.metadata:type_name -> v1.CircuitBreakerRule.MetadataEntry
+	30, // 56: v1.CircuitBreakerRule.metadata:type_name -> v1.CircuitBreakerRule.MetadataEntry
 	5,  // 57: v1.ErrorCondition.input_type:type_name -> v1.ErrorCondition.InputType
-	32, // 58: v1.ErrorCondition.condition:type_name -> v1.MatchString
+	35, // 58: v1.ErrorCondition.condition:type_name -> v1.MatchString
 	6,  // 59: v1.TriggerCondition.trigger_type:type_name -> v1.TriggerCondition.TriggerType
-	35, // 60: v1.BlockConfig.api:type_name -> v1.API
+	37, // 60: v1.BlockConfig.api:type_name -> v1.API
 	15, // 61: v1.BlockConfig.error_conditions:type_name -> v1.ErrorCondition
 	16, // 62: v1.BlockConfig.trigger_conditions:type_name -> v1.TriggerCondition
-	32, // 63: v1.SourceMatcher.LabelsEntry.value:type_name -> v1.MatchString
-	36, // 64: v1.CbPolicy.ErrRateConfig.enable:type_name -> google.protobuf.BoolValue
-	31, // 65: v1.CbPolicy.ErrRateConfig.requestVolumeThreshold:type_name -> google.protobuf.UInt32Value
-	31, // 66: v1.CbPolicy.ErrRateConfig.errorRateToPreserved:type_name -> google.protobuf.UInt32Value
-	31, // 67: v1.CbPolicy.ErrRateConfig.errorRateToOpen:type_name -> google.protobuf.UInt32Value
-	24, // 68: v1.CbPolicy.ErrRateConfig.specials:type_name -> v1.CbPolicy.ErrRateConfig.SpecialConfig
-	36, // 69: v1.CbPolicy.SlowRateConfig.enable:type_name -> google.protobuf.BoolValue
-	30, // 70: v1.CbPolicy.SlowRateConfig.maxRt:type_name -> google.protobuf.Duration
-	31, // 71: v1.CbPolicy.SlowRateConfig.slowRateToPreserved:type_name -> google.protobuf.UInt32Value
-	31, // 72: v1.CbPolicy.SlowRateConfig.slowRateToOpen:type_name -> google.protobuf.UInt32Value
-	36, // 73: v1.CbPolicy.ConsecutiveErrConfig.enable:type_name -> google.protobuf.BoolValue
-	31, // 74: v1.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved:type_name -> google.protobuf.UInt32Value
-	31, // 75: v1.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen:type_name -> google.protobuf.UInt32Value
-	29, // 76: v1.CbPolicy.ErrRateConfig.SpecialConfig.type:type_name -> google.protobuf.StringValue
-	33, // 77: v1.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes:type_name -> google.protobuf.Int64Value
-	31, // 78: v1.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved:type_name -> google.protobuf.UInt32Value
-	31, // 79: v1.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen:type_name -> google.protobuf.UInt32Value
-	32, // 80: v1.DestinationSet.MetadataEntry.value:type_name -> v1.MatchString
-	32, // 81: v1.RuleMatcher.DestinationService.method:type_name -> v1.MatchString
-	82, // [82:82] is the sub-list for method output_type
-	82, // [82:82] is the sub-list for method input_type
-	82, // [82:82] is the sub-list for extension type_name
-	82, // [82:82] is the sub-list for extension extendee
-	0,  // [0:82] is the sub-list for field type_name
+	21, // 63: v1.FallbackConfig.response:type_name -> v1.FallbackResponse
+	31, // 64: v1.FallbackResponse.headers:type_name -> v1.FallbackResponse.MessageHeader
+	35, // 65: v1.SourceMatcher.LabelsEntry.value:type_name -> v1.MatchString
+	38, // 66: v1.CbPolicy.ErrRateConfig.enable:type_name -> google.protobuf.BoolValue
+	34, // 67: v1.CbPolicy.ErrRateConfig.requestVolumeThreshold:type_name -> google.protobuf.UInt32Value
+	34, // 68: v1.CbPolicy.ErrRateConfig.errorRateToPreserved:type_name -> google.protobuf.UInt32Value
+	34, // 69: v1.CbPolicy.ErrRateConfig.errorRateToOpen:type_name -> google.protobuf.UInt32Value
+	26, // 70: v1.CbPolicy.ErrRateConfig.specials:type_name -> v1.CbPolicy.ErrRateConfig.SpecialConfig
+	38, // 71: v1.CbPolicy.SlowRateConfig.enable:type_name -> google.protobuf.BoolValue
+	33, // 72: v1.CbPolicy.SlowRateConfig.maxRt:type_name -> google.protobuf.Duration
+	34, // 73: v1.CbPolicy.SlowRateConfig.slowRateToPreserved:type_name -> google.protobuf.UInt32Value
+	34, // 74: v1.CbPolicy.SlowRateConfig.slowRateToOpen:type_name -> google.protobuf.UInt32Value
+	38, // 75: v1.CbPolicy.ConsecutiveErrConfig.enable:type_name -> google.protobuf.BoolValue
+	34, // 76: v1.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToPreserved:type_name -> google.protobuf.UInt32Value
+	34, // 77: v1.CbPolicy.ConsecutiveErrConfig.consecutiveErrorToOpen:type_name -> google.protobuf.UInt32Value
+	32, // 78: v1.CbPolicy.ErrRateConfig.SpecialConfig.type:type_name -> google.protobuf.StringValue
+	36, // 79: v1.CbPolicy.ErrRateConfig.SpecialConfig.errorCodes:type_name -> google.protobuf.Int64Value
+	34, // 80: v1.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToPreserved:type_name -> google.protobuf.UInt32Value
+	34, // 81: v1.CbPolicy.ErrRateConfig.SpecialConfig.errorRateToOpen:type_name -> google.protobuf.UInt32Value
+	35, // 82: v1.DestinationSet.MetadataEntry.value:type_name -> v1.MatchString
+	35, // 83: v1.RuleMatcher.DestinationService.method:type_name -> v1.MatchString
+	84, // [84:84] is the sub-list for method output_type
+	84, // [84:84] is the sub-list for method input_type
+	84, // [84:84] is the sub-list for extension type_name
+	84, // [84:84] is the sub-list for extension extendee
+	0,  // [0:84] is the sub-list for field type_name
 }
 
 func init() { file_circuitbreaker_proto_init() }
@@ -2786,8 +2982,8 @@ func file_circuitbreaker_proto_init() {
 				return nil
 			}
 		}
-		file_circuitbreaker_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CbPolicy_ErrRateConfig); i {
+		file_circuitbreaker_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FallbackConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2798,8 +2994,8 @@ func file_circuitbreaker_proto_init() {
 				return nil
 			}
 		}
-		file_circuitbreaker_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CbPolicy_SlowRateConfig); i {
+		file_circuitbreaker_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FallbackResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2811,7 +3007,7 @@ func file_circuitbreaker_proto_init() {
 			}
 		}
 		file_circuitbreaker_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CbPolicy_ConsecutiveErrConfig); i {
+			switch v := v.(*CbPolicy_ErrRateConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2823,7 +3019,19 @@ func file_circuitbreaker_proto_init() {
 			}
 		}
 		file_circuitbreaker_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CbPolicy_ErrRateConfig_SpecialConfig); i {
+			switch v := v.(*CbPolicy_SlowRateConfig); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_circuitbreaker_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CbPolicy_ConsecutiveErrConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2835,6 +3043,18 @@ func file_circuitbreaker_proto_init() {
 			}
 		}
 		file_circuitbreaker_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CbPolicy_ErrRateConfig_SpecialConfig); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_circuitbreaker_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RuleMatcher_SourceService); i {
 			case 0:
 				return &v.state
@@ -2846,8 +3066,20 @@ func file_circuitbreaker_proto_init() {
 				return nil
 			}
 		}
-		file_circuitbreaker_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+		file_circuitbreaker_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RuleMatcher_DestinationService); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_circuitbreaker_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*FallbackResponse_MessageHeader); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2865,7 +3097,7 @@ func file_circuitbreaker_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_circuitbreaker_proto_rawDesc,
 			NumEnums:      7,
-			NumMessages:   22,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

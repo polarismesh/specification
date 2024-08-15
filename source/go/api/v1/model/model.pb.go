@@ -496,181 +496,6 @@ func (x *API) GetPath() *MatchString {
 	return nil
 }
 
-// fallback config
-type FallbackConfig struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Enable   bool              `protobuf:"varint,1,opt,name=enable,proto3" json:"enable,omitempty"`
-	Response *FallbackResponse `protobuf:"bytes,2,opt,name=response,proto3" json:"response,omitempty"`
-}
-
-func (x *FallbackConfig) Reset() {
-	*x = FallbackConfig{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_model_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FallbackConfig) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FallbackConfig) ProtoMessage() {}
-
-func (x *FallbackConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_model_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FallbackConfig.ProtoReflect.Descriptor instead.
-func (*FallbackConfig) Descriptor() ([]byte, []int) {
-	return file_model_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *FallbackConfig) GetEnable() bool {
-	if x != nil {
-		return x.Enable
-	}
-	return false
-}
-
-func (x *FallbackConfig) GetResponse() *FallbackResponse {
-	if x != nil {
-		return x.Response
-	}
-	return nil
-}
-
-// fallback response
-type FallbackResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Code    int32                             `protobuf:"varint,1,opt,name=code,proto3" json:"code,omitempty"`
-	Headers []*FallbackResponse_MessageHeader `protobuf:"bytes,2,rep,name=headers,proto3" json:"headers,omitempty"`
-	Body    string                            `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-}
-
-func (x *FallbackResponse) Reset() {
-	*x = FallbackResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_model_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FallbackResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FallbackResponse) ProtoMessage() {}
-
-func (x *FallbackResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_model_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FallbackResponse.ProtoReflect.Descriptor instead.
-func (*FallbackResponse) Descriptor() ([]byte, []int) {
-	return file_model_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *FallbackResponse) GetCode() int32 {
-	if x != nil {
-		return x.Code
-	}
-	return 0
-}
-
-func (x *FallbackResponse) GetHeaders() []*FallbackResponse_MessageHeader {
-	if x != nil {
-		return x.Headers
-	}
-	return nil
-}
-
-func (x *FallbackResponse) GetBody() string {
-	if x != nil {
-		return x.Body
-	}
-	return ""
-}
-
-type FallbackResponse_MessageHeader struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Key   string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
-	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
-}
-
-func (x *FallbackResponse_MessageHeader) Reset() {
-	*x = FallbackResponse_MessageHeader{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_model_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *FallbackResponse_MessageHeader) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FallbackResponse_MessageHeader) ProtoMessage() {}
-
-func (x *FallbackResponse_MessageHeader) ProtoReflect() protoreflect.Message {
-	mi := &file_model_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FallbackResponse_MessageHeader.ProtoReflect.Descriptor instead.
-func (*FallbackResponse_MessageHeader) Descriptor() ([]byte, []int) {
-	return file_model_proto_rawDescGZIP(), []int{7, 0}
-}
-
-func (x *FallbackResponse_MessageHeader) GetKey() string {
-	if x != nil {
-		return x.Key
-	}
-	return ""
-}
-
-func (x *FallbackResponse_MessageHeader) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
 var File_model_proto protoreflect.FileDescriptor
 
 var file_model_proto_rawDesc = []byte{
@@ -731,24 +556,7 @@ var file_model_proto_rawDesc = []byte{
 	0x6c, 0x12, 0x16, 0x0a, 0x06, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x06, 0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x12, 0x23, 0x0a, 0x04, 0x70, 0x61, 0x74,
 	0x68, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x61, 0x74,
-	0x63, 0x68, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x22, 0x5a,
-	0x0a, 0x0e, 0x46, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67,
-	0x12, 0x16, 0x0a, 0x06, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08,
-	0x52, 0x06, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x12, 0x30, 0x0a, 0x08, 0x72, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x76, 0x31, 0x2e,
-	0x46, 0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x52, 0x08, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xb1, 0x01, 0x0a, 0x10, 0x46,
-	0x61, 0x6c, 0x6c, 0x62, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x12, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x04, 0x63,
-	0x6f, 0x64, 0x65, 0x12, 0x3c, 0x0a, 0x07, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72, 0x73, 0x18, 0x02,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x61, 0x6c, 0x6c, 0x62, 0x61,
-	0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61,
-	0x67, 0x65, 0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x52, 0x07, 0x68, 0x65, 0x61, 0x64, 0x65, 0x72,
-	0x73, 0x12, 0x12, 0x0a, 0x04, 0x62, 0x6f, 0x64, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x62, 0x6f, 0x64, 0x79, 0x1a, 0x37, 0x0a, 0x0d, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x48, 0x65, 0x61, 0x64, 0x65, 0x72, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x42, 0x79,
+	0x63, 0x68, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x04, 0x70, 0x61, 0x74, 0x68, 0x42, 0x79,
 	0x0a, 0x2e, 0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x65, 0x6e, 0x63, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x6f,
 	0x6c, 0x61, 0x72, 0x69, 0x73, 0x2e, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
@@ -773,37 +581,32 @@ func file_model_proto_rawDescGZIP() []byte {
 }
 
 var file_model_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_model_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_model_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_model_proto_goTypes = []interface{}{
-	(MatchString_MatchStringType)(0),       // 0: v1.MatchString.MatchStringType
-	(MatchString_ValueType)(0),             // 1: v1.MatchString.ValueType
-	(*Location)(nil),                       // 2: v1.Location
-	(*MatchString)(nil),                    // 3: v1.MatchString
-	(*StringList)(nil),                     // 4: v1.StringList
-	(*Summary)(nil),                        // 5: v1.Summary
-	(*ClientLabel)(nil),                    // 6: v1.ClientLabel
-	(*API)(nil),                            // 7: v1.API
-	(*FallbackConfig)(nil),                 // 8: v1.FallbackConfig
-	(*FallbackResponse)(nil),               // 9: v1.FallbackResponse
-	(*FallbackResponse_MessageHeader)(nil), // 10: v1.FallbackResponse.MessageHeader
-	(*wrapperspb.StringValue)(nil),         // 11: google.protobuf.StringValue
+	(MatchString_MatchStringType)(0), // 0: v1.MatchString.MatchStringType
+	(MatchString_ValueType)(0),       // 1: v1.MatchString.ValueType
+	(*Location)(nil),                 // 2: v1.Location
+	(*MatchString)(nil),              // 3: v1.MatchString
+	(*StringList)(nil),               // 4: v1.StringList
+	(*Summary)(nil),                  // 5: v1.Summary
+	(*ClientLabel)(nil),              // 6: v1.ClientLabel
+	(*API)(nil),                      // 7: v1.API
+	(*wrapperspb.StringValue)(nil),   // 8: google.protobuf.StringValue
 }
 var file_model_proto_depIdxs = []int32{
-	11, // 0: v1.Location.region:type_name -> google.protobuf.StringValue
-	11, // 1: v1.Location.zone:type_name -> google.protobuf.StringValue
-	11, // 2: v1.Location.campus:type_name -> google.protobuf.StringValue
-	0,  // 3: v1.MatchString.type:type_name -> v1.MatchString.MatchStringType
-	11, // 4: v1.MatchString.value:type_name -> google.protobuf.StringValue
-	1,  // 5: v1.MatchString.value_type:type_name -> v1.MatchString.ValueType
-	3,  // 6: v1.ClientLabel.value:type_name -> v1.MatchString
-	3,  // 7: v1.API.path:type_name -> v1.MatchString
-	9,  // 8: v1.FallbackConfig.response:type_name -> v1.FallbackResponse
-	10, // 9: v1.FallbackResponse.headers:type_name -> v1.FallbackResponse.MessageHeader
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	8, // 0: v1.Location.region:type_name -> google.protobuf.StringValue
+	8, // 1: v1.Location.zone:type_name -> google.protobuf.StringValue
+	8, // 2: v1.Location.campus:type_name -> google.protobuf.StringValue
+	0, // 3: v1.MatchString.type:type_name -> v1.MatchString.MatchStringType
+	8, // 4: v1.MatchString.value:type_name -> google.protobuf.StringValue
+	1, // 5: v1.MatchString.value_type:type_name -> v1.MatchString.ValueType
+	3, // 6: v1.ClientLabel.value:type_name -> v1.MatchString
+	3, // 7: v1.API.path:type_name -> v1.MatchString
+	8, // [8:8] is the sub-list for method output_type
+	8, // [8:8] is the sub-list for method input_type
+	8, // [8:8] is the sub-list for extension type_name
+	8, // [8:8] is the sub-list for extension extendee
+	0, // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_model_proto_init() }
@@ -884,42 +687,6 @@ func file_model_proto_init() {
 				return nil
 			}
 		}
-		file_model_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FallbackConfig); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_model_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FallbackResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_model_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FallbackResponse_MessageHeader); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -927,7 +694,7 @@ func file_model_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_model_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   9,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
