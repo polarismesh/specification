@@ -97,7 +97,7 @@ message Rule {
   // amount for concurrency rate-limit
   ConcurrencyAmount concurrencyAmount = 27 [ json_name = "concurrency_amount" ];
   // fallback configuration
-  CustomResponse customResponse = 28 [ json_name = "customResponse" ];
+  CustomResponse customResponse = 28 [ json_name = "custom_response" ];
   // 限流规则标签数据
   map<string, string> metadata = 29 [ json_name = "metadata" ];
 }
