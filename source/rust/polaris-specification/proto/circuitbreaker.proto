@@ -286,7 +286,7 @@ message CircuitBreakerRule {
   // priority rules priority
   uint32 priority = 30 [ json_name = "priority" ];
   // 熔断规则标签数据
-  map<string, string> metadata = 50;
+  map<string, string> metadata = 31;
 }
 
 // the condition to judge an input invocation as an error
@@ -325,23 +325,6 @@ message RecoverCondition {
 // fault detect config within circuitbreaking
 message FaultDetectConfig {
   bool enable = 1;
-}
-
-// fallback config
-message FallbackConfig {
-  bool enable = 1;
-  FallbackResponse response = 2;
-}
-
-// fallback response
-message FallbackResponse {
-  int32 code = 1;
-  message MessageHeader {
-    string key = 1;
-    string value = 2;
-  }
-  repeated MessageHeader headers = 2;
-  string body = 3;
 }
 
 // blocking strategy

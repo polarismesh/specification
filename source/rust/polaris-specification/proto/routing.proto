@@ -127,7 +127,7 @@ message RouteRule {
   // deprecated_filed only for compatible to the old version server
   map<string, string> extendInfo = 20;
   // 路由规则标签数据
-  map<string, string> metadata = 50;
+  map<string, string> metadata = 21;
 }
 
 message MetadataFailover {

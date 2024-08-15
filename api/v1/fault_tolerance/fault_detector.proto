@@ -65,7 +65,7 @@ message FaultDetectRule {
   // priority rules priority
   uint32 priority = 29 [ json_name = "priority" ];
   // 探测规则标签数据
-  map<string, string> metadata = 50;
+  map<string, string> metadata = 30;
 }
 
 message HttpProtocolConfig {

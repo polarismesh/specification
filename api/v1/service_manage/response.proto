@@ -128,4 +128,9 @@ message DiscoverResponse {
 
 message OptionSwitch { map<string, string> options = 1; }
 
-message InstanceLabels { map<string, StringList> labels = 1; }
+message InstanceLabels { 
+  map<string, StringList> labels = 1;
+  string namespace = 2;
+  string service = 3;
+  string service_id = 4;
+}
