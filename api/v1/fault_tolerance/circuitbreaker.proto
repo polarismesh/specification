@@ -286,7 +286,7 @@ message CircuitBreakerRule {
   // priority rules priority
   uint32 priority = 30 [ json_name = "priority" ];
   // 熔断规则标签数据
-  map<string, string> metadata = 50;
+  map<string, string> metadata = 31;
 }
 
 // the condition to judge an input invocation as an error

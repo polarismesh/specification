@@ -31,6 +31,8 @@ message DiscoverRequest {
     CUSTOM_ROUTE_RULE = 101;
     // 就近路由规则
     NEARBY_ROUTE_RULE = 102;
+    // 无损上下线规则
+    LOSSLESS = 103;
   }
 
   DiscoverRequestType type = 1;

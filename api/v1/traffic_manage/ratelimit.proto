@@ -94,12 +94,12 @@ message Rule {
   google.protobuf.StringValue etime = 25;
   // 最大排队时长，单位秒
   google.protobuf.UInt32Value max_queue_delay = 26 [json_name = "max_queue_delay"];
-  // 限流规则标签数据
-  map<string, string> metadata = 50;
   // amount for concurrency rate-limit
   ConcurrencyAmount concurrencyAmount = 27 [ json_name = "concurrency_amount" ];
   // fallback configuration
   FallbackConfig fallbackConfig = 28 [ json_name = "fallback_config" ];
+  // 限流规则标签数据
+  map<string, string> metadata = 29;
 }
 
 message MatchArgument {

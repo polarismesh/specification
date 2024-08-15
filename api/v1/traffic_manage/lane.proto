@@ -57,7 +57,7 @@ message LaneGroup {
   // 泳道组内的流量入口信息
   repeated LaneRule rules = 11;
   // 泳道组标签信息
-  map<string, string> metadata = 20;
+  map<string, string> metadata = 12;
 }
 
 // TrafficMatchRule 流量匹配规则

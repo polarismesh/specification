@@ -1,6 +1,6 @@
 [package]
 name = "polaris-specification"
-version = "1.5.2"
+version = "1.5.3"
 edition.workspace = true
 authors.workspace = true
 license = "MIT OR Apache-2.0"

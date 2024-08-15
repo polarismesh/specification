@@ -31,30 +31,28 @@ security_dir=${workdir}/api/v1/security
 ratelimiter_dir=${workdir}/api/v1/traffic_manage/ratelimiter
 out_dir=${workdir}/source/go
 
-protoc_dir=${workdir}/source/protoc/protoc-${CURRENT_OS}-${CURRENT_ARCH}
-
 proto_files_model="model.proto namespace.proto code.proto"
 proto_files_service_manage="client.proto service.proto request.proto response.proto grpcapi.proto heartbeat.proto configrelease.proto contract.proto"
-proto_files_traffic_manage="routing.proto ratelimit.proto lane.proto"
+proto_files_traffic_manage="routing.proto ratelimit.proto lane.proto lossless.proto"
 proto_files_fault_tolerance="circuitbreaker.proto fault_detector.proto"
 proto_files_config_manage="config_file.proto config_file_response.proto grpc_config_api.proto"
 proto_files_security="auth.proto"
 proto_files_ratelimiter="ratelimiter.proto grpcapi_ratelimiter.proto"
 
-pushd "${protoc_dir}"/bin
-chmod +x *
-popd
-
-if [ "$CURRENT_OS" == "linux" ]; then
+if [[ "$CURRENT_OS" == "linux" || "$CURRENT_OS" == "darwin" ]]; then
+    protoc_dir=${workdir}/source/protoc/protoc-${CURRENT_OS}-${CURRENT_ARCH}
+    pushd "${protoc_dir}"/bin
+    chmod +x *
+    popd
     rm -rf "${out_dir}/api/v1"
     mkdir -p "${out_dir}/api/v1"
     # generate model
     pushd "${model_dir}"
     "${protoc_dir}"/bin/protoc \
-    --plugin=protoc-gen-go="${protoc_dir}"/bin/protoc-gen-go \
-    --go_out=plugins=grpc:"${out_dir}" \
-    --proto_path="${protoc_dir}"/include \
-    --proto_path=. ${proto_files_model}
+        --plugin=protoc-gen-go="${protoc_dir}"/bin/protoc-gen-go \
+        --go_out=plugins=grpc:"${out_dir}" \
+        --proto_path="${protoc_dir}"/include \
+        --proto_path=. ${proto_files_model}
     mv "${out_dir}/github.com/polarismesh/specification/source/go/api/v1/model" "${out_dir}/api/v1"
     pushd "${out_dir}/api/v1/model"
     "${protoc_dir}"/bin/protoc-go-inject-tag -input="*.pb.go"
@@ -128,8 +126,8 @@ if [ "$CURRENT_OS" == "linux" ]; then
     "${protoc_dir}"/bin/protoc-go-inject-tag -input="*.pb.go"
     popd
     popd
-	
-	pushd "${ratelimiter_dir}"
+
+    pushd "${ratelimiter_dir}"
     "${protoc_dir}"/bin/protoc \
         --plugin=protoc-gen-go="${protoc_dir}"/bin/protoc-gen-go \
         --go_out=plugins=grpc:"${out_dir}" \
@@ -143,5 +141,5 @@ if [ "$CURRENT_OS" == "linux" ]; then
 
     rm -rf "${out_dir}/github.com"
 else
-    docker run --rm -it -v "$(dirname $(pwd))":/app --workdir /app/v1 debian:buster ./build.sh
+    docker run --rm -it -v "$(dirname $(pwd))":/app --workdir /app/source/go debian:buster bash build.sh
 fi
