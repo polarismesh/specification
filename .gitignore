@@ -9,3 +9,5 @@ source/rust/polaris-specification/target
 venv
 debug/
 target/
+# Maven ignore
+.flattened-pom.xml

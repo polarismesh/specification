@@ -97,9 +97,9 @@ message Rule {
   // amount for concurrency rate-limit
   ConcurrencyAmount concurrencyAmount = 27 [ json_name = "concurrency_amount" ];
   // fallback configuration
-  FallbackConfig fallbackConfig = 28 [ json_name = "fallback_config" ];
+  CustomResponse customResponse = 28 [ json_name = "customResponse" ];
   // 限流规则标签数据
-  map<string, string> metadata = 29;
+  map<string, string> metadata = 29 [ json_name = "metadata" ];
 }
 
 message MatchArgument {
@@ -130,6 +130,11 @@ message MatchArgument {
 // concurrency rate-limit amount config
 message ConcurrencyAmount {
   uint32 maxAmount = 1 [ json_name = "max_amount" ];
+}
+
+// custom response text when limited
+message CustomResponse {
+  string body = 3;
 }
 
 // 分布式限流服务集群
