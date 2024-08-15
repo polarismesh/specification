@@ -34,6 +34,8 @@ message ServiceContract {
   string status = 12;
   // 类型
   string type = 14;
+  // 标签
+  map<string, string> metadata = 15;
 }
 
 message InterfaceDescriptor {
