@@ -100,6 +100,9 @@ message Rule {
   FallbackConfig fallbackConfig = 28 [ json_name = "fallback_config" ];
   // 限流规则标签数据
   map<string, string> metadata = 29;
+  // 操作标志位
+  bool editable = 30;
+  bool deleteable = 31;
 }
 
 message MatchArgument {

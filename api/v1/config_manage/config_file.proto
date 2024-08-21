@@ -34,6 +34,9 @@ message ConfigFileGroup {
   google.protobuf.StringValue business = 17;
   google.protobuf.StringValue department = 18;
   map<string, string> metadata = 19;
+
+  // 删除操作标志位
+  google.protobuf.BoolValue deleteable = 20;
 }
 
 message ConfigFile {

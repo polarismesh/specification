@@ -173,6 +173,13 @@ pub struct Namespace {
     pub editable: ::core::option::Option<bool>,
     #[prost(message, repeated, tag = "16")]
     pub service_export_to: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "17")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "18")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -419,6 +426,8 @@ pub struct Service {
     pub editable: ::core::option::Option<bool>,
     #[prost(message, repeated, tag = "25")]
     pub export_to: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "26")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -730,6 +739,11 @@ pub struct RouteRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "30")]
+    pub editable: bool,
+    #[prost(bool, tag = "31")]
+    pub deleteable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1177,6 +1191,11 @@ pub struct Rule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "30")]
+    pub editable: bool,
+    #[prost(bool, tag = "31")]
+    pub deleteable: bool,
 }
 /// Nested message and enum types in `Rule`.
 pub mod rule {
@@ -2096,6 +2115,11 @@ pub struct CircuitBreakerRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "40")]
+    pub editable: bool,
+    #[prost(bool, tag = "41")]
+    pub deleteable: bool,
 }
 /// the condition to judge an input invocation as an error
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2438,6 +2462,11 @@ pub struct FaultDetectRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "40")]
+    pub editable: bool,
+    #[prost(bool, tag = "41")]
+    pub deleteable: bool,
 }
 /// Nested message and enum types in `FaultDetectRule`.
 pub mod fault_detect_rule {
@@ -3014,6 +3043,11 @@ pub struct LaneGroup {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "20")]
+    pub editable: bool,
+    #[prost(bool, tag = "21")]
+    pub deleteable: bool,
 }
 /// TrafficMatchRule 流量匹配规则
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3186,6 +3220,11 @@ pub struct LosslessRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "20")]
+    pub editable: bool,
+    #[prost(bool, tag = "21")]
+    pub deleteable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4126,6 +4165,9 @@ pub struct ConfigFileGroup {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 删除操作标志位
+    #[prost(message, optional, tag = "20")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

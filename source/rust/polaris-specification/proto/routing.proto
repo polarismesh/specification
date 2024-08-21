@@ -128,6 +128,9 @@ message RouteRule {
   map<string, string> extendInfo = 20;
   // 路由规则标签数据
   map<string, string> metadata = 21;
+  // 操作标志位
+  bool editable = 30;
+  bool deleteable = 31;
 }
 
 message MetadataFailover {

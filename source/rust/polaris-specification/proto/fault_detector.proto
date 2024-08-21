@@ -66,6 +66,9 @@ message FaultDetectRule {
   uint32 priority = 29 [ json_name = "priority" ];
   // 探测规则标签数据
   map<string, string> metadata = 30;
+  // 操作标志位
+  bool editable = 40;
+  bool deleteable = 41;
 }
 
 message HttpProtocolConfig {
