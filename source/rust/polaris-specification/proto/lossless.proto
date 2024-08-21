@@ -32,6 +32,9 @@ message LosslessRule {
   LosslessOffline losslessOffline = 9 [ json_name = "lossless_offline" ];
   // rule labels
   map<string, string> metadata = 10;
+  // 操作标志位
+  bool editable = 20;
+  bool deleteable = 21;
 }
 
 message LosslessOnline {

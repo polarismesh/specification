@@ -32,4 +32,7 @@ message Namespace {
   google.protobuf.BoolValue editable = 15;
 
   repeated google.protobuf.StringValue service_export_to = 16 [ json_name = "service_export_to" ];
+
+  map<string, string> metadata = 17;
+  google.protobuf.BoolValue deleteable = 18;
 }
