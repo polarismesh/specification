@@ -129,8 +129,8 @@ message RouteRule {
   // 路由规则标签数据
   map<string, string> metadata = 21;
   // 操作标志位
-  bool editable = 30;
-  bool deleteable = 31;
+  bool editable = 30 [ json_name = "editable" ];
+  bool deleteable = 31 [ json_name = "deleteable" ];
 }
 
 message MetadataFailover {

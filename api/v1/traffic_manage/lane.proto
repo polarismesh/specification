@@ -59,8 +59,8 @@ message LaneGroup {
   // 泳道组标签信息
   map<string, string> metadata = 12;
   // 操作标志位
-  bool editable = 20;
-  bool deleteable = 21;
+  bool editable = 20 [ json_name = "editable" ];
+  bool deleteable = 21 [ json_name = "deleteable" ];
 }
 
 // TrafficMatchRule 流量匹配规则
