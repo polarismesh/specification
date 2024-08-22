@@ -286,10 +286,10 @@ message CircuitBreakerRule {
   // priority rules priority
   uint32 priority = 30 [ json_name = "priority" ];
   // 熔断规则标签数据
-  map<string, string> metadata = 31;
+  map<string, string> metadata = 31 [ json_name = "metadata" ];
   // 操作标志位
-  bool editable = 40;
-  bool deleteable = 41;
+  bool editable = 40 [ json_name = "editable" ];
+  bool deleteable = 41 [ json_name = "deleteable" ];
 }
 
 // the condition to judge an input invocation as an error
@@ -339,4 +339,21 @@ message BlockConfig {
   repeated ErrorCondition error_conditions = 3 [ json_name = "error_conditions" ];
   // trigger condition to trigger circuitbreaking
   repeated TriggerCondition trigger_conditions = 4 [ json_name = "trigger_conditions" ];
+}
+
+// fallback config
+message FallbackConfig {
+  bool enable = 1;
+  FallbackResponse response = 2;
+}
+
+// fallback response
+message FallbackResponse {
+  int32 code = 1;
+  message MessageHeader {
+    string key = 1;
+    string value = 2;
+  }
+  repeated MessageHeader headers = 2;
+  string body = 3;
 }
