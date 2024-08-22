@@ -65,6 +65,7 @@ message ServiceAlias {
 
   google.protobuf.StringValue id = 11;
   google.protobuf.BoolValue editable = 12;
+  google.protobuf.BoolValue deleteable = 13;
 }
 
 message Instance {
