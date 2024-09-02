@@ -100,6 +100,9 @@ message Rule {
   CustomResponse customResponse = 28 [ json_name = "custom_response" ];
   // 限流规则标签数据
   map<string, string> metadata = 29 [ json_name = "metadata" ];
+  // 操作标志位
+  bool editable = 30 [ json_name = "editable" ];
+  bool deleteable = 31 [ json_name = "deleteable" ];
 }
 
 message MatchArgument {

@@ -287,6 +287,9 @@ message CircuitBreakerRule {
   uint32 priority = 30 [ json_name = "priority" ];
   // 熔断规则标签数据
   map<string, string> metadata = 31 [ json_name = "metadata" ];
+  // 操作标志位
+  bool editable = 40 [ json_name = "editable" ];
+  bool deleteable = 41 [ json_name = "deleteable" ];
 }
 
 // the condition to judge an input invocation as an error

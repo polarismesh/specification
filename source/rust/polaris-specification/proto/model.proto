@@ -69,20 +69,3 @@ message API {
   // API的路径，支持多种匹配方式
   MatchString path = 3 [ json_name = "path" ];
 }
-
-// fallback config
-message FallbackConfig {
-  bool enable = 1;
-  FallbackResponse response = 2;
-}
-
-// fallback response
-message FallbackResponse {
-  int32 code = 1;
-  message MessageHeader {
-    string key = 1;
-    string value = 2;
-  }
-  repeated MessageHeader headers = 2;
-  string body = 3;
-}

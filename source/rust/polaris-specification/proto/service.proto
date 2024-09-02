@@ -42,6 +42,7 @@ message Service {
   google.protobuf.StringValue id = 21;
   google.protobuf.BoolValue editable = 24;
   repeated google.protobuf.StringValue export_to = 25 [ json_name = "export_to" ];
+  google.protobuf.BoolValue deleteable = 26;
 }
 
 enum AliasType {
@@ -64,6 +65,7 @@ message ServiceAlias {
 
   google.protobuf.StringValue id = 11;
   google.protobuf.BoolValue editable = 12;
+  google.protobuf.BoolValue deleteable = 13;
 }
 
 message Instance {

@@ -173,6 +173,13 @@ pub struct Namespace {
     pub editable: ::core::option::Option<bool>,
     #[prost(message, repeated, tag = "16")]
     pub service_export_to: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(map = "string, string", tag = "17")]
+    pub metadata: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    #[prost(message, optional, tag = "18")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -332,37 +339,6 @@ pub struct Api {
     #[prost(message, optional, tag = "3")]
     pub path: ::core::option::Option<MatchString>,
 }
-/// fallback config
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FallbackConfig {
-    #[prost(bool, tag = "1")]
-    pub enable: bool,
-    #[prost(message, optional, tag = "2")]
-    pub response: ::core::option::Option<FallbackResponse>,
-}
-/// fallback response
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct FallbackResponse {
-    #[prost(int32, tag = "1")]
-    pub code: i32,
-    #[prost(message, repeated, tag = "2")]
-    pub headers: ::prost::alloc::vec::Vec<fallback_response::MessageHeader>,
-    #[prost(string, tag = "3")]
-    pub body: ::prost::alloc::string::String,
-}
-/// Nested message and enum types in `FallbackResponse`.
-pub mod fallback_response {
-    #[allow(clippy::derive_partial_eq_without_eq)]
-    #[derive(Clone, PartialEq, ::prost::Message)]
-    pub struct MessageHeader {
-        #[prost(string, tag = "1")]
-        pub key: ::prost::alloc::string::String,
-        #[prost(string, tag = "2")]
-        pub value: ::prost::alloc::string::String,
-    }
-}
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Service {
@@ -419,6 +395,8 @@ pub struct Service {
     pub editable: ::core::option::Option<bool>,
     #[prost(message, repeated, tag = "25")]
     pub export_to: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
+    #[prost(message, optional, tag = "26")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -447,6 +425,8 @@ pub struct ServiceAlias {
     pub id: ::core::option::Option<::prost::alloc::string::String>,
     #[prost(message, optional, tag = "12")]
     pub editable: ::core::option::Option<bool>,
+    #[prost(message, optional, tag = "13")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -730,6 +710,11 @@ pub struct RouteRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "30")]
+    pub editable: bool,
+    #[prost(bool, tag = "31")]
+    pub deleteable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -1170,13 +1155,18 @@ pub struct Rule {
     pub concurrency_amount: ::core::option::Option<ConcurrencyAmount>,
     /// fallback configuration
     #[prost(message, optional, tag = "28")]
-    pub fallback_config: ::core::option::Option<FallbackConfig>,
+    pub custom_response: ::core::option::Option<CustomResponse>,
     /// 限流规则标签数据
     #[prost(map = "string, string", tag = "29")]
     pub metadata: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "30")]
+    pub editable: bool,
+    #[prost(bool, tag = "31")]
+    pub deleteable: bool,
 }
 /// Nested message and enum types in `Rule`.
 pub mod rule {
@@ -1416,6 +1406,13 @@ pub mod match_argument {
 pub struct ConcurrencyAmount {
     #[prost(uint32, tag = "1")]
     pub max_amount: u32,
+}
+/// custom response text when limited
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct CustomResponse {
+    #[prost(string, tag = "3")]
+    pub body: ::prost::alloc::string::String,
 }
 /// 分布式限流服务集群
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2096,6 +2093,11 @@ pub struct CircuitBreakerRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "40")]
+    pub editable: bool,
+    #[prost(bool, tag = "41")]
+    pub deleteable: bool,
 }
 /// the condition to judge an input invocation as an error
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -2238,6 +2240,37 @@ pub struct BlockConfig {
     /// trigger condition to trigger circuitbreaking
     #[prost(message, repeated, tag = "4")]
     pub trigger_conditions: ::prost::alloc::vec::Vec<TriggerCondition>,
+}
+/// fallback config
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FallbackConfig {
+    #[prost(bool, tag = "1")]
+    pub enable: bool,
+    #[prost(message, optional, tag = "2")]
+    pub response: ::core::option::Option<FallbackResponse>,
+}
+/// fallback response
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct FallbackResponse {
+    #[prost(int32, tag = "1")]
+    pub code: i32,
+    #[prost(message, repeated, tag = "2")]
+    pub headers: ::prost::alloc::vec::Vec<fallback_response::MessageHeader>,
+    #[prost(string, tag = "3")]
+    pub body: ::prost::alloc::string::String,
+}
+/// Nested message and enum types in `FallbackResponse`.
+pub mod fallback_response {
+    #[allow(clippy::derive_partial_eq_without_eq)]
+    #[derive(Clone, PartialEq, ::prost::Message)]
+    pub struct MessageHeader {
+        #[prost(string, tag = "1")]
+        pub key: ::prost::alloc::string::String,
+        #[prost(string, tag = "2")]
+        pub value: ::prost::alloc::string::String,
+    }
 }
 /// circuitbreaking level
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -2438,6 +2471,17 @@ pub struct FaultDetectRule {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// extend info, put some custom info to display in console
+    #[prost(map = "string, string", tag = "31")]
+    pub extend_info: ::std::collections::HashMap<
+        ::prost::alloc::string::String,
+        ::prost::alloc::string::String,
+    >,
+    /// 操作标志位
+    #[prost(bool, tag = "40")]
+    pub editable: bool,
+    #[prost(bool, tag = "41")]
+    pub deleteable: bool,
 }
 /// Nested message and enum types in `FaultDetectRule`.
 pub mod fault_detect_rule {
@@ -3014,6 +3058,11 @@ pub struct LaneGroup {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "20")]
+    pub editable: bool,
+    #[prost(bool, tag = "21")]
+    pub deleteable: bool,
 }
 /// TrafficMatchRule 流量匹配规则
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -3162,30 +3211,32 @@ pub struct LosslessRule {
     /// namespace for rule belongs to
     #[prost(string, tag = "3")]
     pub namespace: ::prost::alloc::string::String,
-    /// match rules by labels
-    #[prost(map = "string, message", tag = "4")]
-    pub labels: ::std::collections::HashMap<::prost::alloc::string::String, MatchString>,
     /// revision routing version
-    #[prost(string, tag = "5")]
+    #[prost(string, tag = "4")]
     pub revision: ::prost::alloc::string::String,
     /// ctime create time of the rules
-    #[prost(string, tag = "6")]
+    #[prost(string, tag = "5")]
     pub ctime: ::prost::alloc::string::String,
     /// mtime modify time of the rules
-    #[prost(string, tag = "7")]
+    #[prost(string, tag = "6")]
     pub mtime: ::prost::alloc::string::String,
     /// configuration for lossless online
-    #[prost(message, optional, tag = "8")]
+    #[prost(message, optional, tag = "7")]
     pub lossless_online: ::core::option::Option<LosslessOnline>,
     /// configuration for lossless offline
-    #[prost(message, optional, tag = "9")]
+    #[prost(message, optional, tag = "8")]
     pub lossless_offline: ::core::option::Option<LosslessOffline>,
     /// rule labels
-    #[prost(map = "string, string", tag = "10")]
+    #[prost(map = "string, string", tag = "9")]
     pub metadata: ::std::collections::HashMap<
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 操作标志位
+    #[prost(bool, tag = "30")]
+    pub editable: bool,
+    #[prost(bool, tag = "31")]
+    pub deleteable: bool,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -4126,6 +4177,9 @@ pub struct ConfigFileGroup {
         ::prost::alloc::string::String,
         ::prost::alloc::string::String,
     >,
+    /// 删除操作标志位
+    #[prost(message, optional, tag = "20")]
+    pub deleteable: ::core::option::Option<bool>,
 }
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]

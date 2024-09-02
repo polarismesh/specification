@@ -18,20 +18,21 @@ message LosslessRule {
   string service = 2 [ json_name = "service" ];
   // namespace for rule belongs to
   string namespace = 3 [ json_name = "namespace" ];
-  // match rules by labels
-  map<string, MatchString> labels = 4 [ json_name = "labels" ];
   // revision routing version
-  string revision = 5 [ json_name = "revision" ];
+  string revision = 4 [ json_name = "revision" ];
   // ctime create time of the rules
-  string ctime = 6 [ json_name = "ctime" ];
+  string ctime = 5 [ json_name = "ctime" ];
   // mtime modify time of the rules
-  string mtime = 7 [ json_name = "mtime" ];
+  string mtime = 6 [ json_name = "mtime" ];
   // configuration for lossless online
-  LosslessOnline losslessOnline = 8 [ json_name = "lossless_online" ];
+  LosslessOnline losslessOnline = 7 [ json_name = "lossless_online" ];
   // configuration for lossless offline
-  LosslessOffline losslessOffline = 9 [ json_name = "lossless_offline" ];
+  LosslessOffline losslessOffline = 8 [ json_name = "lossless_offline" ];
   // rule labels
-  map<string, string> metadata = 10;
+  map<string, string> metadata = 9 [ json_name = "metadata" ];
+  // 操作标志位
+  bool editable = 30 [ json_name = "editable" ];
+  bool deleteable = 31 [ json_name = "deleteable" ];
 }
 
 message LosslessOnline {
