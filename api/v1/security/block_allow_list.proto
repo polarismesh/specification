@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/wrappers.proto";
+import "model.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/security";
+option java_package = "com.tencent.polaris.specification.api.v1.security";
+option java_outer_classname = "BlockAllowListProto";
+
+message BlockAllowListRule {
+
+  // unique rule id
+  string id = 1 [ json_name = "id" ];
+
+  // unique rule name
+  string name = 2 [ json_name = "name" ];
+
+  // metadata for block allow list rules
+  map<string, string> metadata = 3 [ json_name = "metadata" ];
+
+  // service namespace
+  string namespace = 4 [ json_name = "namespace" ];
+
+  // service name
+  string service = 5 [ json_name = "service" ];
+
+  // rule description
+  string description = 6 [ json_name = "description" ];
+
+  // rule priority
+  uint32 priority = 7 [ json_name = "priority" ];
+
+  // rule enable
+  bool enable = 8 [ json_name = "enable" ];
+
+  // ctime create time of the rules
+  string ctime = 9 [ json_name = "ctime" ];
+
+  // mtime modify time of the rules
+  string mtime = 10 [ json_name = "mtime" ];
+
+  // etime enable time of the rules
+  string etime = 11 [ json_name = "etime" ];
+
+  // block or allow configuration
+  repeated BlockAllowConfig blockAllowConfig = 12 [ json_name = "block_allow_config" ];
+
+}
+
+message BlockAllowConfig {
+  // blocking target api
+  API api = 1 [ json_name = "api" ];
+
+  message MatchArgument {
+    // label type for gateway request
+    enum Type {
+      // custom arguments
+      CUSTOM = 0;
+      // header, match the http header, dubbo attachment, grpc header
+      HEADER = 1;
+      // query, match the http query, dubbo argument
+      QUERY = 2;
+      // caller service
+      CALLER_SERVICE = 3;
+      // caller host ip
+      CALLER_IP = 4;
+      // caller instance metadata
+      CALLER_METADATA = 5;
+      // caller instance metadata
+      CALLEE_METADATA = 6;
+    }
+    Type type = 1 [ json_name = "type" ];
+    // header key or query key
+    string key = 2 [ json_name = "key" ];
+    // header value or query value
+    MatchString value = 3 [ json_name = "value" ];
+  }
+  // arguments to match this config
+  repeated MatchArgument arguments = 2 [ json_name = "arguments" ];
+
+  enum BlockAllowPolicy {
+    ALLOW_LIST = 0;
+    BLOCK_LIST = 1;
+  }
+  // block or allow as policy
+  BlockAllowPolicy blockAllowPolicy = 3 [ json_name = "block_allow_policy" ];
+}
+

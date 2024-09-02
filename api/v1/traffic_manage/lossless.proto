@@ -2,10 +2,6 @@ syntax = "proto3";
 
 package v1;
 
-import "google/protobuf/wrappers.proto";
-import "google/protobuf/duration.proto";
-import "model.proto";
-
 option go_package = "github.com/polarismesh/specification/source/go/api/v1/traffic_manage";
 option java_package = "com.tencent.polaris.specification.api.v1.traffic.manage";
 option java_outer_classname = "LosslessProto";
