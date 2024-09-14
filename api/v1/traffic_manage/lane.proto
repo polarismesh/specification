@@ -63,9 +63,9 @@ message LaneGroup {
     // 带有标签KEY的实例属于该泳道
     NOT_MATCH_KEY = 0;
     // 匹配上KEY和VALUE的实例才属于该泳道
-    NOT_MATCH_KEY_VALUE = 1;
+    NOT_MATCH_KEY_VALUES = 1;
   }
-  BaselineFilterStrategy baseline_filter_strategy = 13 [ json_name = "baseline_filter_strategy" ];
+  BaselineFilterStrategy baselineFilterStrategy = 13 [ json_name = "baseline_filter_strategy" ];
 
   // 操作标志位
   bool editable = 20 [ json_name = "editable" ];
