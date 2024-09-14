@@ -58,6 +58,15 @@ message LaneGroup {
   repeated LaneRule rules = 11;
   // 泳道组标签信息
   map<string, string> metadata = 12;
+  // 基线实例的过滤策略，默认为不带有标签KEY的实例属于该泳道
+  enum BaselineFilterStrategy {
+    // 带有标签KEY的实例属于该泳道
+    NOT_MATCH_KEY = 0;
+    // 匹配上KEY和VALUE的实例才属于该泳道
+    NOT_MATCH_KEY_VALUE = 1;
+  }
+  BaselineFilterStrategy baseline_filter_strategy = 13 [ json_name = "baseline_filter_strategy" ];
+
   // 操作标志位
   bool editable = 20 [ json_name = "editable" ];
   bool deleteable = 21 [ json_name = "deleteable" ];
@@ -108,4 +117,9 @@ message LaneRule {
   uint32 priority = 12;
   // description simple description rules
   string description = 13;
+  // 属于该泳道的实例标签值，只要匹配上其中一个标签，就代表这个实例属于这个泳道
+  // 如果为空，则使用default_label_value
+  repeated string label_values = 14;
+  // 属于该泳道的实例标签KEY，默认为lane
+  string label_key = 15;
 }
