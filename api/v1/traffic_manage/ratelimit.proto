@@ -51,7 +51,7 @@ message Rule {
   // 可以有多个粒度的配置（比如同时针对秒级，分钟级，天级），匹配一个则进行限流
   // 全局限流模式下，该值为服务配额总量；单机限流模式下，该值为单个节点能处理的配额量
   repeated Amount amounts = 9;
-  // 限流动作，对应着客户端的插件名字
+  // 限流动作，和 resource 配合决定插件名称
   google.protobuf.StringValue action = 10;
   // 是否停用该限流规则，默认启用
   google.protobuf.BoolValue disable = 11;
