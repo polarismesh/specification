@@ -36,6 +36,8 @@ message ServiceContract {
   string type = 14;
   // 标签
   map<string, string> metadata = 15;
+  // 内容摘要
+  string content_digest = 16;
 }
 
 message InterfaceDescriptor {
@@ -74,4 +76,6 @@ message InterfaceDescriptor {
   string version = 13;
   // 类型
   string type = 14;
+  // 内容摘要
+  string content_digest = 15;
 }
