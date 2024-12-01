@@ -37,7 +37,7 @@ message ServiceContract {
   // 标签
   map<string, string> metadata = 15;
   // 内容摘要
-  string content_digest = 16;
+  string content_digest = 16 [ json_name = "content_digest" ];
 }
 
 message InterfaceDescriptor {
@@ -77,5 +77,5 @@ message InterfaceDescriptor {
   // 类型
   string type = 14;
   // 内容摘要
-  string content_digest = 15;
+  string content_digest = 15 [ json_name = "content_digest" ];
 }
