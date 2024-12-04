@@ -34,7 +34,16 @@ message ConfigFileGroup {
   google.protobuf.StringValue business = 17;
   google.protobuf.StringValue department = 18;
   map<string, string> metadata = 19;
+  // 删除操作标志位
+  google.protobuf.BoolValue deleteable = 20;
 }
+
+message ConfigFilePersistent {
+  string encoding = 1;
+  string path = 2;
+  string post_cmd = 3;
+}
+
 
 message ConfigFile {
   google.protobuf.UInt64Value id = 1;
@@ -56,14 +65,14 @@ message ConfigFile {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode = 18;
-  // 文件编码
-  google.protobuf.StringValue save_file_encoding = 19;
-  // 文件下发路径
-  google.protobuf.StringValue save_file_path = 20;
-  // 文件后置命令
-  google.protobuf.StringValue save_file_post_cmd = 21;
+  ConfigFilePullClient pull_client = 18;
+  ConfigFilePersistent persistent = 19;
+}
+
+enum ConfigFilePullClient {
+  CLIENT_SDK = 0;     // 配置文件仅能被SDK拉取
+  CLIENT_AGENT = 1; // 配置文件仅能被Agent拉取
+  CLIENT_ALL = 2;     // 配置文件可以被SDK及Agent同时拉取
 }
 
 message ConfigFileTag {
@@ -95,21 +104,8 @@ message ConfigFileRelease {
   repeated ClientLabel beta_labels = 19;
   // 配置文件唯一ID
   google.protobuf.UInt64Value config_file_id = 20;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode =  21;
-  // 文件编码，新增
-  google.protobuf.StringValue save_file_encoding = 22;
-  // 文件下发路径，新增
-  google.protobuf.StringValue save_file_path = 23;
-  // 文件后置命令，新增
-  google.protobuf.StringValue save_file_post_cmd = 24;
-}
-
-// 新增
-enum ConfigFileMode {
-  DefaultMode = 0;  // 配置文件的默认模式，仅能被SDK拉取，默认模式
-  FileMode = 1; // 配置文件以文件形式存储，仅能被Agent拉取
-  ShareMode = 2; // 配置文件共享模式，支持被SDK和Agent同时拉取
+  ConfigFilePullClient pull_client = 21;
+  ConfigFilePersistent persistent = 22;
 }
 
 message ConfigFileReleaseHistory {
@@ -132,14 +128,8 @@ message ConfigFileReleaseHistory {
   // 配置发布失败的原因
   google.protobuf.StringValue reason = 17;
   google.protobuf.StringValue release_description = 18;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode = 19;
-  // 文件编码，新增
-  google.protobuf.StringValue save_file_encoding = 20;
-  // 文件下发路径，新增
-  google.protobuf.StringValue save_file_path = 21;
-  // 文件后置命令，新增
-  google.protobuf.StringValue save_file_post_cmd = 22;
+  ConfigFilePullClient pull_client = 19;
+  ConfigFilePersistent persistent = 20;
 }
 
 message ConfigFileTemplate {
@@ -171,14 +161,8 @@ message ClientConfigFileInfo {
   // 配置文件的发布时间
   google.protobuf.StringValue release_time = 11 [ json_name = "release_time" ];
   ConfigRequestMode request_mode = 12;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode = 13;
-  // 文件编码，新增
-  google.protobuf.StringValue save_file_encoding = 14;
-  // 文件下发路径，新增
-  google.protobuf.StringValue save_file_path = 15;
-  // 文件后置命令，新增
-  google.protobuf.StringValue save_file_post_cmd = 16;
+  ConfigFilePullClient pull_client = 13;
+  ConfigFilePersistent persistent = 14;
 }
 
 enum ConfigRequestMode {
@@ -187,19 +171,14 @@ enum ConfigRequestMode {
   Agent = 2;
 }
 
+
 message ClientWatchConfigFileRequest {
   google.protobuf.StringValue client_ip = 1;
   google.protobuf.StringValue service_name = 2;
   repeated ClientConfigFileInfo watch_files = 3;
   ConfigRequestMode request_mode = 4;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode = 5;
-  // 文件编码，新增
-  google.protobuf.StringValue save_file_encoding = 6;
-  // 文件下发路径，新增
-  google.protobuf.StringValue save_file_path = 7;
-  // 文件后置命令，新增
-  google.protobuf.StringValue save_file_post_cmd = 8;
+  ConfigFilePullClient pull_client = 5;
+  ConfigFilePersistent persistent = 6;
 }
 
 message ConfigFileExportRequest {
@@ -226,14 +205,8 @@ message ConfigFilePublishInfo {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode = 18;
-  // 文件编码，新增
-  google.protobuf.StringValue save_file_encoding = 19;
-  // 文件下发路径，新增
-  google.protobuf.StringValue save_file_path = 20;
-  // 文件后置命令，新增
-  google.protobuf.StringValue save_file_post_cmd = 21;
+  ConfigFilePullClient pull_client = 18;
+  ConfigFilePersistent persistent = 19;
 }
 
 message ConfigFileGroupRequest {
@@ -242,14 +215,8 @@ message ConfigFileGroupRequest {
   // 配置标签
   map<string, string> client_labels = 12 [ json_name = "client_labels" ];
   ConfigRequestMode request_mode = 13;
-  // 文件模式，默认=0
-  ConfigFileMode file_mode = 14;
-  // 文件编码，新增
-  google.protobuf.StringValue save_file_encoding = 15;
-  // 文件下发路径，新增
-  google.protobuf.StringValue save_file_path = 16;
-  // 文件后置命令，新增
-  google.protobuf.StringValue save_file_post_cmd = 17;
+  ConfigFilePullClient pull_client = 14;
+  ConfigFilePersistent persistent = 15;
 }
 
 
