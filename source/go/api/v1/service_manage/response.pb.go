@@ -699,6 +699,13 @@ func (m *DiscoverResponse) GetBlockAllowListRule() []*security.BlockAllowListRul
 	return nil
 }
 
+func (x *DiscoverResponse) GetBlockAllowListRule() []*security.BlockAllowListRule {
+	if x != nil {
+		return x.BlockAllowListRule
+	}
+	return nil
+}
+
 type OptionSwitch struct {
 	Options              map[string]string `protobuf:"bytes,1,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
