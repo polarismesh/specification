@@ -11,3 +11,4 @@ debug/
 target/
 # Maven ignore
 .flattened-pom.xml
+Cargo.lock
