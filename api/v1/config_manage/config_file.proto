@@ -21,12 +21,12 @@ message ConfigFileGroup {
 
   repeated google.protobuf.StringValue user_ids = 10 [ json_name = "user_ids" ];
   repeated google.protobuf.StringValue group_ids = 11
-      [ json_name = "group_ids" ];
+  [ json_name = "group_ids" ];
 
   repeated google.protobuf.StringValue remove_user_ids = 13
-      [ json_name = "remove_user_ids" ];
+  [ json_name = "remove_user_ids" ];
   repeated google.protobuf.StringValue remove_group_ids = 14
-      [ json_name = "remove_group_ids" ];
+  [ json_name = "remove_group_ids" ];
 
   google.protobuf.BoolValue editable = 15;
   google.protobuf.StringValue owner = 16;
@@ -34,9 +34,6 @@ message ConfigFileGroup {
   google.protobuf.StringValue business = 17;
   google.protobuf.StringValue department = 18;
   map<string, string> metadata = 19;
-
-  // 删除操作标志位
-  google.protobuf.BoolValue deleteable = 20;
 }
 
 message ConfigFile {
@@ -59,6 +56,14 @@ message ConfigFile {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode = 18;
+  // 文件编码
+  google.protobuf.StringValue save_file_encoding = 19;
+  // 文件下发路径
+  google.protobuf.StringValue save_file_path = 20;
+  // 文件后置命令
+  google.protobuf.StringValue save_file_post_cmd = 21;
 }
 
 message ConfigFileTag {
@@ -88,6 +93,23 @@ message ConfigFileRelease {
   google.protobuf.StringValue release_type = 18;
   // 配置灰度发布时需要匹配的客户端标签信息
   repeated ClientLabel beta_labels = 19;
+  // 配置文件唯一ID
+  google.protobuf.UInt64Value config_file_id = 20;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode =  21;
+  // 文件编码，新增
+  google.protobuf.StringValue save_file_encoding = 22;
+  // 文件下发路径，新增
+  google.protobuf.StringValue save_file_path = 23;
+  // 文件后置命令，新增
+  google.protobuf.StringValue save_file_post_cmd = 24;
+}
+
+// 新增
+enum ConfigFileMode {
+  DefaultMode = 0;  // 配置文件的默认模式，仅能被SDK拉取，默认模式
+  FileMode = 1; // 配置文件以文件形式存储，仅能被Agent拉取
+  ShareMode = 2; // 配置文件共享模式，支持被SDK和Agent同时拉取
 }
 
 message ConfigFileReleaseHistory {
@@ -110,6 +132,14 @@ message ConfigFileReleaseHistory {
   // 配置发布失败的原因
   google.protobuf.StringValue reason = 17;
   google.protobuf.StringValue release_description = 18;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode = 19;
+  // 文件编码，新增
+  google.protobuf.StringValue save_file_encoding = 20;
+  // 文件下发路径，新增
+  google.protobuf.StringValue save_file_path = 21;
+  // 文件后置命令，新增
+  google.protobuf.StringValue save_file_post_cmd = 22;
 }
 
 message ConfigFileTemplate {
@@ -140,18 +170,43 @@ message ClientConfigFileInfo {
   google.protobuf.StringValue name = 10;
   // 配置文件的发布时间
   google.protobuf.StringValue release_time = 11 [ json_name = "release_time" ];
+  ConfigRequestMode request_mode = 12;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode = 13;
+  // 文件编码，新增
+  google.protobuf.StringValue save_file_encoding = 14;
+  // 文件下发路径，新增
+  google.protobuf.StringValue save_file_path = 15;
+  // 文件后置命令，新增
+  google.protobuf.StringValue save_file_post_cmd = 16;
+}
+
+enum ConfigRequestMode {
+  Default = 0;
+  SDK = 1;
+  Agent = 2;
 }
 
 message ClientWatchConfigFileRequest {
   google.protobuf.StringValue client_ip = 1;
   google.protobuf.StringValue service_name = 2;
   repeated ClientConfigFileInfo watch_files = 3;
+  ConfigRequestMode request_mode = 4;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode = 5;
+  // 文件编码，新增
+  google.protobuf.StringValue save_file_encoding = 6;
+  // 文件下发路径，新增
+  google.protobuf.StringValue save_file_path = 7;
+  // 文件后置命令，新增
+  google.protobuf.StringValue save_file_post_cmd = 8;
 }
 
 message ConfigFileExportRequest {
   google.protobuf.StringValue namespace = 1;
   repeated google.protobuf.StringValue groups = 2;
   repeated google.protobuf.StringValue names = 3;
+  repeated google.protobuf.UInt64Value ids = 4;
 }
 
 message ConfigFilePublishInfo {
@@ -162,8 +217,7 @@ message ConfigFilePublishInfo {
   google.protobuf.StringValue content = 5;
   google.protobuf.StringValue comment = 6;
   google.protobuf.StringValue format = 7;
-  google.protobuf.StringValue release_description = 8
-      [ json_name = "release_description" ];
+  google.protobuf.StringValue release_description = 8 [ json_name = "release_description" ];
   google.protobuf.StringValue create_by = 11 [ json_name = "create_by" ];
   google.protobuf.StringValue modify_by = 13 [ json_name = "modify_by" ];
   repeated ConfigFileTag tags = 14;
@@ -172,14 +226,32 @@ message ConfigFilePublishInfo {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode = 18;
+  // 文件编码，新增
+  google.protobuf.StringValue save_file_encoding = 19;
+  // 文件下发路径，新增
+  google.protobuf.StringValue save_file_path = 20;
+  // 文件后置命令，新增
+  google.protobuf.StringValue save_file_post_cmd = 21;
 }
 
 message ConfigFileGroupRequest {
   google.protobuf.StringValue revision = 1;
-  ConfigFileGroup config_file_group = 2 [ json_name = "config_file_group" ];
+  ConfigFileGroup config_file_group = 2;
   // 配置标签
   map<string, string> client_labels = 12 [ json_name = "client_labels" ];
+  ConfigRequestMode request_mode = 13;
+  // 文件模式，默认=0
+  ConfigFileMode file_mode = 14;
+  // 文件编码，新增
+  google.protobuf.StringValue save_file_encoding = 15;
+  // 文件下发路径，新增
+  google.protobuf.StringValue save_file_path = 16;
+  // 文件后置命令，新增
+  google.protobuf.StringValue save_file_post_cmd = 17;
 }
+
 
 message ConfigDiscoverRequest {
   enum ConfigDiscoverRequestType {
@@ -210,7 +282,7 @@ message ConfigDiscoverResponse {
   ClientConfigFileInfo config_file = 5 [ json_name = "config_file" ];
 
   repeated ClientConfigFileInfo config_file_names = 6
-      [ json_name = "config_file_names" ];
+  [ json_name = "config_file_names" ];
   repeated ConfigFileGroup config_file_groups = 7
-      [ json_name = "config_file_groups" ];
+  [ json_name = "config_file_groups" ];
 }
