@@ -158,7 +158,7 @@ message ClientConfigFileInfo {
   google.protobuf.StringValue name = 10;
   // 配置文件的发布时间
   google.protobuf.StringValue release_time = 11 [ json_name = "release_time" ];
-  ConfigClientType request_mode = 12 [ json_name = "request_mode" ];
+  ConfigClientType client_type = 12 [ json_name = "client_type" ];
   ConfigFilePersistent persistent = 14  [ json_name = "persistent" ];
 }
 
@@ -172,7 +172,7 @@ message ClientWatchConfigFileRequest {
   google.protobuf.StringValue client_ip = 1;
   google.protobuf.StringValue service_name = 2;
   repeated ClientConfigFileInfo watch_files = 3;
-  ConfigClientType request_mode = 4 [ json_name = "request_mode" ];
+  ConfigClientType client_type = 4 [ json_name = "client_type" ];
 }
 
 message ConfigFileExportRequest {
@@ -207,7 +207,7 @@ message ConfigFileGroupRequest {
   ConfigFileGroup config_file_group = 2 [ json_name = "config_file_group" ];
   // 配置标签
   map<string, string> client_labels = 12 [ json_name = "client_labels" ];
-  ConfigClientType request_mode = 13 [ json_name = "request_mode" ];
+  ConfigClientType client_type = 13 [ json_name = "client_type" ];
 }
 
 
