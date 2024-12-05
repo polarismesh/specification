@@ -128,8 +128,6 @@ message ConfigFileReleaseHistory {
   // 配置发布失败的原因
   google.protobuf.StringValue reason = 17;
   google.protobuf.StringValue release_description = 18;
-  ConfigFilePullClient pull_client = 19 [ json_name = "pull_client" ];
-  ConfigFilePersistent persistent = 20  [ json_name = "persistent" ];
 }
 
 message ConfigFileTemplate {
@@ -161,7 +159,6 @@ message ClientConfigFileInfo {
   // 配置文件的发布时间
   google.protobuf.StringValue release_time = 11 [ json_name = "release_time" ];
   ConfigRequestMode request_mode = 12 [ json_name = "request_mode" ];
-  ConfigFilePullClient pull_client = 13 [ json_name = "pull_client" ];
   ConfigFilePersistent persistent = 14  [ json_name = "persistent" ];
 }
 
@@ -177,8 +174,6 @@ message ClientWatchConfigFileRequest {
   google.protobuf.StringValue service_name = 2;
   repeated ClientConfigFileInfo watch_files = 3;
   ConfigRequestMode request_mode = 4 [ json_name = "request_mode" ];
-  ConfigFilePullClient pull_client = 5 [ json_name = "pull_client" ];
-  ConfigFilePersistent persistent = 6  [ json_name = "persistent" ];
 }
 
 message ConfigFileExportRequest {
@@ -205,8 +200,7 @@ message ConfigFilePublishInfo {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
-  ConfigFilePullClient pull_client = 18 [ json_name = "pull_client" ];
-  ConfigFilePersistent persistent = 19;
+  ConfigFilePersistent persistent = 19 [ json_name = "persistent" ];
 }
 
 message ConfigFileGroupRequest {
@@ -215,8 +209,6 @@ message ConfigFileGroupRequest {
   // 配置标签
   map<string, string> client_labels = 12 [ json_name = "client_labels" ];
   ConfigRequestMode request_mode = 13 [ json_name = "request_mode" ];
-  ConfigFilePullClient pull_client = 14 [ json_name = "pull_client" ];
-  ConfigFilePersistent persistent = 15 [ json_name = "persistent" ];
 }
 
 
