@@ -21,12 +21,12 @@ message ConfigFileGroup {
 
   repeated google.protobuf.StringValue user_ids = 10 [ json_name = "user_ids" ];
   repeated google.protobuf.StringValue group_ids = 11
-      [ json_name = "group_ids" ];
+  [ json_name = "group_ids" ];
 
   repeated google.protobuf.StringValue remove_user_ids = 13
-      [ json_name = "remove_user_ids" ];
+  [ json_name = "remove_user_ids" ];
   repeated google.protobuf.StringValue remove_group_ids = 14
-      [ json_name = "remove_group_ids" ];
+  [ json_name = "remove_group_ids" ];
 
   google.protobuf.BoolValue editable = 15;
   google.protobuf.StringValue owner = 16;
@@ -34,10 +34,16 @@ message ConfigFileGroup {
   google.protobuf.StringValue business = 17;
   google.protobuf.StringValue department = 18;
   map<string, string> metadata = 19;
-
   // 删除操作标志位
   google.protobuf.BoolValue deleteable = 20;
 }
+
+message ConfigFilePersistent {
+  string encoding = 1;
+  string path = 2;
+  string post_cmd = 3;
+}
+
 
 message ConfigFile {
   google.protobuf.UInt64Value id = 1;
@@ -59,6 +65,14 @@ message ConfigFile {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
+  ConfigFileSupportedClient supported_client = 18 [ json_name = "supported_client" ];
+  ConfigFilePersistent persistent = 19  [ json_name = "persistent" ];
+}
+
+enum ConfigFileSupportedClient {
+  CLIENT_SDK = 0;     // 配置文件仅能被SDK拉取
+  CLIENT_AGENT = 1; // 配置文件仅能被Agent拉取
+  CLIENT_ALL = 2;     // 配置文件可以被SDK及Agent同时拉取
 }
 
 message ConfigFileTag {
@@ -88,6 +102,10 @@ message ConfigFileRelease {
   google.protobuf.StringValue release_type = 18;
   // 配置灰度发布时需要匹配的客户端标签信息
   repeated ClientLabel beta_labels = 19;
+  // 配置文件唯一ID
+  google.protobuf.UInt64Value config_file_id = 20 [ json_name = "config_file_id"];
+  ConfigFileSupportedClient supported_client = 21 [ json_name = "supported_client" ];
+  ConfigFilePersistent persistent = 22  [ json_name = "persistent" ];
 }
 
 message ConfigFileReleaseHistory {
@@ -140,18 +158,28 @@ message ClientConfigFileInfo {
   google.protobuf.StringValue name = 10;
   // 配置文件的发布时间
   google.protobuf.StringValue release_time = 11 [ json_name = "release_time" ];
+  ConfigClientType client_type = 12 [ json_name = "client_type" ];
+  ConfigFilePersistent persistent = 14  [ json_name = "persistent" ];
 }
+
+enum ConfigClientType {
+  SDK = 0;
+  Agent = 1;
+}
+
 
 message ClientWatchConfigFileRequest {
   google.protobuf.StringValue client_ip = 1;
   google.protobuf.StringValue service_name = 2;
   repeated ClientConfigFileInfo watch_files = 3;
+  ConfigClientType client_type = 4 [ json_name = "client_type" ];
 }
 
 message ConfigFileExportRequest {
   google.protobuf.StringValue namespace = 1;
   repeated google.protobuf.StringValue groups = 2;
   repeated google.protobuf.StringValue names = 3;
+  repeated google.protobuf.UInt64Value ids = 4;
 }
 
 message ConfigFilePublishInfo {
@@ -162,8 +190,7 @@ message ConfigFilePublishInfo {
   google.protobuf.StringValue content = 5;
   google.protobuf.StringValue comment = 6;
   google.protobuf.StringValue format = 7;
-  google.protobuf.StringValue release_description = 8
-      [ json_name = "release_description" ];
+  google.protobuf.StringValue release_description = 8 [ json_name = "release_description" ];
   google.protobuf.StringValue create_by = 11 [ json_name = "create_by" ];
   google.protobuf.StringValue modify_by = 13 [ json_name = "modify_by" ];
   repeated ConfigFileTag tags = 14;
@@ -172,6 +199,7 @@ message ConfigFilePublishInfo {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
+  ConfigFilePersistent persistent = 19 [ json_name = "persistent" ];
 }
 
 message ConfigFileGroupRequest {
@@ -179,7 +207,9 @@ message ConfigFileGroupRequest {
   ConfigFileGroup config_file_group = 2 [ json_name = "config_file_group" ];
   // 配置标签
   map<string, string> client_labels = 12 [ json_name = "client_labels" ];
+  ConfigClientType client_type = 13 [ json_name = "client_type" ];
 }
+
 
 message ConfigDiscoverRequest {
   enum ConfigDiscoverRequestType {
@@ -210,7 +240,7 @@ message ConfigDiscoverResponse {
   ClientConfigFileInfo config_file = 5 [ json_name = "config_file" ];
 
   repeated ClientConfigFileInfo config_file_names = 6
-      [ json_name = "config_file_names" ];
+  [ json_name = "config_file_names" ];
   repeated ConfigFileGroup config_file_groups = 7
-      [ json_name = "config_file_groups" ];
+  [ json_name = "config_file_groups" ];
 }
