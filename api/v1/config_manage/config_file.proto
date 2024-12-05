@@ -103,7 +103,7 @@ message ConfigFileRelease {
   // 配置灰度发布时需要匹配的客户端标签信息
   repeated ClientLabel beta_labels = 19;
   // 配置文件唯一ID
-  google.protobuf.UInt64Value config_file_id = 20;
+  google.protobuf.UInt64Value config_file_id = 20 [ json_name = "config_file_id"];
   ConfigFilePullClient pull_client = 21 [ json_name = "pull_client" ];
   ConfigFilePersistent persistent = 22  [ json_name = "persistent" ];
 }
@@ -163,9 +163,8 @@ message ClientConfigFileInfo {
 }
 
 enum ConfigRequestMode {
-  Default = 0;
-  SDK = 1;
-  Agent = 2;
+  SDK = 0;
+  Agent = 1;
 }
 
 
