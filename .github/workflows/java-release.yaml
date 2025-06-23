@@ -12,16 +12,16 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-          server-id: ossrh
+          server-id: central-portal
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
       - name: "Publish package"
         env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          MAVEN_USERNAME: ${{ secrets.CENTRAL_PORTAL_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.CENTRAL_PORTAL_TOKEN }}
         run: |
           cd source/java
           bash build.sh
           cd polaris-specification
           cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import;
-          mvn clean deploy -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -DskipTests -B -U
+          mvn clean deploy -B -U -P release -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} -Dmaven.test.skip=true
