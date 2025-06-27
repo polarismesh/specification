@@ -10,13 +10,13 @@
 
     <properties>
         <grpc.version>1.50.0</grpc.version>
-        <maven.deploy.plugin.version>3.0.0-M1</maven.deploy.plugin.version>
         <maven.jar.plugin.version>3.0.0</maven.jar.plugin.version>
         <maven.source.plugin.version>3.2.0</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
         <maven.gpg.plugin.version>3.0.1</maven.gpg.plugin.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <central.publishing.maven.plugin.version>0.8.0</central.publishing.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -120,8 +120,13 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>${maven.deploy.plugin.version}</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central.publishing.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central-portal</publishingServerId>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -147,15 +152,4 @@
             </build>
         </profile>
     </profiles>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>central-portal</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>central-portal</id>
-            <url>https://ossrh-staging-api.central.sonatype.com/service/local/</url>
-        </repository>
-    </distributionManagement>
 </project>
