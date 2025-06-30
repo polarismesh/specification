@@ -18,6 +18,7 @@ import "contract.proto";
 import "lane.proto";
 import "lossless.proto";
 import "block_allow_list.proto";
+import "traffic_mirroring.proto";
 
 option go_package = "github.com/polarismesh/specification/source/go/api/v1/service_manage";
 option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
@@ -129,6 +130,8 @@ message DiscoverResponse {
   repeated LosslessRule losslessRules = 25;
   // 服务黑白名单鉴权规则
   repeated BlockAllowListRule blockAllowListRule = 26;
+  // 流量镜像规则内容
+  repeated TrafficMirroring trafficMirroring = 27;
 }
 
 message OptionSwitch { map<string, string> options = 1; }
