@@ -20,11 +20,11 @@ message TrafficMirroring {
   // 开关
   google.protobuf.BoolValue enabled = 4;
   // 流量来源匹配规则，判断哪些流量需要镜像
-  repeated SourceMatch sourceMatches = 5;
+  repeated Source sources = 5;
   // 流量镜像百分比(0.0-100.0)
   google.protobuf.FloatValue mirroringPercent = 6;
   // 流量目标匹配规则，判断流量需要镜像到哪些地方
-  repeated DestinationGroup destinationGroups = 7;
+  repeated Destination destinations = 7;
 
   google.protobuf.StringValue ctime = 20;
   google.protobuf.StringValue mtime = 21;
