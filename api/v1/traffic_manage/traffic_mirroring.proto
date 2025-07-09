@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/any.proto";
+import "model.proto";
+import "routing.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/traffic_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.traffic.manage";
+option java_outer_classname = "TrafficMirroringProto";
+
+message TrafficMirroring {
+  // 规则所属服务以及命名空间
+  google.protobuf.StringValue service = 1;
+  google.protobuf.StringValue namespace = 2;
+  google.protobuf.StringValue revision = 3;
+
+  // 开关
+  google.protobuf.BoolValue enabled = 4;
+  // 流量来源匹配规则，判断哪些流量需要镜像
+  repeated Source sources = 5;
+  // 流量镜像百分比(0.0-100.0)
+  google.protobuf.FloatValue mirroringPercent = 6;
+  // 流量目标匹配规则，判断流量需要镜像到哪些地方
+  repeated Destination destinations = 7;
+
+  google.protobuf.StringValue ctime = 20;
+  google.protobuf.StringValue mtime = 21;
+}
