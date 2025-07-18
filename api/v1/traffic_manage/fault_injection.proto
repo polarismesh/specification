@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package v1;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/any.proto";
+import "model.proto";
+import "routing.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/traffic_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.traffic.manage";
+option java_outer_classname = "FaultInjectionProto";
+
+message FaultInjection {
+  // 规则所属服务以及命名空间
+  google.protobuf.StringValue service = 1;
+  google.protobuf.StringValue namespace = 2;
+  google.protobuf.StringValue revision = 3;
+
+  // 开关
+  google.protobuf.BoolValue enabled = 4;
+  // 故障注入来源匹配规则，判断哪些流量需要故障注入
+  repeated Source sources = 5;
+  // 延迟故障注入
+  DelayFault delayFault = 6;
+  // 中断故障注入
+  AbortFault abortFault = 7;
+
+  google.protobuf.StringValue ctime = 20;
+  google.protobuf.StringValue mtime = 21;
+}
+
+// delay fault injection
+message DelayFault {
+  uint32 delayPercent = 2;
+  uint32 delay = 3;
+}
+
+// delay fault injection
+message AbortFault {
+  uint32 abortPercent = 2;
+  uint32 abortCode = 3;
+}
