@@ -3,7 +3,7 @@ syntax = "proto3";
 package v1;
 
 import "client.proto";
-import "service.proto";
+import "polaris_service.proto";
 import "request.proto";
 import "response.proto";
 import "heartbeat.proto";

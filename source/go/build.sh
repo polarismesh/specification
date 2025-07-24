@@ -32,7 +32,7 @@ ratelimiter_dir=${workdir}/api/v1/traffic_manage/ratelimiter
 out_dir=${workdir}/source/go
 
 proto_files_model="model.proto namespace.proto code.proto"
-proto_files_service_manage="client.proto service.proto request.proto response.proto grpcapi.proto heartbeat.proto configrelease.proto contract.proto"
+proto_files_service_manage="client.proto polaris_service.proto request.proto response.proto grpcapi.proto heartbeat.proto configrelease.proto contract.proto"
 proto_files_traffic_manage="routing.proto ratelimit.proto lane.proto lossless.proto"
 proto_files_fault_tolerance="circuitbreaker.proto fault_detector.proto"
 proto_files_config_manage="config_file.proto config_file_response.proto grpc_config_api.proto"
