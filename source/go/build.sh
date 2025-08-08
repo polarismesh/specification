@@ -17,13 +17,26 @@ security_dir=${workdir}/api/v1/security
 ratelimiter_dir=${workdir}/api/v1/traffic_manage/ratelimiter
 out_dir=${workdir}/source/go
 
-proto_files_model="model.proto namespace.proto code.proto"
-proto_files_service_manage="client.proto service.proto request.proto response.proto grpcapi.proto heartbeat.proto configrelease.proto contract.proto"
-proto_files_traffic_manage="routing.proto ratelimit.proto lane.proto lossless.proto"
-proto_files_fault_tolerance="circuitbreaker.proto fault_detector.proto"
-proto_files_config_manage="config_file.proto config_file_response.proto grpc_config_api.proto"
-proto_files_security="auth.proto block_allow_list.proto"
-proto_files_ratelimiter="ratelimiter.proto grpcapi_ratelimiter.proto"
+# Function to scan .proto files in a directory
+scan_proto_files() {
+    local dir=$1
+    local files=""
+    for file in "$dir"/*.proto; do
+        if [[ -f "$file" ]]; then
+            files+=" $(basename "$file")"
+        fi
+    done
+    echo "$files" | sed 's/^ //'
+}
+
+# Dynamically scan .proto files
+proto_files_model=$(scan_proto_files "$model_dir")
+proto_files_service_manage=$(scan_proto_files "$service_manage_dir")
+proto_files_traffic_manage=$(scan_proto_files "$traffic_manage_dir")
+proto_files_fault_tolerance=$(scan_proto_files "$fault_tolerance_dir")
+proto_files_config_manage=$(scan_proto_files "$config_manage_dir")
+proto_files_security=$(scan_proto_files "$security_dir")
+proto_files_ratelimiter=$(scan_proto_files "$ratelimiter_dir")
 
 if [[ "$CURRENT_OS" == "linux" || "$CURRENT_OS" == "darwin" ]]; then
     protoc_dir=${workdir}/source/protoc/protoc-${CURRENT_OS}-${CURRENT_ARCH}
