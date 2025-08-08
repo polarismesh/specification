@@ -3,7 +3,7 @@ syntax = "proto3";
 package v1;
 
 import "google/protobuf/wrappers.proto";
-import "service.proto";
+import "polaris_service.proto";
 import "circuitbreaker.proto";
 
 option go_package = "github.com/polarismesh/specification/source/go/api/v1/service_manage";
