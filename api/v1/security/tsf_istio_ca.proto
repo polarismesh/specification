@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package istio.v1.auth;
+
+option go_package = "istio.io/istio/security/proto";
+option java_package = "com.tencent.polaris.specification.api.v1.security";
+option java_outer_classname = "TsfIstioCertificateProto";
+
+// Certificate service issues certificates to workload.
+service IstioCertificateService {
+  // Using provided CSR, returns a signed certificate.
+  rpc CreateCertificate(IstioCertificateRequest)
+      returns (IstioCertificateResponse) {
+  }
+}
+
+// The request message of certificate creation.
+message IstioCertificateRequest {
+  // PEM-encoded certificate request.
+  string csr = 1;
+  // Optional subject ID field.
+  string subject_id = 2;
+  // Optional: requested certificate validity period, in seconds.
+  int64 validity_duration = 3;
+}
+
+// The response message of certificate creation.
+message IstioCertificateResponse {
+  // PEM-encoded certificate chain.
+  // The leaf cert is the first element, and the root cert is the last element.
+  repeated string cert_chain = 1;
+} 
