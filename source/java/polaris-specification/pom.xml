@@ -7,6 +7,40 @@
     <groupId>com.tencent.polaris</groupId>
     <artifactId>polaris-specification</artifactId>
     <version>##VERSION##</version>
+    <name>Polaris Specification</name>
+    <description>Polaris Specification JAR</description>
+    <url>https://github.com/polarismesh/specification</url>
+
+    <licenses>
+        <license>
+            <name>BSD 3-Clause License</name>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/polarismesh/specification</url>
+        <connection>
+            scm:git:git://github.com/polarismesh/specification.git
+        </connection>
+        <developerConnection>
+            scm:git:ssh://git@github.com/polarismesh/specification.git
+        </developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Andrew Shan</name>
+            <email>samshan08@126.com</email>
+            <organization>Tencent</organization>
+        </developer>
+        <developer>
+            <name>Haotian Zhang</name>
+            <email>928016560@qq.com</email>
+        </developer>
+    </developers>
 
     <properties>
         <grpc.version>1.50.0</grpc.version>
