@@ -81,6 +81,14 @@ message BatchQueryResponse {
 
   repeated google.protobuf.Any data = 22;
   Summary summary = 23;
+  repeated InstanceSummary instanceSummary = 24;
+}
+
+message InstanceSummary {
+  string   Namespace = 1;
+  string   ServiceName = 2;
+  map<string, string> metadata = 3;
+  Summary  summary = 4;
 }
 
 message DiscoverResponse {
