@@ -112,6 +112,7 @@ enum Code {
     ServiceSubscribedByMeshes        = 400213;
     ServiceExistedFluxRateLimits     = 400214;
     NamespaceExistedConfigGroups     = 400219;
+    MaximumCapacityExceeded          = 400230;
 
     NotFoundService                     = 400301;
     NotFoundRouting                     = 400302;
