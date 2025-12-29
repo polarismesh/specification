@@ -40,5 +40,10 @@ message DiscoverRequest {
   Service service = 2;
   reserved 3 to 4;
   DiscoverFilter Filter = 30;
+  DiscoverDirection Direction = 31;
 }
 
+enum DiscoverDirection {
+  Callee = 0; //被调查询
+  Caller = 1; //主调查询
+}
