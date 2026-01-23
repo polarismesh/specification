@@ -107,7 +107,7 @@ message LaneRule {
   string id = 1;
   string name = 2;
   // 所属泳道组的名称
-  string group_name = 3;
+  string group_name = 3 [ json_name = "group_name" ];
   // 流量匹配规则
   TrafficMatchRule traffic_match_rule = 4;
   // 保存这个泳道的默认实例标签
