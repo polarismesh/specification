@@ -95,7 +95,7 @@ message Rule {
   // 最大排队时长，单位秒
   google.protobuf.UInt32Value max_queue_delay = 26 [json_name = "max_queue_delay"];
   // amount for concurrency rate-limit
-  ConcurrencyAmount concurrencyAmount = 27 [ json_name = "concurrency_amount" ];
+  ConcurrencyAmount concurrencyAmount = 27 [ json_name = "concurrencyAmount" ];
   // fallback configuration
   CustomResponse customResponse = 28 [ json_name = "custom_response" ];
   // 限流规则标签数据

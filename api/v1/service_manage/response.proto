@@ -140,7 +140,7 @@ message DiscoverResponse {
   // 就近路由规则内容
   repeated RouteRule nearbyRouteRules = 24;
   // 无损上下线规则内容
-  repeated LosslessRule losslessRules = 25;
+  LosslessRule losslessRules = 25;
   // 服务黑白名单鉴权规则
   repeated BlockAllowListRule blockAllowListRule = 26;
   // 流量镜像规则内容
