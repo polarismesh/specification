@@ -77,6 +77,31 @@ message TrafficMatchRule {
   TrafficMatchMode matchMode = 14;
 }
 
+// TrafficGray 流量灰度配置
+message TrafficGray {
+  enum Mode {
+    // 灰度比例模式
+    PERCENTAGE = 0;
+    // 预热模式
+    WARMUP = 1;
+  }
+  message Percentage {
+    // 灰度百分比，默认100
+    int32 percent = 1 [ json_name = "percent" ];
+  }
+
+  message Warmup {
+    // 预热时间
+    int32 intervalSecond = 1 [ json_name = "interval_second" ];
+    // 预热曲线1-5，默认为1
+    int32 curvature = 2 [ json_name = "curvature" ];
+  }
+
+  Mode mode = 1 [ json_name = "mode" ];
+  Percentage percentage = 2 [ json_name = "percentage" ];
+  Warmup warmup = 3 [ json_name = "warmup" ];
+}
+
 // 泳道规则
 message LaneRule {
   string id = 1;
@@ -96,6 +121,8 @@ message LaneRule {
     PERMISSIVE = 1;
   }
   LaneMatchMode match_mode = 7;
+  // 流量灰度配置
+  TrafficGray traffic_gray = 15 [ json_name = "traffic_gray" ];
   // revision routing version
   string revision = 8;
   // ctime create time of the rules
