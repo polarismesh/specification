@@ -6,7 +6,7 @@
 
     <groupId>com.tencent.polaris</groupId>
     <artifactId>polaris-specification</artifactId>
-    <version>1.7.0</version>
+    <version>##VERSION##</version>
     <name>Polaris Specification</name>
     <description>Polaris Specification JAR</description>
     <url>https://github.com/polarismesh/specification</url>
