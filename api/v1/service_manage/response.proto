@@ -147,6 +147,7 @@ message DiscoverResponse {
   repeated TrafficMirroring trafficMirroring = 27;
   // 故障注入规则内容
   repeated FaultInjection faultInjection = 28;
+  DiscoverDirection Direction = 29;
 }
 
 message OptionSwitch { map<string, string> options = 1; }
