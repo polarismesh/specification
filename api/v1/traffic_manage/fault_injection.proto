@@ -28,6 +28,9 @@ message FaultInjection {
 
   google.protobuf.StringValue ctime = 20;
   google.protobuf.StringValue mtime = 21;
+
+  // 故障注入规则元数据
+  map<string, string> metadata = 50;
 }
 
 // delay fault injection
