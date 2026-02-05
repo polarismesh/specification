@@ -28,4 +28,7 @@ message TrafficMirroring {
 
   google.protobuf.StringValue ctime = 20;
   google.protobuf.StringValue mtime = 21;
+
+  // 流量镜像规则元数据
+  map<string, string> metadata = 50;
 }
