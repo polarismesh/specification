@@ -18,8 +18,8 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [ 8 ]
-        os: [ 'ubuntu-latest' ]
+        java: [ 8, 11, 17, 21, 25 ]
+        os: [ 'windows-latest', 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout codes
