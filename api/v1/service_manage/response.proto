@@ -140,7 +140,7 @@ message DiscoverResponse {
   repeated RouteRule customRouteRules = 23;
   // 就近路由规则内容
   repeated RouteRule nearbyRouteRules = 24;
-  // 无损上下线规则内容
+  // 无损上下线规则内容(兼容老版本)
   repeated LosslessRule losslessRules = 25;
   // 服务黑白名单鉴权规则
   repeated BlockAllowListRule blockAllowListRule = 26;
@@ -149,6 +149,8 @@ message DiscoverResponse {
   // 故障注入规则内容
   repeated FaultInjection faultInjection = 28;
   DiscoverDirection Direction = 29;
+  // 无损上下线规则列表 (新增)
+  repeated LosslessRule losslessRuleList = 100;
 }
 
 message OptionSwitch { map<string, string> options = 1; }

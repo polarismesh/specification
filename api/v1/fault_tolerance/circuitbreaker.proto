@@ -339,6 +339,8 @@ message BlockConfig {
   repeated ErrorCondition error_conditions = 3 [ json_name = "error_conditions" ];
   // trigger condition to trigger circuitbreaking
   repeated TriggerCondition trigger_conditions = 4 [ json_name = "trigger_conditions" ];
+  // recover condition to make resource open to close
+  RecoverCondition recoverCondition = 5;
 }
 
 // fallback config
