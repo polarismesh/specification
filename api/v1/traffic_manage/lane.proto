@@ -13,11 +13,18 @@ option java_outer_classname = "LaneProto";
 // 流量入口
 message TrafficEntry {
   // 标记流量入口类型
-  // type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为
-  // ServiceGatewaySelector type == "polarismesh.cn/service, 则 selector 为
-  // ServiceSelector
+  // type == "polarismesh.cn/gateway/tse-gateway, 则 selector 为
+  // TSEGatewaySelector type == "polarismesh.cn/gateway/spring-cloud-gateway",
+  // 则 selector 为 ServiceGatewaySelector type == "polarismesh.cn/service, 则
+  // selector 为 ServiceSelector
   string type = 1;
   google.protobuf.Any selector = 2;
+}
+
+// 网关入口定义
+message TSEGatewaySelector {
+  string instance_id = 1 [ json_name = "instance_id" ];
+  repeated string services = 2;
 }
 
 // 微服务网关入口定义
@@ -74,7 +81,7 @@ message TrafficMatchRule {
     // 或模式
     OR = 1;
   }
-  TrafficMatchMode matchMode = 14;
+  TrafficMatchMode matchMode = 14 [ json_name = "match_mode" ];
 }
 
 // TrafficGray 流量灰度配置
@@ -109,9 +116,9 @@ message LaneRule {
   // 所属泳道组的名称
   string group_name = 3 [ json_name = "group_name" ];
   // 流量匹配规则
-  TrafficMatchRule traffic_match_rule = 4;
+  TrafficMatchRule traffic_match_rule = 4 [ json_name = "traffic_match_rule" ];
   // 保存这个泳道的默认实例标签
-  string default_label_value = 5;
+  string default_label_value = 5 [ json_name = "default_label_value" ];
   // 泳道规则是否启用
   bool enable = 6;
   enum LaneMatchMode {
@@ -120,7 +127,7 @@ message LaneRule {
     // 宽松匹配模式
     PERMISSIVE = 1;
   }
-  LaneMatchMode match_mode = 7;
+  LaneMatchMode match_mode = 7 [ json_name = "match_mode" ];
   // 流量灰度配置
   TrafficGray traffic_gray = 15 [ json_name = "traffic_gray" ];
   // revision routing version

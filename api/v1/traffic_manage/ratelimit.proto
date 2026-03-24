@@ -132,7 +132,7 @@ message MatchArgument {
 
 // concurrency rate-limit amount config
 message ConcurrencyAmount {
-  uint32 maxAmount = 1 [ json_name = "max_amount" ];
+  uint32 maxAmount = 1 [ json_name = "maxAmount" ];
 }
 
 // custom response text when limited

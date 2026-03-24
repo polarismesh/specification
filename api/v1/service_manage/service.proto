@@ -42,7 +42,19 @@ message Service {
   google.protobuf.StringValue id = 21;
   google.protobuf.BoolValue editable = 24;
   repeated google.protobuf.StringValue export_to = 25 [ json_name = "export_to" ];
-  google.protobuf.BoolValue deleteable = 26;
+
+  bool sync_to_global_registry = 26 [ json_name = "sync_to_global_registry" ];
+
+  google.protobuf.UInt32Value isolate_instance_count = 27 [json_name = "isolate_instance_count"];
+  ServiceStatus service_status = 28 [json_name = "service_status"];
+
+  google.protobuf.BoolValue deleteable = 100;
+}
+
+enum ServiceStatus {
+  NORMAL = 0;    //服务状态正常
+  ABNORMAL = 1;  //服务状态异常
+  OFFLINE = 2;   //服务离线
 }
 
 enum AliasType {
@@ -66,6 +78,8 @@ message ServiceAlias {
   google.protobuf.StringValue id = 11;
   google.protobuf.BoolValue editable = 12;
   google.protobuf.BoolValue deleteable = 13;
+  repeated google.protobuf.StringValue export_to = 25 [ json_name = "export_to" ];
+  map<string, string> metadata = 26;
 }
 
 message Instance {

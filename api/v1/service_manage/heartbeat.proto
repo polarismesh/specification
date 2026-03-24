@@ -12,6 +12,7 @@ message HeartbeatRecord {
   reserved 2 to 5;
   int64 lastHeartbeatSec = 6 [ json_name = "last_heartbeat_sec" ];
   bool exist = 7 [ json_name = "exist" ];
+  int64 count = 8 [ json_name = "count" ];
 }
 
 message InstanceHeartbeat {

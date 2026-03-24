@@ -34,5 +34,8 @@ message Namespace {
   repeated google.protobuf.StringValue service_export_to = 16 [ json_name = "service_export_to" ];
 
   map<string, string> metadata = 17;
-  google.protobuf.BoolValue deleteable = 18;
+
+  bool sync_to_global_registry = 18 [ json_name = "sync_to_global_registry" ];
+
+  google.protobuf.BoolValue deleteable = 100;
 }
