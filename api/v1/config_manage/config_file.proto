@@ -128,6 +128,8 @@ message ConfigFileReleaseHistory {
   // 配置发布失败的原因
   google.protobuf.StringValue reason = 17;
   google.protobuf.StringValue release_description = 18;
+  ConfigFileSupportedClient supported_client = 19 [ json_name = "supported_client" ];
+  ConfigFilePersistent persistent = 20  [ json_name = "persistent" ];
 }
 
 message ConfigFileTemplate {
@@ -159,6 +161,7 @@ message ClientConfigFileInfo {
   // 配置文件的发布时间
   google.protobuf.StringValue release_time = 11 [ json_name = "release_time" ];
   ConfigClientType client_type = 12 [ json_name = "client_type" ];
+  ConfigFileSupportedClient supported_client = 13 [ json_name = "supported_client" ];
   ConfigFilePersistent persistent = 14  [ json_name = "persistent" ];
 }
 
@@ -182,6 +185,17 @@ message ConfigFileExportRequest {
   repeated google.protobuf.UInt64Value ids = 4;
 }
 
+message ConfigFileImportRequest {
+  google.protobuf.StringValue namespace = 1;
+  google.protobuf.StringValue base64Content = 2 [json_name = "base64_content"];
+  ConflictHandling conflict_handling = 3 [json_name = "conflict_handling"];
+}
+
+enum ConflictHandling {
+  CONFLICT_HANDLING_SKIP = 0;
+  CONFLICT_HANDLING_OVERWRITE = 1;
+}
+
 message ConfigFilePublishInfo {
   google.protobuf.StringValue release_name = 1 [ json_name = "release_name" ];
   google.protobuf.StringValue namespace = 2;
@@ -199,6 +213,7 @@ message ConfigFilePublishInfo {
   google.protobuf.BoolValue encrypted = 16;
   // 加密算法
   google.protobuf.StringValue encrypt_algo = 17;
+  ConfigFileSupportedClient supported_client = 18 [ json_name = "supported_client" ];
   ConfigFilePersistent persistent = 19 [ json_name = "persistent" ];
 }
 

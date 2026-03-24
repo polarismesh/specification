@@ -162,6 +162,10 @@ enum Code {
     EncryptConfigFileException      = 400809;
     GroupExistActiveRelease        = 400810;
     DecryptConfigFileException      = 400811;
+    InvalidConfigId                 = 400815;
+    InvalidConfigReleaseId          = 400812;
+    NotMatchContentToFormat         = 400813;
+    InvalidConfigContent            = 400814;
 
     // auth codes
     InvalidUserOwners          = 400410;

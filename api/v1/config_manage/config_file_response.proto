@@ -23,6 +23,8 @@ message ConfigResponse {
   ConfigFileRelease configFileRelease = 5;
   ConfigFileReleaseHistory configFileReleaseHistory = 6;
   ConfigFileTemplate configFileTemplate = 7;
+
+  repeated ConfigFile configFiles = 8;
 }
 
 message ConfigBatchWriteResponse {
@@ -57,12 +59,14 @@ message ConfigImportResponse {
   repeated ConfigFile createConfigFiles = 3;
   repeated ConfigFile skipConfigFiles = 4;
   repeated ConfigFile overwriteConfigFiles = 5;
+  repeated ConfigFile failedConfigFiles = 6;
 }
 
 message ConfigExportResponse {
   google.protobuf.UInt32Value code = 1;
   google.protobuf.StringValue info = 2;
   google.protobuf.BytesValue data = 3;
+  google.protobuf.StringValue base64Content = 4 [json_name = "base64_content"];
 }
 
 message ConfigEncryptAlgorithmResponse {

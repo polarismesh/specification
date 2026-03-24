@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package v1;
 
-import "google/protobuf/wrappers.proto";
 import "model.proto";
 
 option go_package = "github.com/polarismesh/specification/source/go/api/v1/security";
@@ -46,6 +45,9 @@ message BlockAllowListRule {
 
   // block or allow configuration
   repeated BlockAllowConfig blockAllowConfig = 12 [ json_name = "block_allow_config" ];
+
+  //revision
+  string revision = 13 [json_name = "revision" ];
 
 }
 
