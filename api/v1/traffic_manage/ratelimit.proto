@@ -233,3 +233,57 @@ message ClimbConfig {
 
   ClimbThrottling throttling = 4;  // 限流调整相关参数
 }
+
+// RateLimitExportRequest 限流规则导出请求
+message RateLimitExportRequest {
+  // 命名空间（精确匹配）
+  google.protobuf.StringValue namespace = 1;
+  // 服务名（精确匹配）
+  google.protobuf.StringValue service   = 2;
+  // 规则名称（模糊匹配）
+  google.protobuf.StringValue name      = 3;
+  // 规则类型：LOCAL / GLOBAL
+  google.protobuf.StringValue type      = 4;
+  // 启用状态筛选：true=仅导出已禁用，false=仅导出已启用；不传则不过滤
+  google.protobuf.BoolValue   disable   = 5;
+  // 时间范围（按 mtime 过滤）
+  google.protobuf.StringValue   start_time = 6;
+  google.protobuf.StringValue   end_time   = 7;
+  // 标签过滤（labels 模糊匹配），允许多个
+  repeated google.protobuf.StringValue labels = 8;
+  // 按 id 精确导出（可选；若传则忽略上面筛选条件）
+  repeated google.protobuf.StringValue ids    = 9;
+}
+
+message RateLimitExportResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  // 导出的 JSON 文件原始字节（用于 OpenAPI 直接下载场景）
+  google.protobuf.BytesValue  data = 3;
+  // 导出的 JSON 文件 base64 编码（用于控制台 JSON 协议场景）
+  google.protobuf.StringValue base64_content = 4;
+}
+
+// RateLimitImportResponse 限流规则导入响应
+message RateLimitImportResponse {
+  google.protobuf.UInt32Value code = 1;
+  google.protobuf.StringValue info = 2;
+  // 导入成功的规则（已入库，含新生成的 id）
+  repeated Rule successRateLimitRules = 3;
+  // 导入失败的规则（参数非法 / 存储错误等），每条会携带 code 和 info 说明原因
+  repeated Rule failRateLimitRules    = 4;
+}
+
+// RateLimitImportRequest 限流规则导入请求
+message RateLimitImportRequest {
+  // JSON 文件内容的 base64 编码字符串
+  // 解码后必须是形如 { "rules": [ {...}, {...} ] } 的 JSON
+  // 单次请求体最大 4MB（utils.MaxRequestBodySize）
+  google.protobuf.StringValue base64_content = 1;
+
+  // 可选：统一覆盖导入规则的命名空间
+  // 如果为空，则使用 JSON 文件中每条规则自带的 namespace
+  // 如果非空，则所有导入规则的 namespace 都会被强制设置为此值
+  google.protobuf.StringValue namespace = 2;
+}
+

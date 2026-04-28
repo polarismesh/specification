@@ -1138,6 +1138,335 @@ func (x *ClimbConfig) GetThrottling() *ClimbConfig_ClimbThrottling {
 	return nil
 }
 
+// RateLimitExportRequest 限流规则导出请求
+type RateLimitExportRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// 命名空间（精确匹配）
+	Namespace *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// 服务名（精确匹配）
+	Service *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=service,proto3" json:"service,omitempty"`
+	// 规则名称（模糊匹配）
+	Name *wrapperspb.StringValue `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	// 规则类型：LOCAL / GLOBAL
+	Type *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
+	// 启用状态筛选：true=仅导出已禁用，false=仅导出已启用；不传则不过滤
+	Disable *wrapperspb.BoolValue `protobuf:"bytes,5,opt,name=disable,proto3" json:"disable,omitempty"`
+	// 时间范围（按 mtime 过滤）
+	StartTime *wrapperspb.StringValue `protobuf:"bytes,6,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	EndTime   *wrapperspb.StringValue `protobuf:"bytes,7,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	// 标签过滤（labels 模糊匹配），允许多个
+	Labels []*wrapperspb.StringValue `protobuf:"bytes,8,rep,name=labels,proto3" json:"labels,omitempty"`
+	// 按 id 精确导出（可选；若传则忽略上面筛选条件）
+	Ids []*wrapperspb.StringValue `protobuf:"bytes,9,rep,name=ids,proto3" json:"ids,omitempty"`
+}
+
+func (x *RateLimitExportRequest) Reset() {
+	*x = RateLimitExportRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ratelimit_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RateLimitExportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RateLimitExportRequest) ProtoMessage() {}
+
+func (x *RateLimitExportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ratelimit_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RateLimitExportRequest.ProtoReflect.Descriptor instead.
+func (*RateLimitExportRequest) Descriptor() ([]byte, []int) {
+	return file_ratelimit_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *RateLimitExportRequest) GetNamespace() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Namespace
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetService() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Service
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetName() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Name
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetType() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Type
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetDisable() *wrapperspb.BoolValue {
+	if x != nil {
+		return x.Disable
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetStartTime() *wrapperspb.StringValue {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetEndTime() *wrapperspb.StringValue {
+	if x != nil {
+		return x.EndTime
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetLabels() []*wrapperspb.StringValue {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
+}
+
+func (x *RateLimitExportRequest) GetIds() []*wrapperspb.StringValue {
+	if x != nil {
+		return x.Ids
+	}
+	return nil
+}
+
+type RateLimitExportResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code *wrapperspb.UInt32Value `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Info *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	// 导出的 JSON 文件原始字节（用于 OpenAPI 直接下载场景）
+	Data *wrapperspb.BytesValue `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`
+	// 导出的 JSON 文件 base64 编码（用于控制台 JSON 协议场景）
+	Base64Content *wrapperspb.StringValue `protobuf:"bytes,4,opt,name=base64_content,json=base64Content,proto3" json:"base64_content,omitempty"`
+}
+
+func (x *RateLimitExportResponse) Reset() {
+	*x = RateLimitExportResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ratelimit_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RateLimitExportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RateLimitExportResponse) ProtoMessage() {}
+
+func (x *RateLimitExportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ratelimit_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RateLimitExportResponse.ProtoReflect.Descriptor instead.
+func (*RateLimitExportResponse) Descriptor() ([]byte, []int) {
+	return file_ratelimit_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *RateLimitExportResponse) GetCode() *wrapperspb.UInt32Value {
+	if x != nil {
+		return x.Code
+	}
+	return nil
+}
+
+func (x *RateLimitExportResponse) GetInfo() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Info
+	}
+	return nil
+}
+
+func (x *RateLimitExportResponse) GetData() *wrapperspb.BytesValue {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *RateLimitExportResponse) GetBase64Content() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Base64Content
+	}
+	return nil
+}
+
+// RateLimitImportResponse 限流规则导入响应
+type RateLimitImportResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Code *wrapperspb.UInt32Value `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Info *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=info,proto3" json:"info,omitempty"`
+	// 导入成功的规则（已入库，含新生成的 id）
+	SuccessRateLimitRules []*Rule `protobuf:"bytes,3,rep,name=successRateLimitRules,proto3" json:"successRateLimitRules,omitempty"`
+	// 导入失败的规则（参数非法 / 存储错误等），每条会携带 code 和 info 说明原因
+	FailRateLimitRules []*Rule `protobuf:"bytes,4,rep,name=failRateLimitRules,proto3" json:"failRateLimitRules,omitempty"`
+}
+
+func (x *RateLimitImportResponse) Reset() {
+	*x = RateLimitImportResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ratelimit_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RateLimitImportResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RateLimitImportResponse) ProtoMessage() {}
+
+func (x *RateLimitImportResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_ratelimit_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RateLimitImportResponse.ProtoReflect.Descriptor instead.
+func (*RateLimitImportResponse) Descriptor() ([]byte, []int) {
+	return file_ratelimit_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *RateLimitImportResponse) GetCode() *wrapperspb.UInt32Value {
+	if x != nil {
+		return x.Code
+	}
+	return nil
+}
+
+func (x *RateLimitImportResponse) GetInfo() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Info
+	}
+	return nil
+}
+
+func (x *RateLimitImportResponse) GetSuccessRateLimitRules() []*Rule {
+	if x != nil {
+		return x.SuccessRateLimitRules
+	}
+	return nil
+}
+
+func (x *RateLimitImportResponse) GetFailRateLimitRules() []*Rule {
+	if x != nil {
+		return x.FailRateLimitRules
+	}
+	return nil
+}
+
+// RateLimitImportRequest 限流规则导入请求
+type RateLimitImportRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// JSON 文件内容的 base64 编码字符串
+	// 解码后必须是形如 { "rules": [ {...}, {...} ] } 的 JSON
+	// 单次请求体最大 4MB（utils.MaxRequestBodySize）
+	Base64Content *wrapperspb.StringValue `protobuf:"bytes,1,opt,name=base64_content,json=base64Content,proto3" json:"base64_content,omitempty"`
+	// 可选：统一覆盖导入规则的命名空间
+	// 如果为空，则使用 JSON 文件中每条规则自带的 namespace
+	// 如果非空，则所有导入规则的 namespace 都会被强制设置为此值
+	Namespace *wrapperspb.StringValue `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+}
+
+func (x *RateLimitImportRequest) Reset() {
+	*x = RateLimitImportRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_ratelimit_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RateLimitImportRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RateLimitImportRequest) ProtoMessage() {}
+
+func (x *RateLimitImportRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_ratelimit_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RateLimitImportRequest.ProtoReflect.Descriptor instead.
+func (*RateLimitImportRequest) Descriptor() ([]byte, []int) {
+	return file_ratelimit_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *RateLimitImportRequest) GetBase64Content() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Base64Content
+	}
+	return nil
+}
+
+func (x *RateLimitImportRequest) GetNamespace() *wrapperspb.StringValue {
+	if x != nil {
+		return x.Namespace
+	}
+	return nil
+}
+
 // 限流数据统计配置
 type ClimbConfig_MetricConfig struct {
 	state         protoimpl.MessageState
@@ -1155,7 +1484,7 @@ type ClimbConfig_MetricConfig struct {
 func (x *ClimbConfig_MetricConfig) Reset() {
 	*x = ClimbConfig_MetricConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ratelimit_proto_msgTypes[13]
+		mi := &file_ratelimit_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1168,7 +1497,7 @@ func (x *ClimbConfig_MetricConfig) String() string {
 func (*ClimbConfig_MetricConfig) ProtoMessage() {}
 
 func (x *ClimbConfig_MetricConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_ratelimit_proto_msgTypes[13]
+	mi := &file_ratelimit_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1218,7 +1547,7 @@ type ClimbConfig_TriggerPolicy struct {
 func (x *ClimbConfig_TriggerPolicy) Reset() {
 	*x = ClimbConfig_TriggerPolicy{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ratelimit_proto_msgTypes[14]
+		mi := &file_ratelimit_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1231,7 +1560,7 @@ func (x *ClimbConfig_TriggerPolicy) String() string {
 func (*ClimbConfig_TriggerPolicy) ProtoMessage() {}
 
 func (x *ClimbConfig_TriggerPolicy) ProtoReflect() protoreflect.Message {
-	mi := &file_ratelimit_proto_msgTypes[14]
+	mi := &file_ratelimit_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1280,7 +1609,7 @@ type ClimbConfig_ClimbThrottling struct {
 func (x *ClimbConfig_ClimbThrottling) Reset() {
 	*x = ClimbConfig_ClimbThrottling{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ratelimit_proto_msgTypes[15]
+		mi := &file_ratelimit_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1293,7 +1622,7 @@ func (x *ClimbConfig_ClimbThrottling) String() string {
 func (*ClimbConfig_ClimbThrottling) ProtoMessage() {}
 
 func (x *ClimbConfig_ClimbThrottling) ProtoReflect() protoreflect.Message {
-	mi := &file_ratelimit_proto_msgTypes[15]
+	mi := &file_ratelimit_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1380,7 +1709,7 @@ type ClimbConfig_TriggerPolicy_ErrorRate struct {
 func (x *ClimbConfig_TriggerPolicy_ErrorRate) Reset() {
 	*x = ClimbConfig_TriggerPolicy_ErrorRate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ratelimit_proto_msgTypes[16]
+		mi := &file_ratelimit_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1393,7 +1722,7 @@ func (x *ClimbConfig_TriggerPolicy_ErrorRate) String() string {
 func (*ClimbConfig_TriggerPolicy_ErrorRate) ProtoMessage() {}
 
 func (x *ClimbConfig_TriggerPolicy_ErrorRate) ProtoReflect() protoreflect.Message {
-	mi := &file_ratelimit_proto_msgTypes[16]
+	mi := &file_ratelimit_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1451,7 +1780,7 @@ type ClimbConfig_TriggerPolicy_SlowRate struct {
 func (x *ClimbConfig_TriggerPolicy_SlowRate) Reset() {
 	*x = ClimbConfig_TriggerPolicy_SlowRate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ratelimit_proto_msgTypes[17]
+		mi := &file_ratelimit_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1464,7 +1793,7 @@ func (x *ClimbConfig_TriggerPolicy_SlowRate) String() string {
 func (*ClimbConfig_TriggerPolicy_SlowRate) ProtoMessage() {}
 
 func (x *ClimbConfig_TriggerPolicy_SlowRate) ProtoReflect() protoreflect.Message {
-	mi := &file_ratelimit_proto_msgTypes[17]
+	mi := &file_ratelimit_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1515,7 +1844,7 @@ type ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig struct {
 func (x *ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig) Reset() {
 	*x = ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_ratelimit_proto_msgTypes[18]
+		mi := &file_ratelimit_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1528,7 +1857,7 @@ func (x *ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig) String() string {
 func (*ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig) ProtoMessage() {}
 
 func (x *ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_ratelimit_proto_msgTypes[18]
+	mi := &file_ratelimit_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1881,17 +2210,90 @@ var file_ratelimit_proto_rawDesc = []byte{
 	0x77, 0x6e, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b,
 	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2e, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x0e, 0x74, 0x75, 0x6e,
-	0x65, 0x44, 0x6f, 0x77, 0x6e, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x42, 0x8f, 0x01, 0x0a, 0x37,
-	0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x65, 0x6e, 0x63, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x6f, 0x6c, 0x61,
-	0x72, 0x69, 0x73, 0x2e, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f,
-	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x74, 0x72, 0x61, 0x66, 0x66, 0x69, 0x63,
-	0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x42, 0x0e, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d,
-	0x69, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6f, 0x6c, 0x61, 0x72, 0x69, 0x73, 0x6d, 0x65, 0x73, 0x68, 0x2f,
-	0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x73, 0x6f,
-	0x75, 0x72, 0x63, 0x65, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f, 0x74,
-	0x72, 0x61, 0x66, 0x66, 0x69, 0x63, 0x5f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x44, 0x6f, 0x77, 0x6e, 0x50, 0x65, 0x72, 0x69, 0x6f, 0x64, 0x22, 0x82, 0x04, 0x0a, 0x16,
+	0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x45, 0x78, 0x70, 0x6f, 0x72, 0x74, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x3a, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70,
+	0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61,
+	0x63, 0x65, 0x12, 0x36, 0x0a, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75,
+	0x65, 0x52, 0x07, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x30, 0x0a, 0x04, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x30, 0x0a, 0x04,
+	0x74, 0x79, 0x70, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
+	0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x12, 0x34,
+	0x0a, 0x07, 0x64, 0x69, 0x73, 0x61, 0x62, 0x6c, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x42, 0x6f, 0x6f, 0x6c, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x07, 0x64, 0x69, 0x73,
+	0x61, 0x62, 0x6c, 0x65, 0x12, 0x3b, 0x0a, 0x0a, 0x73, 0x74, 0x61, 0x72, 0x74, 0x5f, 0x74, 0x69,
+	0x6d, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e,
+	0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x09, 0x73, 0x74, 0x61, 0x72, 0x74, 0x54, 0x69, 0x6d,
+	0x65, 0x12, 0x37, 0x0a, 0x08, 0x65, 0x6e, 0x64, 0x5f, 0x74, 0x69, 0x6d, 0x65, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75,
+	0x65, 0x52, 0x07, 0x65, 0x6e, 0x64, 0x54, 0x69, 0x6d, 0x65, 0x12, 0x34, 0x0a, 0x06, 0x6c, 0x61,
+	0x62, 0x65, 0x6c, 0x73, 0x18, 0x08, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72,
+	0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x06, 0x6c, 0x61, 0x62, 0x65, 0x6c, 0x73,
+	0x12, 0x2e, 0x0a, 0x03, 0x69, 0x64, 0x73, 0x18, 0x09, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1c, 0x2e,
+	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x03, 0x69, 0x64, 0x73,
+	0x22, 0xf3, 0x01, 0x0a, 0x17, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x45, 0x78,
+	0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x04,
+	0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f,
+	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x55, 0x49, 0x6e,
+	0x74, 0x33, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x12, 0x30,
+	0x0a, 0x04, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67,
+	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53,
+	0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x04, 0x69, 0x6e, 0x66, 0x6f,
+	0x12, 0x2f, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1b,
+	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
+	0x2e, 0x42, 0x79, 0x74, 0x65, 0x73, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x12, 0x43, 0x0a, 0x0e, 0x62, 0x61, 0x73, 0x65, 0x36, 0x34, 0x5f, 0x63, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
+	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x0d, 0x62, 0x61, 0x73, 0x65, 0x36, 0x34, 0x43,
+	0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x22, 0xf7, 0x01, 0x0a, 0x17, 0x52, 0x61, 0x74, 0x65, 0x4c,
+	0x69, 0x6d, 0x69, 0x74, 0x49, 0x6d, 0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x30, 0x0a, 0x04, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
+	0x75, 0x66, 0x2e, 0x55, 0x49, 0x6e, 0x74, 0x33, 0x32, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x52, 0x04,
+	0x63, 0x6f, 0x64, 0x65, 0x12, 0x30, 0x0a, 0x04, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65,
+	0x52, 0x04, 0x69, 0x6e, 0x66, 0x6f, 0x12, 0x3e, 0x0a, 0x15, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73,
+	0x73, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x18,
+	0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x08, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x52,
+	0x15, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69,
+	0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x12, 0x38, 0x0a, 0x12, 0x66, 0x61, 0x69, 0x6c, 0x52, 0x61,
+	0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73, 0x18, 0x04, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x08, 0x2e, 0x76, 0x31, 0x2e, 0x52, 0x75, 0x6c, 0x65, 0x52, 0x12, 0x66, 0x61,
+	0x69, 0x6c, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x52, 0x75, 0x6c, 0x65, 0x73,
+	0x22, 0x99, 0x01, 0x0a, 0x16, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69, 0x6d, 0x69, 0x74, 0x49, 0x6d,
+	0x70, 0x6f, 0x72, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x43, 0x0a, 0x0e, 0x62,
+	0x61, 0x73, 0x65, 0x36, 0x34, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75,
+	0x65, 0x52, 0x0d, 0x62, 0x61, 0x73, 0x65, 0x36, 0x34, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x6e, 0x74,
+	0x12, 0x3a, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75,
+	0x65, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x42, 0x8f, 0x01, 0x0a,
+	0x37, 0x63, 0x6f, 0x6d, 0x2e, 0x74, 0x65, 0x6e, 0x63, 0x65, 0x6e, 0x74, 0x2e, 0x70, 0x6f, 0x6c,
+	0x61, 0x72, 0x69, 0x73, 0x2e, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69,
+	0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x76, 0x31, 0x2e, 0x74, 0x72, 0x61, 0x66, 0x66, 0x69,
+	0x63, 0x2e, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x42, 0x0e, 0x52, 0x61, 0x74, 0x65, 0x4c, 0x69,
+	0x6d, 0x69, 0x74, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x5a, 0x44, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6f, 0x6c, 0x61, 0x72, 0x69, 0x73, 0x6d, 0x65, 0x73, 0x68,
+	0x2f, 0x73, 0x70, 0x65, 0x63, 0x69, 0x66, 0x69, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2f, 0x73,
+	0x6f, 0x75, 0x72, 0x63, 0x65, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x76, 0x31, 0x2f,
+	0x74, 0x72, 0x61, 0x66, 0x66, 0x69, 0x63, 0x5f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x62, 0x06,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1907,118 +2309,142 @@ func file_ratelimit_proto_rawDescGZIP() []byte {
 }
 
 var file_ratelimit_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_ratelimit_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_ratelimit_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_ratelimit_proto_goTypes = []interface{}{
-	(Rule_Resource)(0),                  // 0: v1.Rule.Resource
-	(Rule_Type)(0),                      // 1: v1.Rule.Type
-	(Rule_AmountMode)(0),                // 2: v1.Rule.AmountMode
-	(Rule_FailoverType)(0),              // 3: v1.Rule.FailoverType
-	(MatchArgument_Type)(0),             // 4: v1.MatchArgument.Type
-	(*RateLimit)(nil),                   // 5: v1.RateLimit
-	(*Rule)(nil),                        // 6: v1.Rule
-	(*MatchArgument)(nil),               // 7: v1.MatchArgument
-	(*ConcurrencyAmount)(nil),           // 8: v1.ConcurrencyAmount
-	(*CustomResponse)(nil),              // 9: v1.CustomResponse
-	(*RateLimitCluster)(nil),            // 10: v1.RateLimitCluster
-	(*Amount)(nil),                      // 11: v1.Amount
-	(*Report)(nil),                      // 12: v1.Report
-	(*AmountAdjuster)(nil),              // 13: v1.AmountAdjuster
-	(*ClimbConfig)(nil),                 // 14: v1.ClimbConfig
-	nil,                                 // 15: v1.Rule.SubsetEntry
-	nil,                                 // 16: v1.Rule.LabelsEntry
-	nil,                                 // 17: v1.Rule.MetadataEntry
-	(*ClimbConfig_MetricConfig)(nil),    // 18: v1.ClimbConfig.MetricConfig
-	(*ClimbConfig_TriggerPolicy)(nil),   // 19: v1.ClimbConfig.TriggerPolicy
-	(*ClimbConfig_ClimbThrottling)(nil), // 20: v1.ClimbConfig.ClimbThrottling
-	(*ClimbConfig_TriggerPolicy_ErrorRate)(nil),               // 21: v1.ClimbConfig.TriggerPolicy.ErrorRate
-	(*ClimbConfig_TriggerPolicy_SlowRate)(nil),                // 22: v1.ClimbConfig.TriggerPolicy.SlowRate
-	(*ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig)(nil), // 23: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig
-	(*wrapperspb.StringValue)(nil),                            // 24: google.protobuf.StringValue
-	(*wrapperspb.UInt32Value)(nil),                            // 25: google.protobuf.UInt32Value
-	(*wrapperspb.BoolValue)(nil),                              // 26: google.protobuf.BoolValue
-	(*model.MatchString)(nil),                                 // 27: v1.MatchString
-	(*durationpb.Duration)(nil),                               // 28: google.protobuf.Duration
-	(*wrapperspb.Int32Value)(nil),                             // 29: google.protobuf.Int32Value
-	(*wrapperspb.Int64Value)(nil),                             // 30: google.protobuf.Int64Value
+	(Rule_Resource)(0),                          // 0: v1.Rule.Resource
+	(Rule_Type)(0),                              // 1: v1.Rule.Type
+	(Rule_AmountMode)(0),                        // 2: v1.Rule.AmountMode
+	(Rule_FailoverType)(0),                      // 3: v1.Rule.FailoverType
+	(MatchArgument_Type)(0),                     // 4: v1.MatchArgument.Type
+	(*RateLimit)(nil),                           // 5: v1.RateLimit
+	(*Rule)(nil),                                // 6: v1.Rule
+	(*MatchArgument)(nil),                       // 7: v1.MatchArgument
+	(*ConcurrencyAmount)(nil),                   // 8: v1.ConcurrencyAmount
+	(*CustomResponse)(nil),                      // 9: v1.CustomResponse
+	(*RateLimitCluster)(nil),                    // 10: v1.RateLimitCluster
+	(*Amount)(nil),                              // 11: v1.Amount
+	(*Report)(nil),                              // 12: v1.Report
+	(*AmountAdjuster)(nil),                      // 13: v1.AmountAdjuster
+	(*ClimbConfig)(nil),                         // 14: v1.ClimbConfig
+	(*RateLimitExportRequest)(nil),              // 15: v1.RateLimitExportRequest
+	(*RateLimitExportResponse)(nil),             // 16: v1.RateLimitExportResponse
+	(*RateLimitImportResponse)(nil),             // 17: v1.RateLimitImportResponse
+	(*RateLimitImportRequest)(nil),              // 18: v1.RateLimitImportRequest
+	nil,                                         // 19: v1.Rule.SubsetEntry
+	nil,                                         // 20: v1.Rule.LabelsEntry
+	nil,                                         // 21: v1.Rule.MetadataEntry
+	(*ClimbConfig_MetricConfig)(nil),            // 22: v1.ClimbConfig.MetricConfig
+	(*ClimbConfig_TriggerPolicy)(nil),           // 23: v1.ClimbConfig.TriggerPolicy
+	(*ClimbConfig_ClimbThrottling)(nil),         // 24: v1.ClimbConfig.ClimbThrottling
+	(*ClimbConfig_TriggerPolicy_ErrorRate)(nil), // 25: v1.ClimbConfig.TriggerPolicy.ErrorRate
+	(*ClimbConfig_TriggerPolicy_SlowRate)(nil),  // 26: v1.ClimbConfig.TriggerPolicy.SlowRate
+	(*ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig)(nil), // 27: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig
+	(*wrapperspb.StringValue)(nil),                            // 28: google.protobuf.StringValue
+	(*wrapperspb.UInt32Value)(nil),                            // 29: google.protobuf.UInt32Value
+	(*wrapperspb.BoolValue)(nil),                              // 30: google.protobuf.BoolValue
+	(*model.MatchString)(nil),                                 // 31: v1.MatchString
+	(*durationpb.Duration)(nil),                               // 32: google.protobuf.Duration
+	(*wrapperspb.BytesValue)(nil),                             // 33: google.protobuf.BytesValue
+	(*wrapperspb.Int32Value)(nil),                             // 34: google.protobuf.Int32Value
+	(*wrapperspb.Int64Value)(nil),                             // 35: google.protobuf.Int64Value
 }
 var file_ratelimit_proto_depIdxs = []int32{
 	6,  // 0: v1.RateLimit.rules:type_name -> v1.Rule
-	24, // 1: v1.RateLimit.revision:type_name -> google.protobuf.StringValue
-	24, // 2: v1.Rule.id:type_name -> google.protobuf.StringValue
-	24, // 3: v1.Rule.service:type_name -> google.protobuf.StringValue
-	24, // 4: v1.Rule.namespace:type_name -> google.protobuf.StringValue
-	15, // 5: v1.Rule.subset:type_name -> v1.Rule.SubsetEntry
-	25, // 6: v1.Rule.priority:type_name -> google.protobuf.UInt32Value
+	28, // 1: v1.RateLimit.revision:type_name -> google.protobuf.StringValue
+	28, // 2: v1.Rule.id:type_name -> google.protobuf.StringValue
+	28, // 3: v1.Rule.service:type_name -> google.protobuf.StringValue
+	28, // 4: v1.Rule.namespace:type_name -> google.protobuf.StringValue
+	19, // 5: v1.Rule.subset:type_name -> v1.Rule.SubsetEntry
+	29, // 6: v1.Rule.priority:type_name -> google.protobuf.UInt32Value
 	0,  // 7: v1.Rule.resource:type_name -> v1.Rule.Resource
 	1,  // 8: v1.Rule.type:type_name -> v1.Rule.Type
-	16, // 9: v1.Rule.labels:type_name -> v1.Rule.LabelsEntry
+	20, // 9: v1.Rule.labels:type_name -> v1.Rule.LabelsEntry
 	11, // 10: v1.Rule.amounts:type_name -> v1.Amount
-	24, // 11: v1.Rule.action:type_name -> google.protobuf.StringValue
-	26, // 12: v1.Rule.disable:type_name -> google.protobuf.BoolValue
+	28, // 11: v1.Rule.action:type_name -> google.protobuf.StringValue
+	30, // 12: v1.Rule.disable:type_name -> google.protobuf.BoolValue
 	12, // 13: v1.Rule.report:type_name -> v1.Report
-	24, // 14: v1.Rule.ctime:type_name -> google.protobuf.StringValue
-	24, // 15: v1.Rule.mtime:type_name -> google.protobuf.StringValue
-	24, // 16: v1.Rule.revision:type_name -> google.protobuf.StringValue
-	24, // 17: v1.Rule.service_token:type_name -> google.protobuf.StringValue
+	28, // 14: v1.Rule.ctime:type_name -> google.protobuf.StringValue
+	28, // 15: v1.Rule.mtime:type_name -> google.protobuf.StringValue
+	28, // 16: v1.Rule.revision:type_name -> google.protobuf.StringValue
+	28, // 17: v1.Rule.service_token:type_name -> google.protobuf.StringValue
 	13, // 18: v1.Rule.adjuster:type_name -> v1.AmountAdjuster
-	26, // 19: v1.Rule.regex_combine:type_name -> google.protobuf.BoolValue
+	30, // 19: v1.Rule.regex_combine:type_name -> google.protobuf.BoolValue
 	2,  // 20: v1.Rule.amount_mode:type_name -> v1.Rule.AmountMode
 	3,  // 21: v1.Rule.failover:type_name -> v1.Rule.FailoverType
 	10, // 22: v1.Rule.cluster:type_name -> v1.RateLimitCluster
-	27, // 23: v1.Rule.method:type_name -> v1.MatchString
+	31, // 23: v1.Rule.method:type_name -> v1.MatchString
 	7,  // 24: v1.Rule.arguments:type_name -> v1.MatchArgument
-	24, // 25: v1.Rule.name:type_name -> google.protobuf.StringValue
-	24, // 26: v1.Rule.etime:type_name -> google.protobuf.StringValue
-	25, // 27: v1.Rule.max_queue_delay:type_name -> google.protobuf.UInt32Value
+	28, // 25: v1.Rule.name:type_name -> google.protobuf.StringValue
+	28, // 26: v1.Rule.etime:type_name -> google.protobuf.StringValue
+	29, // 27: v1.Rule.max_queue_delay:type_name -> google.protobuf.UInt32Value
 	8,  // 28: v1.Rule.concurrencyAmount:type_name -> v1.ConcurrencyAmount
 	9,  // 29: v1.Rule.customResponse:type_name -> v1.CustomResponse
-	17, // 30: v1.Rule.metadata:type_name -> v1.Rule.MetadataEntry
+	21, // 30: v1.Rule.metadata:type_name -> v1.Rule.MetadataEntry
 	4,  // 31: v1.MatchArgument.type:type_name -> v1.MatchArgument.Type
-	27, // 32: v1.MatchArgument.value:type_name -> v1.MatchString
-	24, // 33: v1.RateLimitCluster.service:type_name -> google.protobuf.StringValue
-	24, // 34: v1.RateLimitCluster.namespace:type_name -> google.protobuf.StringValue
-	25, // 35: v1.Amount.maxAmount:type_name -> google.protobuf.UInt32Value
-	28, // 36: v1.Amount.validDuration:type_name -> google.protobuf.Duration
-	25, // 37: v1.Amount.precision:type_name -> google.protobuf.UInt32Value
-	25, // 38: v1.Amount.startAmount:type_name -> google.protobuf.UInt32Value
-	25, // 39: v1.Amount.minAmount:type_name -> google.protobuf.UInt32Value
-	28, // 40: v1.Report.interval:type_name -> google.protobuf.Duration
-	25, // 41: v1.Report.amountPercent:type_name -> google.protobuf.UInt32Value
+	31, // 32: v1.MatchArgument.value:type_name -> v1.MatchString
+	28, // 33: v1.RateLimitCluster.service:type_name -> google.protobuf.StringValue
+	28, // 34: v1.RateLimitCluster.namespace:type_name -> google.protobuf.StringValue
+	29, // 35: v1.Amount.maxAmount:type_name -> google.protobuf.UInt32Value
+	32, // 36: v1.Amount.validDuration:type_name -> google.protobuf.Duration
+	29, // 37: v1.Amount.precision:type_name -> google.protobuf.UInt32Value
+	29, // 38: v1.Amount.startAmount:type_name -> google.protobuf.UInt32Value
+	29, // 39: v1.Amount.minAmount:type_name -> google.protobuf.UInt32Value
+	32, // 40: v1.Report.interval:type_name -> google.protobuf.Duration
+	29, // 41: v1.Report.amountPercent:type_name -> google.protobuf.UInt32Value
 	14, // 42: v1.AmountAdjuster.climb:type_name -> v1.ClimbConfig
-	26, // 43: v1.ClimbConfig.enable:type_name -> google.protobuf.BoolValue
-	18, // 44: v1.ClimbConfig.metric:type_name -> v1.ClimbConfig.MetricConfig
-	19, // 45: v1.ClimbConfig.policy:type_name -> v1.ClimbConfig.TriggerPolicy
-	20, // 46: v1.ClimbConfig.throttling:type_name -> v1.ClimbConfig.ClimbThrottling
-	27, // 47: v1.Rule.SubsetEntry.value:type_name -> v1.MatchString
-	27, // 48: v1.Rule.LabelsEntry.value:type_name -> v1.MatchString
-	28, // 49: v1.ClimbConfig.MetricConfig.window:type_name -> google.protobuf.Duration
-	25, // 50: v1.ClimbConfig.MetricConfig.precision:type_name -> google.protobuf.UInt32Value
-	28, // 51: v1.ClimbConfig.MetricConfig.reportInterval:type_name -> google.protobuf.Duration
-	21, // 52: v1.ClimbConfig.TriggerPolicy.errorRate:type_name -> v1.ClimbConfig.TriggerPolicy.ErrorRate
-	22, // 53: v1.ClimbConfig.TriggerPolicy.slowRate:type_name -> v1.ClimbConfig.TriggerPolicy.SlowRate
-	29, // 54: v1.ClimbConfig.ClimbThrottling.coldBelowTuneDownRate:type_name -> google.protobuf.Int32Value
-	29, // 55: v1.ClimbConfig.ClimbThrottling.coldBelowTuneUpRate:type_name -> google.protobuf.Int32Value
-	29, // 56: v1.ClimbConfig.ClimbThrottling.coldAboveTuneDownRate:type_name -> google.protobuf.Int32Value
-	29, // 57: v1.ClimbConfig.ClimbThrottling.coldAboveTuneUpRate:type_name -> google.protobuf.Int32Value
-	29, // 58: v1.ClimbConfig.ClimbThrottling.limitThresholdToTuneUp:type_name -> google.protobuf.Int32Value
-	28, // 59: v1.ClimbConfig.ClimbThrottling.judgeDuration:type_name -> google.protobuf.Duration
-	29, // 60: v1.ClimbConfig.ClimbThrottling.tuneUpPeriod:type_name -> google.protobuf.Int32Value
-	29, // 61: v1.ClimbConfig.ClimbThrottling.tuneDownPeriod:type_name -> google.protobuf.Int32Value
-	26, // 62: v1.ClimbConfig.TriggerPolicy.ErrorRate.enable:type_name -> google.protobuf.BoolValue
-	25, // 63: v1.ClimbConfig.TriggerPolicy.ErrorRate.requestVolumeThreshold:type_name -> google.protobuf.UInt32Value
-	29, // 64: v1.ClimbConfig.TriggerPolicy.ErrorRate.errorRate:type_name -> google.protobuf.Int32Value
-	23, // 65: v1.ClimbConfig.TriggerPolicy.ErrorRate.specials:type_name -> v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig
-	26, // 66: v1.ClimbConfig.TriggerPolicy.SlowRate.enable:type_name -> google.protobuf.BoolValue
-	28, // 67: v1.ClimbConfig.TriggerPolicy.SlowRate.maxRt:type_name -> google.protobuf.Duration
-	29, // 68: v1.ClimbConfig.TriggerPolicy.SlowRate.slowRate:type_name -> google.protobuf.Int32Value
-	24, // 69: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig.type:type_name -> google.protobuf.StringValue
-	30, // 70: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig.errorCodes:type_name -> google.protobuf.Int64Value
-	29, // 71: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig.errorRate:type_name -> google.protobuf.Int32Value
-	72, // [72:72] is the sub-list for method output_type
-	72, // [72:72] is the sub-list for method input_type
-	72, // [72:72] is the sub-list for extension type_name
-	72, // [72:72] is the sub-list for extension extendee
-	0,  // [0:72] is the sub-list for field type_name
+	30, // 43: v1.ClimbConfig.enable:type_name -> google.protobuf.BoolValue
+	22, // 44: v1.ClimbConfig.metric:type_name -> v1.ClimbConfig.MetricConfig
+	23, // 45: v1.ClimbConfig.policy:type_name -> v1.ClimbConfig.TriggerPolicy
+	24, // 46: v1.ClimbConfig.throttling:type_name -> v1.ClimbConfig.ClimbThrottling
+	28, // 47: v1.RateLimitExportRequest.namespace:type_name -> google.protobuf.StringValue
+	28, // 48: v1.RateLimitExportRequest.service:type_name -> google.protobuf.StringValue
+	28, // 49: v1.RateLimitExportRequest.name:type_name -> google.protobuf.StringValue
+	28, // 50: v1.RateLimitExportRequest.type:type_name -> google.protobuf.StringValue
+	30, // 51: v1.RateLimitExportRequest.disable:type_name -> google.protobuf.BoolValue
+	28, // 52: v1.RateLimitExportRequest.start_time:type_name -> google.protobuf.StringValue
+	28, // 53: v1.RateLimitExportRequest.end_time:type_name -> google.protobuf.StringValue
+	28, // 54: v1.RateLimitExportRequest.labels:type_name -> google.protobuf.StringValue
+	28, // 55: v1.RateLimitExportRequest.ids:type_name -> google.protobuf.StringValue
+	29, // 56: v1.RateLimitExportResponse.code:type_name -> google.protobuf.UInt32Value
+	28, // 57: v1.RateLimitExportResponse.info:type_name -> google.protobuf.StringValue
+	33, // 58: v1.RateLimitExportResponse.data:type_name -> google.protobuf.BytesValue
+	28, // 59: v1.RateLimitExportResponse.base64_content:type_name -> google.protobuf.StringValue
+	29, // 60: v1.RateLimitImportResponse.code:type_name -> google.protobuf.UInt32Value
+	28, // 61: v1.RateLimitImportResponse.info:type_name -> google.protobuf.StringValue
+	6,  // 62: v1.RateLimitImportResponse.successRateLimitRules:type_name -> v1.Rule
+	6,  // 63: v1.RateLimitImportResponse.failRateLimitRules:type_name -> v1.Rule
+	28, // 64: v1.RateLimitImportRequest.base64_content:type_name -> google.protobuf.StringValue
+	28, // 65: v1.RateLimitImportRequest.namespace:type_name -> google.protobuf.StringValue
+	31, // 66: v1.Rule.SubsetEntry.value:type_name -> v1.MatchString
+	31, // 67: v1.Rule.LabelsEntry.value:type_name -> v1.MatchString
+	32, // 68: v1.ClimbConfig.MetricConfig.window:type_name -> google.protobuf.Duration
+	29, // 69: v1.ClimbConfig.MetricConfig.precision:type_name -> google.protobuf.UInt32Value
+	32, // 70: v1.ClimbConfig.MetricConfig.reportInterval:type_name -> google.protobuf.Duration
+	25, // 71: v1.ClimbConfig.TriggerPolicy.errorRate:type_name -> v1.ClimbConfig.TriggerPolicy.ErrorRate
+	26, // 72: v1.ClimbConfig.TriggerPolicy.slowRate:type_name -> v1.ClimbConfig.TriggerPolicy.SlowRate
+	34, // 73: v1.ClimbConfig.ClimbThrottling.coldBelowTuneDownRate:type_name -> google.protobuf.Int32Value
+	34, // 74: v1.ClimbConfig.ClimbThrottling.coldBelowTuneUpRate:type_name -> google.protobuf.Int32Value
+	34, // 75: v1.ClimbConfig.ClimbThrottling.coldAboveTuneDownRate:type_name -> google.protobuf.Int32Value
+	34, // 76: v1.ClimbConfig.ClimbThrottling.coldAboveTuneUpRate:type_name -> google.protobuf.Int32Value
+	34, // 77: v1.ClimbConfig.ClimbThrottling.limitThresholdToTuneUp:type_name -> google.protobuf.Int32Value
+	32, // 78: v1.ClimbConfig.ClimbThrottling.judgeDuration:type_name -> google.protobuf.Duration
+	34, // 79: v1.ClimbConfig.ClimbThrottling.tuneUpPeriod:type_name -> google.protobuf.Int32Value
+	34, // 80: v1.ClimbConfig.ClimbThrottling.tuneDownPeriod:type_name -> google.protobuf.Int32Value
+	30, // 81: v1.ClimbConfig.TriggerPolicy.ErrorRate.enable:type_name -> google.protobuf.BoolValue
+	29, // 82: v1.ClimbConfig.TriggerPolicy.ErrorRate.requestVolumeThreshold:type_name -> google.protobuf.UInt32Value
+	34, // 83: v1.ClimbConfig.TriggerPolicy.ErrorRate.errorRate:type_name -> google.protobuf.Int32Value
+	27, // 84: v1.ClimbConfig.TriggerPolicy.ErrorRate.specials:type_name -> v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig
+	30, // 85: v1.ClimbConfig.TriggerPolicy.SlowRate.enable:type_name -> google.protobuf.BoolValue
+	32, // 86: v1.ClimbConfig.TriggerPolicy.SlowRate.maxRt:type_name -> google.protobuf.Duration
+	34, // 87: v1.ClimbConfig.TriggerPolicy.SlowRate.slowRate:type_name -> google.protobuf.Int32Value
+	28, // 88: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig.type:type_name -> google.protobuf.StringValue
+	35, // 89: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig.errorCodes:type_name -> google.protobuf.Int64Value
+	34, // 90: v1.ClimbConfig.TriggerPolicy.ErrorRate.SpecialConfig.errorRate:type_name -> google.protobuf.Int32Value
+	91, // [91:91] is the sub-list for method output_type
+	91, // [91:91] is the sub-list for method input_type
+	91, // [91:91] is the sub-list for extension type_name
+	91, // [91:91] is the sub-list for extension extendee
+	0,  // [0:91] is the sub-list for field type_name
 }
 
 func init() { file_ratelimit_proto_init() }
@@ -2147,44 +2573,44 @@ func file_ratelimit_proto_init() {
 				return nil
 			}
 		}
+		file_ratelimit_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RateLimitExportRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ratelimit_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RateLimitExportResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ratelimit_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RateLimitImportResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 		file_ratelimit_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClimbConfig_MetricConfig); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_ratelimit_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClimbConfig_TriggerPolicy); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_ratelimit_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClimbConfig_ClimbThrottling); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_ratelimit_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClimbConfig_TriggerPolicy_ErrorRate); i {
+			switch v := v.(*RateLimitImportRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2196,7 +2622,7 @@ func file_ratelimit_proto_init() {
 			}
 		}
 		file_ratelimit_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ClimbConfig_TriggerPolicy_SlowRate); i {
+			switch v := v.(*ClimbConfig_MetricConfig); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2208,6 +2634,54 @@ func file_ratelimit_proto_init() {
 			}
 		}
 		file_ratelimit_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClimbConfig_TriggerPolicy); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ratelimit_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClimbConfig_ClimbThrottling); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ratelimit_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClimbConfig_TriggerPolicy_ErrorRate); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ratelimit_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ClimbConfig_TriggerPolicy_SlowRate); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_ratelimit_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ClimbConfig_TriggerPolicy_ErrorRate_SpecialConfig); i {
 			case 0:
 				return &v.state
@@ -2226,7 +2700,7 @@ func file_ratelimit_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_ratelimit_proto_rawDesc,
 			NumEnums:      5,
-			NumMessages:   19,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
