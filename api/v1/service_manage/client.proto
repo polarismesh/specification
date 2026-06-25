@@ -22,30 +22,30 @@ message Client {
 
   google.protobuf.StringValue version = 3;
 
-	Location location = 4;
+  Location location = 4;
 
-	google.protobuf.StringValue id = 5;
+  google.protobuf.StringValue id = 5;
 
-	repeated StatInfo stat = 6;
+  repeated StatInfo stat = 6;
 
-	google.protobuf.StringValue ctime = 7;
-	google.protobuf.StringValue mtime = 8;
+  google.protobuf.StringValue ctime = 7;
+  google.protobuf.StringValue mtime = 8;
 
-	// 客户端是否启用配置中心功能
-	google.protobuf.BoolValue config_enabled = 100;
+  // 客户端是否启用配置中心功能
+  google.protobuf.BoolValue config_enabled = 100;
 
-	// 客户端配置相关的元数据，JSON 格式字符串
-	google.protobuf.StringValue config_metadata = 101;
+  // 客户端配置相关的元数据，JSON 格式字符串
+  google.protobuf.StringValue config_metadata = 101;
 }
 
 message StatInfo {
 
-	google.protobuf.StringValue target = 1;
+  google.protobuf.StringValue target = 1;
 
   google.protobuf.UInt32Value port = 2;
 
-	google.protobuf.StringValue path = 3;
+  google.protobuf.StringValue path = 3;
 
-	google.protobuf.StringValue protocol = 4;
+  google.protobuf.StringValue protocol = 4;
 
 }
