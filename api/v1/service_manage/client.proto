@@ -30,6 +30,12 @@ message Client {
 
 	google.protobuf.StringValue ctime = 7;
 	google.protobuf.StringValue mtime = 8;
+
+	// 客户端是否启用配置中心功能
+	google.protobuf.BoolValue config_enabled = 100;
+
+	// 客户端配置相关的元数据，JSON 格式字符串
+	google.protobuf.StringValue config_metadata = 101;
 }
 
 message StatInfo {
