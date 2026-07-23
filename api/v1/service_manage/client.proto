@@ -49,3 +49,16 @@ message StatInfo {
   google.protobuf.StringValue protocol = 4;
 
 }
+
+// 服务端下发给客户端的事件
+message ClientEvent {
+
+  // 客户端ID
+  string client_id = 1;
+
+  // 事件序号，服务端针对每个客户端的 stream 单调递增
+  uint64 index = 2;
+
+  // 事件内容，JSON 格式字符串
+  string content = 3;
+}

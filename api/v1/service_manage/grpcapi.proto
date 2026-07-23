@@ -14,16 +14,20 @@ option java_package = "com.tencent.polaris.specification.api.v1.service.manage";
 option java_outer_classname = "PolarisGRPCService";
 
 service PolarisGRPC {
-  // 客户端上报
+  // 上报客户端信息
   rpc ReportClient(Client) returns (Response) {}
+  // 监听客户端事件
+  rpc WatchClientEvents(stream Client) returns (stream ClientEvent) {}
+
   // 被调方注册服务实例
   rpc RegisterInstance(Instance) returns (Response) {}
   // 被调方反注册服务实例
   rpc DeregisterInstance(Instance) returns (Response) {}
-  // 统一发现接口
-  rpc Discover(stream DiscoverRequest) returns (stream DiscoverResponse) {}
   // 被调方上报心跳
   rpc Heartbeat(Instance) returns (Response) {}
+
+  // 统一发现接口
+  rpc Discover(stream DiscoverRequest) returns (stream DiscoverResponse) {}
 }
 
 service PolarisHeartbeatGRPC {
