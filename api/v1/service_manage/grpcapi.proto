@@ -17,7 +17,7 @@ service PolarisGRPC {
   // 上报客户端信息
   rpc ReportClient(Client) returns (Response) {}
   // 监听客户端事件
-  rpc WatchClientEvents(stream Client) returns (stream ClientEvent) {}
+  rpc WatchClientEvents(stream ClientEvent) returns (stream ClientEvent) {}
 
   // 被调方注册服务实例
   rpc RegisterInstance(Instance) returns (Response) {}

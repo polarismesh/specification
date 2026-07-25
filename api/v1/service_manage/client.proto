@@ -50,15 +50,30 @@ message StatInfo {
 
 }
 
-// 服务端下发给客户端的事件
+// 客户端与服务端之间通过 WatchClientEvents 双向 stream 传递的事件消息
 message ClientEvent {
 
+  // 事件类型，用于区分上下行不同用途
+  enum ClientEventType {
+    // 未知类型，兼容默认值
+    UNKNOWN = 0;
+    // 上行：客户端发起事件监听（通常为 stream 建立后的第一条消息，用于自证身份）
+    WATCH = 1;
+    // 下行：服务端推送事件到客户端，index 表示该事件的序号，content 承载事件内容
+    PUSH = 2;
+    // 上行：客户端回复服务端，index 表示该事件的序号，content 承载回复内容
+    ACK = 3;
+  }
+
+  // 事件类型
+  ClientEventType type = 1;
+
   // 客户端ID
-  string client_id = 1;
+  string client_id = 2;
 
   // 事件序号，服务端针对每个客户端的 stream 单调递增
-  uint64 index = 2;
+  uint64 index = 3;
 
-  // 事件内容，JSON 格式字符串
-  string content = 3;
+  // 事件或者回复内容，JSON 格式字符串
+  string content = 4;
 }
