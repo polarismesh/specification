@@ -53,6 +53,8 @@ message Response {
   google.protobuf.Any data = 29;
 
   ServiceContract serviceContract = 30;
+
+  ClientEvent clientEvent = 100;
 }
 
 message BatchWriteResponse {
