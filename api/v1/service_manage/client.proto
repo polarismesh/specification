@@ -36,6 +36,9 @@ message Client {
 
   // 客户端配置相关的元数据，JSON 格式字符串
   google.protobuf.StringValue config_metadata = 101;
+
+  // 客户端连接的服务端 IP
+  google.protobuf.StringValue server_host = 102;
 }
 
 message StatInfo {
