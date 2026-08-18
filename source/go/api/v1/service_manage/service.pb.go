@@ -893,6 +893,8 @@ type Instance struct {
 	Isolate           *wrapperspb.BoolValue   `protobuf:"bytes,12,opt,name=isolate,proto3" json:"isolate,omitempty"`
 	Location          *model.Location         `protobuf:"bytes,13,opt,name=location,proto3" json:"location,omitempty"`
 	// 实例元数据
+	// AI Agent 使用以下标准键：
+	//   - "ai-agent-name"：AI Agent 的名称，等于 service。必填
 	// MCP Server 使用以下标准键：
 	//   - "mcp-server-name"：MCP Server 的名称，等于 service。必填
 	//   - "mcp-protocol-version"：MCP 协议版本，例如："2025-03-26"。可选

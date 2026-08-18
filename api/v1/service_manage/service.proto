@@ -155,6 +155,8 @@ message Instance {
   Location location = 13;
 
   // 实例元数据
+  // AI Agent 使用以下标准键：
+  //   - "ai-agent-name"：AI Agent 的名称，等于 service。必填
   // MCP Server 使用以下标准键：
   //   - "mcp-server-name"：MCP Server 的名称，等于 service。必填
   //   - "mcp-protocol-version"：MCP 协议版本，例如："2025-03-26"。可选
