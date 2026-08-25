@@ -15,6 +15,7 @@ fault_tolerance_dir=${workdir}/api/v1/fault_tolerance
 config_manage_dir=${workdir}/api/v1/config_manage
 security_dir=${workdir}/api/v1/security
 ratelimiter_dir=${workdir}/api/v1/traffic_manage/ratelimiter
+skill_manage_dir=${workdir}/api/v1/skill_manage
 out_dir=${workdir}/source/go
 
 # Function to scan .proto files in a directory
@@ -37,6 +38,7 @@ proto_files_fault_tolerance=$(scan_proto_files "$fault_tolerance_dir")
 proto_files_config_manage=$(scan_proto_files "$config_manage_dir")
 proto_files_security=$(scan_proto_files "$security_dir")
 proto_files_ratelimiter=$(scan_proto_files "$ratelimiter_dir")
+proto_files_skill_manage=$(scan_proto_files "$skill_manage_dir")
 
 if [[ "$CURRENT_OS" == "linux" || "$CURRENT_OS" == "darwin" ]]; then
     protoc_dir=${workdir}/source/protoc/protoc-${CURRENT_OS}-${CURRENT_ARCH}
@@ -135,6 +137,18 @@ if [[ "$CURRENT_OS" == "linux" || "$CURRENT_OS" == "darwin" ]]; then
         --proto_path=. ${proto_files_ratelimiter}
     mv "${out_dir}/github.com/polarismesh/specification/source/go/api/v1/traffic_manage/ratelimiter" "${out_dir}/api/v1/traffic_manage"
     pushd "${out_dir}/api/v1/traffic_manage/ratelimiter"
+    "${protoc_dir}"/bin/protoc-go-inject-tag -input="*.pb.go"
+    popd
+    popd
+
+    pushd "${skill_manage_dir}"
+    "${protoc_dir}"/bin/protoc \
+        --plugin=protoc-gen-go="${protoc_dir}"/bin/protoc-gen-go \
+        --go_out=plugins=grpc:"${out_dir}" \
+        --proto_path="${protoc_dir}"/include \
+        --proto_path=. ${proto_files_skill_manage}
+    mv "${out_dir}/github.com/polarismesh/specification/source/go/api/v1/skill_manage" "${out_dir}/api/v1"
+    pushd "${out_dir}/api/v1/skill_manage"
     "${protoc_dir}"/bin/protoc-go-inject-tag -input="*.pb.go"
     popd
     popd

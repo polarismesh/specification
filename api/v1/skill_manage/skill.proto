@@ -1,0 +1,68 @@
+// Tencent is pleased to support the open source community by making Polaris available.
+//
+// Copyright (C) 2019 THL A29 Limited, a Tencent company. All rights reserved.
+//
+// Licensed under the BSD 3-Clause License (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// https://opensource.org/licenses/BSD-3-Clause
+//
+// Unless required by applicable law or agreed to in writing, software distributed
+// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+// CONDITIONS OF ANY KIND, either express or implied. See the License for the
+// specific language governing permissions and limitations under the License.
+
+syntax = "proto3";
+
+package v1;
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/skill_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.skill.manage";
+option java_outer_classname = "SkillProto";
+
+message SkillResource {
+  int64  id = 1;
+  string name = 2;
+  string namespace = 3;
+  string description = 4;
+  string status = 5;
+  repeated string tags = 6;
+  repeated string examples = 7;
+  map<string, string> ext = 8;
+  string source = 9;                    // local / import / sync
+  VersionInfo version_info = 10;
+  int64  meta_version = 11;
+  string scope = 12;                    // PUBLIC / PRIVATE
+  string owner = 13;
+  int64  download_count = 14;
+  string create_time = 15;
+  string modify_time = 16;
+}
+
+message VersionInfo {
+  string active_version = 1;
+  string latest_version = 2;
+  int32  total_versions = 3;
+}
+
+message SkillResourceVersion {
+  int64  id = 1;
+  string name = 2;
+  string namespace = 3;
+  string version = 4;
+  string author = 5;
+  string description = 6;
+  string status = 7;                    // draft / submitted / published / offline
+  StorageInfo storage = 8;
+  int64  download_count = 9;
+  string create_time = 10;
+  string modify_time = 11;
+}
+
+message StorageInfo {
+  string provider = 1;                  // skill_native / polaris_config
+  repeated string files = 2;
+  string scope = 3;
+  string content_digest = 4;
+}
