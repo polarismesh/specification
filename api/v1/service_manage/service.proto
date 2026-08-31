@@ -82,7 +82,8 @@ message ExtendedMetadata {
 }
 
 // AI Agent 技能定义。
-// 字段与 A2A 官方 AgentSkill 保持一致（proto3 JSON 可互相兼容）。
+// 字段号 1-99 与 A2A 官方 AgentSkill 保持一致（proto3 JSON 可互相兼容），
+// 字段号 100 及以上为 Polaris 私有扩展，避免与 A2A 官方后续新增字段冲突。
 // 参考：https://github.com/a2aproject/A2A/blob/main/specification/a2a.proto
 message AgentSkill {
   string id = 1;
@@ -96,6 +97,9 @@ message AgentSkill {
   // 字段号 8 预留给 security_requirements（A2A 官方定义为 repeated SecurityRequirement）
   reserved 8;
   reserved "security_requirements";
+
+  // ===== 以下为 Polaris 私有扩展字段（字段号从 100 开始） =====
+  string version = 100;
 }
 
 enum ServiceStatus {
