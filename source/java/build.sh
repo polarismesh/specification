@@ -28,8 +28,7 @@ cp ${fault_tolerance_dir}/*.proto ${java_source_dir}/proto/
 cp ${config_manage_dir}/*.proto ${java_source_dir}/proto/
 cp ${security_dir}/*.proto ${java_source_dir}/proto/
 cp ${traffic_manage_dir}/ratelimiter/*.proto ${java_source_dir}/proto/
-cp ${skill_manage_dir}/skill.proto ${java_source_dir}/proto/
-cp ${skill_manage_dir}/skill_service.proto ${java_source_dir}/proto/
+cp ${skill_manage_dir}/*.proto ${java_source_dir}/proto/
 
 version=`cat ${workdir}/VERSION`
 echo $version
