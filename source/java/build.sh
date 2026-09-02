@@ -12,6 +12,7 @@ traffic_manage_dir=${workdir}/api/v1/traffic_manage
 fault_tolerance_dir=${workdir}/api/v1/fault_tolerance
 config_manage_dir=${workdir}/api/v1/config_manage
 security_dir=${workdir}/api/v1/security
+skill_manage_dir=${workdir}/api/v1/skill_manage
 
 java_root_dir=${workdir}/source/java/polaris-specification
 java_test_root_dir=${workdir}/source/java/polaris-specification-test
@@ -27,6 +28,8 @@ cp ${fault_tolerance_dir}/*.proto ${java_source_dir}/proto/
 cp ${config_manage_dir}/*.proto ${java_source_dir}/proto/
 cp ${security_dir}/*.proto ${java_source_dir}/proto/
 cp ${traffic_manage_dir}/ratelimiter/*.proto ${java_source_dir}/proto/
+cp ${skill_manage_dir}/skill.proto ${java_source_dir}/proto/
+cp ${skill_manage_dir}/skill_service.proto ${java_source_dir}/proto/
 
 version=`cat ${workdir}/VERSION`
 echo $version
