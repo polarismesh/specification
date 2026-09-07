@@ -160,6 +160,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central-portal</publishingServerId>
+                    <deploymentName>polaris-specification-${project.version}</deploymentName>
                 </configuration>
             </plugin>
         </plugins>
