@@ -216,7 +216,7 @@ message ConfigFilePublishInfo {
   ConfigFileSupportedClient supported_client = 18 [ json_name = "supported_client" ];
   ConfigFilePersistent persistent = 19 [ json_name = "persistent" ];
   // 初始版本号。仅在首次创建配置并发布时生效，后续发布的版本号在此基础上递增；不传则沿用原有自增逻辑。
-  google.protobuf.UInt64Value version = 20 [ json_name = "version" ];
+  google.protobuf.UInt64Value initial_internal_version = 20 [ json_name = "initial_internal_version" ];
 }
 
 message ConfigFileGroupRequest {
