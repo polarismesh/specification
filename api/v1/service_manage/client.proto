@@ -22,24 +22,61 @@ message Client {
 
   google.protobuf.StringValue version = 3;
 
-	Location location = 4;
+  Location location = 4;
 
-	google.protobuf.StringValue id = 5;
+  google.protobuf.StringValue id = 5;
 
-	repeated StatInfo stat = 6;
+  repeated StatInfo stat = 6;
 
-	google.protobuf.StringValue ctime = 7;
-	google.protobuf.StringValue mtime = 8;
+  google.protobuf.StringValue ctime = 7;
+  google.protobuf.StringValue mtime = 8;
+
+  // 客户端是否启用配置中心功能
+  google.protobuf.BoolValue config_enabled = 100;
+
+  // 客户端配置相关的元数据，JSON 格式字符串
+  google.protobuf.StringValue config_metadata = 101;
+
+  // 客户端连接的服务端 IP
+  google.protobuf.StringValue server_host = 102;
 }
 
 message StatInfo {
 
-	google.protobuf.StringValue target = 1;
+  google.protobuf.StringValue target = 1;
 
   google.protobuf.UInt32Value port = 2;
 
-	google.protobuf.StringValue path = 3;
+  google.protobuf.StringValue path = 3;
 
-	google.protobuf.StringValue protocol = 4;
+  google.protobuf.StringValue protocol = 4;
 
+}
+
+// 客户端与服务端之间通过 WatchClientEvents 双向 stream 传递的事件消息
+message ClientEvent {
+
+  // 事件类型，用于区分上下行不同用途
+  enum ClientEventType {
+    // 未知类型，兼容默认值
+    UNKNOWN = 0;
+    // 上行：客户端发起事件监听（通常为 stream 建立后的第一条消息，用于自证身份）
+    WATCH = 1;
+    // 下行：服务端推送事件到客户端，index 表示该事件的序号，content 承载事件内容
+    PUSH = 2;
+    // 上行：客户端回复服务端，index 表示该事件的序号，content 承载回复内容
+    ACK = 3;
+  }
+
+  // 事件类型
+  ClientEventType type = 1;
+
+  // 客户端ID
+  string client_id = 2;
+
+  // 事件序号，服务端针对每个客户端的 stream 单调递增
+  uint64 index = 3;
+
+  // 事件或者回复内容，JSON 格式字符串
+  string content = 4;
 }

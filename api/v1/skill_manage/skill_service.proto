@@ -1,0 +1,96 @@
+// Tencent is pleased to support the open source community by making Polaris available.
+//
+// Copyright (C) 2019 THL A29 Limited, a Tencent company. All rights reserved.
+//
+// Licensed under the BSD 3-Clause License (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// https://opensource.org/licenses/BSD-3-Clause
+//
+// Unless required by applicable law or agreed to in writing, software distributed
+// under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+// CONDITIONS OF ANY KIND, either express or implied. See the License for the
+// specific language governing permissions and limitations under the License.
+
+syntax = "proto3";
+
+package v1;
+
+import "skill.proto";
+
+option go_package = "github.com/polarismesh/specification/source/go/api/v1/skill_manage";
+option java_package = "com.tencent.polaris.specification.api.v1.skill.manage";
+option java_outer_classname = "PolarisSkillGRPCService";
+
+// PolarisSkill Skill 客户端 gRPC 服务，只暴露只读接口
+service PolarisSkill {
+  // GetSkill 获取指定版本的 Skill 完整内容（含 SKILL.md 文本）
+  // 仅返回 published 版本；version 为空时返回当前 activeVersion
+  rpc GetSkill(GetSkillRequest) returns (GetSkillResponse);
+
+  // GetSkillList 查询可用 Skill 列表（仅 published）
+  rpc GetSkillList(ListSkillsRequest) returns (ListSkillsResponse);
+
+  // DownloadSkill 下载 Skill；markdown 走一元（一帧发完），ZIP 走 server streaming（1MB 分片）
+  // format="markdown" 时 stream 只发 1 帧：content 填充，zip_chunk 为空
+  // format="zip"      时 stream 分片：第一帧携带 total_size/filename/content_type + 首片 zip_chunk，
+  //                                    后续帧仅携带 zip_chunk，流结束隐含 EOF
+  rpc DownloadSkill(DownloadSkillRequest) returns (stream DownloadSkillResponse);
+}
+
+message GetSkillRequest {
+  string name = 1;
+  string namespace = 2;
+  string version = 3;
+}
+
+message GetSkillResponse {
+  uint32 code = 1;
+  string info = 2;
+  SkillResource resource = 3;
+  SkillResourceVersion version = 4;
+  string content = 5;
+}
+
+message ListSkillsRequest {
+  string namespace = 1;
+  string name = 2;
+  string tag = 3;
+  string owner = 4;
+  string scope = 5;
+  string keyword = 6;
+  string order_by = 7;                  // download_count / mtime
+  string order_type = 8;                // desc / asc
+  uint32 offset = 9;
+  uint32 limit = 10;
+}
+
+message ListSkillsResponse {
+  uint32 code = 1;
+  string info = 2;
+  uint32 total = 3;
+  repeated SkillResource resources = 4;
+}
+
+message DownloadSkillRequest {
+  string name = 1;
+  string namespace = 2;
+  string version = 3;
+  string tag = 4;
+  string format = 5;                    // markdown / zip
+}
+
+message DownloadSkillResponse {
+  uint32 code = 1;
+  string info = 2;
+  string version = 3;
+  string content_type = 4;              // text/markdown 或 application/zip
+
+  string content = 5;
+
+  bytes zip_chunk = 6;
+
+  int64  total_size = 7;
+  string filename = 8;
+}
