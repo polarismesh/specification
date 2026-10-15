@@ -1,3 +1,3 @@
-# SPDX-FileCopyrightText: 2023-present {authemail@qq.com} <authemail@qq.com>
+# SPDX-FileCopyrightText: Copyright (C) 2021 Tencent. All rights reserved.
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: BSD-3-Clause

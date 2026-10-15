@@ -1,14 +1,17 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
 name = "polarismesh-specification"
-description = ''
+description = "Polaris API protobuf and gRPC stubs for Python"
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = []
-authors = [{ name = "{authemail@qq.com}", email = "authemail@qq.com" },
+license = "BSD-3-Clause"
+license-files = ["LICENSE.txt"]
+keywords = ["polaris", "polarismesh", "protobuf", "grpc"]
+authors = [
+    { name = "evelynwei", email = "984178308@qq.com" },
 ]
 classifiers = ["Development Status :: 4 - Beta",
     "Programming Language :: Python",
@@ -24,7 +27,6 @@ dependencies = [
     "protobuf>=7.35.1,<8",
 ]
 dynamic = ["version"]
-license-files = { paths = ["LICENSE.txt"] }
 
 [project.urls]
 Documentation = "https://github.com/polarismesh/specification#readme"
