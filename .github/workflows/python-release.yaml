@@ -1,0 +1,58 @@
+name: Release-Python
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to publish, e.g. v1.9.0-alpha.1
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build tools
+        run: python -m pip install build packaging
+      # VERSION stays at X-SNAPSHOT on pre-release tags, so the tag is the only
+      # source that tells v1.9.0-alpha.1 apart from v1.9.0.
+      - name: Set package version from tag
+        working-directory: source/python
+        run: |
+          python - <<'EOF'
+          import os
+          import re
+          from pathlib import Path
+
+          from packaging.version import Version
+
+          version = str(Version(os.environ["TAG"]))
+          about = Path("src/polarismesh_specification/__about__.py")
+          about.write_text(re.sub(r'__version__ = ".*"', f'__version__ = "{version}"', about.read_text()))
+          print(f"{os.environ['TAG']} -> {version}")
+          EOF
+      # Run from the repository root: source/python/build.py would shadow the build module.
+      - name: Build package
+        run: python -m build source/python
+      - name: Test installation
+        run: |
+          python -m pip install source/python/dist/*.whl
+          python -c "from importlib.metadata import version; from polarismesh_specification.api.v1.service_manage import grpcapi_pb2_grpc; from polarismesh_specification.api.v1.skill_manage import skill_service_pb2_grpc; print(version('polarismesh-specification'))"
+      - name: Publish package
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: source/python/dist/
+          password: ${{ secrets.PYPI_API_TOKEN }}
