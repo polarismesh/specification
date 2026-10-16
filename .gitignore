@@ -23,3 +23,5 @@ venv/
 # === Rust ===
 Cargo.lock
 source/rust/polaris-specification/target
+
+**/__pycache__

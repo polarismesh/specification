@@ -5,8 +5,13 @@ on:
     branches:
       - main
       - release/*
-    paths-ignore:
-      - '**.md'
+    paths:
+      - 'api/v1/**'
+      - 'source/java/**'
+      - 'VERSION'
+      - '.github/workflows/java-snapshot.yaml'
+      - '!api/v1/**.md'
+      - '!source/java/**.md'
 
 jobs:
   check-snapshot:
