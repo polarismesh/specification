@@ -51,13 +51,15 @@ PyPI 上同一个版本号只能上传一次，不能像 Maven SNAPSHOT 那样�
 | `v1.9.0-alpha.1` | `1.9.0a1` |
 | `v1.9.0` | `1.9.0` |
 
-正式版 tag 用 `v1.9.0`。预发布 tag 用 `v1.9.0-alpha.N`，并在 GitHub Release 上勾选 pre-release。上传使用仓库 secret `PYPI_API_TOKEN`。
+正式版 tag 用 `v1.9.0`。预发布 tag 用 `v1.9.0-alpha.N`，并在 GitHub Release 上勾选 pre-release。上传使用仓库 secret `HATCH_INDEX_AUTH`。Snapshot-Python 也使用这个 secret。
 
 手动补发某个 tag 时，工作流 checkout 的是该 tag。tag 上没有的元数据或桩代码不会进入这次包。
 
 ### Snapshot-Python
 
-工作流是 `.github/workflows/python-snapshot.yaml`。代码推送到 `main` 或 `release/*`，且本次变更包含 `source/python` 下的非 Markdown 文件，或包含这个工作流文件时运行。只改 proto 或其他语言不会发布 Python 开发版，因为这里打包的是已经提交的桩。
+工作流是 `.github/workflows/python-snapshot.yaml`。面向 `main` 或 `release/*` 的 pull request，以及推送到这些分支时运行。本次变更需要包含 `source/python` 下的非 Markdown 文件，或包含这个工作流文件。只改 proto 或其他语言不会跑这条流水线，因为这里打包的是已经提交的桩。
+
+本仓库分支上的 pull request 会实际上传到 PyPI，合入前就能确认 secret 和上传步骤。fork 的 pull request 拿不到仓库 secret，只构建并测试安装。合入后推送到目标分支会再用新的 run number 发一次。
 
 `__about__.py` 是开发版时才发布。正式版和预发布版会跳过。发布版本保留开发版点号前的基线，并把开发序号换成这次工作流的 run number。当前仓库版本会变成：
 
