@@ -139,14 +139,18 @@ message Instance {
   google.protobuf.StringValue namespace = 3;
   google.protobuf.StringValue vpc_id = 21 [json_name = "vpc_id"];
   google.protobuf.StringValue host = 4;
-  google.protobuf.UInt32Value port = 5;
 
-  // 通信协议类型
+  // 服务端口
+  // AI Agent 服务端口默认设置为1。ai-agent-card 包含支持接口的协议和端口
+  google.protobuf.UInt32Value port = 5;
+  // 服务协议类型
+  // AI Agent 服务协议类型默认设置为空。ai-agent-card 包含支持接口的协议和端口
   // MCP Server 使用以下协议类型：
   //   - "mcp-sse"：基于 Server-Sent Events 的 MCP 传输协议
   //   - "mcp-streamable-http"：基于 Streamable HTTP 的 MCP 传输协议
   google.protobuf.StringValue protocol = 6;
   // 服务版本
+  // AI Agent 使用 version，不是 protocol_version
   // MCP Server 使用 mcp-server-version，不是 mcp-protocol-version
   google.protobuf.StringValue version = 7;
 
@@ -161,6 +165,8 @@ message Instance {
   // 实例元数据
   // AI Agent 使用以下标准键：
   //   - "ai-agent-name"：AI Agent 的名称，等于 service。必填
+  //   - "ai-agent-card"：AI Agent 的卡片。可选
+  //   - "ai-a2a-version"：A2A 协议版本。可选
   // MCP Server 使用以下标准键：
   //   - "mcp-server-name"：MCP Server 的名称，等于 service。必填
   //   - "mcp-protocol-version"：MCP 协议版本，例如："2025-03-26"。可选
